@@ -1,5 +1,5 @@
 import webpack from 'webpack';
-import webpackConfig from '../webpack.config.prod';
+import webpackConfig from './webpack/webpack.config.prod';
 import colors from 'colors'; // eslint-disable-line no-unused-vars
 
 /* eslint-disable no-console */

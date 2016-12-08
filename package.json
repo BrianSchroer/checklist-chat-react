@@ -26,11 +26,13 @@
   "dependencies": {
     "babel-polyfill": "^6.8.0",
     "bootstrap": "^3.3.6",
+    "font-awesome": "^4.7.0",
     "jquery": "^2.2.3",
     "keymirror": "^0.1.1",
     "lodash": "^4.17.2",
     "react": "^15.0.2",
     "react-dom": "^15.0.2",
+    "react-fontawesome": "^1.4.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.4.0",
     "react-router-redux": "^4.0.4",
