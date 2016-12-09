@@ -2,6 +2,7 @@
 
 import initialState from '../../app/store/initialState';
 import { beginAjaxCall, ajaxCallError } from '../../app/ajaxStatus/ajaxStatusDucks';
+import * as chatMessageType from './chatMessageType';
 
 const prefix = 'checklist-chat/chat/';
 export const LOAD_MESSAGES_SUCCESS = `${prefix}LOAD_MESSAGES_SUCCESS`;
@@ -28,8 +29,12 @@ export function loadMessages() {
 function loadFakeMessages() {
     return new Promise((resolve) => {
         resolve([
-            { key: 1, timeStamp: '2016-12-08 15:05', userName: 'Brian Schroer', text: 'Hi, everybody!' },
-            { key: 2, timeStamp: '2016-12-08 15:06', userName: 'Gary Bortosky', text: 'This should be fun.' }
+            { key: 1, timeStamp: '2016-12-08 07:51', userName: 'Brian Schroer', chatMessageType: chatMessageType.ACTION, text: 'updated the room description / phone info.' },
+            { key: 2, timeStamp: '2016-12-08 07:51', userName: 'Brian Schroer', chatMessageType: chatMessageType.ACTION, text: 'created new chat "Defect Fix Deployment".' },
+            { key: 3, timeStamp: '2016-12-08 07:51', userName: 'Brian Schroer', chatMessageType: chatMessageType.ACTION, text: 'entered the room' },
+            { key: 4, timeStamp: '2016-12-08 07:52', userName: 'Brian Schroer', chatMessageType: chatMessageType.CHAT, text: 'Hi, everybody! Welcome to the chat!' },
+            { key: 5, timeStamp: '2016-12-08 07:53', userName: 'Gary Bortosky', chatMessageType: chatMessageType.ACTION, text: 'entered the room' },
+            { key: 6, timeStamp: '2016-12-08 07:53', userName: 'Gary Bortosky', chatMessageType: chatMessageType.CHAT, text: 'Good morning.' }
         ]);
     });
 }
