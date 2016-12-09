@@ -2,8 +2,9 @@
 
 import initialState from '../../app/store/initialState';
 
-export const BEGIN_AJAX_CALL = 'pluralsight-redux-starter/ajaxStatus/BEGIN_AJAX_CALL';
-export const AJAX_CALL_ERROR = 'pluralsight-redux-starter/ajaxStatus/AJAX_CALL_ERROR';
+const prefix = 'checklist-chat/ajaxStatus/';
+export const BEGIN_AJAX_CALL = `${prefix}BEGIN_AJAX_CALL`;
+export const AJAX_CALL_ERROR = `${prefix}AJAX_CALL_ERROR`;
 
 // Action creators:
 

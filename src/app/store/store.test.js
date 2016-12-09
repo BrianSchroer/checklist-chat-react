@@ -2,7 +2,7 @@
 // import {createStore} from 'redux';
 // import rootReducer from '../rootReducer';
 // import initialState from './initialState';
-//import * as courseActions from '../../features/course/courseDuck';
+//import * as courseActions from '../../features/course/courseDucks';
 
 describe('Store', () => {
     // it('should handle creating courses', () => {
