@@ -16,7 +16,8 @@ describe('regexConstants', () => {
         { pattern: REGEX.WOFF_OR_WOFF2_PATH, path: 'node_modules/bootstrap/fonts/gylphicons-halflings-regular.woff', expected: true },
         { pattern: REGEX.WOFF_OR_WOFF2_PATH, path: 'node_modules/bootstrap/fonts/gylphicons-halflings-regular.woff?v=1.2.3', expected: true },
         { pattern: REGEX.WOFF_OR_WOFF2_PATH, path: 'node_modules/bootstrap/fonts/gylphicons-halflings-regular.woff2', expected: true },
-        { pattern: REGEX.WOFF_OR_WOFF2_PATH, path: 'node_modules/bootstrap/fonts/gylphicons-halflings-regular.woff2?v=1.2.3', expected: true }
+        { pattern: REGEX.WOFF_OR_WOFF2_PATH, path: 'node_modules/bootstrap/fonts/gylphicons-halflings-regular.woff2?v=1.2.3', expected: true },
+        { pattern: REGEX.IMAGES_PATH, path: 'src/images/Logo.png', expected: true }
     ]
     .forEach(scenario => {
         const pathToTest = scenario.path;

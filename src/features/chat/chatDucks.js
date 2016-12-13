@@ -33,8 +33,18 @@ function loadFakeMessages() {
             { key: 2, timeStamp: '2016-12-08 07:51', userName: 'Brian Schroer', chatMessageType: chatMessageType.ACTION, text: 'created new chat "Defect Fix Deployment".' },
             { key: 3, timeStamp: '2016-12-08 07:51', userName: 'Brian Schroer', chatMessageType: chatMessageType.ACTION, text: 'entered the room' },
             { key: 4, timeStamp: '2016-12-08 07:52', userName: 'Brian Schroer', chatMessageType: chatMessageType.CHAT, text: 'Hi, everybody! Welcome to the chat!' },
-            { key: 5, timeStamp: '2016-12-08 07:53', userName: 'Gary Bortosky', chatMessageType: chatMessageType.ACTION, text: 'entered the room' },
-            { key: 6, timeStamp: '2016-12-08 07:53', userName: 'Gary Bortosky', chatMessageType: chatMessageType.CHAT, text: 'Good morning.' }
+            { key: 5, timeStamp: '2016-12-08 07:53', userName: 'Gary Bortosky', chatMessageType: chatMessageType.ACTION, text: 'said that the world will little note, nor long remember what we say here, but it can never forget what they did here. It is for us the living, rather, to be dedicated here to the unfinished work which they who fought here have thus far so nobly advanced.' },
+            { key: 6, timeStamp: '2016-12-08 07:53', userName: 'Gary Bortosky', chatMessageType: chatMessageType.CHAT, text: 'Good morning.' },
+            { key: 7, timeStamp: '2016-12-08 07:53', userName: 'Gary Bortosky', chatMessageType: chatMessageType.CHAT, text: 'Good morning2.' },
+            { key: 8, timeStamp: '2016-12-08 07:53', userName: 'Gary Bortosky', chatMessageType: chatMessageType.CHAT, text: 'Good morning3.' },
+            { key: 9, timeStamp: '2016-12-08 07:53', userName: 'Gary Bortosky', chatMessageType: chatMessageType.CHAT, text: 'Good morning4.' },
+            { key: 10, timeStamp: '2016-12-08 07:53', userName: 'Gary Bortosky', chatMessageType: chatMessageType.CHAT, text: 'Good morning5.' },
+            { key: 11, timeStamp: '2016-12-08 07:53', userName: 'Gary Bortosky', chatMessageType: chatMessageType.CHAT, text: 'The world will little note, nor long remember what we say here, but it can never forget what they did here. It is for us the living, rather, to be dedicated here to the unfinished work which they who fought here have thus far so nobly advanced.' },
+            { key: 12, timeStamp: '2016-12-08 07:53', userName: 'Gary Bortosky', chatMessageType: chatMessageType.CHAT, text: 'Good morning7.' },
+            { key: 13, timeStamp: '2016-12-08 07:53', userName: 'Gary Bortosky', chatMessageType: chatMessageType.CHAT, text: 'Good morning8.' },
+            { key: 14, timeStamp: '2016-12-08 07:53', userName: 'Gary Bortosky', chatMessageType: chatMessageType.CHAT, text: 'Good morning9.' },
+            { key: 15, timeStamp: '2016-12-08 07:53', userName: 'Gary Bortosky', chatMessageType: chatMessageType.CHAT, text: 'Good morning10.' },
+            { key: 16, timeStamp: '2016-12-08 07:53', userName: 'Gary Bortosky', chatMessageType: chatMessageType.CHAT, text: 'Good morning11.' }
         ]);
     });
 }

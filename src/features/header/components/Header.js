@@ -4,13 +4,10 @@ import LoadingDots from '../../../components/LoadingDots';
 
 const Header = ({isLoading}) => {
     return (
-        <nav>
-            <IndexLink to="/" activeClassName="active">Home</IndexLink>
-            {" | "}
-            <Link to="/chat" activeClassName="active">Chat</Link>
-            {" | "}
-            <Link to="/about" activeClassName="active">About</Link>
-            {isLoading && <LoadingDots interval={100} dots={20}/>}
+        <nav className="navbar">
+            <div className="nav navbar-nav">
+                <IndexLink to="/" className="navbar-brand header-logo-img" />
+            </div>
         </nav>
     );
 };

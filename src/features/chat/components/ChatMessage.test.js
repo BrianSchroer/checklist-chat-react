@@ -24,12 +24,12 @@ describe('ChatMessage', () => {
 
     it('should render message.userName', () => {
         const elem = enzymeHelper.findSingle(renderWith(props), 'li > strong');
-        expect(elem.text()).toBe(props.message.userName+ ':');
+        expect(elem.text()).toBe(props.message.userName+ ': ');
     });
 
     it('should render message.text', () => {
         const elem = enzymeHelper.findSingle(renderWith(props),
-            'li > div.chat-message-text');
+            'li > span.chat-message-text');
         expect(elem.text()).toBe(props.message.text);
     });
 });

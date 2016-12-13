@@ -24,7 +24,7 @@ describe('ChatActionMessage', () => {
 
     it('should render message.userName and message.text', () => {
         const elem = enzymeHelper.findSingle(renderWith(props),
-            'li > div.chat-action-message-text');
+            'li > span.chat-action-message-text');
         expect(elem.text()).toBe(`${props.message.userName} ${props.message.text}`);
     });
 });

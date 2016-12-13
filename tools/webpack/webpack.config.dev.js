@@ -38,6 +38,10 @@ const config = {
                 loaders: ['style-loader', 'css-loader']
             },
             {
+                test: REGEX.IMAGES_PATH,
+                loader: 'url-loader'
+            },
+            {
                 test: REGEX.EOT_PATH,
                 loader: 'file-loader'
             },

@@ -1,18 +1,26 @@
 /* Styles */
-#app {
-    font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    color: #4d4d4d;
-    min-width: 550px;
-    max-width: 850px;
-    margin: 0 auto;
-}
 
 a.active {
     color: orange;
 }
 
-nav {
-    padding-top: 20px;
+div.nav {
+    padding-bottom: 0.5em;
+}
+
+a.header-logo-img {
+    margin-left: 0.5em;
+    background: url('../images/logo.png') no-repeat;
+    height: 69px;
+    width: 243px;
+}
+
+.welcome-header {
+    padding: .5em;
+}
+
+.sub-header {
+    padding: .5em;
 }
 
 div.chat-room-page {
@@ -23,11 +31,11 @@ div.chat-room-page {
 div.chat-room-chat-column {
     display: flex;
     flex-direction: column;
-    min-height: 90vh;
 }
 
-div.chat-room-room-info {
-    background-color: silver;
+h1.room-description {
+    font-size: 20px;
+    font-weight: bold;
 }
 
 div.chat-room-message-list{
@@ -39,12 +47,23 @@ div.chat-room-new-message {
 }
 
 div.chat-room-checklist-column {
+    margin-left: 1em;
     background-color: yellow;
 }
 
 ul.chat-message-list {
     padding-left: 5px;
-    list-style-type: none;
+    height: 70vh;
+    overflow-y: scroll;
+}
+
+ul.chat-message-list li {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+ul.chat-message-list li:nth-child(even) {
+    background-color: #eeeeee;
 }
 
 .chat-message-timestamp {
@@ -53,9 +72,21 @@ ul.chat-message-list {
     text-indent: 0;
 }
 
-.chat-message-text {
-    display: inline-block;
-    padding-left: 0.5em;
+li.chat-message {
+    padding-left: 65px;
+    text-indent: -65px;
+}
+
+li.chat-action-message {
+    font-style: italic;
+    /*padding-left: 65px;
+    text-indent: -65px;*/
+}
+
+ul.room-list li {
+    font-size: larger;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
 }
 
 .chat-action-message-text {

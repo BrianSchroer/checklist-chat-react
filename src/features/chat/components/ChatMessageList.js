@@ -5,7 +5,7 @@ import * as chatMessageType from '../chatMessageType';
 
 const ChatMessageList = ({messages}) => {
     return (
-        <ul className="chat-message-list list-group">
+        <ul className="chat-message-list list-unstyled">
             {messages.map(message =>
                 (message.chatMessageType === chatMessageType.ACTION)
                     ? <ChatActionMessage key={message.key} message={message}/>

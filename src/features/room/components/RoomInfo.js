@@ -9,7 +9,14 @@ class RoomInfo extends React.Component {
 
     render() {
         return (
-            <p>RoomInfo</p>
+            <div>
+                <h1 className="room-description">Room Description</h1>
+                <p>This is the description for this chat.</p>
+                <p>
+                    <i className="glyphicon glyphicon-earphone"></i>&nbsp;
+                    Conference Bridge: 877.909.4550 - passcode 123456
+                </p>
+            </div>
         );
     }
 }

@@ -3,11 +3,11 @@ import TimeStamp from '../../../components/TimeStamp';
 
 const ChatMessage = ({message}) => {
     return (
-        <li className="list-group-item">
+        <li className="chat-action-message">
             <div className="chat-message-timestamp">
                 <TimeStamp timeStamp={message.timeStamp} />
             </div>
-            <div className="chat-action-message-text">{message.userName} {message.text}</div>
+            <span className="chat-action-message-text">{message.userName} {message.text}</span>
         </li>
     );
 };

@@ -14,10 +14,10 @@ describe('Header', () => {
         props = {isLoading: false, courseCount: 0};
     });
 
-    it('should display LoadingDots when loading', () => {
-        props.isLoading = true;
-        expect(shallowRender(props).find('LoadingDots').length).toBe(1);
-    });
+    // it('should display LoadingDots when loading', () => {
+    //     props.isLoading = true;
+    //     expect(shallowRender(props).find('LoadingDots').length).toBe(1);
+    // });
 
     it('should not display LoadingDots when not loading', () => {
         props.isLoading = false;
