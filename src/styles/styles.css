@@ -5,10 +5,11 @@ a.active {
 }
 
 div.nav {
-    padding-bottom: 0.5em;
+    padding-bottom: 1em;
 }
 
-a.header-logo-img {
+div.header-logo-img {
+    display: inline-block;
     margin-left: 0.5em;
     background: url('../images/logo.png') no-repeat;
     height: 69px;
@@ -33,9 +34,12 @@ div.chat-room-chat-column {
     flex-direction: column;
 }
 
-h1.room-description {
-    font-size: 20px;
-    font-weight: bold;
+a.room-info-edit-link {
+    color: #c0c0c0;
+}
+
+a.room-info-edit-link:hover {
+    color: #ffffff;
 }
 
 div.chat-room-message-list{

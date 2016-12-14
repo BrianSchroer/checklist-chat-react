@@ -1,16 +1,15 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {browserHistory} from 'react-router';
+import * as routes from '../../../app/routes';
 import RoomList from '../../room/components/RoomList';
 
 class HomePage extends React.Component {
     constructor(props, context) {
         super(props, context);
-        this.redirectToAddCoursePage = this.redirectToAddRoomPage.bind(this);
     }
 
     redirectToAddRoomPage() {
-        browserHistory.push('/room/add');
+        routes.redirectTo(routes.routePaths.roomAdd);
     }
 
     render() {
@@ -34,7 +33,7 @@ class HomePage extends React.Component {
                 </div>
                 <div className="col-md-2 col-offset-md-1">
                     <input type="button"
-                        value="Start a new chat"
+                        value="Start a new chat..."
                         className="btn btn-success btn-lg"
                         onClick={this.redirectToAddRoomPage}/>
                 </div>

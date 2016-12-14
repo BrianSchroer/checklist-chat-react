@@ -30,7 +30,7 @@ function loadFakeRooms() {
         resolve([
             { id: '1', roomName: 'Chat Room 1', description: 'This is the description for chat room 1.', phoneInfo: 'Conference Bridge: 877-909-4550 - passcode 123456' },
             { id: '2', roomName: 'Chat Room 2', description: 'This is the description for chat room 2.', phoneInfo: 'Conference Bridge: 877-909-4550 - passcode 123456' },
-            { id: '3', roomName: 'Chat Room 3', description: 'This is the description for chat room 3.', phoneInfo: 'Conference Bridge: 877-909-4550 - passcode 123456' }
+            { id: '3', roomName: 'Chat Room 3', description: 'This is the description for chat room 3.', phoneInfo: '' }
         ]);
     });
 }

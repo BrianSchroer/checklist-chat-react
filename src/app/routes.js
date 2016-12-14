@@ -1,18 +1,26 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
-
-/* eslint-disable import/no-named-as-default */
-import App from './components/App';
+import { Route, IndexRoute, browserHistory } from 'react-router';
+import App from './components/App'; // eslint-disable-line import/no-named-as-default
 import HomePage from '../features/home/components/HomePage';
 import ChatRoomPage from '../features/chat/components/ChatRoomPage';
 import EditRoomPage from '../features/room/components/EditRoomPage';
-/* eslint-enable */
+
+export const routePaths = {
+    home: '/',
+    roomAdd: 'room/add',
+    roomEdit: roomId => `room/edit/${roomId}`,
+    roomView: roomId => `room/${roomId}`
+};
+
+export function redirectTo(routePath) {
+    browserHistory.push(routePath);
+}
 
 export default (
-    <Route path="/" component={App}>
+    <Route path={routePaths.home} component={App}>
         <IndexRoute component={HomePage} />
-        <Route path="room/add" component={EditRoomPage} />
-        <Route path="room/edit/:id" component={EditRoomPage} />
-        <Route path="room/:id" component={ChatRoomPage} />
+        <Route path={routePaths.roomAdd} component={EditRoomPage} />
+        <Route path={routePaths.roomEdit(':id')} component={EditRoomPage} />
+        <Route path={routePaths.roomView(':id')} component={ChatRoomPage} />
     </Route>
 );

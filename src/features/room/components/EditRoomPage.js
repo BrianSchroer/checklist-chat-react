@@ -1,15 +1,28 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {redirectTo} from '../../../app/routes';
 import * as actions from '../roomDucks';
+import RoomInfoForm from './RoomInfoForm';
 
 class ManageRoomPage extends React.Component {
     constructor(props, context) {
         super(props, context);
 
         this.state = {
-            room: Object.assign({}, props.room)
+            room: Object.assign({}, props.room),
+            isNewRoom: props.isNewRoom,
+            isSaving: false,
+            isDeleting: false,
+            isDirty: false,
+            errors: {}
         };
+
+        this.routerWillLeave = this.routerWillLeave.bind(this);
+        this.updateRoomState = this.updateRoomState.bind(this);
+        this.saveRoom = this.saveRoom.bind(this);
+        this.deleteRoom = this.deleteRoom.bind(this);
+        this.cancelRoomEdit = this.cancelRoomEdit.bind(this);
     }
 
     componentDidMount() {
@@ -37,17 +50,51 @@ class ManageRoomPage extends React.Component {
         }
     }
 
+    updateRoomState(event) {
+        let room = this.state.room;
+        room[event.target.name] = event.target.value;
+        return this.setState({room: room, isDirty: true});
+    }
+
+    cancelRoomEdit(event) {
+        event.preventDefault();
+        redirectTo((this.state.isNewRoom) ? '/' : `/room/${this.state.room.id}`);
+    }
+
+    saveRoom(event) {
+        event.preventDefault();
+    }
+
+    deleteRoom(event) {
+        event.preventDefault();
+    }
+
     render() {
-        const room = this.room;
+        const state = this.state;
 
         return (
-        <h1>Manage Room</h1>
+            <div>
+                <h1>{(state.isNewRoom) ? 'Start a new chat...' : 'Edit Chat Room Info'}</h1>
+
+                <RoomInfoForm
+                    room={state.room}
+                    errors={state.errors}
+                    isSaving={state.isSaving}
+                    shouldAllowDelete={false}
+                    isDeleting={state.isDeleting}
+                    onChange={this.updateRoomState}
+                    onSave={this.saveRoom}
+                    onDelete={this.deleteRoom}
+                    onCancel={this.cancelRoomEdit}
+                />
+            </div>
         );
     }
 }
 
 ManageRoomPage.propTypes = {
-    room: PropTypes.object.isRequired
+    room: PropTypes.object.isRequired,
+    isNewRoom: PropTypes.bool.isRequired
 };
 
 // Pull in the React Router context so router is available as this.context.router:
@@ -62,14 +109,11 @@ function emptyRoom() {
 function mapStateToProps(state, ownProps) {
     const rooms = state.rooms;
     const roomId = ownProps.params.id; // (from the path '/room/id')
+    const isNewRoom = rooms.length == 0 || !roomId;
 
-    const room = (roomId && rooms.length > 0)
-        ? rooms.find(room => room.id == roomId)
-        : emptyRoom();
+    const room = (isNewRoom) ? emptyRoom() : rooms.find(room => room.id == roomId);
 
-    return {
-        room: room
-    };
+    return {room, isNewRoom};
 }
 
 function mapDispatchToProps(dispatch) {

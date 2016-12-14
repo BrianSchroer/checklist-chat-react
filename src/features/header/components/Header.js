@@ -1,12 +1,14 @@
 import React, {PropTypes} from 'react';
-import { Link, IndexLink} from 'react-router';
-import LoadingDots from '../../../components/LoadingDots';
+import {IndexLink} from 'react-router';
+import {routePaths} from '../../../app/routes';
 
-const Header = ({isLoading}) => {
+const Header = () => {
     return (
         <nav className="navbar">
             <div className="nav navbar-nav">
-                <IndexLink to="/" className="navbar-brand header-logo-img" />
+                <IndexLink to={routePaths.home} className="navbar-brand">
+                    <div className="header-logo-img"></div>
+                </IndexLink>
             </div>
         </nav>
     );

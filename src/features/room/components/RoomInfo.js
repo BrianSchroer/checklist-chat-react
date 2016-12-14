@@ -1,38 +1,32 @@
-import React/*, {PropTypes}*/ from 'react';
-import {connect} from 'react-redux';
-//import {bindActionCreators} from 'redux';
+import React, { PropTypes } from 'react';
+import {Link} from 'react-router';
+import {routePaths} from '../../../app/routes';
 
-class RoomInfo extends React.Component {
-    constructor(props, context) {
-        super(props, context);
-    }
-
-    render() {
-        return (
-            <div>
-                <h1 className="room-description">Room Description</h1>
-                <p>This is the description for this chat.</p>
-                <p>
-                    <i className="glyphicon glyphicon-earphone"></i>&nbsp;
-                    Conference Bridge: 877.909.4550 - passcode 123456
-                </p>
+const RoomInfo = ({room}) => {
+    return (
+        <div className="panel panel-primary">
+            <div className="panel-heading">
+                <div className="float-xs-right">
+                    <Link to={routePaths.roomEdit(room.id)} className="pull-right room-info-edit-link">Edit</Link>
+                </div>
+                <h3 className="pane-title">{room.roomName}</h3>
             </div>
-        );
-    }
-}
+            <div className="panel-body">
+                <p>{room.description}</p>
 
-RoomInfo.propTypes = {
-    //myProp: PropTypes.string.isRequired
+                {room.phoneInfo &&
+                    <p>
+                        <i className="glyphicon glyphicon-earphone"></i>
+                            &nbsp;{room.phoneInfo}
+                    </p>
+                }
+            </div>
+        </div>
+    );
 };
 
-function mapStateToProps(state) {
-    return {
-        state: state
-    };
-}
+RoomInfo.propTypes = {
+    room: PropTypes.object.isRequired
+};
 
-// function mapDispatchToProps(dispatch) {
-//     return {actions: bindActionCreators(actions, dispatch)};
-// }
-
-export default connect(mapStateToProps/*, mapDispatchToProps*/)(RoomInfo);
+export default RoomInfo;
