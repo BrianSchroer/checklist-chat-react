@@ -1,16 +1,21 @@
 // Chat actions/reducer "ducks" file (https://github.com/erikras/ducks-modular-redux)
 
-import initialState from '../../app/store/initialState';
-import { beginAjaxCall, ajaxCallError } from '../../app/ajaxStatus/ajaxStatusDucks';
+import {beginAjaxCall, ajaxCallError} from '../../app/ajaxStatus/ajaxStatusDucks';
 import * as chatMessageType from './chatMessageType';
+import {getRoomInfo} from '../../api/chatApi';
 
 const prefix = 'checklist-chat/chat/';
 export const LOAD_MESSAGES_SUCCESS = `${prefix}LOAD_MESSAGES_SUCCESS`;
+export const LOAD_MESSAGES_FOR_ROOM_SUCCESS = `${prefix}LOAD_MESSAGES_FOR_ROOM_SUCCESS`;
 
 // Actions:
 
 export function loadMessagesSuccess(messages) {
     return { type: LOAD_MESSAGES_SUCCESS, messages };
+}
+
+export function loadMessagesForRoomSuccess(messages) {
+    return { type: LOAD_MESSAGES_FOR_ROOM_SUCCESS, messages };
 }
 
 export function loadMessages() {
@@ -19,6 +24,19 @@ export function loadMessages() {
 
         return loadFakeMessages().then(messages => {
             dispatch(loadMessagesSuccess(messages));
+        }).catch(error => {
+            dispatch(ajaxCallError(error));
+            throw (error);
+        });
+    };
+}
+
+export function loadMessagesForRoom(roomId) {
+    return dispatch => {
+        dispatch(beginAjaxCall());
+
+        return getRoomInfo(roomId).then(roomInfo => {
+            dispatch(loadMessagesForRoomSuccess(roomInfo.messages));
         }).catch(error => {
             dispatch(ajaxCallError(error));
             throw (error);
@@ -51,13 +69,16 @@ function loadFakeMessages() {
 
 // Reducers:
 
-export default function reducer(messages = initialState.messages, action) {
+export default function reducer(messages = [], action) {
 
     const actionType = action.type;
 
     switch (actionType) {
 
         case LOAD_MESSAGES_SUCCESS:
+            return action.messages;
+
+        case LOAD_MESSAGES_FOR_ROOM_SUCCESS:
             return action.messages;
 
         default:

@@ -1,5 +1,7 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as chatActions from '../chatDucks';
 import RoomInfo from '../../room/components/RoomInfo';
 import ChatMessageList from './ChatMessageList';
 import NewChatMessage from './NewChatMessage';
@@ -38,16 +40,21 @@ class ChatRoomPage extends React.Component {
 
 ChatRoomPage.propTypes = {
     room: PropTypes.object.isRequired,
-    messages: PropTypes.arrayOf(PropTypes.object).isRequired
+    messages: PropTypes.arrayOf(PropTypes.object).isRequired,
+    actions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
     const roomId = ownProps.params.id; // (from the path '/room/id');
 
-    return {
-        room: state.rooms.find(room => room.id == roomId),
-        messages: state.messages
-    };
+    const room = state.rooms.find(room => room.id == roomId);
+    const messages = room.messages;
+
+    return {room, messages};
 }
 
-export default connect(mapStateToProps)(ChatRoomPage);
+function mapDispatchToProps(dispatch) {
+    return {actions: bindActionCreators(chatActions, dispatch)};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChatRoomPage);

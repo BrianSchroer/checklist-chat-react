@@ -2,6 +2,7 @@
 
 import initialState from '../../app/store/initialState';
 import { beginAjaxCall, ajaxCallError } from '../../app/ajaxStatus/ajaxStatusDucks';
+import {getRooms} from '../../api/chatApi';
 
 const prefix = 'checklist-chat/room/';
 export const LOAD_ROOMS_SUCCESS = `${prefix}LOAD_ROOMS_SUCCESS`;
@@ -16,7 +17,7 @@ export function loadRooms() {
     return dispatch => {
         dispatch(beginAjaxCall());
 
-        return loadFakeRooms().then(rooms => {
+        return getRooms().then(rooms => {
             dispatch(loadRoomsSuccess(rooms));
         }).catch(error => {
             dispatch(ajaxCallError(error));
