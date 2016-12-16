@@ -32,6 +32,11 @@ export const schema = {
                         "items": {
                             "type": "object",
                             "properties": {
+                                "id": {
+                                    "type": "integer",
+                                    "minimum": 1,
+                                    "unique": true
+                    }           ,
                                 "timeStamp": {
                                     "type": "string",
                                     "faker": "date.recent"
@@ -51,7 +56,7 @@ export const schema = {
                                     "faker": "hacker.phrase"
                                 }
                             },
-                            "required": ["timeStamp", "chatMessageType", "userName", "text"]
+                            "required": ["id", "timeStamp", "chatMessageType", "userName", "text"]
                         }
                     }
                 },

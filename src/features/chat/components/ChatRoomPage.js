@@ -24,7 +24,7 @@ class ChatRoomPage extends React.Component {
                         <RoomInfo room={this.props.room} />
                     </div>
                     <div className="chat-room-message-list">
-                        <ChatMessageList messages={this.props.messages}/>
+                        <ChatMessageList chatMessages={this.props.messages}/>
                     </div>
                     <div className="chat-room-new-message">
                         <NewChatMessage/>

@@ -32,6 +32,6 @@ const PlannedVsActual = ({planned = '', actual = ''}) => {
 PlannedVsActual.propTypes = {
     planned: PropTypes.string,
     actual: PropTypes.string
-}
+};
 
 export default PlannedVsActual;

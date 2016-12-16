@@ -1,22 +1,18 @@
 import React, {PropTypes} from 'react';
-import ChatMessage from './ChatMessage';
-import ChatActionMessage from './ChatActionMessage';
-import * as chatMessageType from '../chatMessageType';
+import ChatMessageListItem from './ChatMessageListItem';
 
-const ChatMessageList = ({messages}) => {
+const ChatMessageList = ({chatMessages}) => {
     return (
         <ul className="chat-message-list list-unstyled">
-            {messages.map(message =>
-                (message.chatMessageType === chatMessageType.ACTION)
-                    ? <ChatActionMessage key={message.key} message={message}/>
-                    : <ChatMessage key={message.key} message={message}/>
+            {chatMessages.map(message =>
+                <ChatMessageListItem key={message.id} chatMessage={message}/>
             )}
         </ul>
     );
 };
 
 ChatMessageList.propTypes = {
-    messages: PropTypes.arrayOf(PropTypes.object).isRequired
+    chatMessages: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default ChatMessageList;

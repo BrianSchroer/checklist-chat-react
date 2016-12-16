@@ -52,7 +52,6 @@ div.chat-room-new-message {
 
 div.chat-room-checklist-column {
     margin-left: 1em;
-    background-color: lightgoldenrodyellow;
 }
 
 ul.chat-message-list {
@@ -62,11 +61,10 @@ ul.chat-message-list {
 }
 
 ul.chat-message-list li {
-    padding-top: 0.5em;
     padding-bottom: 0.5em;
 }
 
-ul.chat-message-list li:nth-child(even) {
+ul.chat-message-list li:nth-child(even) div {
     background-color: #eeeeee;
 }
 
@@ -79,7 +77,8 @@ ul.chat-message-list li:nth-child(even) {
     text-indent: 0;
 }
 
-li.chat-message, li.chat-action-message {
+div.chat-message, div.chat-action-message {
+    background-color: #fff;
     padding-left: 65px;
     text-indent: -65px;
 }
@@ -92,6 +91,18 @@ ul.room-list li {
 
 .chat-action-message-text {
     font-style: italic;
+}
+
+table.checklist-table {
+    background-color: lightgoldenrodyellow;
+}
+
+ul.checklist.comment-list li {
+    padding-bottom: 0.5em;
+}
+
+ul.checklist-comment-list li:nth-child(even) div {
+    background-color: #eeeeee;
 }
 
 div.planned-value {

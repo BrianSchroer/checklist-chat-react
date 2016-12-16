@@ -3,34 +3,52 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import enzymeHelper from '../../../util/enzymeHelper';
 import ChatMessage from './ChatMessage';
+import * as chatMessageType from '../chatMessageType';
 import format from '../../../util/format';
 
-function renderWith(props) {
+const testMessage = {
+    timeStamp: '2016-12-08T14:57:10.222Z',
+    userName: 'test userName',
+    text: 'test text'
+};
+
+function render(messageOverrides) {
+    const props = {chatMessage: Object.assign({}, testMessage, messageOverrides)};
     return shallow(<ChatMessage {...props}/>);
 }
 
 describe('ChatMessage', () => {
-    const message = {
-        timeStamp: '2016-12-08T14:57:10.222Z',
-        userName: 'test userName',
-        text: 'test text'
-    };
-    const props = { message: message };
+    describe(`when chatMessageType = "${chatMessageType.ACTION}"`, () => {
+        it('should render message.timeStamp', () =>{
+            const elem = enzymeHelper.findSingle(render({chatMessageType: chatMessageType.ACTION}),
+                'div.chat-action-message > div.chat-message-timestamp');
+            expect(elem.text()).toEqual(format.time(testMessage.timeStamp));
+        });
 
-    it('should render message.timeStamp', () =>{
-        const elem = enzymeHelper.findSingle(renderWith(props),
-            'li > div.chat-message-timestamp');
-        expect(elem.text()).toEqual(format.time(props.message.timeStamp));
+        it('should render message.userName and message.text', () => {
+            const elem = enzymeHelper.findSingle(render({chatMessageType: chatMessageType.ACTION}),
+                'div.chat-action-message > span.chat-action-message-text');
+            expect(elem.text()).toBe(`${testMessage.userName} ${testMessage.text}`);
+        });
     });
 
-    it('should render message.userName', () => {
-        const elem = enzymeHelper.findSingle(renderWith(props), 'li > strong');
-        expect(elem.text()).toBe(props.message.userName+ ': ');
-    });
+    describe(`when chatMessageType = "${chatMessageType.CHAT}"`, () => {
+        it('should render message.timeStamp', () => {
+            const elem = enzymeHelper.findSingle(render({chatMessageType: chatMessageType.CHAT}),
+                'div.chat-message > div.chat-message-timestamp');
+            expect(elem.text()).toEqual(format.time(testMessage.timeStamp));
+        });
 
-    it('should render message.text', () => {
-        const elem = enzymeHelper.findSingle(renderWith(props),
-            'li > span.chat-message-text');
-        expect(elem.text()).toBe(props.message.text);
+        it('should render message.userName', () => {
+            const elem = enzymeHelper.findSingle(render({chatMessageType: chatMessageType.CHAT}),
+                'div.chat-message > strong');
+            expect(elem.text()).toBe(testMessage.userName+ ': ');
+        });
+
+        it('should render message.text', () => {
+            const elem = enzymeHelper.findSingle(render({chatMessageType: chatMessageType.CHAT}),
+                'div.chat-message > span.chat-message-text');
+            expect(elem.text()).toBe(testMessage.text);
+        });
     });
 });
