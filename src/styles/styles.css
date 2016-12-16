@@ -94,8 +94,24 @@ ul.room-list li {
     font-style: italic;
 }
 
-.planned-change {
+div.planned-value {
+    font-style: italic;
+}
+
+div.planned-value-accurate {
+    font-style: normal;
+}
+
+div.planned-value-inaccurate {
     text-decoration: line-through;
+}
+
+div.actual-value {
+    display: block;
+}
+
+div.planned-value-missing, div.actual-value-missing, div.actual-equals-planned {
+    display: none;
 }
 
 i.success-icon {

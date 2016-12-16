@@ -1,25 +1,32 @@
 import React, {PropTypes} from 'react';
 
 const PlannedVsActual = ({planned = '', actual = ''}) => {
+    let plannedClass = 'planned-value';
+    let actualClass = 'actual-value-missing';
+
     if (planned) {
-        if (actual)
-        {
-            if (planned === actual) {
-                return <span>{planned}</span>;
-            } else {
-                return <span><span className="planned-change">{planned}</span><br/>{actual}</span>;
-            }
-        } else {
-            return <span>{planned}</span>;
-        }
-    }
-    else {
         if (actual) {
-            return <span>{actual}</span>;
-        } else {
-            return <span></span>;
+            if (planned === actual) {
+                plannedClass = 'planned-value-accurate';
+                actualClass = 'actual-equals-planned';
+            } else {
+                plannedClass = 'planned-value-inaccurate';
+                actualClass = 'actual-value';
+            }
+        }
+    } else {
+        plannedClass = 'planned-value-missing';
+        if (actual) {
+            actualClass = 'actual-value';
         }
     }
+
+    return (
+        <div className="planned-vs-actual">
+            <div className={plannedClass}>{planned}</div>
+            <div className={actualClass}>{actual}</div>
+        </div>
+    );
 };
 
 PlannedVsActual.propTypes = {
