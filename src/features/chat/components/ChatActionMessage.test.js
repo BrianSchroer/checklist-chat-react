@@ -3,6 +3,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import enzymeHelper from '../../../util/enzymeHelper';
 import ChatActionMessage from './ChatActionMessage';
+import format from '../../../util/format';
 
 function renderWith(props) {
     return shallow(<ChatActionMessage {...props}/>);
@@ -18,8 +19,8 @@ describe('ChatActionMessage', () => {
 
     it('should render message.timeStamp', () =>{
         const elem = enzymeHelper.findSingle(renderWith(props),
-            'li > div.chat-message-timestamp > TimeStamp');
-        expect(elem.props().timeStamp).toBe(props.message.timeStamp);
+            'li > div.chat-message-timestamp');
+        expect(elem.text()).toEqual(format.time(props.message.timeStamp));
     });
 
     it('should render message.userName and message.text', () => {

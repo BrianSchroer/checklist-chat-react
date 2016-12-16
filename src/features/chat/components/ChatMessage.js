@@ -1,11 +1,11 @@
 import React, {PropTypes} from 'react';
-import TimeStamp from '../../../components/TimeStamp';
+import format from '../../../util/format';
 
 const ChatMessage = ({message}) => {
     return (
         <li className="chat-message">
-            <div className="chat-message-timestamp">
-                <TimeStamp timeStamp={message.timeStamp} />
+            <div className="timestamp chat-message-timestamp">
+                {format.time(message.timeStamp)}
             </div>
             <strong>{`${message.userName}: `}</strong>
             <span className="chat-message-text">{message.text}</span>
