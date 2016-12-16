@@ -97,12 +97,16 @@ table.checklist-table {
     background-color: lightgoldenrodyellow;
 }
 
-ul.checklist.comment-list li {
-    padding-bottom: 0.5em;
+tr.checklist-item-comment-row {
+
 }
 
-ul.checklist-comment-list li:nth-child(even) div {
-    background-color: #eeeeee;
+ul.checklist-comment-list {
+    background-color: #fff;
+}
+
+ul.checklist-comment-list li {
+    padding-bottom: 0.5em;
 }
 
 div.planned-value {

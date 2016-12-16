@@ -1,20 +1,21 @@
 import React, {PropTypes} from 'react';
+import SelectInput from '../../../components/SelectInput';
 import TextInput from '../../../components/TextInput';
+import * as checklistItemStatus from '../checklistItemStatus';
 
-const RoomInfoForm = ({
-    room, isSaving, isDeleting, shouldAllowDelete, errors,
-    onChange, onSave, onDelete, onCancel}) => {
+const ChecklistItemForm = ({
+        checklistItem, isSaving, isDeleting, shouldAllowDelete, errors,
+        onChange, onSave, onDelete, onCancel}) => {
 
     return (
         <form>
-            <TextInput name="roomName" label="Chat Room Name" value={room.roomName}
-                onChange={onChange} error={errors.roomName} />
+            <SelectInput name="status" label="Status" value={checklistItem.status}
+                onChange={onChange} error={errors.status}
+                defaultOption={checklistItemStatus.NOT_STARTED}
+                options={checklistItemStatus.options} />
 
-            <TextInput name="description" label="Room Description" value={room.description}
+            <TextInput name="description" label="Description" value={checklistItem.description}
                 onChange={onChange} error={errors.description} />
-
-            <TextInput name="phoneInfo" label="Phone Info" value={room.phoneInfo}
-                onChange={onChange} error={errors.phoneInfo} />
 
             <div className="btn-toolbar">
 
@@ -39,8 +40,8 @@ const RoomInfoForm = ({
     );
 };
 
-RoomInfoForm.propTypes = {
-    room: PropTypes.object.isRequired,
+ChecklistItemForm.propTypes = {
+    checklistItem: PropTypes.object.isRequired,
     isSaving: PropTypes.bool,
     isDeleting: PropTypes.bool,
     shouldAllowDelete: PropTypes.bool,
@@ -51,4 +52,4 @@ RoomInfoForm.propTypes = {
     onCancel: PropTypes.func.isRequired
 };
 
-export default RoomInfoForm;
+export default ChecklistItemForm;
