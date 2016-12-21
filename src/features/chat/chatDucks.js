@@ -1,6 +1,6 @@
 // Chat actions/reducer "ducks" file (https://github.com/erikras/ducks-modular-redux)
 
-import {beginAjaxCall, ajaxCallError} from '../../app/ajaxStatus/ajaxStatusDucks';
+import {beginAjaxCall, ajaxCallError} from '../../app/ajaxStatusDucks';
 import * as chatMessageType from './chatMessageType';
 import {getRoomInfo} from '../../api/chatApi';
 

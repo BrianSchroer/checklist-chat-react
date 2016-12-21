@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, IndexRoute, browserHistory } from 'react-router';
+import {Route, IndexRoute, browserHistory} from 'react-router';
 import App from './components/App'; // eslint-disable-line import/no-named-as-default
 import HomePage from '../features/home/components/HomePage';
 import ChatRoomPage from '../features/chat/components/ChatRoomPage';

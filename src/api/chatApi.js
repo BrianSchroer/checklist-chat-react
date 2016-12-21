@@ -10,8 +10,26 @@ export function getRoomInfo(roomId) {
    return get(`rooms/${roomId}`);
 }
 
+export function addRoom(roomInfo) {
+    return add('rooms', roomInfo);
+}
+
+export function updateRoom(roomInfo) {
+    return update('rooms', roomInfo);
+}
+
 function get(url) {
     return fetch(mockJsonServerBaseUri + url).then(onSuccess, onError);
+}
+
+function add(url, item) {
+    const request = new Request(mockJsonServerBaseUri + url, {method: 'POST', body: item});
+    return fetch(request).then(onSuccess, onError);
+}
+
+function update(url, item) {
+    const request = new Request(mockJsonServerBaseUri + url, {method: 'PUT', body: item});
+    return fetch(request).then(onSuccess, onError);
 }
 
 // (Can't call this function 'delete' because that's a JavaScript reserved word)

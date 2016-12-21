@@ -1,4 +1,8 @@
+import * as modalDialogType from '../modalDialogType';
+
 export default {
     rooms: [],
-    ajaxCallsInProgressCount: 0
+    currentRoomId: null,
+    ajaxCallsInProgressCount: 0,
+    modalDialog: modalDialogType.NONE
 };

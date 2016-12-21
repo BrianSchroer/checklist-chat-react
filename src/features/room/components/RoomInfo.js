@@ -1,13 +1,13 @@
 import React, { PropTypes } from 'react';
-import {Link} from 'react-router';
-import {routePaths} from '../../../app/routes';
 
-const RoomInfo = ({room}) => {
+const RoomInfo = ({room, onEditRequest}) => {
     return (
         <div className="panel panel-primary">
             <div className="panel-heading">
                 <div className="float-xs-right">
-                    <Link to={routePaths.roomEdit(room.id)} className="pull-right room-info-edit-link">Edit</Link>
+                    <a href="#"
+                        className="pull-right room-info-edit-link"
+                        onClick={onEditRequest}>Edit</a>
                 </div>
                 <h3 className="pane-title">{room.roomName}</h3>
             </div>
@@ -26,7 +26,8 @@ const RoomInfo = ({room}) => {
 };
 
 RoomInfo.propTypes = {
-    room: PropTypes.object.isRequired
+    room: PropTypes.object.isRequired,
+    onEditRequest: PropTypes.func.isRequired
 };
 
 export default RoomInfo;

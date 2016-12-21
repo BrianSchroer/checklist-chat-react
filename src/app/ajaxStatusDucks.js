@@ -1,6 +1,6 @@
 // AJAX status actions/reducer "ducks" file (https://github.com/erikras/ducks-modular-redux)
 
-import initialState from '../../app/store/initialState';
+import initialState from './store/initialState';
 
 const prefix = 'checklist-chat/ajaxStatus/';
 export const BEGIN_AJAX_CALL = `${prefix}BEGIN_AJAX_CALL`;

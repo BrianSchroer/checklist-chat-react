@@ -3,13 +3,15 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import Header from '../../features/header/components/Header';
+import RoomInfoModalContainer from '../../features/room/components/RoomInfoModalContainer';
 
 export class App extends React.Component {
     render() {
         return (
-            <div>
+            <div id="appPage">
+                <RoomInfoModalContainer />
                 <Header/>
-                <div className="container">
+                <div id="appMainRow" className="container">
                     {this.props.children}
                 </div>
             </div>
