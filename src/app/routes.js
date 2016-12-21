@@ -8,7 +8,6 @@ import EditRoomPage from '../features/room/components/EditRoomPage';
 export const routePaths = {
     home: '/',
     roomAdd: 'room/add',
-    roomEdit: roomId => `room/edit/${roomId}`,
     roomView: roomId => `room/${roomId}`
 };
 
@@ -20,7 +19,6 @@ export default (
     <Route path={routePaths.home} component={App}>
         <IndexRoute component={HomePage} />
         <Route path={routePaths.roomAdd} component={EditRoomPage} />
-        <Route path={routePaths.roomEdit(':id')} component={EditRoomPage} />
         <Route path={routePaths.roomView(':id')} component={ChatRoomPage} />
     </Route>
 );
