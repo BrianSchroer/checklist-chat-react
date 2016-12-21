@@ -4,11 +4,24 @@ import * as modalDialogType from '../../../app/modalDialogType';
 import {hideModalDialog} from '../../../app/modalDialogDucks';
 import RoomInfoModal from './RoomInfoModal';
 
-class RoomInfoModalContainer extends React.Component {
+class RoomInfoEditor extends React.Component {
     constructor(props, context) {
         super(props, context);
 
-        this.state = {
+        this.state = {shouldDisplayModal: false};
+
+        this.resetState = this.resetState.bind(this);
+        this.updateRoomState = this.updateRoomState.bind(this);
+        this.saveRoom = this.saveRoom.bind(this);
+        this.cancelRoomEdit = this.cancelRoomEdit.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.resetState(nextProps);
+    }
+
+    resetState(props) {
+        this.setState({
             shouldDisplayModal: props.shouldDisplayModal,
             room: Object.assign({}, props.room),
             isNewRoom: props.isNewRoom,
@@ -16,11 +29,7 @@ class RoomInfoModalContainer extends React.Component {
             isDeleting: false,
             isDirty: false,
             errors: {}
-        };
-
-        this.updateRoomState = this.updateRoomState.bind(this);
-        this.saveRoom = this.saveRoom.bind(this);
-        this.cancelRoomEdit = this.cancelRoomEdit.bind(this);
+        });
     }
 
     updateRoomState(event) {
@@ -39,17 +48,16 @@ class RoomInfoModalContainer extends React.Component {
     }
 
     render() {
-        const props = this.props;
         const state = this.state;
 
-        if (!props.shouldDisplayModal) {
+        if (!state.shouldDisplayModal) {
             return null;
         }
 
         return (
             <RoomInfoModal
-                room={props.room}
-                isNewRoom={props.isNewRoom}
+                room={state.room}
+                isNewRoom={state.isNewRoom}
                 errors={state.errors}
                 onChange={this.updateRoomState}
                 onSave={this.saveRoom}
@@ -59,7 +67,7 @@ class RoomInfoModalContainer extends React.Component {
     }
 }
 
-RoomInfoModalContainer.propTypes = {
+RoomInfoEditor.propTypes = {
     shouldDisplayModal: PropTypes.bool.isRequired,
     room: PropTypes.object.isRequired,
     isNewRoom: PropTypes.bool.isRequired,
@@ -98,4 +106,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RoomInfoModalContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(RoomInfoEditor);
