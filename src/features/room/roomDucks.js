@@ -5,9 +5,9 @@ import {beginAjaxCall, ajaxCallError} from '../../app/ajaxStatusDucks';
 import {getRooms, saveRoom} from '../../api/chatApi';
 
 const prefix = 'checklist-chat/room/';
-export const SAVE_ROOM_SUCCESS = `${prefix}SAVE_ROOM_SUCCESS`;
-export const LOAD_ROOMS_SUCCESS = `${prefix}LOAD_ROOMS_SUCCESS`;
-export const UPDATE_ROOM_SUCCESS = `${prefix}UPDATE_ROOM_SUCCESS`;
+const SAVE_ROOM_SUCCESS = `${prefix}SAVE_ROOM_SUCCESS`;
+const LOAD_ROOMS_SUCCESS = `${prefix}LOAD_ROOMS_SUCCESS`;
+const UPDATE_ROOM_SUCCESS = `${prefix}UPDATE_ROOM_SUCCESS`;
 
 // Actions:
 

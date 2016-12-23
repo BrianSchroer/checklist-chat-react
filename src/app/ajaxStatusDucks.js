@@ -3,8 +3,8 @@
 import initialState from './store/initialState';
 
 const prefix = 'checklist-chat/ajaxStatus/';
-export const BEGIN_AJAX_CALL = `${prefix}BEGIN_AJAX_CALL`;
-export const AJAX_CALL_ERROR = `${prefix}AJAX_CALL_ERROR`;
+const BEGIN_AJAX_CALL = `${prefix}BEGIN_AJAX_CALL`;
+const AJAX_CALL_ERROR = `${prefix}AJAX_CALL_ERROR`;
 
 // Action creators:
 

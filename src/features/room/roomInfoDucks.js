@@ -5,7 +5,7 @@ import {beginAjaxCall, ajaxCallError} from '../../app/ajaxStatusDucks';
 import {getRoomInfo} from '../../api/chatApi';
 
 const prefix = 'checklist-chat/roomInfo/';
-export const SET_ROOM_INFO_SUCCESS = `${prefix}SET_ROOM_INFO_SUCCESS`;
+const SET_ROOM_INFO_SUCCESS = `${prefix}SET_ROOM_INFO_SUCCESS`;
 
 // Action creators:
 

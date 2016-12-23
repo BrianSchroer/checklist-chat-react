@@ -3,7 +3,7 @@
 import initialState from '../../app/store/initialState';
 
 const prefix = 'checklist-chat/roomId/';
-export const SET_ROOM_ID_SUCCESS = `${prefix}SET_ROOM_ID_SUCCESS`;
+const SET_ROOM_ID_SUCCESS = `${prefix}SET_ROOM_ID_SUCCESS`;
 
 // Action creators:
 

@@ -3,7 +3,7 @@
 import initialState from '../../app/store/initialState';
 
 const prefix = 'checklist-chat/checklist-item-sequence-number/';
-export const SET_SEQUENCE_NUMBER_SUCCESS = `${prefix}SET_SEQUENCE_NUMBER_SUCCESS`;
+const SET_SEQUENCE_NUMBER_SUCCESS = `${prefix}SET_SEQUENCE_NUMBER_SUCCESS`;
 
 // Action creators:
 

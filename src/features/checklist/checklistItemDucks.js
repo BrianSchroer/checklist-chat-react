@@ -5,8 +5,8 @@ import {beginAjaxCall, ajaxCallError} from '../../app/ajaxStatusDucks';
 import {getChecklistItems} from '../../api/chatApi';
 
 const prefix = 'checklist-chat/checklist-item/';
-export const LOAD_CHECKLIST_ITEMS_FOR_ROOM_SUCCESS = `${prefix}LOAD_CHECKLIST_ITEMS_FOR_ROOM_SUCCESS`;
-export const SAVE_CHECKLIST_ITEM_SUCCESS = `${prefix}SAVE_CHECKLIST_ITEM_SUCCESS`;
+const LOAD_CHECKLIST_ITEMS_FOR_ROOM_SUCCESS = `${prefix}LOAD_CHECKLIST_ITEMS_FOR_ROOM_SUCCESS`;
+const SAVE_CHECKLIST_ITEM_SUCCESS = `${prefix}SAVE_CHECKLIST_ITEM_SUCCESS`;
 
 // Actions:
 export function loadChecklistItemsForRoomSuccess(checklistItems) {

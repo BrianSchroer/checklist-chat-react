@@ -3,7 +3,7 @@ import initialState from './store/initialState';
 import * as modalDialogType from './modalDialogType';
 
 const prefix = 'checklist-chat/modalDialog/';
-export const SET_MODAL_DIALOG_SUCCESS = `${prefix}SET_MODAL_DIALOG_SUCCESS`;
+const SET_MODAL_DIALOG_SUCCESS = `${prefix}SET_MODAL_DIALOG_SUCCESS`;
 
 // Action creators:
 
