@@ -5,9 +5,8 @@ const RoomInfo = ({room, onEditRequest}) => {
         <div className="panel panel-primary">
             <div className="panel-heading">
                 <div className="float-xs-right">
-                    <a href="#"
-                        className="pull-right room-info-edit-link"
-                        onClick={onEditRequest}>Edit</a>
+                    <button className="pull-right btn btn-primary btn-sm"
+                        onClick={onEditRequest}>Edit</button>
                 </div>
                 <h3 className="pane-title">{room.roomName}</h3>
             </div>
