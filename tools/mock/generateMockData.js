@@ -20,12 +20,22 @@ import {schema} from './mockDataSchema';
 const mockData = jsonSchemaFaker(schema);
 
 mockData.chatMessages = [];
+mockData.checklistItems = [];
 
 mockData.rooms.forEach(room => {
     const roomId = room.id;
-    room.messages.forEach(message => message.roomId = roomId);
-    mockData.chatMessages.push(...room.messages);
-    delete room.messages;
+
+    room.chatMessages.forEach(chatMessage => chatMessage.roomId = roomId);
+    mockData.chatMessages.push(...room.chatMessages);
+    delete room.chatMessages;
+
+    let sequenceNumber = 0;
+    room.checklistItems.forEach(checklistItem => {
+        checklistItem.roomId = roomId;
+        checklistItem.sequenceNumber = ++sequenceNumber;
+    });
+    mockData.checklistItems.push(...room.checklistItems);
+    delete room.checklistItems;
 });
 
 const json = JSON.stringify(mockData, null, /*indent:*/ 4);

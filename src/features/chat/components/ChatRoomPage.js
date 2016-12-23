@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {loadChatMessagesForRoom} from '../chatMessageDucks';
+import {loadChecklistItemsForRoom} from '../../../features/checklist/checklistItemDucks';
 import {setRoomId} from '../../../features/room/roomIdDucks';
 import {setRoomInfo} from '../../../features/room/roomInfoDucks';
 import {showRoomInfoModalDialog} from '../../../app/modalDialogDucks';
@@ -26,6 +27,7 @@ class ChatRoomPage extends React.Component {
 
         actions.setRoomId(roomId);
         actions.setRoomInfo(roomId);
+        actions.loadChecklistItemsForRoom(roomId);
         actions.loadChatMessagesForRoom(roomId);
     }
 
@@ -50,7 +52,7 @@ class ChatRoomPage extends React.Component {
                     </div>
                 </div>
                 <div className="chat-room-checklist-column">
-                    <Checklist/>
+                    <Checklist checklistItems={this.props.checklistItems}/>
                 </div>
             </div>
         );
@@ -60,21 +62,24 @@ class ChatRoomPage extends React.Component {
 ChatRoomPage.propTypes = {
     routeParams: PropTypes.object.isRequired,
     room: PropTypes.object,
+    checklistItems: PropTypes.arrayOf(PropTypes.object).isRequired,
     chatMessages: PropTypes.arrayOf(PropTypes.object).isRequired,
     actions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {
     const room = state.roomInfo;
+    const checklistItems = state.checklistItems;
     const chatMessages = state.chatMessages;
 
-    return {room, chatMessages};
+    return {room, checklistItems, chatMessages};
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         actions: {
             loadChatMessagesForRoom: roomId => { dispatch(loadChatMessagesForRoom(roomId)); },
+            loadChecklistItemsForRoom: roomId => { dispatch(loadChecklistItemsForRoom(roomId)); },
             setRoomId: roomId => { dispatch(setRoomId(roomId)); },
             setRoomInfo: roomId => { dispatch(setRoomInfo(roomId)); },
             showRoomInfoModalDialog: () => { dispatch(showRoomInfoModalDialog()); }

@@ -5,6 +5,7 @@ export default {
     roomId: null,
     roomInfo: null,
     chatMessages: [],
+    checklistItems: [],
     ajaxCallsInProgressCount: 0,
     modalDialog: modalDialogType.NONE
 };

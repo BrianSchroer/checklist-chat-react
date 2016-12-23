@@ -14,6 +14,10 @@ export function getChatMessages(roomId) {
     return get(`chatMessages?roomId=${roomId}&_sort=timeStamp`);
 }
 
+export function getChecklistItems(roomId) {
+    return get(`checklistItems?roomId=${roomId}&_sort=sequenceNumber`);
+}
+
 export function saveRoom(roomInfo) {
     const body = {
         id: roomInfo.id,

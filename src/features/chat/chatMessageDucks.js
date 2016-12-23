@@ -1,5 +1,6 @@
 // Chat actions/reducer "ducks" file (https://github.com/erikras/ducks-modular-redux)
 
+import initialState from '../../app/store/initialState';
 import {beginAjaxCall, ajaxCallError} from '../../app/ajaxStatusDucks';
 import {getChatMessages} from '../../api/chatApi';
 
@@ -30,7 +31,7 @@ export function loadChatMessagesForRoom(roomId) {
 
 // Reducers:
 
-export default function reducer(chatMessages = [], action) {
+export default function reducer(chatMessages = initialState.chatMessages, action) {
 
     const actionType = action.type;
 

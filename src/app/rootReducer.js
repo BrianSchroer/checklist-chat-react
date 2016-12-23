@@ -5,6 +5,7 @@ import rooms from '../features/room/roomDucks';
 import roomId from '../features/room/roomIdDucks';
 import roomInfo from '../features/room/roomInfoDucks';
 import chatMessages from '../features/chat/chatMessageDucks';
+import checklistItems from '../features/checklist/checklistItemDucks';
 
 const rootReducer = combineReducers({
     ajaxCallsInProgressCount,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     rooms,
     roomId,
     roomInfo,
-    chatMessages
+    chatMessages,
+    checklistItems
 });
 
 export default rootReducer;
