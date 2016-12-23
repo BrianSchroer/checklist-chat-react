@@ -18,7 +18,7 @@ const Checklist = ({checklistItems}) => {
             {checklistItems.map(item => <ChecklistItem key={item.sequenceNumber} checklistItem={item}/>)}
         </table>
     );
-}
+};
 
 Checklist.propTypes = {
     checklistItems: PropTypes.arrayOf(PropTypes.object).isRequired

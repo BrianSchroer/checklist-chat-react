@@ -106,8 +106,15 @@ table.checklist-table {
     background-color: lightgoldenrodyellow;
 }
 
-tr.checklist-item-comment-row {
+table.checklist-table > tbody > tr,
+table.checklist-table > tbody > tr > td {
+    border-width: 0;
+}
 
+button.checklist-item-button {
+    color: #333;
+    border-color: #ccc;
+    background-color: transparent;
 }
 
 ul.checklist-comment-list {

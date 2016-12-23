@@ -4,12 +4,14 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import Header from '../../features/header/components/Header';
 import RoomInfoEditor from '../../features/room/components/RoomInfoEditor';
+import ChecklistItemEditor from '../../features/checklist/components/ChecklistItemEditor';
 
 export class App extends React.Component {
     render() {
         return (
             <div id="appPage">
                 <RoomInfoEditor />
+                <ChecklistItemEditor />
                 <Header/>
                 <div id="appMainRow" className="container">
                     {this.props.children}

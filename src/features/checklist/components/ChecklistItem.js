@@ -10,8 +10,13 @@ import ChecklistItemComments from './CheckListItemComments';
 const ChecklistItem = ({checklistItem}) => {
     return (
         <tbody>
-            <tr>
-                <td><input type="button" value={checklistItem.sequenceNumber}/></td>
+            <tr className="checklist-item-row">
+                <td>
+                    <button className="btn btn-primary btn-sm checklist-item-button"
+                        title="Edit this item">
+                        {checklistItem.sequenceNumber}
+                    </button>
+                 </td>
                 <td><ChecklistItemStatusIcon status={checklistItem.status}/></td>
                 <td className="timestamp">
                     <PlannedVsActual
