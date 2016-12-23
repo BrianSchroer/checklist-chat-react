@@ -1,11 +1,13 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {setCurrentRoomId} from '../../../app/currentRoomIdDucks';
+import {loadChatMessagesForRoom} from '../chatMessageDucks';
+import {setRoomId} from '../../../features/room/roomIdDucks';
+import {setRoomInfo} from '../../../features/room/roomInfoDucks';
 import {showRoomInfoModalDialog} from '../../../app/modalDialogDucks';
-import RoomInfo from '../../room/components/RoomInfo';
+import RoomInfo from '../../../features/room/components/RoomInfo';
 import ChatMessageList from './ChatMessageList';
 import NewChatMessage from './NewChatMessage';
-import Checklist from '../../checklist/components/Checklist';
+import Checklist from '../../../features/checklist/components/Checklist';
 
 class ChatRoomPage extends React.Component {
     constructor(props, context) {
@@ -19,7 +21,12 @@ class ChatRoomPage extends React.Component {
     }
 
     componentWillMount() {
-        this.props.actions.setCurrentRoomId(this.props.room.id);
+        const actions = this.props.actions;
+        const roomId = this.props.routeParams.id;
+
+        actions.setRoomId(roomId);
+        actions.setRoomInfo(roomId);
+        actions.loadChatMessagesForRoom(roomId);
     }
 
     handleRoomInfoEditRequest(event) {
@@ -34,10 +41,9 @@ class ChatRoomPage extends React.Component {
             <div className="chat-room-page">
                 <div className="chat-room-chat-column">
                     <div className="chat-room-room-info">
-                        <RoomInfo room={room} onEditRequest={this.handleRoomInfoEditRequest} />
-                    </div>
+                        {room && <RoomInfo room={room} onEditRequest={this.handleRoomInfoEditRequest} />}                    </div>
                     <div className="chat-room-message-list">
-                        <ChatMessageList chatMessages={this.props.messages}/>
+                        <ChatMessageList chatMessages={this.props.chatMessages}/>
                     </div>
                     <div className="chat-room-new-message">
                         <NewChatMessage/>
@@ -52,23 +58,25 @@ class ChatRoomPage extends React.Component {
 }
 
 ChatRoomPage.propTypes = {
-    room: PropTypes.object.isRequired,
-    messages: PropTypes.arrayOf(PropTypes.object).isRequired,
+    routeParams: PropTypes.object.isRequired,
+    room: PropTypes.object,
+    chatMessages: PropTypes.arrayOf(PropTypes.object).isRequired,
     actions: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state, ownProps) {
-    const roomId = ownProps.params.id; // (from the path '/room/id');
-    const room = state.rooms.find(room => room.id == roomId);
-    const messages = room.messages;
+function mapStateToProps(state) {
+    const room = state.roomInfo;
+    const chatMessages = state.chatMessages;
 
-    return {room, messages};
+    return {room, chatMessages};
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         actions: {
-            setCurrentRoomId: roomId => { dispatch(setCurrentRoomId(roomId)); },
+            loadChatMessagesForRoom: roomId => { dispatch(loadChatMessagesForRoom(roomId)); },
+            setRoomId: roomId => { dispatch(setRoomId(roomId)); },
+            setRoomInfo: roomId => { dispatch(setRoomInfo(roomId)); },
             showRoomInfoModalDialog: () => { dispatch(showRoomInfoModalDialog()); }
         }
     };

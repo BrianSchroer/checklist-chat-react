@@ -19,6 +19,15 @@ import {schema} from './mockDataSchema';
 
 const mockData = jsonSchemaFaker(schema);
 
+mockData.chatMessages = [];
+
+mockData.rooms.forEach(room => {
+    const roomId = room.id;
+    room.messages.forEach(message => message.roomId = roomId);
+    mockData.chatMessages.push(...room.messages);
+    delete room.messages;
+});
+
 const json = JSON.stringify(mockData, null, /*indent:*/ 4);
 const outputPath = path.join(__dirname, './mockData.json');
 

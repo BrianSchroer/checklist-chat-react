@@ -1,16 +1,18 @@
 import {combineReducers} from 'redux';
 import ajaxCallsInProgressCount from '../app/ajaxStatusDucks';
-import currentRoomId from '../app/currentRoomIdDucks';
 import modalDialog from '../app/modalDialogDucks';
 import rooms from '../features/room/roomDucks';
-import messages from '../features/chat/chatDucks';
+import roomId from '../features/room/roomIdDucks';
+import roomInfo from '../features/room/roomInfoDucks';
+import chatMessages from '../features/chat/chatMessageDucks';
 
 const rootReducer = combineReducers({
     ajaxCallsInProgressCount,
     modalDialog,
-    currentRoomId,
     rooms,
-    messages
+    roomId,
+    roomInfo,
+    chatMessages
 });
 
 export default rootReducer;

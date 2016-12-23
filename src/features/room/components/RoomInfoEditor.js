@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import * as modalDialogType from '../../../app/modalDialogType';
 import {hideModalDialog} from '../../../app/modalDialogDucks';
+import {saveRoomInfo} from '../../../features/room/roomDucks';
 import RoomInfoModal from './RoomInfoModal';
 
 class RoomInfoEditor extends React.Component {
@@ -45,6 +46,7 @@ class RoomInfoEditor extends React.Component {
 
     saveRoom(event) {
         event.preventDefault();
+        this.props.actions.saveRoomInfo(this.state.room);
     }
 
     render() {
@@ -78,15 +80,15 @@ function emptyRoom() {
     return {id: '', roomName: '', description: '', phoneInfo: ''};
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
 // TODO: Consider using reselect to memoize
     let isNewRoom = true;
     let room = emptyRoom();
 
     const shouldDisplayModal = (state.modalDialog === modalDialogType.ROOM);
 
-    if (shouldDisplayModal && state.currentRoomId) {
-        const roomId = state.currentRoomId;
+    if (shouldDisplayModal && state.roomId) {
+        const roomId = state.roomId;
 
         if (roomId) {
             isNewRoom = false;
@@ -101,7 +103,8 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
     return {
         actions: {
-            hideModalDialog: () => { dispatch(hideModalDialog())}
+            hideModalDialog: () => { dispatch(hideModalDialog()); },
+            saveRoomInfo: roomInfo => { dispatch(saveRoomInfo(roomInfo)); }
         }
     };
 }

@@ -1,8 +1,8 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {setCurrentRoomId} from '../../../app/currentRoomIdDucks';
+import {setRoomId} from '../../../features/room/roomIdDucks';
 import {showRoomInfoModalDialog} from '../../../app/modalDialogDucks';
-import RoomList from '../../room/components/RoomList';
+import RoomList from '../../../features/room/components/RoomList';
 
 class HomePage extends React.Component {
     constructor(props, context) {
@@ -12,7 +12,7 @@ class HomePage extends React.Component {
     }
 
     componentWillMount() {
-        this.props.actions.setCurrentRoomId(null);
+        this.props.actions.setRoomId(null);
     }
 
     handleNewChatRoomRequest() {
@@ -62,7 +62,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         actions: {
-            setCurrentRoomId: roomId => { dispatch(setCurrentRoomId(roomId)); },
+            setRoomId: roomId => { dispatch(setRoomId(roomId)); },
             showRoomInfoModalDialog: () => { dispatch(showRoomInfoModalDialog()); }
         }
     };

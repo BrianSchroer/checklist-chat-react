@@ -1,5 +1,4 @@
 import React, {PropTypes} from 'react';
-import format from '../../../util/format';
 import ChatMessage from './ChatMessage';
 
 const ChatMessageListItem = ({chatMessage}) => {

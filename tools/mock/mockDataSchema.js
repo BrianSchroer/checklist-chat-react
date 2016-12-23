@@ -36,7 +36,7 @@ export const schema = {
                                     "type": "integer",
                                     "minimum": 1,
                                     "unique": true
-                    }           ,
+                                },
                                 "timeStamp": {
                                     "type": "string",
                                     "faker": "date.recent"
