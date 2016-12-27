@@ -1,22 +1,19 @@
 import {combineReducers} from 'redux';
-import ajaxCallsInProgressCount from '../app/ajaxStatusDucks';
-import modalDialog from '../app/modalDialogDucks';
-import rooms from '../features/room/roomDucks';
-import roomId from '../features/room/roomIdDucks';
-import roomInfo from '../features/room/roomInfoDucks';
+import {roomsReducer, roomIdReducer, roomInfoReducer} from '../features/room/roomDucks';
 import chatMessages from '../features/chat/chatMessageDucks';
-import checklistItems from '../features/checklist/checklistItemDucks';
-import checklistItemSequenceNumber from '../features/checklist/checklistItemSequenceNumberDucks';
+import {checklistItemsReducer, checklistItemSequenceNumberReducer} from '../features/checklist/checklistItemDucks';
+import ajaxCallsInProgressCount from '../app/ajaxStatusDucks';
+import modalDialogRequest from '../app/modalDialogDucks';
 
 const rootReducer = combineReducers({
-    ajaxCallsInProgressCount,
-    modalDialog,
-    rooms,
-    roomId,
-    roomInfo,
+    rooms: roomsReducer,
+    roomId: roomIdReducer,
+    roomInfo: roomInfoReducer,
     chatMessages,
-    checklistItems,
-    checklistItemSequenceNumber
+    checklistItems: checklistItemsReducer,
+    checklistItemSequenceNumber: checklistItemSequenceNumberReducer,
+    ajaxCallsInProgressCount,
+    modalDialogRequest
 });
 
 export default rootReducer;

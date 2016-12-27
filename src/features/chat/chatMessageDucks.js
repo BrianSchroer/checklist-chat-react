@@ -5,7 +5,7 @@ import {beginAjaxCall, ajaxCallError} from '../../app/ajaxStatusDucks';
 import {getChatMessages} from '../../api/chatApi';
 
 const prefix = 'checklist-chat/chat/';
-const LOAD_CHAT_MESSAGES_FOR_ROOM_SUCCESS = `${prefix}LOAD_CHAT_MESSAGES_FOR_ROOM_SUCCESS`;
+export const LOAD_CHAT_MESSAGES_FOR_ROOM_SUCCESS = `${prefix}LOAD_CHAT_MESSAGES_FOR_ROOM_SUCCESS`;
 
 // Actions:
 export function loadChatMessagesForRoomSuccess(chatMessages) {

@@ -85,10 +85,11 @@ function mapStateToProps(state) {
     let isNewRoom = true;
     let room = emptyRoom();
 
-    const shouldDisplayModal = (state.modalDialog === modalDialogType.ROOM);
+    const shouldDisplayModal =
+        (state.modalDialogRequest && state.modalDialogRequest.type === modalDialogType.ROOM);
 
-    if (shouldDisplayModal && state.roomId) {
-        const roomId = state.roomId;
+    if (shouldDisplayModal) {
+        const [roomId] = state.modalDialogRequest.keys;
 
         if (roomId) {
             isNewRoom = false;

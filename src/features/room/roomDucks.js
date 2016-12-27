@@ -2,12 +2,13 @@
 
 import initialState from '../../app/store/initialState';
 import {beginAjaxCall, ajaxCallError} from '../../app/ajaxStatusDucks';
-import {getRooms, saveRoom} from '../../api/chatApi';
+import {getRooms, getRoomInfo, saveRoom} from '../../api/chatApi';
 
 const prefix = 'checklist-chat/room/';
-const SAVE_ROOM_SUCCESS = `${prefix}SAVE_ROOM_SUCCESS`;
-const LOAD_ROOMS_SUCCESS = `${prefix}LOAD_ROOMS_SUCCESS`;
-const UPDATE_ROOM_SUCCESS = `${prefix}UPDATE_ROOM_SUCCESS`;
+export const SAVE_ROOM_SUCCESS = `${prefix}SAVE_ROOM_SUCCESS`;
+export const LOAD_ROOMS_SUCCESS = `${prefix}LOAD_ROOMS_SUCCESS`;
+export const SET_ROOM_ID_SUCCESS = `${prefix}SET_ROOM_ID_SUCCESS`;
+export const SET_ROOM_INFO_SUCCESS = `${prefix}SET_ROOM_INFO_SUCCESS`;
 
 // Actions:
 
@@ -17,6 +18,14 @@ export function loadRoomsSuccess(rooms) {
 
 export function saveRoomSuccess(rooms) {
     return {type: SAVE_ROOM_SUCCESS, rooms};
+}
+
+export function setRoomIdSuccess(roomId) {
+    return {type: SET_ROOM_ID_SUCCESS, roomId};
+}
+
+export function setRoomInfoSuccess(roomInfo) {
+    return {type: SET_ROOM_INFO_SUCCESS, roomInfo};
 }
 
 export function loadRooms() {
@@ -49,9 +58,29 @@ export function saveRoomInfo(roomInfo) {
     };
 }
 
+export function setRoomId(roomId) {
+    return setRoomIdSuccess(roomId);
+}
+
+export function setRoomInfo(roomId) {
+    if (roomId) {
+        return dispatch => {
+            dispatch(beginAjaxCall());
+            return getRoomInfo(roomId).then(roomInfo => {
+                dispatch(setRoomInfoSuccess(roomInfo));
+            }).catch(error => {
+                dispatch(ajaxCallError(error));
+                throw (error);
+            });
+        };
+    } else {
+        return null;
+    }
+}
+
 // Reducers:
 
-export default function reducer(rooms = initialState.rooms, action) {
+export function roomsReducer(rooms = initialState.rooms, action) {
 
     const actionType = action.type;
 
@@ -62,5 +91,31 @@ export default function reducer(rooms = initialState.rooms, action) {
 
         default:
             return rooms;
+    }
+}
+
+export function roomIdReducer(roomId = initialState.roomId, action) {
+    const actionType = action.type;
+
+    switch (actionType) {
+
+        case SET_ROOM_ID_SUCCESS:
+            return action.roomId;
+
+        default:
+            return roomId;
+    }
+}
+
+export function roomInfoReducer(roomInfo = initialState.roomInfo, action) {
+    const actionType = action.type;
+
+    switch (actionType) {
+
+        case SET_ROOM_INFO_SUCCESS:
+            return action.roomInfo;
+
+        default:
+            return roomInfo;
     }
 }

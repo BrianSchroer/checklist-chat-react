@@ -7,10 +7,14 @@ import {getChecklistItems} from '../../api/chatApi';
 const prefix = 'checklist-chat/checklist-item/';
 const LOAD_CHECKLIST_ITEMS_FOR_ROOM_SUCCESS = `${prefix}LOAD_CHECKLIST_ITEMS_FOR_ROOM_SUCCESS`;
 const SAVE_CHECKLIST_ITEM_SUCCESS = `${prefix}SAVE_CHECKLIST_ITEM_SUCCESS`;
+const SET_SEQUENCE_NUMBER_SUCCESS = `${prefix}SET_SEQUENCE_NUMBER_SUCCESS`;
 
 // Actions:
 export function loadChecklistItemsForRoomSuccess(checklistItems) {
     return { type: LOAD_CHECKLIST_ITEMS_FOR_ROOM_SUCCESS, checklistItems };
+}
+export function setSequenceNumberSuccess(sequenceNumber) {
+    return {type: SET_SEQUENCE_NUMBER_SUCCESS, sequenceNumber};
 }
 
 export function saveChecklistItemSuccess(checklistItem) {
@@ -36,9 +40,14 @@ export function loadChecklistItemsForRoom(roomId) {
 
 export function saveChecklistItem(checklistItem) {  // eslint-disable-line no-unused-vars
 }
+
+export function setChecklistItemSequenceNumber(sequenceNumber) {
+    return setSequenceNumberSuccess(sequenceNumber);
+}
+
 // Reducers:
 
-export default function reducer(checklistItems = initialState.checklistItems, action) {
+export function checklistItemsReducer(checklistItems = initialState.checklistItems, action) {
 
     const actionType = action.type;
 
@@ -49,5 +58,20 @@ export default function reducer(checklistItems = initialState.checklistItems, ac
 
         default:
             return checklistItems;
+    }
+}
+
+export function checklistItemSequenceNumberReducer(
+        sequenceNumber = initialState.checklistItemSequenceNumber, action) {
+
+    const actionType = action.type;
+
+    switch (actionType) {
+
+        case SET_SEQUENCE_NUMBER_SUCCESS:
+            return action.sequenceNumber;
+
+        default:
+            return sequenceNumber;
     }
 }

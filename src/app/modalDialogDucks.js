@@ -3,37 +3,37 @@ import initialState from './store/initialState';
 import * as modalDialogType from './modalDialogType';
 
 const prefix = 'checklist-chat/modalDialog/';
-const SET_MODAL_DIALOG_SUCCESS = `${prefix}SET_MODAL_DIALOG_SUCCESS`;
+export const MODAL_DIALOG_REQUEST_SUCCESS = `${prefix}MODAL_DIALOG_REQUEST_SUCCESS`;
 
 // Action creators:
 
-export function setModalDialogSuccess(modalDialog) {
-    return {type: SET_MODAL_DIALOG_SUCCESS, modalDialog};
+export function setModalDialogRequestSuccess(request) {
+    return {type: MODAL_DIALOG_REQUEST_SUCCESS, request};
 }
 
-export function showModalDialog(modalDialog) {
-    return setModalDialogSuccess(modalDialog);
+export function requestModalDialog(typ, keys) {
+    return setModalDialogRequestSuccess({type: typ, keys});
 }
 
-export function showRoomInfoModalDialog() {
-    return setModalDialogSuccess(modalDialogType.ROOM);
+export function requestRoomInfoModalDialog(roomId) {
+    return requestModalDialog(modalDialogType.ROOM, [roomId]);
 }
 
 export function hideModalDialog() {
-    return setModalDialogSuccess(modalDialogType.NONE);
+    return requestModalDialog(modalDialogType.NONE, []);
 }
 
 // Reducers:
 
-export default function reducer(modalDialog = initialState.modalDialog, action) {
+export default function reducer(request = initialState.modalDialogRequest, action) {
     const actionType = action.type;
 
     switch (actionType) {
 
-        case SET_MODAL_DIALOG_SUCCESS:
-            return action.modalDialog;
+        case MODAL_DIALOG_REQUEST_SUCCESS:
+            return action.request;
 
         default:
-            return modalDialog;
+            return request;
     }
 }

@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {setRoomId} from '../../../features/room/roomIdDucks';
-import {showRoomInfoModalDialog} from '../../../app/modalDialogDucks';
+import {setRoomId} from '../../../features/room/roomDucks';
+import {requestRoomInfoModalDialog} from '../../../app/modalDialogDucks';
 import RoomList from '../../../features/room/components/RoomList';
 
 class HomePage extends React.Component {
@@ -16,7 +16,7 @@ class HomePage extends React.Component {
     }
 
     handleNewChatRoomRequest() {
-        this.props.actions.showRoomInfoModalDialog();
+        this.props.actions.requestRoomInfoModalDialog(null);
     }
 
     render() {
@@ -63,7 +63,7 @@ function mapDispatchToProps(dispatch) {
     return {
         actions: {
             setRoomId: roomId => { dispatch(setRoomId(roomId)); },
-            showRoomInfoModalDialog: () => { dispatch(showRoomInfoModalDialog()); }
+            requestRoomInfoModalDialog: roomId => { dispatch(requestRoomInfoModalDialog(roomId)); }
         }
     };
 }
