@@ -26,6 +26,7 @@ class ChecklistItemEditor extends React.Component {
             shouldDisplayModal: props.shouldDisplayModal,
             checklistItem: Object.assign({}, props.checklistItem),
             isNewChecklistItem: props.isNewChecklistItem,
+            maxSequenceNumber: props.maxSequenceNumber,
             isSaving: false,
             isDeleting: false,
             isDirty: false,
@@ -60,6 +61,7 @@ class ChecklistItemEditor extends React.Component {
             <ChecklistItemModal
                 checklistItem={state.checklistItem}
                 isNewChecklistItem={state.isNewChecklistItem}
+                maxSequenceNumber={state.maxSequenceNumber}
                 errors={state.errors}
                 onChange={this.updateChecklistItemState}
                 onSave={this.saveChecklistItem}
@@ -73,6 +75,7 @@ ChecklistItemEditor.propTypes = {
     shouldDisplayModal: PropTypes.bool.isRequired,
     checklistItem: PropTypes.object.isRequired,
     isNewChecklistItem: PropTypes.bool.isRequired,
+    maxSequenceNumber: PropTypes.number.isRequired,
     actions: PropTypes.object.isRequired
 };
 
@@ -83,23 +86,29 @@ function emptyChecklistItem() {
 function mapStateToProps(state) {
 // TODO: Consider using reselect to memoize
     let isNewChecklistItem = true;
+    let maxSequenceNumber = 1;
     let checklistItem = emptyChecklistItem();
+    checklistItem.sequenceNumber = maxSequenceNumber;
 
     const shouldDisplayModal =
         (state.modalDialogRequest && state.modalDialogRequest.type === modalDialogType.CHECKLIST_ITEM);
 
     if (shouldDisplayModal) {
         const [roomId, sequenceNumber] = state.modalDialogRequest.keys;
+        maxSequenceNumber = state.checklistItems.length + 1;
 
         if (sequenceNumber) {
             isNewChecklistItem = false;
             const checklistItems = state.checklistItems;
             checklistItem = checklistItems.find(item =>
                 item.roomId === roomId && item.sequenceNumber === sequenceNumber);
+            maxSequenceNumber--;
+        } else {
+            checklistItem.sequenceNumber = maxSequenceNumber;
         }
     }
 
-    return {shouldDisplayModal, checklistItem, isNewChecklistItem};
+    return {shouldDisplayModal, checklistItem, isNewChecklistItem, maxSequenceNumber};
 }
 
 function mapDispatchToProps(dispatch) {

@@ -53,8 +53,8 @@ a.room-info-edit-link:hover {
     color: #ffffff;
 }
 
-div.chat-room-message-list{
-}
+/*div.chat-room-message-list{
+}*/
 
 div.chat-room-new-message {
     background-color: cyan;
@@ -143,6 +143,26 @@ div.actual-value {
 
 div.planned-value-missing, div.actual-value-missing, div.actual-equals-planned {
     display: none;
+}
+
+div.checklist-form-sequence-number-row {
+    display: flex;
+    flex-direction: row;
+}
+
+div.checklist-form-status-row {
+    display: flex;
+    flex-direction: row;
+}
+
+div.checklist-form-status-icon {
+    padding-left: 1em;
+    padding-top: 2.5em;
+}
+
+div.checklist-form-timestamps {
+    display: flex;
+    flex-direction: row;
 }
 
 i.success-icon {
