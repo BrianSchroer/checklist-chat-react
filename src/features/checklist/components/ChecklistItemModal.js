@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import TextInput from '../../../components/TextInput';
 
-const ChecklistItemModal = ({checklistItem, isNewItem, errors, onChange, onSave, onCancel}) => {
+const ChecklistItemModal = ({checklistItem, isNewChecklistItem, errors, onChange, onSave, onCancel}) => {
     return (
         <div className="checklist-chat-modal-backdrop" tabIndex="-1" role="dialog">
             <div className="modal-dialog checklist-chat-modal-dialog" role="document">
@@ -11,13 +11,15 @@ const ChecklistItemModal = ({checklistItem, isNewItem, errors, onChange, onSave,
                             <span aria-hidden="true">&times;</span>
                         </button>
                         <h4 className="modal-title">
-                            {(isNewItem) ? 'Create a new task..' : 'Edit Task'}
+                            {(isNewChecklistItem) ? 'Create a new task..' : 'Edit Task'}
                         </h4>
                     </div>
 
                     <div className="modal-body">
                         <TextInput name="description" label="Description" value={checklistItem.description}
                             onChange={onChange} error={errors.description} />
+                        <TextInput name="userName" label="User Name" value={checklistItem.userName}
+                            onChange={onChange} error={errors.userName} />
                     </div>
 
                     <div className="modal-footer">

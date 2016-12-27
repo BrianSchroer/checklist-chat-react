@@ -24,7 +24,7 @@ class ChecklistItemEditor extends React.Component {
     resetState(props) {
         this.setState({
             shouldDisplayModal: props.shouldDisplayModal,
-            ChecklistItem: Object.assign({}, props.checklistItem),
+            checklistItem: Object.assign({}, props.checklistItem),
             isNewChecklistItem: props.isNewChecklistItem,
             isSaving: false,
             isDeleting: false,
@@ -34,9 +34,9 @@ class ChecklistItemEditor extends React.Component {
     }
 
     updateChecklistItemState(event) {
-        let ChecklistItem = this.state.checklistItem;
-        ChecklistItem[event.target.name] = event.target.value;
-        return this.setState({ChecklistItem: ChecklistItem, isDirty: true});
+        let checklistItem = this.state.checklistItem;
+        checklistItem[event.target.name] = event.target.value;
+        return this.setState({checklistItem: checklistItem, isDirty: true});
     }
 
     cancelChecklistItemEdit(event) {
@@ -58,7 +58,7 @@ class ChecklistItemEditor extends React.Component {
 
         return (
             <ChecklistItemModal
-                ChecklistItem={state.checklistItem}
+                checklistItem={state.checklistItem}
                 isNewChecklistItem={state.isNewChecklistItem}
                 errors={state.errors}
                 onChange={this.updateChecklistItemState}
@@ -71,40 +71,42 @@ class ChecklistItemEditor extends React.Component {
 
 ChecklistItemEditor.propTypes = {
     shouldDisplayModal: PropTypes.bool.isRequired,
-    ChecklistItem: PropTypes.object.isRequired,
+    checklistItem: PropTypes.object.isRequired,
     isNewChecklistItem: PropTypes.bool.isRequired,
     actions: PropTypes.object.isRequired
 };
 
 function emptyChecklistItem() {
-    return {id: '', ChecklistItemName: '', description: '', phoneInfo: ''};
+    return {id: '', checklistItemName: '', description: '', phoneInfo: ''};
 }
 
 function mapStateToProps(state) {
 // TODO: Consider using reselect to memoize
     let isNewChecklistItem = true;
-    let ChecklistItem = emptyChecklistItem();
+    let checklistItem = emptyChecklistItem();
 
-    const shouldDisplayModal = (state.modalDialog === modalDialogType.CHECKLIST_ITEM);
+    const shouldDisplayModal =
+        (state.modalDialogRequest && state.modalDialogRequest.type === modalDialogType.CHECKLIST_ITEM);
 
-    if (shouldDisplayModal && state.checklistItemId) {
-        const ChecklistItemId = state.checklistItemId;
+    if (shouldDisplayModal) {
+        const [roomId, sequenceNumber] = state.modalDialogRequest.keys;
 
-        if (ChecklistItemId) {
+        if (sequenceNumber) {
             isNewChecklistItem = false;
-            const ChecklistItems = state.checklistItems;
-            ChecklistItem = ChecklistItems.find(ChecklistItem => ChecklistItem.id == ChecklistItemId);
+            const checklistItems = state.checklistItems;
+            checklistItem = checklistItems.find(item =>
+                item.roomId === roomId && item.sequenceNumber === sequenceNumber);
         }
     }
 
-    return {shouldDisplayModal, ChecklistItem, isNewChecklistItem};
+    return {shouldDisplayModal, checklistItem, isNewChecklistItem};
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         actions: {
             hideModalDialog: () => { dispatch(hideModalDialog()); },
-            saveChecklistItem: ChecklistItem => { dispatch(saveChecklistItem(ChecklistItem)); }
+            saveChecklistItem: checklistItem => { dispatch(saveChecklistItem(checklistItem)); }
         }
     };
 }

@@ -19,6 +19,10 @@ export function requestRoomInfoModalDialog(roomId) {
     return requestModalDialog(modalDialogType.ROOM, [roomId]);
 }
 
+export function requestChecklistItemModalDialog(roomId, sequenceNumber) {
+    return requestModalDialog(modalDialogType.CHECKLIST_ITEM, [roomId, sequenceNumber]);
+}
+
 export function hideModalDialog() {
     return requestModalDialog(modalDialogType.NONE, []);
 }

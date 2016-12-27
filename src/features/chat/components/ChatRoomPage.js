@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {loadChatMessagesForRoom} from '../chatMessageDucks';
 import {loadChecklistItemsForRoom} from '../../../features/checklist/checklistItemDucks';
 import {setRoomId, setRoomInfo} from '../../../features/room/roomDucks';
-import {requestRoomInfoModalDialog} from '../../../app/modalDialogDucks';
+import {requestRoomInfoModalDialog, requestChecklistItemModalDialog} from '../../../app/modalDialogDucks';
 import RoomInfo from '../../../features/room/components/RoomInfo';
 import ChatMessageList from './ChatMessageList';
 import NewChatMessage from './NewChatMessage';
@@ -18,6 +18,7 @@ class ChatRoomPage extends React.Component {
         };
 
         this.handleRoomInfoEditRequest = this.handleRoomInfoEditRequest.bind(this);
+        this.handleChecklistItemEditRequest = this.handleChecklistItemEditRequest.bind(this);
     }
 
     componentWillMount() {
@@ -33,6 +34,11 @@ class ChatRoomPage extends React.Component {
     handleRoomInfoEditRequest(event) {
         event.preventDefault();
         this.props.actions.requestRoomInfoModalDialog(this.props.room.id);
+    }
+
+    handleChecklistItemEditRequest(event, roomId, sequenceNumber) {
+        event.preventDefault();
+        this.props.actions.requestChecklistItemModalDialog(roomId, sequenceNumber);
     }
 
     render() {
@@ -51,7 +57,8 @@ class ChatRoomPage extends React.Component {
                     </div>
                 </div>
                 <div className="chat-room-checklist-column">
-                    <Checklist checklistItems={this.props.checklistItems}/>
+                    <Checklist checklistItems={this.props.checklistItems}
+                        OnEditRequest={this.handleChecklistItemEditRequest}/>
                 </div>
             </div>
         );
@@ -81,7 +88,9 @@ function mapDispatchToProps(dispatch) {
             loadChecklistItemsForRoom: roomId => { dispatch(loadChecklistItemsForRoom(roomId)); },
             setRoomId: roomId => { dispatch(setRoomId(roomId)); },
             setRoomInfo: roomId => { dispatch(setRoomInfo(roomId)); },
-            requestRoomInfoModalDialog: roomId => { dispatch(requestRoomInfoModalDialog(roomId)); }
+            requestRoomInfoModalDialog: roomId => { dispatch(requestRoomInfoModalDialog(roomId)); },
+            requestChecklistItemModalDialog: (roomId, sequenceNumber) =>
+                { dispatch(requestChecklistItemModalDialog(roomId, sequenceNumber)); }
         }
     };
 }
