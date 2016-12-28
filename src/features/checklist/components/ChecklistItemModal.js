@@ -72,7 +72,7 @@ const ChecklistItemModal = ({
                                 value={format.time(checklistItem.actualEndTime)}
                                 onChange={onChange} error={errors.actualEndTime} />
                         </div>
-                        <TextInput name="userName" label="User Name" value={checklistItem.userName}
+                        <TextInput name="userName" label="Performed by" value={checklistItem.userName}
                             onChange={onChange} error={errors.userName} />
                     </div>
 
