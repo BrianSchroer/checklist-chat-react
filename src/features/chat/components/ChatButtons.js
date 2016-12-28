@@ -2,19 +2,22 @@ import React/*, {PropTypes}*/ from 'react';
 import {connect} from 'react-redux';
 //import {bindActionCreators} from 'redux';
 
-class NewChatMessage extends React.Component {
+class ChatButtons extends React.Component {
     constructor(props, context) {
         super(props, context);
     }
 
     render() {
-        return (
-            <p>NewChatMessage</p>
+        return(
+            <div>
+                <button className="btn btn-primary">Say something...</button>
+                <button className="btn btn-default pull-right">Who's here?</button>
+            </div>
         );
     }
 }
 
-NewChatMessage.propTypes = {
+ChatButtons.propTypes = {
     //myProp: PropTypes.string.isRequired
 };
 
@@ -28,4 +31,4 @@ function mapStateToProps(state) {
 //     return {actions: bindActionCreators(actions, dispatch)};
 // }
 
-export default connect(mapStateToProps/*, mapDispatchToProps*/)(NewChatMessage);
+export default connect(mapStateToProps/*, mapDispatchToProps*/)(ChatButtons);

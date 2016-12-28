@@ -9,11 +9,11 @@ import ChecklistItemEditor from '../../features/checklist/components/ChecklistIt
 export class App extends React.Component {
     render() {
         return (
-            <div id="appPage">
+            <div id="appPage" className="app-page">
                 <RoomInfoEditor />
                 <ChecklistItemEditor />
                 <Header/>
-                <div id="appMainRow" className="container">
+                <div id="appMainRow" className="container app-main-row">
                     {this.props.children}
                 </div>
             </div>

@@ -48,7 +48,7 @@ const ChecklistItemModal = ({
                                 defaultValue={checklistItem.status}
                                 value={checklistItem.status}
                                 onChange={onChange} error={errors.status} />
-                            <div className="checklist-form-status-icon">
+                           <div className="checklist-form-status-icon">
                                 <ChecklistItemStatusIcon status={checklistItem.status}/>
                             </div>
                         </div>
@@ -58,7 +58,6 @@ const ChecklistItemModal = ({
                             <TextInput name="scheduledStartTime" label="Start Time: Scheduled"
                                 value={format.time(checklistItem.scheduledStartTime)}
                                 onChange={onChange} error={errors.scheduledStartTime} />
-                            &nbsp;
                             <TextInput name="actualStartTime" label="Actual"
                                 value={format.time(checklistItem.actualStartTime)}
                                 onChange={onChange} error={errors.actualStartTime} />
@@ -67,7 +66,6 @@ const ChecklistItemModal = ({
                             <TextInput name="scheduledEndTime" label="End Time: Scheduled"
                                 value={format.time(checklistItem.scheduledEndTime)}
                                 onChange={onChange} error={errors.scheduledEndTime} />
-                            &nbsp;
                             <TextInput name="actualEndTime" label="Actual"
                                 value={format.time(checklistItem.actualEndTime)}
                                 onChange={onChange} error={errors.actualEndTime} />

@@ -4,7 +4,7 @@ import {routePaths} from '../../../app/routes';
 
 const Header = () => {
     return (
-        <div id="appHeaderRow">
+        <div id="appHeaderRow" className="app-header-row">
             <nav className="navbar">
                 <div className="nav navbar-nav">
                     <IndexLink to={routePaths.home} className="navbar-brand">

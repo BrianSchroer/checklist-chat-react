@@ -6,7 +6,7 @@ import {setRoomId, setRoomInfo} from '../../../features/room/roomDucks';
 import {requestRoomInfoModalDialog, requestChecklistItemModalDialog} from '../../../app/modalDialogDucks';
 import RoomInfo from '../../../features/room/components/RoomInfo';
 import ChatMessageList from './ChatMessageList';
-import NewChatMessage from './NewChatMessage';
+import ChatButtons from './ChatButtons';
 import Checklist from '../../../features/checklist/components/Checklist';
 
 class ChatRoomPage extends React.Component {
@@ -52,8 +52,8 @@ class ChatRoomPage extends React.Component {
                     <div className="chat-room-message-list">
                         <ChatMessageList chatMessages={this.props.chatMessages}/>
                     </div>
-                    <div className="chat-room-new-message">
-                        <NewChatMessage/>
+                    <div className="chat-room-buttons">
+                        <ChatButtons/>
                     </div>
                 </div>
                 <div className="chat-room-checklist-column">
