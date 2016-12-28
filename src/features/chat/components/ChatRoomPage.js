@@ -49,9 +49,7 @@ class ChatRoomPage extends React.Component {
                 <div className="chat-room-chat-column">
                     <div className="chat-room-room-info">
                         {room && <RoomInfo room={room} onEditRequest={this.handleRoomInfoEditRequest} />}                    </div>
-                    <div className="chat-room-message-list">
-                        <ChatMessageList chatMessages={this.props.chatMessages}/>
-                    </div>
+                    <ChatMessageList chatMessages={this.props.chatMessages}/>
                     <div className="chat-room-buttons">
                         <ChatButtons/>
                     </div>

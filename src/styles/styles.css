@@ -1,4 +1,33 @@
 /* Styles */
+body.app-body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+div#app {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+div.app-page {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+div.app-main-row {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+div.chat-room-buttons {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
 .checklist-chat-modal-backdrop {
     position: fixed;
     top: 0px;
@@ -35,22 +64,16 @@ div.header-logo-img {
 }
 
 div.chat-room-page {
+    flex-grow: 1;
+    min-height: 0px;
     display: flex;
     flex-direction: row;
-    height: 100%;
 }
 
 div.chat-room-chat-column {
     display: flex;
     flex-direction: column;
 }
-
-div.chat-room-message-list{
-    flex-grow: 1;
-}
-
-/*div.chat-room-buttons {
-}*/
 
 div.room-info-panel-heading {
     display: flex;
@@ -64,10 +87,15 @@ div.room-info-panel-title {
 
 div.chat-room-checklist-column {
     margin-left: 1em;
+    display: flex;
+    flex-direction: column;
 }
 
 ul.chat-message-list {
     padding-left: 5px;
+    height: 100px; /* (overridden by flexbox, but needed to make overflow work) */
+    flex-grow: 1;
+    overflow-y: scroll;
 }
 
 ul.chat-message-list li {
@@ -101,6 +129,13 @@ ul.room-list li {
 
 .chat-action-message-text {
     font-style: italic;
+}
+
+div.checklist-table-container {
+    margin-bottom: 1em;
+    height: 100px; /* (overridden by flexbox, but needed to make overflow work) */
+    flex-grow: 1;
+    overflow-y: auto;
 }
 
 table.checklist-table {
