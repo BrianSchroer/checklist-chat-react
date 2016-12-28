@@ -47,6 +47,7 @@ class RoomInfoEditor extends React.Component {
     saveRoom(event) {
         event.preventDefault();
         this.props.actions.saveRoomInfo(this.state.room);
+        this.props.actions.hideModalDialog();
     }
 
     render() {

@@ -29,9 +29,11 @@ export function saveRoom(roomInfo) {
     if (roomInfo.id) {
         return update(`rooms/${roomInfo.id}`, JSON.stringify(body));
     } else {
-        const rooms = getRooms();
-        body.id = Math.max(rooms.map(room => room.id)) + 1;
-        return add(`rooms/${body.id}`, JSON.stringify(body));
+        getRooms().then(rooms => {
+            let roomIds = rooms.map(room => room.id);
+            body.id = Math.max(...roomIds) + 1;
+            return add(`rooms`, JSON.stringify(body));
+        });
     }
 }
 
@@ -40,13 +42,23 @@ function get(url) {
 }
 
 function add(url, body) {
-    const request = new Request(mockJsonServerBaseUri + url, { method: 'POST', body });
-    return fetch(request).then(onSuccess, onError);
+    return fetch(
+        mockJsonServerBaseUri + url, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: body
+        })
+        .then(onSuccess, onError);
 }
 
 function update(url, body) {
-    const request = new Request(mockJsonServerBaseUri + url, { method: 'PATCH', body });
-    return fetch(request).then(onSuccess, onError);
+    return fetch(
+        mockJsonServerBaseUri + url, {
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json'},
+            body: body
+        })
+        .then(onSuccess, onError);
 }
 
 // (Can't call this function 'delete' because that's a JavaScript reserved word)

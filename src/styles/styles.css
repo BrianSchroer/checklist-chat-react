@@ -93,9 +93,9 @@ div.chat-room-checklist-column {
 
 ul.chat-message-list {
     padding-left: 5px;
-    height: 100px; /* (overridden by flexbox, but needed to make overflow work) */
+    height: 10px; /* (overridden by flexbox, but needed to make overflow work) */
     flex-grow: 1;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 ul.chat-message-list li {
@@ -133,7 +133,7 @@ ul.room-list li {
 
 div.checklist-table-container {
     margin-bottom: 1em;
-    height: 100px; /* (overridden by flexbox, but needed to make overflow work) */
+    height: 10px; /* (overridden by flexbox, but needed to make overflow work) */
     flex-grow: 1;
     overflow-y: auto;
 }

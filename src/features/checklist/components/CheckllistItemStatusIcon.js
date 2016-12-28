@@ -22,7 +22,7 @@ const ChecklistItemStatusIcon = ({status}) => {
             return <i title="completed with errors" className="glyphicon glyphicon-remove error-icon"></i>;
 
         case checklistItemStatus.CANCELED:
-            return <i title="canceled" className="glyphicon glyphicon-trash"></i>;
+            return <i title="canceled" className="glyphicon glyphicon-trash error-icon"></i>;
 
         default:
             return '';
