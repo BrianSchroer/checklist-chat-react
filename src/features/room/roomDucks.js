@@ -2,7 +2,7 @@
 
 import initialState from '../../app/store/initialState';
 import {beginAjaxCall, ajaxCallError} from '../../app/ajaxStatusDucks';
-import {getRooms, getRoomInfo, saveRoom} from '../../api/chatApi';
+import * as chatApi from '../../api/chatApi';
 
 const prefix = 'checklist-chat/room/';
 export const SAVE_ROOM_SUCCESS = `${prefix}SAVE_ROOM_SUCCESS`;
@@ -32,7 +32,7 @@ export function loadRooms() {
     return dispatch => {
         dispatch(beginAjaxCall());
 
-        return getRooms().then(rooms => {
+        return chatApi.getRooms().then(rooms => {
             dispatch(loadRoomsSuccess(rooms));
         }).catch(error => {
             dispatch(ajaxCallError(error));
@@ -45,10 +45,10 @@ export function saveRoomInfo(roomInfo) {
     return dispatch => {
         dispatch(beginAjaxCall());
 
-        return saveRoom(roomInfo).then(room =>
+        return chatApi.saveRoom(roomInfo).then(room =>
         {
             dispatch(saveRoomSuccess(room));
-            getRooms().then(rooms => {
+            chatApi.getRooms().then(rooms => {
                 dispatch(loadRoomsSuccess(rooms));
             });
         }).catch(error => {
@@ -66,7 +66,7 @@ export function setRoomInfo(roomId) {
     if (roomId) {
         return dispatch => {
             dispatch(beginAjaxCall());
-            return getRoomInfo(roomId).then(roomInfo => {
+            return chatApi.getRoomInfo(roomId).then(roomInfo => {
                 dispatch(setRoomInfoSuccess(roomInfo));
             }).catch(error => {
                 dispatch(ajaxCallError(error));

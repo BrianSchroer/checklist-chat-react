@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import * as modalDialogType from '../../../app/modalDialogType';
 import {hideModalDialog} from '../../../app/modalDialogDucks';
 import {saveChecklistItem} from '../checklistItemDucks';
+import * as checklistItemStatus from '../checklistItemStatus';
 import ChecklistItemModal from './ChecklistItemModal';
 
 class ChecklistItemEditor extends React.Component {
@@ -79,16 +80,25 @@ ChecklistItemEditor.propTypes = {
     actions: PropTypes.object.isRequired
 };
 
-function emptyChecklistItem() {
-    return {id: '', checklistItemName: '', description: '', phoneInfo: ''};
+function emptyChecklistItem(roomId, sequenceNumber) {
+    return {
+        id: null,
+        roomId: roomId,
+        sequenceNumber: sequenceNumber,
+        status: checklistItemStatus.NOT_STARTED,
+        description: null,
+        scheduledStartTime: null,
+        scheduledEndTime: null,
+        actualStartTime: null,
+        actualEndTime: null
+    };
 }
 
 function mapStateToProps(state) {
 // TODO: Consider using reselect to memoize
     let isNewChecklistItem = true;
     let maxSequenceNumber = 1;
-    let checklistItem = emptyChecklistItem();
-    checklistItem.sequenceNumber = maxSequenceNumber;
+    let checklistItem = null;
 
     const shouldDisplayModal =
         (state.modalDialogRequest && state.modalDialogRequest.type === modalDialogType.CHECKLIST_ITEM);
@@ -104,7 +114,7 @@ function mapStateToProps(state) {
                 item.roomId === roomId && item.sequenceNumber === sequenceNumber);
             maxSequenceNumber--;
         } else {
-            checklistItem.sequenceNumber = maxSequenceNumber;
+            checklistItem = emptyChecklistItem(roomId, maxSequenceNumber);
         }
     }
 

@@ -2,7 +2,7 @@
 
 import initialState from '../../app/store/initialState';
 import {beginAjaxCall, ajaxCallError} from '../../app/ajaxStatusDucks';
-import {getChecklistItems} from '../../api/chatApi';
+import * as chatApi from '../../api/chatApi';
 
 const prefix = 'checklist-chat/checklist-item/';
 const LOAD_CHECKLIST_ITEMS_FOR_ROOM_SUCCESS = `${prefix}LOAD_CHECKLIST_ITEMS_FOR_ROOM_SUCCESS`;
@@ -26,7 +26,7 @@ export function loadChecklistItemsForRoom(roomId) {
         return dispatch => {
             dispatch(beginAjaxCall());
 
-            return getChecklistItems(roomId).then(checklistItems => {
+            return chatApi.getChecklistItems(roomId).then(checklistItems => {
                 dispatch(loadChecklistItemsForRoomSuccess(checklistItems));
             }).catch(error => {
                 dispatch(ajaxCallError(error));
@@ -38,7 +38,21 @@ export function loadChecklistItemsForRoom(roomId) {
     }
 }
 
-export function saveChecklistItem(checklistItem) {  // eslint-disable-line no-unused-vars
+export function saveChecklistItem(checklistItem) {
+    return dispatch => {
+        dispatch(beginAjaxCall());
+
+        return chatApi.saveChecklistItem(checklistItem).then(item =>
+        {
+            dispatch(saveChecklistItemSuccess(item));
+            chatApi.getChecklistItems(checklistItem.roomId).then(items => {
+                dispatch(loadChecklistItemsForRoomSuccess(items));
+            });
+        }).catch(error => {
+            dispatch(ajaxCallError(error));
+            throw (error);
+        });
+    };
 }
 
 export function setChecklistItemSequenceNumber(sequenceNumber) {

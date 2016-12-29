@@ -18,6 +18,7 @@ class ChatRoomPage extends React.Component {
         };
 
         this.handleRoomInfoEditRequest = this.handleRoomInfoEditRequest.bind(this);
+        this.handleChecklistItemAddRequest = this.handleChecklistItemAddRequest.bind(this);
         this.handleChecklistItemEditRequest = this.handleChecklistItemEditRequest.bind(this);
     }
 
@@ -34,6 +35,11 @@ class ChatRoomPage extends React.Component {
     handleRoomInfoEditRequest(event) {
         event.preventDefault();
         this.props.actions.requestRoomInfoModalDialog(this.props.room.id);
+    }
+
+    handleChecklistItemAddRequest(event) {
+        event.preventDefault;
+        this.props.actions.requestChecklistItemModalDialog(this.props.room.id);
     }
 
     handleChecklistItemEditRequest(event, roomId, sequenceNumber) {
@@ -56,6 +62,7 @@ class ChatRoomPage extends React.Component {
                 </div>
                 <div className="chat-room-checklist-column">
                     <Checklist checklistItems={this.props.checklistItems}
+                        OnAddRequest={this.handleChecklistItemAddRequest}
                         OnEditRequest={this.handleChecklistItemEditRequest}/>
                 </div>
             </div>

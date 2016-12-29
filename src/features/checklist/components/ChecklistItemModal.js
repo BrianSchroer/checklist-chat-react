@@ -30,7 +30,7 @@ const ChecklistItemModal = ({
                             <span aria-hidden="true">&times;</span>
                         </button>
                         <h4 className="modal-title">
-                            {(isNewChecklistItem) ? 'Create a new checklist item..' : 'Edit Checklist Item'}
+                            {(isNewChecklistItem) ? 'Add New Checklist Item..' : 'Edit Checklist Item'}
                         </h4>
                     </div>
 

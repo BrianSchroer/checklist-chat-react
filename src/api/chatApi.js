@@ -15,24 +15,35 @@ export function getChatMessages(roomId) {
 }
 
 export function getChecklistItems(roomId) {
-    return get(`checklistItems?roomId=${roomId}&_sort=sequenceNumber`);
+    return (roomId)
+        ? get(`checklistItems?roomId=${roomId}&_sort=sequenceNumber`)
+        : get('checklistItems');
 }
 
 export function saveRoom(roomInfo) {
-    const body = {
-        id: roomInfo.id,
-        roomName: roomInfo.roomName,
-        description: roomInfo.description,
-        phoneInfo: roomInfo.phoneInfo
-    };
+    const body = Object.assign({}, roomInfo);
 
     if (roomInfo.id) {
         return update(`rooms/${roomInfo.id}`, JSON.stringify(body));
     } else {
-        getRooms().then(rooms => {
-            let roomIds = rooms.map(room => room.id);
-            body.id = Math.max(...roomIds) + 1;
+        getRooms().then(items => {
+            let ids = items.map(item => item.id);
+            body.id = Math.max(...ids) + 1;
             return add(`rooms`, JSON.stringify(body));
+        });
+    }
+}
+
+export function saveChecklistItem(checklistItem) {
+    const body = Object.assign({}, checklistItem);
+
+    if (checklistItem.id) {
+        return update(`checklistItems/${checklistItem.id}`, JSON.stringify(body));
+    } else {
+        getChecklistItems().then(items => {
+            let ids = items.map(item => item.id);
+            body.id = Math.max(...ids) + 1;
+            return add(`checklistItems`, JSON.stringify(body));
         });
     }
 }

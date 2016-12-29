@@ -66,6 +66,25 @@ export const schema = {
                         "items": {
                             "type": "object",
                             "properties": {
+                                "id": {
+                                    "type": "integer",
+                                    "minimum": 1,
+                                    "unique": true
+                                },
+                                "status": {
+                                    "type": "string",
+                                    "chance": {"pickone": [["NotStarted", "InProgress", "InProgressWithIssues", "CompletedSuccessfully", "CompletedWithIssues", "CompletedWithErrors", "Canceled"]]}
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "minLength": 15,
+                                    "maxLength": 50,
+                                    "faker": "company.catchPhrase"
+                                },
+                                "userName": {
+                                    "type": "string",
+                                    "faker": "name.findName"
+                                },
                                 "scheduledStartTime": {
                                     "type": "string",
                                     "faker": "date.recent"
@@ -81,20 +100,6 @@ export const schema = {
                                 "actualEndTime": {
                                     "type": "string",
                                     "faker": "date.recent"
-                                },
-                                "status": {
-                                    "type": "string",
-                                    "chance": {"pickone": [["NotStarted", "InProgress", "InProgressWithIssues", "CompletedSuccessfully", "CompletedWithIssues", "CompletedWithErrors", "Canceled"]]}
-                                },
-                                "description": {
-                                    "type": "string",
-                                    "minLength": 15,
-                                    "maxLength": 50,
-                                    "faker": "company.catchPhrase"
-                                },
-                                "userName": {
-                                    "type": "string",
-                                    "faker": "name.findName"
                                 },
                                 "chatMessages": {
                                     "type": "array",
@@ -131,7 +136,7 @@ export const schema = {
                                     }
                                 }
                             },
-                            "required": ["scheduledStartTime", "scheduledEndTime", "status", "description", "chatMessages"]
+                            "required": ["id", "status", "description", "scheduledStartTime", "scheduledEndTime", "chatMessages"]
                         }
                     }
                 },
