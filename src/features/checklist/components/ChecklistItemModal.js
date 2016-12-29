@@ -1,4 +1,6 @@
 import React, {PropTypes} from 'react';
+import FormGroup from '../../../components/FormGroup';
+import SimpleSelectInput from '../../../components/SimpleSelectInput';
 import SelectInput from '../../../components/SelectInput';
 import TextInput from '../../../components/TextInput';
 import format from '../../../util/format';
@@ -42,18 +44,26 @@ const ChecklistItemModal = ({
                                 value={checklistItem.sequenceNumber.toString()}
                                 onChange={onChange} error={errors.sequenceNumber} />
                         </div>
+
                         <div className="checklist-form-status-row">
-                            <SelectInput name="status" label="Status"
-                                options={checklistItemStatus.options}
-                                defaultValue={checklistItem.status}
-                                value={checklistItem.status}
-                                onChange={onChange} error={errors.status} />
-                           <div className="checklist-form-status-icon">
-                                <ChecklistItemStatusIcon status={checklistItem.status}/>
-                            </div>
+                            <FormGroup name="status" label="Status" error={errors.status}>
+                                <div className="checklist-form-status-and-dropdown">
+                                     <div className="form-control checklist-form-status-div">
+                                        <ChecklistItemStatusIcon status={checklistItem.status}/>
+                                    </div>
+                                    <SimpleSelectInput
+                                        name="status"
+                                        defaultValue={checklistItem.status}
+                                        value={checklistItem.status}
+                                        options={checklistItemStatus.options}
+                                        onChange={onChange} />
+                                </div>
+                            </FormGroup>
                         </div>
+
                         <TextInput name="description" label="Description" value={checklistItem.description}
                             onChange={onChange} error={errors.description} />
+
                         <div className="checklist-form-timestamps">
                             <TextInput name="scheduledStartTime" label="Start Time: Scheduled"
                                 value={format.time(checklistItem.scheduledStartTime)}
@@ -62,6 +72,7 @@ const ChecklistItemModal = ({
                                 value={format.time(checklistItem.actualStartTime)}
                                 onChange={onChange} error={errors.actualStartTime} />
                         </div>
+
                         <div className="checklist-form-timestamps">
                             <TextInput name="scheduledEndTime" label="End Time: Scheduled"
                                 value={format.time(checklistItem.scheduledEndTime)}
@@ -70,6 +81,7 @@ const ChecklistItemModal = ({
                                 value={format.time(checklistItem.actualEndTime)}
                                 onChange={onChange} error={errors.actualEndTime} />
                         </div>
+
                         <TextInput name="userName" label="Performed by" value={checklistItem.userName}
                             onChange={onChange} error={errors.userName} />
                     </div>

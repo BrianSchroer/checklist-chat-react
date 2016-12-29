@@ -17,7 +17,7 @@ const Checklist = ({checklistItems, OnEditRequest, OnAddRequest}) => {
                     </tr>
                 </thead>
                 {checklistItems.map(item =>
-                    <ChecklistItem key={item.sequenceNumber}
+                    <ChecklistItem key={item.id}
                         checklistItem={item}
                         OnEditRequest={function(event) {
                             OnEditRequest(event, item.roomId, item.sequenceNumber);

@@ -19,7 +19,9 @@ const enzymeHelper = class {
         const findArray = enzymeHelper.nestedFind(wrapper, selector);
 
         if (findArray.length != 1) {
-            throw(`expected 1 find for selector "${selector}", but found ${findArray.length}.`);
+            const errorMessage =
+                `expected 1 find for selector "${selector}", but found ${findArray.length}.`;
+            throw(errorMessage);
         }
 
         return findArray.first();

@@ -195,9 +195,24 @@ div.checklist-form-status-row {
     flex-direction: row;
 }
 
-div.checklist-form-status-icon {
-    padding-left: 1em;
-    padding-top: 2.5em;
+div.checklist-form-status-and-dropdown {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+div.checklist-form-status-div {
+    width: 3em;
+    margin-right: 0;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-right-width: 0px;
+}
+
+div.checklist-form-status-and-dropdown select {
+    margin-left: 0;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
 }
 
 div.checklist-form-timestamps {

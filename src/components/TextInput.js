@@ -1,33 +1,31 @@
 import React, {PropTypes} from 'react';
+import FormGroup from './FormGroup';
+import SimpleTextInput from './SimpleTextInput';
 
-const TextInput = ({name, label, onChange, placeholder, value, error}) => {
-    const wrapperClass =
-        (error && error.length > 0) ? 'form-group has-error' : 'form-group';
-
+const TextInput = ({name, label, error, placeholder, value, onChange}) => {
     return (
-        <div className={wrapperClass}>
-            <label htmlFor={name}>{label}</label>
-            <div className="field">
-                <input
-                    type="text"
-                    name={name}
-                    className="form-control"
-                    placeholder={placeholder}
-                    value={value}
-                    onChange={onChange} />
-                {error && <div className="alert alert-danger">{error}</div>}
-            </div>
-        </div>
+        <FormGroup
+            name={name}
+            label={label}
+            error={error}
+        >
+            <SimpleTextInput
+                name={name}
+                placeholder={placeholder}
+                value={value}
+                onChange={onChange}
+            />
+        </FormGroup>
     );
 };
 
 TextInput.propTypes = {
     name: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
+    error: PropTypes.string,
     placeholder: PropTypes.string,
     value: PropTypes.string,
-    error: PropTypes.string
+    onChange: PropTypes.func.isRequired
 };
 
 export default TextInput;

@@ -1,25 +1,22 @@
 import React, {PropTypes} from 'react';
+import FormGroup from './FormGroup';
+import SimpleSelectInput from './SimpleSelectInput';
 
 const SelectInput = ({name, label, onChange, defaultValue, value, error, options}) => {
     return (
-        <div className="form-group">
-            <label htmlFor={name}>{label}</label>
-            <div className="field">
-                <select
-                    name={name}
-                    value={value}
-                    defaultValue={defaultValue}
-                    className="form-control"
-                    onChange={onChange}>
-                    {
-                        options.map(option => {
-                            return <option key={option.value} value={option.value}>{option.text}</option>;
-                        })
-                    }
-                </select>
-                {error && <div className="alert alert-danger">{error}</div>}
-            </div>
-        </div>
+        <FormGroup
+            name={name}
+            label={label}
+            error={error}
+        >
+            <SimpleSelectInput
+                name={name}
+                defaultValue={defaultValue}
+                value={value}
+                options={options}
+                onChange={onChange}
+            />
+        </FormGroup>
     );
 };
 
