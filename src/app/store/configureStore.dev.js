@@ -3,8 +3,29 @@ import rootReducer from '../rootReducer';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import thunk from 'redux-thunk';
 
+ /* eslint-disable no-console */
+
+const addLoggingToDispatch = (store) => {
+    const rawDispatch = store.dispatch;
+
+    if (!console.group) {
+        return rawDispatch;
+    }
+
+    return (action) => {
+        const actionType = `action.type: ${(action.type) ? action.type : '(unknown)'}`;
+        console.group(actionType);
+        console.log('%c prev state', 'color: gray', store.getState());
+        console.log('%c action', 'color: cyan', action);
+        const returnValue = rawDispatch(action);
+        console.log('%c next state', 'color: green', store.getState());
+        console.groupEnd(actionType);
+        return returnValue;
+    };
+}
+
 export default function configureStore(initialState) {
-    return createStore(
+    const store = createStore(
         rootReducer,
         initialState,
         applyMiddleware(
@@ -17,4 +38,8 @@ export default function configureStore(initialState) {
             */
             reduxImmutableStateInvariant()
         ));
+
+        store.dispatch = addLoggingToDispatch(store);
+
+    return store;
 }

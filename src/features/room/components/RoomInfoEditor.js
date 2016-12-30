@@ -2,8 +2,8 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as modalDialogType from '../../../app/modalDialogType';
-import * as modalDialogDucks from '../../../app/modalDialogDucks';
-import * as roomDucks from '../../../features/room/roomDucks';
+import {hideModalDialog} from '../../../app/modalDialogDucks';
+import {saveRoomInfo} from '../../../features/room/roomDucks';
 import RoomInfoModal from './RoomInfoModal';
 
 class RoomInfoEditor extends React.Component {
@@ -106,14 +106,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(
-            actionCreatorsFrom(modalDialogDucks, roomDucks),
-            dispatch)
+        actions: bindActionCreators({hideModalDialog, saveRoomInfo}, dispatch)
     };
-}
-
-function actionCreatorsFrom(...actionSources) {
-    return Object.assign({}, ...actionSources);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomInfoEditor);

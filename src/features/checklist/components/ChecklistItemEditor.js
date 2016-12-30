@@ -2,8 +2,8 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as modalDialogType from '../../../app/modalDialogType';
-import * as modalDialogDucks from '../../../app/modalDialogDucks';
-import * as checklistItemDucks from '../checklistItemDucks';
+import {hideModalDialog} from '../../../app/modalDialogDucks';
+import {saveChecklistItem} from '../checklistItemDucks';
 import * as checklistItemStatus from '../checklistItemStatus';
 import ChecklistItemModal from './ChecklistItemModal';
 
@@ -124,14 +124,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(
-            actionCreatorsFrom(checklistItemDucks, modalDialogDucks),
-            dispatch)
+        actions: bindActionCreators({hideModalDialog, saveChecklistItem}, dispatch)
     };
-}
-
-function actionCreatorsFrom(...actionSources) {
-    return Object.assign({}, ...actionSources);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChecklistItemEditor);

@@ -12,7 +12,7 @@ export function setModalDialogRequestSuccess(request) {
 }
 
 export function requestModalDialog(typ, keys) {
-    return setModalDialogRequestSuccess({type: typ, keys});
+    return (dispatch) => dispatch(setModalDialogRequestSuccess({type: typ, keys}));
 }
 
 export function requestRoomInfoModalDialog(roomId) {

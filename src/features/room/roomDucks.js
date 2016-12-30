@@ -59,7 +59,7 @@ export function saveRoomInfo(roomInfo) {
 }
 
 export function setRoomId(roomId) {
-    return setRoomIdSuccess(roomId);
+    return dispatch => dispatch(setRoomIdSuccess(roomId));
 }
 
 export function setRoomInfo(roomId) {

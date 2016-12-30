@@ -1,10 +1,10 @@
 import React, {PropTypes} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import * as chatMessageDucks from '../chatMessageDucks';
-import * as checklistItemDucks from '../../../features/checklist/checklistItemDucks';
-import * as modalDialogDucks from '../../../app/modalDialogDucks';
-import * as roomDucks from '../../../features/room/roomDucks';
+import {loadChatMessagesForRoom} from '../chatMessageDucks';
+import {loadChecklistItemsForRoom} from '../../../features/checklist/checklistItemDucks';
+import {requestChecklistItemModalDialog, requestRoomInfoModalDialog, hideModalDialog} from '../../../app/modalDialogDucks';
+import {setRoomId, setRoomInfo} from '../../../features/room/roomDucks';
 import RoomInfo from '../../../features/room/components/RoomInfo';
 import ChatMessageList from './ChatMessageList';
 import ChatButtons from './ChatButtons';
@@ -89,14 +89,13 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(actionCreatorsFrom(
-            chatMessageDucks, checklistItemDucks, modalDialogDucks, roomDucks
-            ), dispatch)
+        actions: bindActionCreators({
+            loadChatMessagesForRoom,
+            loadChecklistItemsForRoom,
+            requestChecklistItemModalDialog, requestRoomInfoModalDialog, hideModalDialog,
+            setRoomId, setRoomInfo
+        }, dispatch)
     };
-}
-
-function actionCreatorsFrom(...actionSources) {
-    return Object.assign({}, ...actionSources);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatRoomPage);
