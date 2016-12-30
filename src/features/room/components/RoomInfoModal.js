@@ -11,7 +11,7 @@ const RoomInfoModal = ({room, isNewRoom, errors, onChange, onSave, onCancel}) =>
                             <span aria-hidden="true">&times;</span>
                         </button>
                         <h4 className="modal-title">
-                            {(isNewRoom) ? 'Start a new chat...' : 'Edit Chat Room Info'}
+                            {(isNewRoom) ? 'Add Chat Room' : 'Edit Chat Room Info'}
                         </h4>
                     </div>
 

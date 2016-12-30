@@ -1,7 +1,8 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {setRoomId} from '../../../features/room/roomDucks';
-import {requestRoomInfoModalDialog} from '../../../app/modalDialogDucks';
+import {bindActionCreators} from 'redux';
+import * as roomDucks from '../../../features/room/roomDucks';
+import * as modalDialogDucks from '../../../app/modalDialogDucks';
 import RoomList from '../../../features/room/components/RoomList';
 
 class HomePage extends React.Component {
@@ -61,11 +62,14 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: {
-            setRoomId: roomId => { dispatch(setRoomId(roomId)); },
-            requestRoomInfoModalDialog: roomId => { dispatch(requestRoomInfoModalDialog(roomId)); }
-        }
+        actions: bindActionCreators(
+            actionCreatorsFrom(modalDialogDucks, roomDucks),
+            dispatch)
     };
+}
+
+function actionCreatorsFrom(...actionSources) {
+    return Object.assign({}, ...actionSources);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

@@ -27,7 +27,7 @@ const Checklist = ({checklistItems, OnEditRequest, OnAddRequest}) => {
                         <td colSpan="7">
                             <button className="btn btn-primary pull-right checklist-item-button"
                                 onClick={OnAddRequest}>
-                                Add a new checklist item
+                                Add Checklist Item
                             </button>
                         </td>
                     </tr>
