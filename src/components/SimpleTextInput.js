@@ -7,7 +7,7 @@ const SimpleTextInput = ({name, placeholder, value, onChange}) => {
             name={name}
             className="form-control"
             placeholder={placeholder}
-            value={value}
+            value={value || ''}
             onChange={onChange}
         />
     );

@@ -1,11 +1,10 @@
 import React, {PropTypes} from 'react';
 
-const SelectInput = ({name, defaultValue, value, options, onChange}) => {
+const SelectInput = ({name, value, options, onChange}) => {
     return (
         <select
             name={name}
             value={value}
-            defaultValue={defaultValue}
             className="form-control"
             onChange={onChange}
         >
@@ -20,7 +19,6 @@ const SelectInput = ({name, defaultValue, value, options, onChange}) => {
 
 SelectInput.propTypes = {
     name: PropTypes.string.isRequired,
-    defaultValue: PropTypes.string,
     value: PropTypes.string,
     options: PropTypes.arrayOf(PropTypes.object),
     onChange: PropTypes.func.isRequired

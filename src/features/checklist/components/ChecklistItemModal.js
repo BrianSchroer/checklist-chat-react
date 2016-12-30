@@ -40,7 +40,6 @@ const ChecklistItemModal = ({
                         <div className="checklist-form-sequence-number-row">
                             <SelectInput name="sequenceNumber" label="Sequence Number"
                                 options={sequenceNumberOptions}
-                                defaultValue={checklistItem.sequenceNumber.toString()}
                                 value={checklistItem.sequenceNumber.toString()}
                                 onChange={onChange} error={errors.sequenceNumber} />
                         </div>
@@ -53,7 +52,6 @@ const ChecklistItemModal = ({
                                     </div>
                                     <SimpleSelectInput
                                         name="status"
-                                        defaultValue={checklistItem.status}
                                         value={checklistItem.status}
                                         options={checklistItemStatus.options}
                                         onChange={onChange} />

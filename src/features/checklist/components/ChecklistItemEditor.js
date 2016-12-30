@@ -99,7 +99,7 @@ function mapStateToProps(state) {
 // TODO: Consider using reselect to memoize
     let isNewChecklistItem = true;
     let maxSequenceNumber = 1;
-    let checklistItem = null;
+    let checklistItem = {};
 
     const shouldDisplayModal =
         (state.modalDialogRequest && state.modalDialogRequest.type === modalDialogType.CHECKLIST_ITEM);

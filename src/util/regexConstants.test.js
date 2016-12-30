@@ -21,7 +21,7 @@ describe('regexConstants', () => {
     ]
     .forEach(scenario => {
         const pathToTest = scenario.path;
-        it(`should return expected result for ${scenario.pattern} and "${pathToTest}"`, () => {
+        it(`should return expected result for ${scenario.pattern}\n\tand "${pathToTest}"`, () => {
             expect(scenario.pattern.test(pathToTest)).toEqual(scenario.expected);
         });
     });

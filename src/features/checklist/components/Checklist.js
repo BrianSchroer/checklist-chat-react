@@ -40,7 +40,7 @@ const Checklist = ({checklistItems, OnEditRequest, OnAddRequest}) => {
 Checklist.propTypes = {
     checklistItems: PropTypes.arrayOf(PropTypes.object).isRequired,
     OnEditRequest: PropTypes.func.isRequired,
-    OnAddRequest: PropTypes.func.isrRequired
+    OnAddRequest: PropTypes.func.isRequired
 };
 
 export default Checklist;

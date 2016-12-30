@@ -6,7 +6,6 @@ import enzymeHelper from '../util/enzymeHelper';
 
 const defaultProps = {
     name: 'TestName',
-    defaultValue: 'TestDefaultValue',
     value: 'TestValue',
     options: [],
     onChange: () => {}
@@ -41,7 +40,6 @@ describe('SimpleSelectInput', () => {
     [
         { name: 'name', value: defaultProps.name },
         { name: 'value', value: defaultProps.value },
-        { name: 'defaultValue', value: defaultProps.defaultValue },
         { name: 'className', value: 'form-control' }
     ]
     .forEach(scenario => {

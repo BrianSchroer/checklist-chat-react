@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 import FormGroup from './FormGroup';
 import SimpleSelectInput from './SimpleSelectInput';
 
-const SelectInput = ({name, label, onChange, defaultValue, value, error, options}) => {
+const SelectInput = ({name, label, onChange, value, error, options}) => {
     return (
         <FormGroup
             name={name}
@@ -11,7 +11,6 @@ const SelectInput = ({name, label, onChange, defaultValue, value, error, options
         >
             <SimpleSelectInput
                 name={name}
-                defaultValue={defaultValue}
                 value={value}
                 options={options}
                 onChange={onChange}
@@ -24,7 +23,6 @@ SelectInput.propTypes = {
     name: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
-    defaultValue: PropTypes.string,
     value: PropTypes.string,
     error: PropTypes.string,
     options: PropTypes.arrayOf(PropTypes.object)
