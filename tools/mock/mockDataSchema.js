@@ -43,7 +43,7 @@ export const schema = {
                                 },
                                 "chatMessageType": {
                                     "type": "string",
-                                    "chance": {"pickone": [["Chat", "Action"]]}
+                                    "chance": {"weighted": [["Chat", "Action"], [5, 1]]}
                                 },
                                 "userName": {
                                     "type": "string",

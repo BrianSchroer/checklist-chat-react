@@ -11,6 +11,7 @@ import colors from 'colors'; // eslint-disable-line no-unused-vars
 import fs from 'fs';
 import jsonSchemaFaker from 'json-schema-faker';
 import path from 'path';
+import format from '../../src/util/format';
 import {schema} from './mockDataSchema';
 
  console.log(
@@ -25,7 +26,10 @@ mockData.checklistItems = [];
 mockData.rooms.forEach(room => {
     const roomId = room.id;
 
-    room.chatMessages.forEach(chatMessage => chatMessage.roomId = roomId);
+    room.chatMessages.forEach(chatMessage => {
+        chatMessage.timeStamp = format.isoDateTime(chatMessage.timeStamp);
+        chatMessage.roomId = roomId;
+    });
     mockData.chatMessages.push(...room.chatMessages);
     delete room.chatMessages;
 
@@ -33,6 +37,15 @@ mockData.rooms.forEach(room => {
     room.checklistItems.forEach(checklistItem => {
         checklistItem.roomId = roomId;
         checklistItem.sequenceNumber = ++sequenceNumber;
+        checklistItem.scheduledStartTime = format.isoDateTime(checklistItem.scheduledStartTime);
+        checklistItem.scheduledEndTime = format.isoDateTime(checklistItem.scheduledEndTime);
+        checklistItem.actualStartTime = format.isoDateTime(checklistItem.actualStartTime);
+        checklistItem.actualEndTime = format.isoDateTime(checklistItem.actualEndTime);
+        if (checklistItem.chatMessages) {
+            checklistItem.chatMessages.forEach(chatMessage => {
+                chatMessage.timeStamp = format.isoDateTime(chatMessage.timeStamp);
+            });
+        }
     });
     mockData.checklistItems.push(...room.checklistItems);
     delete room.checklistItems;
