@@ -27,7 +27,7 @@ const ChecklistItemModal = ({
         <div className="checklist-chat-modal-backdrop" tabIndex="-1" role="dialog">
             <div className="modal-dialog checklist-chat-modal-dialog" role="document">
                 <div className="modal-content">
-                    <div className="modal-header">
+                    <div className="modal-header bg-primary text-white">
                         <button type="button" className="close" aria-label="Close" onClick={onCancel}>
                             <span aria-hidden="true">&times;</span>
                         </button>
