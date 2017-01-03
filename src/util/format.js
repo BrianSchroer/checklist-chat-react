@@ -3,7 +3,7 @@ import moment from 'moment';
 export default class {
     static time(input = '') {
 
-        const isoDateFormatRegex = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[+-]\d{2}:\d{2}/g;
+        const isoDateFormatRegex = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}([+-]\d{2}:\d{2})?/g;
         let formatted = input;
 
         if (input && input.match(isoDateFormatRegex)) {

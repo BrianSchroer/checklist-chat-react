@@ -23,15 +23,37 @@ export function getChecklistItems(roomId) {
 export function saveRoom(roomInfo) {
     const body = Object.assign({}, roomInfo);
 
+    const newChatMessage = {
+        timeStamp: new Date().toISOString(),
+        chatMessageType: 'Action',
+        userName: 'Brian Schroer'
+    };
+
     if (roomInfo.id) {
+        newChatMessage.roomId = body.id;
+        newChatMessage.text = 'updated the room description / phone info';
+        addChatMessage(newChatMessage);
         return update(`rooms/${roomInfo.id}`, JSON.stringify(body));
     } else {
         get('rooms').then(items => {
             let ids = items.map(item => item.id);
             body.id = Math.max(...ids) + 1;
+            newChatMessage.roomId = body.id;
+            newChatMessage.text = `created new chat "${body.roomName}"`;
+            addChatMessage(newChatMessage);
         });
         return add(`rooms`, JSON.stringify(body));
     }
+}
+
+export function addChatMessage(chatMessage) {
+    const body = Object.assign({}, chatMessage);
+
+    getChatMessages().then(items => {
+        let ids = items.map(item => item.id);
+        body.id = Math.max(...ids) + 1;
+    });
+    return add(`chatMessages`, JSON.stringify(body));
 }
 
 export function saveChecklistItem(checklistItem) {
@@ -43,8 +65,8 @@ export function saveChecklistItem(checklistItem) {
         getChecklistItems().then(items => {
             let ids = items.map(item => item.id);
             body.id = Math.max(...ids) + 1;
-            return add(`checklistItems`, JSON.stringify(body));
         });
+        return add(`checklistItems`, JSON.stringify(body));
     }
 }
 

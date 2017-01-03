@@ -16,9 +16,6 @@ export const loadChecklistItemsForRoomSuccess =
 export const setSequenceNumberSuccess =
     (sequenceNumber) => ({type: SET_SEQUENCE_NUMBER_SUCCESS, sequenceNumber});
 
-export const saveChecklistItemSuccess =
-    (checklistItem) => ({type: SAVE_CHECKLIST_ITEM_SUCCESS, checklistItem});
-
 export function loadChecklistItemsForRoom(roomId) {
     if (roomId) {
         return dispatch => {
@@ -40,9 +37,8 @@ export function saveChecklistItem(checklistItem) {
     return dispatch => {
         dispatch(beginAjaxCall());
 
-        return chatApi.saveChecklistItem(checklistItem).then(item =>
+        return chatApi.saveChecklistItem(checklistItem).then(() =>
         {
-            dispatch(saveChecklistItemSuccess(item));
             chatApi.getChecklistItems(checklistItem.roomId).then(items => {
                 dispatch(loadChecklistItemsForRoomSuccess(items));
             });
