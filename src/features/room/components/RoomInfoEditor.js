@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as modalDialogType from '../../../app/modalDialogType';
 import {hideModalDialog} from '../../../app/modalDialogDucks';
+import {loadChatMessagesForRoom} from '../../../features/chat/chatMessageDucks';
 import {saveRoomInfo} from '../../../features/room/roomDucks';
 import RoomInfoModal from './RoomInfoModal';
 
@@ -48,8 +49,14 @@ class RoomInfoEditor extends React.Component {
     saveRoom(event) {
         event.preventDefault();
         const actions = this.props.actions;
-        actions.saveRoomInfo(this.state.room);
+        const {room, isNewRoom} = this.state;
+
+        actions.saveRoomInfo(room);
         actions.hideModalDialog();
+
+        if (!isNewRoom) {
+            actions.loadChatMessagesForRoom(room.id);
+        }
     }
 
     render() {
@@ -105,7 +112,8 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators({hideModalDialog, saveRoomInfo}, dispatch)
-});
+    actions: bindActionCreators(
+        { hideModalDialog, saveRoomInfo, loadChatMessagesForRoom },
+        dispatch) });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomInfoEditor);

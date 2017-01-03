@@ -6,7 +6,6 @@ import * as chatApi from '../../api/chatApi';
 
 const prefix = 'checklist-chat/checklist-item/';
 const LOAD_CHECKLIST_ITEMS_FOR_ROOM_SUCCESS = `${prefix}LOAD_CHECKLIST_ITEMS_FOR_ROOM_SUCCESS`;
-const SAVE_CHECKLIST_ITEM_SUCCESS = `${prefix}SAVE_CHECKLIST_ITEM_SUCCESS`;
 const SET_SEQUENCE_NUMBER_SUCCESS = `${prefix}SET_SEQUENCE_NUMBER_SUCCESS`;
 
 // Actions:
