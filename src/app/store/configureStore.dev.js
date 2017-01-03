@@ -6,9 +6,10 @@ import thunk from 'redux-thunk';
  /* eslint-disable no-console */
 
 const addLoggingToDispatch = (store) => {
+    const shouldAddLogging = false;
     const rawDispatch = store.dispatch;
 
-    if (!console.group) {
+    if (!shouldAddLogging || !console.group) {
         return rawDispatch;
     }
 

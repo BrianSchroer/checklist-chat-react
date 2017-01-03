@@ -13,7 +13,7 @@ export const SET_ROOM_INFO_SUCCESS = `${prefix}SET_ROOM_INFO_SUCCESS`;
 // Actions:
 
 export const loadRoomsSuccess = (rooms) => ({type: LOAD_ROOMS_SUCCESS, rooms});
-export const saveRoomSuccess = (rooms) => ({type: SAVE_ROOM_SUCCESS, rooms});
+export const saveRoomSuccess = (roomInfo) => ({type: SAVE_ROOM_SUCCESS, roomInfo});
 export const setRoomIdSuccess = (roomId) => ({type: SET_ROOM_ID_SUCCESS, roomId});
 export const setRoomInfoSuccess = (roomInfo) => ({type: SET_ROOM_INFO_SUCCESS, roomInfo});
 
@@ -34,9 +34,9 @@ export function saveRoomInfo(roomInfo) {
     return dispatch => {
         dispatch(beginAjaxCall());
 
-        return chatApi.saveRoom(roomInfo).then(room =>
+        return chatApi.saveRoom(roomInfo).then(() =>
         {
-            dispatch(saveRoomSuccess(room));
+            dispatch(saveRoomSuccess(roomInfo));
             chatApi.getRooms().then(rooms => {
                 dispatch(loadRoomsSuccess(rooms));
             });
@@ -102,6 +102,7 @@ export function roomInfoReducer(roomInfo = initialState.roomInfo, action) {
     switch (actionType) {
 
         case SET_ROOM_INFO_SUCCESS:
+        case SAVE_ROOM_SUCCESS:
             return action.roomInfo;
 
         default:

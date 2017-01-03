@@ -26,11 +26,11 @@ export function saveRoom(roomInfo) {
     if (roomInfo.id) {
         return update(`rooms/${roomInfo.id}`, JSON.stringify(body));
     } else {
-        getRooms().then(items => {
+        get('rooms').then(items => {
             let ids = items.map(item => item.id);
             body.id = Math.max(...ids) + 1;
-            return add(`rooms`, JSON.stringify(body));
         });
+        return add(`rooms`, JSON.stringify(body));
     }
 }
 

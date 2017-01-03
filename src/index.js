@@ -5,7 +5,7 @@ import {Router, browserHistory} from 'react-router';
 import {Provider} from 'react-redux';
 import routes from './app/routes';
 import configureStore from './app/store/configureStore';  // eslint-disable-line import/default
-import {loadRooms} from './features/room/roomDucks';
+import * as roomActions from './features/room/roomDucks';
 
 // for Webpack:
 import './styles/styles.css';
@@ -13,7 +13,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/toastr/build/toastr.min.css';
 
 const store = configureStore();
-store.dispatch(loadRooms());
+store.dispatch(roomActions.loadRooms());
 
 render(
     <Provider store={store}>
