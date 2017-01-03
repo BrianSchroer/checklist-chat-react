@@ -2,7 +2,7 @@
 
 import initialState from '../../app/store/initialState';
 import {beginAjaxCall, ajaxCallError} from '../../app/ajaxStatusDucks';
-import * as chatApi from '../../api/chatApi';
+import * as mockJsonDbApi from '../../api/mockJsonDbApi';
 
 const prefix = 'checklist-chat/checklist-item/';
 const LOAD_CHECKLIST_ITEMS_FOR_ROOM_SUCCESS = `${prefix}LOAD_CHECKLIST_ITEMS_FOR_ROOM_SUCCESS`;
@@ -20,7 +20,7 @@ export function loadChecklistItemsForRoom(roomId) {
         return dispatch => {
             dispatch(beginAjaxCall());
 
-            return chatApi.getChecklistItems(roomId).then(checklistItems => {
+            return mockJsonDbApi.getChecklistItems(roomId).then(checklistItems => {
                 dispatch(loadChecklistItemsForRoomSuccess(checklistItems));
             }).catch(error => {
                 dispatch(ajaxCallError(error));
@@ -36,9 +36,9 @@ export function saveChecklistItem(checklistItem) {
     return dispatch => {
         dispatch(beginAjaxCall());
 
-        return chatApi.saveChecklistItem(checklistItem).then(() =>
+        return mockJsonDbApi.saveChecklistItem(checklistItem).then(() =>
         {
-            chatApi.getChecklistItems(checklistItem.roomId).then(items => {
+            mockJsonDbApi.getChecklistItems(checklistItem.roomId).then(items => {
                 dispatch(loadChecklistItemsForRoomSuccess(items));
             });
         }).catch(error => {

@@ -2,7 +2,7 @@
 
 import initialState from '../../app/store/initialState';
 import {beginAjaxCall, ajaxCallError} from '../../app/ajaxStatusDucks';
-import {getChatMessages} from '../../api/chatApi';
+import {getChatMessages} from '../../api/mockJsonDbApi';
 
 const prefix = 'checklist-chat/chat/';
 export const LOAD_CHAT_MESSAGES_FOR_ROOM_SUCCESS = `${prefix}LOAD_CHAT_MESSAGES_FOR_ROOM_SUCCESS`;
