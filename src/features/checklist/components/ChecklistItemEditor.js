@@ -122,10 +122,8 @@ function mapStateToProps(state) {
     return {shouldDisplayModal, checklistItem, isNewChecklistItem, maxSequenceNumber};
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators({hideModalDialog, saveChecklistItem}, dispatch)
-    };
-}
+const mapDispatchToProps = (dispatch) => ({
+    actions: bindActionCreators({hideModalDialog, saveChecklistItem}, dispatch)
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChecklistItemEditor);

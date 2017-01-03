@@ -54,16 +54,10 @@ HomePage.propTypes = {
     actions: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state) {
-    return {
-        rooms: state.rooms
-    };
-}
+const mapStateToProps = (state) => ({ rooms: state.rooms });
 
-function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators({setRoomId, requestRoomInfoModalDialog}, dispatch)
-    };
-}
+const mapDispatchToProps = (dispatch) => ({
+    actions: bindActionCreators({setRoomId, requestRoomInfoModalDialog}, dispatch)
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

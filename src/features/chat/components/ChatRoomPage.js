@@ -87,15 +87,13 @@ function mapStateToProps(state) {
     return {room, checklistItems, chatMessages};
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators({
-            loadChatMessagesForRoom,
-            loadChecklistItemsForRoom,
-            requestChecklistItemModalDialog, requestRoomInfoModalDialog, hideModalDialog,
-            setRoomId, setRoomInfo
-        }, dispatch)
-    };
-}
+const mapDispatchToProps = (dispatch) => ({
+    actions: bindActionCreators({
+        loadChatMessagesForRoom,
+        loadChecklistItemsForRoom,
+        requestChecklistItemModalDialog, requestRoomInfoModalDialog, hideModalDialog,
+        setRoomId, setRoomInfo
+    }, dispatch)
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatRoomPage);

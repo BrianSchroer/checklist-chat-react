@@ -104,10 +104,8 @@ function mapStateToProps(state) {
     return {shouldDisplayModal, room, isNewRoom};
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators({hideModalDialog, saveRoomInfo}, dispatch)
-    };
-}
+const mapDispatchToProps = (dispatch) => ({
+    actions: bindActionCreators({hideModalDialog, saveRoomInfo}, dispatch)
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomInfoEditor);

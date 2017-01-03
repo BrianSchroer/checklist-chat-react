@@ -8,9 +8,9 @@ const prefix = 'checklist-chat/chat/';
 export const LOAD_CHAT_MESSAGES_FOR_ROOM_SUCCESS = `${prefix}LOAD_CHAT_MESSAGES_FOR_ROOM_SUCCESS`;
 
 // Actions:
-export function loadChatMessagesForRoomSuccess(chatMessages) {
-    return { type: LOAD_CHAT_MESSAGES_FOR_ROOM_SUCCESS, chatMessages };
-}
+
+export const loadChatMessagesForRoomSuccess =
+    (chatMessages) => ({type: LOAD_CHAT_MESSAGES_FOR_ROOM_SUCCESS, chatMessages});
 
 export function loadChatMessagesForRoom(roomId) {
     if (roomId) {

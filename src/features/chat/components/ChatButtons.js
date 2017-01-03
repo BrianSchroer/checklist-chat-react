@@ -21,11 +21,7 @@ ChatButtons.propTypes = {
     //myProp: PropTypes.string.isRequired
 };
 
-function mapStateToProps(state) {
-    return {
-        state: state
-    };
-}
+const mapStateToProps = (state) => ( {state: state} );
 
 // function mapDispatchToProps(dispatch) {
 //     return {actions: bindActionCreators(actions, dispatch)};

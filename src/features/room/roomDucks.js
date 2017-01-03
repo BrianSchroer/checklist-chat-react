@@ -12,21 +12,10 @@ export const SET_ROOM_INFO_SUCCESS = `${prefix}SET_ROOM_INFO_SUCCESS`;
 
 // Actions:
 
-export function loadRoomsSuccess(rooms) {
-    return {type: LOAD_ROOMS_SUCCESS, rooms};
-}
-
-export function saveRoomSuccess(rooms) {
-    return {type: SAVE_ROOM_SUCCESS, rooms};
-}
-
-export function setRoomIdSuccess(roomId) {
-    return {type: SET_ROOM_ID_SUCCESS, roomId};
-}
-
-export function setRoomInfoSuccess(roomInfo) {
-    return {type: SET_ROOM_INFO_SUCCESS, roomInfo};
-}
+export const loadRoomsSuccess = (rooms) => ({type: LOAD_ROOMS_SUCCESS, rooms});
+export const saveRoomSuccess = (rooms) => ({type: SAVE_ROOM_SUCCESS, rooms});
+export const setRoomIdSuccess = (roomId) => ({type: SET_ROOM_ID_SUCCESS, roomId});
+export const setRoomInfoSuccess = (roomInfo) => ({type: SET_ROOM_INFO_SUCCESS, roomInfo});
 
 export function loadRooms() {
     return dispatch => {

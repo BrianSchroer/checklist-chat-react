@@ -26,10 +26,8 @@ App.propTypes = {
     isLoading: PropTypes.bool
 };
 
-function mapStateToProps(state) {
-    return {
-        isLoading: (state.ajaxCallsInProgressCount > 0)
-    };
-}
+const mapStateToProps = (state) => ({
+    isLoading: (state.ajaxCallsInProgressCount > 0)
+});
 
 export default connect(mapStateToProps)(App);

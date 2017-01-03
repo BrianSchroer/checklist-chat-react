@@ -10,16 +10,14 @@ const SAVE_CHECKLIST_ITEM_SUCCESS = `${prefix}SAVE_CHECKLIST_ITEM_SUCCESS`;
 const SET_SEQUENCE_NUMBER_SUCCESS = `${prefix}SET_SEQUENCE_NUMBER_SUCCESS`;
 
 // Actions:
-export function loadChecklistItemsForRoomSuccess(checklistItems) {
-    return { type: LOAD_CHECKLIST_ITEMS_FOR_ROOM_SUCCESS, checklistItems };
-}
-export function setSequenceNumberSuccess(sequenceNumber) {
-    return {type: SET_SEQUENCE_NUMBER_SUCCESS, sequenceNumber};
-}
+export const loadChecklistItemsForRoomSuccess =
+    (checklistItems) => ({type: LOAD_CHECKLIST_ITEMS_FOR_ROOM_SUCCESS, checklistItems});
 
-export function saveChecklistItemSuccess(checklistItem) {
-    return {type: SAVE_CHECKLIST_ITEM_SUCCESS, checklistItem};
-}
+export const setSequenceNumberSuccess =
+    (sequenceNumber) => ({type: SET_SEQUENCE_NUMBER_SUCCESS, sequenceNumber});
+
+export const saveChecklistItemSuccess =
+    (checklistItem) => ({type: SAVE_CHECKLIST_ITEM_SUCCESS, checklistItem});
 
 export function loadChecklistItemsForRoom(roomId) {
     if (roomId) {

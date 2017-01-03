@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 
-const SelectInput = ({name, value, options, onChange}) => {
+const SimpleSelectInput = ({name, value, options, onChange}) => {
     return (
         <select
             name={name}
@@ -17,11 +17,11 @@ const SelectInput = ({name, value, options, onChange}) => {
     );
 };
 
-SelectInput.propTypes = {
+SimpleSelectInput.propTypes = {
     name: PropTypes.string.isRequired,
     value: PropTypes.string,
     options: PropTypes.arrayOf(PropTypes.object),
     onChange: PropTypes.func.isRequired
 };
 
-export default SelectInput;
+export default SimpleSelectInput;

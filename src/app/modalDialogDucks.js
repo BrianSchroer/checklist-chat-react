@@ -7,9 +7,8 @@ export const MODAL_DIALOG_REQUEST_SUCCESS = `${prefix}MODAL_DIALOG_REQUEST_SUCCE
 
 // Action creators:
 
-export function setModalDialogRequestSuccess(request) {
-    return {type: MODAL_DIALOG_REQUEST_SUCCESS, request};
-}
+export const setModalDialogRequestSuccess =
+    (request) => ({type: MODAL_DIALOG_REQUEST_SUCCESS, request});
 
 export function requestModalDialog(typ, keys) {
     return (dispatch) => dispatch(setModalDialogRequestSuccess({type: typ, keys}));

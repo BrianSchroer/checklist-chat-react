@@ -7,14 +7,9 @@ const BEGIN_AJAX_CALL = `${prefix}BEGIN_AJAX_CALL`;
 const AJAX_CALL_ERROR = `${prefix}AJAX_CALL_ERROR`;
 
 // Action creators:
+export const beginAjaxCall = () => ({type: BEGIN_AJAX_CALL});
 
-export function beginAjaxCall() {
-    return {type: BEGIN_AJAX_CALL};
-}
-
-export function ajaxCallError() {
-    return {type: AJAX_CALL_ERROR};
-}
+export const ajaxCallError = () => ({type: AJAX_CALL_ERROR});
 
 // Reducers:
 

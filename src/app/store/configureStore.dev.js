@@ -22,7 +22,7 @@ const addLoggingToDispatch = (store) => {
         console.groupEnd(actionType);
         return returnValue;
     };
-}
+};
 
 export default function configureStore(initialState) {
     const store = createStore(
