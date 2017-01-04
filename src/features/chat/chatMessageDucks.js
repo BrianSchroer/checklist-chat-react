@@ -2,7 +2,7 @@
 
 import initialState from '../../app/store/initialState';
 import {beginAjaxCall, ajaxCallError} from '../../app/ajaxStatusDucks';
-import {getChatMessages} from '../../api/mockJsonDbApi';
+import * as mockJsonDbApi from '../../api/mockJsonDbApi';
 
 const prefix = 'checklist-chat/chat/';
 export const LOAD_CHAT_MESSAGES_FOR_ROOM_SUCCESS = `${prefix}LOAD_CHAT_MESSAGES_FOR_ROOM_SUCCESS`;
@@ -17,7 +17,7 @@ export function loadChatMessagesForRoom(roomId) {
         return dispatch => {
             dispatch(beginAjaxCall());
 
-            return getChatMessages(roomId).then(chatMessages => {
+            return mockJsonDbApi.getChatMessages(roomId).then(chatMessages => {
                 dispatch(loadChatMessagesForRoomSuccess(chatMessages));
             }).catch(error => {
                 dispatch(ajaxCallError(error));
@@ -27,6 +27,22 @@ export function loadChatMessagesForRoom(roomId) {
     } else {
         return [];
     }
+}
+
+export function saveChatMessage(chatMessage, roomId) {
+    return dispatch => {
+        dispatch(beginAjaxCall());
+
+        return mockJsonDbApi.chat(chatMessage, roomId).then(() =>
+        {
+            mockJsonDbApi.getChatMessages(roomId).then(chatMessages => {
+                dispatch(loadChatMessagesForRoomSuccess(chatMessages));
+            });
+        }).catch(error => {
+            dispatch(ajaxCallError(error));
+            throw (error);
+        });
+    };
 }
 
 // Reducers:

@@ -27,36 +27,40 @@ export function joinChat(roomId) {  // eslint-disable-line no-unused-vars
 export function updateRoomInfo(roomInfo) {
     const body = Object.assign({}, roomInfo);
 
-    const newChatMessage = {
-        timeStamp: new Date().toISOString(),
-        chatMessageType: 'Action',
-        userName: 'Brian Schroer'
-    };
+    const actionMessage = {chatMessageType: 'Action'};
 
     if (roomInfo.id) {
-        newChatMessage.roomId = body.id;
-        newChatMessage.text = 'updated the room description / phone info';
-        chat(newChatMessage);
+        actionMessage.text = 'updated the room description / phone info';
+        chat(actionMessage, body.id);
         return update(`rooms/${roomInfo.id}`, JSON.stringify(body));
     } else {
         get('rooms').then(items => {
             let ids = items.map(item => item.id);
             body.id = Math.max(...ids) + 1;
-            newChatMessage.roomId = body.id;
-            newChatMessage.text = `created new chat "${body.roomName}"`;
-            chat(newChatMessage);
+            actionMessage.text = `created new chat "${body.roomName}"`;
+            chat(actionMessage, body.id);
         });
         return add(`rooms`, JSON.stringify(body));
     }
 }
 
 export function chat(chatMessage, roomId) {  // eslint-disable-line no-unused-vars
-    const body = Object.assign({}, chatMessage);
-
+    let id;
     getChatMessages().then(items => {
-        let ids = items.map(item => item.id);
-        body.id = Math.max(...ids) + 1;
+        const ids = items.map(item => item.id);
+        const id = Math.max(...ids) + 1;
     });
+
+    const body = Object.assign(
+        {},
+        chatMessage,
+        {
+            id: id,
+            roomId: roomId,
+            timeStamp: new Date().toISOString(),
+            userName: 'Brian Schroer'}
+    );
+
     return add(`chatMessages`, JSON.stringify(body));
 }
 

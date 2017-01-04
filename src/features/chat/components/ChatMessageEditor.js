@@ -1,8 +1,10 @@
-import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import React, {PropTypes} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import * as modalDialogType from '../../../app/modalDialogType';
-import { hideModalDialog } from '../../../app/modalDialogDucks';
+import {hideModalDialog} from '../../../app/modalDialogDucks';
+import * as chatMessageType from '../chatMessageType';
+import {saveChatMessage} from '../chatMessageDucks';
 import ChatMessageModal from './ChatMessageModal';
 
 class ChatMessageEditor extends React.Component {
@@ -24,6 +26,7 @@ class ChatMessageEditor extends React.Component {
     resetState(props) {
         this.setState({
             shouldDisplayModal: props.shouldDisplayModal,
+            roomId: props.roomId,
             chatMessage: Object.assign({}, props.chatMessage),
             isSaving: false,
             isDirty: false,
@@ -44,8 +47,11 @@ class ChatMessageEditor extends React.Component {
 
     saveChatMessage(event) {
         event.preventDefault();
+
+        const state = this.state;
         const actions = this.props.actions;
-        // actions.saveChatMessage(this.state.chatMessage);
+
+        actions.saveChatMessage(state.chatMessage, state.roomId);
         actions.hideModalDialog();
     }
 
@@ -70,6 +76,7 @@ class ChatMessageEditor extends React.Component {
 
 ChatMessageEditor.propTypes = {
     shouldDisplayModal: PropTypes.bool.isRequired,
+    roomId: PropTypes.string,
     chatMessage: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired
 };
@@ -78,16 +85,20 @@ function mapStateToProps(state) {
     const shouldDisplayModal =
         (state.modalDialogRequest && state.modalDialogRequest.type === modalDialogType.CHAT_MESSAGE);
 
+    const roomId = state.roomId;
+
     const chatMessage = {
+        chatMessageType: chatMessageType.CHAT,
         text: ''
     };
 
-    return {shouldDisplayModal, chatMessage};
+    return {shouldDisplayModal, roomId, chatMessage};
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators({ hideModalDialog }, dispatch)
+    actions: bindActionCreators(
+        {hideModalDialog, saveChatMessage},
+        dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChatMessageEditor
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ChatMessageEditor);
