@@ -20,7 +20,11 @@ export function getChecklistItems(roomId) {
         : get('checklistItems');
 }
 
-export function saveRoom(roomInfo) {
+export function joinChat(roomId) {  // eslint-disable-line no-unused-vars
+
+}
+
+export function updateRoomInfo(roomInfo) {
     const body = Object.assign({}, roomInfo);
 
     const newChatMessage = {
@@ -32,7 +36,7 @@ export function saveRoom(roomInfo) {
     if (roomInfo.id) {
         newChatMessage.roomId = body.id;
         newChatMessage.text = 'updated the room description / phone info';
-        addChatMessage(newChatMessage);
+        chat(newChatMessage);
         return update(`rooms/${roomInfo.id}`, JSON.stringify(body));
     } else {
         get('rooms').then(items => {
@@ -40,13 +44,13 @@ export function saveRoom(roomInfo) {
             body.id = Math.max(...ids) + 1;
             newChatMessage.roomId = body.id;
             newChatMessage.text = `created new chat "${body.roomName}"`;
-            addChatMessage(newChatMessage);
+            chat(newChatMessage);
         });
         return add(`rooms`, JSON.stringify(body));
     }
 }
 
-export function addChatMessage(chatMessage) {
+export function chat(chatMessage, roomId) {  // eslint-disable-line no-unused-vars
     const body = Object.assign({}, chatMessage);
 
     getChatMessages().then(items => {

@@ -49,7 +49,9 @@ class ChecklistItemEditor extends React.Component {
 
     saveChecklistItem(event) {
         event.preventDefault();
-        this.props.actions.saveChecklistItem(this.state.checklistItem);
+        const actions = this.props.actions;
+        actions.saveChecklistItem(this.state.checklistItem);
+        actions.hideModalDialog();
     }
 
     render() {

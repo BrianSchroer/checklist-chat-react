@@ -18,6 +18,10 @@ export function requestRoomInfoModalDialog(roomId) {
     return requestModalDialog(modalDialogType.ROOM, [roomId]);
 }
 
+export function requestChatMessageModalDialog() {
+    return requestModalDialog(modalDialogType.CHAT_MESSAGE, []);
+}
+
 export function requestChecklistItemModalDialog(roomId, sequenceNumber) {
     return requestModalDialog(modalDialogType.CHECKLIST_ITEM, [roomId, sequenceNumber]);
 }

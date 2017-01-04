@@ -4,6 +4,7 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import Header from '../../features/header/components/Header';
 import RoomInfoEditor from '../../features/room/components/RoomInfoEditor';
+import ChatMessageEditor from '../../features/chat/components/ChatMessageEditor';
 import ChecklistItemEditor from '../../features/checklist/components/ChecklistItemEditor';
 
 export class App extends React.Component {
@@ -11,6 +12,7 @@ export class App extends React.Component {
         return (
             <div id="appPage" className="app-page">
                 <RoomInfoEditor />
+                <ChatMessageEditor />
                 <ChecklistItemEditor />
                 <Header/>
                 <div id="appMainRow" className="container app-main-row">

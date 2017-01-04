@@ -34,7 +34,7 @@ export function saveRoomInfo(roomInfo) {
     return dispatch => {
         dispatch(beginAjaxCall());
 
-        return mockJsonDbApi.saveRoom(roomInfo).then(() =>
+        return mockJsonDbApi.updateRoomInfo(roomInfo).then(() =>
         {
             dispatch(saveRoomSuccess(roomInfo));
             mockJsonDbApi.getRooms().then(rooms => {
