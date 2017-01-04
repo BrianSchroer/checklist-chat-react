@@ -3,7 +3,7 @@ import ChatMessageListItem from './ChatMessageListItem';
 
 const ChatMessageList = ({chatMessages}) => {
     return (
-        <ul className="chat-message-list list-unstyled">
+        <ul id="chatMessageList" className="chat-message-list list-unstyled">
             {chatMessages.map(message =>
                 <ChatMessageListItem key={message.id} chatMessage={message}/>
             )}

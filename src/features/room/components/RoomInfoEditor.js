@@ -5,6 +5,7 @@ import * as modalDialogType from '../../../app/modalDialogType';
 import {hideModalDialog} from '../../../app/modalDialogDucks';
 import {loadChatMessagesForRoom} from '../../../features/chat/chatMessageDucks';
 import {saveRoomInfo} from '../../../features/room/roomDucks';
+import {validate} from '../roomInfoValidator';
 import RoomInfoModal from './RoomInfoModal';
 
 class RoomInfoEditor extends React.Component {
@@ -48,9 +49,17 @@ class RoomInfoEditor extends React.Component {
 
     saveRoom(event) {
         event.preventDefault();
-        const actions = this.props.actions;
+
         const {room, isNewRoom} = this.state;
 
+        const validationResponse = validate(room);
+
+        if (!validationResponse.isValid) {
+            this.setState({errors: validationResponse.errors});
+            return;
+        }
+
+        const actions = this.props.actions;
         actions.saveRoomInfo(room);
         actions.hideModalDialog();
 

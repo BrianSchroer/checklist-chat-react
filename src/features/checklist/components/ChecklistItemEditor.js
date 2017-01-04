@@ -5,6 +5,7 @@ import * as modalDialogType from '../../../app/modalDialogType';
 import {hideModalDialog} from '../../../app/modalDialogDucks';
 import {saveChecklistItem} from '../checklistItemDucks';
 import * as checklistItemStatus from '../checklistItemStatus';
+import {validate} from '../checklistItemValidator';
 import ChecklistItemModal from './ChecklistItemModal';
 
 class ChecklistItemEditor extends React.Component {
@@ -49,8 +50,17 @@ class ChecklistItemEditor extends React.Component {
 
     saveChecklistItem(event) {
         event.preventDefault();
+        const {checklistItem} = this.state;
+
+        const validationResponse = validate(checklistItem);
+
+        if (!validationResponse.isValid) {
+            this.setState({errors: validationResponse.errors});
+            return;
+        }
+
         const actions = this.props.actions;
-        actions.saveChecklistItem(this.state.checklistItem);
+        actions.saveChecklistItem(checklistItem);
         actions.hideModalDialog();
     }
 

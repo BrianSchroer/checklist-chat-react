@@ -5,6 +5,7 @@ import * as modalDialogType from '../../../app/modalDialogType';
 import {hideModalDialog} from '../../../app/modalDialogDucks';
 import * as chatMessageType from '../chatMessageType';
 import {saveChatMessage} from '../chatMessageDucks';
+import {validate} from '../chatMessageValidator';
 import ChatMessageModal from './ChatMessageModal';
 
 class ChatMessageEditor extends React.Component {
@@ -48,10 +49,17 @@ class ChatMessageEditor extends React.Component {
     saveChatMessage(event) {
         event.preventDefault();
 
-        const state = this.state;
-        const actions = this.props.actions;
+        const {chatMessage, roomId} = this.state;
 
-        actions.saveChatMessage(state.chatMessage, state.roomId);
+        const validationResponse = validate(chatMessage);
+
+        if (!validationResponse.isValid) {
+            this.setState({errors: validationResponse.errors});
+            return;
+        }
+
+        const actions = this.props.actions;
+        actions.saveChatMessage(chatMessage, roomId);
         actions.hideModalDialog();
     }
 

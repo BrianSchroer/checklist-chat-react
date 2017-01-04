@@ -33,6 +33,30 @@ class ChatRoomPage extends React.Component {
         actions.loadChatMessagesForRoom(roomId);
     }
 
+    componentWillReceiveProps(nextProps) {
+        let shouldScrollMessages = false;
+
+        if (nextProps.chatMessages) {
+            if (this.props && this.props.chatMessages) {
+                shouldScrollMessages =
+                    (nextProps.chatMessages.length != this.props.chatMessages.length);
+            }
+        }
+
+        this.setState({shouldScrollMessages});
+    }
+
+    componentDidUpdate() {
+        if (this.state.shouldScrollMessages) {
+            window.requestAnimationFrame(() => {
+                const node = document.getElementById('chatMessageList');
+                if (node) {
+                    node.scrollTop = node.scrollHeight;
+                }
+            });
+        }
+    }
+
     handleRoomInfoEditRequest(event) {
         event.preventDefault();
         this.props.actions.requestRoomInfoModalDialog(this.props.room.id);
@@ -56,7 +80,7 @@ class ChatRoomPage extends React.Component {
                 <div className="chat-room-chat-column">
                     <div className="chat-room-room-info">
                         {room && <RoomInfo room={room} onEditRequest={this.handleRoomInfoEditRequest} />}                    </div>
-                    <ChatMessageList chatMessages={this.props.chatMessages}/>
+                    <ChatMessageList chatMessages={this.props.chatMessages} />
                     <div className="chat-room-buttons">
                         <ChatButtons/>
                     </div>

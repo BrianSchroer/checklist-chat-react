@@ -48,7 +48,7 @@ export function chat(chatMessage, roomId) {  // eslint-disable-line no-unused-va
     let id;
     getChatMessages().then(items => {
         const ids = items.map(item => item.id);
-        const id = Math.max(...ids) + 1;
+        id = Math.max(...ids) + 1;
     });
 
     const body = Object.assign(
