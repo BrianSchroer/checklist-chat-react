@@ -43,4 +43,11 @@ describe('TextInput', () => {
             expect(input.props()[scenario.name]).toBe(scenario.value);
         });
     });
+
+    [0, 1, 3].forEach(rows => {
+        it(`should render a "SimpleTextInput" element with the expected rows: ${rows}`, () => {
+            const input = enzymeHelper.findSingle(render({rows}), 'FormGroup > SimpleTextInput');
+            expect(input.props()['rows']).toBe(rows);
+        });
+    });
 });

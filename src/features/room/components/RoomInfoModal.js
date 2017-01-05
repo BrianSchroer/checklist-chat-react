@@ -19,7 +19,8 @@ const RoomInfoModal = ({room, isNewRoom, errors, onChange, onSave, onCancel}) =>
                         <TextInput name="roomName" label="Chat Room Name" value={room.roomName}
                             onChange={onChange} error={errors.roomName} />
 
-                        <TextInput name="description" label="Room Description" value={room.description}
+                        <TextInput name="description" label="Room Description"
+                            rows={2} value={room.description}
                             onChange={onChange} error={errors.description} />
 
                         <TextInput name="phoneInfo" label="Phone Info" value={room.phoneInfo}

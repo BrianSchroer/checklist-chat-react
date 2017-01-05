@@ -50,4 +50,19 @@ describe('SimpleTextInput', () => {
             expect(input.props()[scenario.name]).toBe(scenario.value);
         });
     });
+
+    [0, 1].forEach(rows => {
+        it(`should render an "input" element when rows = ${rows}`, () => {
+            const input = enzymeHelper.findSingle(render({rows}), 'input');
+            expect(input.props()['value']).toEqual(defaultProps.value);
+        });
+    });
+
+    [2, 3, 10].forEach(rows => {
+        it(`should render a "textarea" element when rows = ${rows}`, () => {
+            const textarea = enzymeHelper.findSingle(render({rows}), 'textarea');
+            expect(textarea.props()['rows']).toBe(rows);
+            expect(textarea.props()['children']).toEqual(defaultProps.value);
+        });
+    });
 });

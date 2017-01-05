@@ -21,7 +21,8 @@ const ChatMessageModal = ({
                     </div>
 
                     <div className="modal-body">
-                        <TextInput name="text" label="Message" value={chatMessage.text}
+                        <TextInput name="text" label="Message"
+                            rows={3} value={chatMessage.text}
                             onChange={onChange} error={errors.text} />
                     </div>
 
