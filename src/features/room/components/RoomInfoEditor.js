@@ -50,7 +50,13 @@ class RoomInfoEditor extends React.Component {
     saveRoom(event) {
         event.preventDefault();
 
-        const {room, isNewRoom} = this.state;
+        const {room, isDirty, isNewRoom} = this.state;
+        const actions = this.props.actions;
+
+        if (!isNewRoom && !isDirty) {
+            actions.hideModalDialog();
+            return;
+        }
 
         const validationResponse = validate(room);
 
@@ -59,11 +65,12 @@ class RoomInfoEditor extends React.Component {
             return;
         }
 
-        const actions = this.props.actions;
         actions.saveRoomInfo(room);
         actions.hideModalDialog();
 
-        if (!isNewRoom) {
+        if (isNewRoom) {
+            //TODO: route to new room?
+        } else {
             actions.loadChatMessagesForRoom(room.id);
         }
     }

@@ -22,6 +22,10 @@ export function requestChatMessageModalDialog() {
     return requestModalDialog(modalDialogType.CHAT_MESSAGE, []);
 }
 
+export function requestChatParticipantsModalDialog(roomId) {
+    return requestModalDialog(modalDialogType.CHAT_PARTICIPANTS, [roomId]);
+}
+
 export function requestChecklistItemModalDialog(roomId, sequenceNumber) {
     return requestModalDialog(modalDialogType.CHECKLIST_ITEM, [roomId, sequenceNumber]);
 }

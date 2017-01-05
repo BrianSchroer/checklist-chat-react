@@ -1,13 +1,14 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {requestChatMessageModalDialog} from '../../../app/modalDialogDucks';
+import {requestChatMessageModalDialog, requestChatParticipantsModalDialog} from '../../../app/modalDialogDucks';
 
 class ChatButtons extends React.Component {
     constructor(props, context) {
         super(props, context);
 
         this.handleChatMessageAddRequest  = this.handleChatMessageAddRequest. bind(this);
+        this.handleChatParticipantsRequest = this.handleChatParticipantsRequest.bind(this);
     }
 
     handleChatMessageAddRequest(event) {
@@ -15,11 +16,18 @@ class ChatButtons extends React.Component {
         this.props.actions.requestChatMessageModalDialog();
     }
 
+    handleChatParticipantsRequest(event) {
+        event.preventDefault();
+        this.props.actions.requestChatParticipantsModalDialog();
+    }
+
     render() {
         return(
             <div>
-                <button className="btn btn-primary" onClick={this.handleChatMessageAddRequest}>Say something...</button>
-                <button className="btn btn-default pull-right">Who's here?</button>
+                <button className="btn btn-primary"
+                    onClick={this.handleChatMessageAddRequest}>Say something...</button>
+                <button className="btn btn-default pull-right"
+                    onClick={this.handleChatParticipantsRequest}>Who's here?</button>
             </div>
         );
     }
@@ -34,7 +42,9 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators({requestChatMessageModalDialog}, dispatch)
+    actions: bindActionCreators(
+        {requestChatMessageModalDialog, requestChatParticipantsModalDialog},
+        dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatButtons);
