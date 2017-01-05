@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import FormGroup from '../../../components/FormGroup';
 import SimpleSelectInput from '../../../components/SimpleSelectInput';
+import ModalContainer from '../../../components/ModalContainer';
 import SelectInput from '../../../components/SelectInput';
 import TextInput from '../../../components/TextInput';
 import format from '../../../util/format';
@@ -24,73 +25,64 @@ const ChecklistItemModal = ({
     });
 
     return (
-        <div className="checklist-chat-modal-backdrop" tabIndex="-1" role="dialog">
-            <div className="modal-dialog checklist-chat-modal-dialog" role="document">
-                <div className="modal-content">
-                    <div className="modal-header bg-primary text-white">
-                        <button type="button" className="close" aria-label="Close" onClick={onCancel}>
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 className="modal-title">
-                            {(isNewChecklistItem) ? 'Add New Checklist Item' : 'Edit Checklist Item'}
-                        </h4>
-                    </div>
+        <ModalContainer
+            title={(isNewChecklistItem) ? 'Add New Checklist Item' : 'Edit Checklist Item'}
+            onCloseRequest={onCancel}>
 
-                    <div className="modal-body">
-                        <div className="checklist-form-sequence-number-row">
-                            <SelectInput name="sequenceNumber" label="Sequence Number"
-                                options={sequenceNumberOptions}
-                                value={checklistItem.sequenceNumber.toString()}
-                                onChange={onChange} error={errors.sequenceNumber} />
-                        </div>
-
-                        <div className="checklist-form-status-row">
-                            <FormGroup name="status" label="Status" error={errors.status}>
-                                <div className="checklist-form-status-and-dropdown">
-                                     <div className="form-control checklist-form-status-div">
-                                        <ChecklistItemStatusIcon status={checklistItem.status}/>
-                                    </div>
-                                    <SimpleSelectInput
-                                        name="status"
-                                        value={checklistItem.status}
-                                        options={checklistItemStatus.options}
-                                        onChange={onChange} />
-                                </div>
-                            </FormGroup>
-                        </div>
-
-                        <TextInput name="description" label="Description" value={checklistItem.description}
-                            onChange={onChange} error={errors.description} />
-
-                        <div className="checklist-form-timestamps">
-                            <TextInput name="scheduledStartTime" label="Start Time: Scheduled"
-                                value={format.time(checklistItem.scheduledStartTime)}
-                                onChange={onChange} error={errors.scheduledStartTime} />
-                            <TextInput name="actualStartTime" label="Actual"
-                                value={format.time(checklistItem.actualStartTime)}
-                                onChange={onChange} error={errors.actualStartTime} />
-                        </div>
-
-                        <div className="checklist-form-timestamps">
-                            <TextInput name="scheduledEndTime" label="End Time: Scheduled"
-                                value={format.time(checklistItem.scheduledEndTime)}
-                                onChange={onChange} error={errors.scheduledEndTime} />
-                            <TextInput name="actualEndTime" label="Actual"
-                                value={format.time(checklistItem.actualEndTime)}
-                                onChange={onChange} error={errors.actualEndTime} />
-                        </div>
-
-                        <TextInput name="userName" label="Performed by" value={checklistItem.userName}
-                            onChange={onChange} error={errors.userName} />
-                    </div>
-
-                    <div className="modal-footer">
-                        <input type="button" value="Cancel" className="btn btn-default" onClick={onCancel}/>
-                        <input type="submit" value="Save" className="btn btn-primary" onClick={onSave}/>
-                    </div>
+            <div className="modal-body">
+                <div className="checklist-form-sequence-number-row">
+                    <SelectInput name="sequenceNumber" label="Sequence Number"
+                        options={sequenceNumberOptions}
+                        value={checklistItem.sequenceNumber.toString()}
+                        onChange={onChange} error={errors.sequenceNumber} />
                 </div>
+
+                <div className="checklist-form-status-row">
+                    <FormGroup name="status" label="Status" error={errors.status}>
+                        <div className="checklist-form-status-and-dropdown">
+                                <div className="form-control checklist-form-status-div">
+                                <ChecklistItemStatusIcon status={checklistItem.status}/>
+                            </div>
+                            <SimpleSelectInput
+                                name="status"
+                                value={checklistItem.status}
+                                options={checklistItemStatus.options}
+                                onChange={onChange} />
+                        </div>
+                    </FormGroup>
+                </div>
+
+                <TextInput name="description" label="Description" value={checklistItem.description}
+                    onChange={onChange} error={errors.description} />
+
+                <div className="checklist-form-timestamps">
+                    <TextInput name="scheduledStartTime" label="Start Time: Scheduled"
+                        value={format.time(checklistItem.scheduledStartTime)}
+                        onChange={onChange} error={errors.scheduledStartTime} />
+                    <TextInput name="actualStartTime" label="Actual"
+                        value={format.time(checklistItem.actualStartTime)}
+                        onChange={onChange} error={errors.actualStartTime} />
+                </div>
+
+                <div className="checklist-form-timestamps">
+                    <TextInput name="scheduledEndTime" label="End Time: Scheduled"
+                        value={format.time(checklistItem.scheduledEndTime)}
+                        onChange={onChange} error={errors.scheduledEndTime} />
+                    <TextInput name="actualEndTime" label="Actual"
+                        value={format.time(checklistItem.actualEndTime)}
+                        onChange={onChange} error={errors.actualEndTime} />
+                </div>
+
+                <TextInput name="userName" label="Performed by" value={checklistItem.userName}
+                    onChange={onChange} error={errors.userName} />
             </div>
-        </div>
+
+            <div className="modal-footer">
+                <input type="button" value="Cancel" className="btn btn-default" onClick={onCancel}/>
+                <input type="submit" value="Save" className="btn btn-primary" onClick={onSave}/>
+            </div>
+
+        </ModalContainer>
     );
 };
 

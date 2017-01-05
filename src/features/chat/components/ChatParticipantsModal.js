@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import ModalContainer from '../../../components/ModalContainer';
 import * as modalDialogType from '../../../app/modalDialogType';
 import {requestChatParticipantsModalDialog, hideModalDialog} from '../../../app/modalDialogDucks';
 
@@ -48,45 +49,35 @@ class ChatParticipantsModal extends React.Component {
         }
 
         return (
-            <div className="checklist-chat-modal-backdrop" tabIndex="-1" role="dialog">
-                <div className="modal-dialog checklist-chat-modal-dialog" role="document">
-                    <div className="modal-content">
-                        <div className="modal-header bg-primary text-white">
-                            <button type="button" className="close" aria-label="Close" onClick={this.closeModal}>
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h4 className="modal-title">Who's here?</h4>
-                        </div>
-
-                        <div className="modal-body">
-                            <table className="table">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Department</th>
-                                        <th>Title</th>
-                                        <th>Connection</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                {this.props.chatParticipants.map((participant, index) =>
-                                    (<tr key={index}>
-                                        <td>{participant.name}</td>
-                                        <td>{participant.department}</td>
-                                        <td>{participant.title}</td>
-                                        <td>{participant.connection}</td>
-                                    </tr>)
-                                )}
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div className="modal-footer">
-                            <input type="button" value="Close" className="btn btn-primary" onClick={this.closeModal}/>
-                        </div>
-                    </div>
+            <ModalContainer title="Who's Here?" onCloseRequest={this.closeModal}>
+                <div className="modal-body">
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Department</th>
+                                <th>Title</th>
+                                <th>Connection</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {this.props.chatParticipants.map((participant, index) =>
+                            (<tr key={index}>
+                                <td>{participant.name}</td>
+                                <td>{participant.department}</td>
+                                <td>{participant.title}</td>
+                                <td>{participant.connection}</td>
+                            </tr>)
+                        )}
+                        </tbody>
+                    </table>
                 </div>
-            </div>
+
+                <div className="modal-footer">
+                    <input type="button" value="Close" className="btn btn-primary"
+                        onClick={this.closeModal}/>
+                </div>
+            </ModalContainer>
         );
     }
 }
