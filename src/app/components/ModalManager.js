@@ -4,9 +4,9 @@ import {bindActionCreators} from 'redux';
 import * as modalDialogType from '../modalDialogType';
 import {hideModalDialog} from '../modalDialogDucks';
 import ChatParticipantsModal from '../../features/chat/components/ChatParticipantsModal';
-import RoomInfoEditor from '../../features/room/components/RoomInfoEditor';
-import ChatMessageEditor from '../../features/chat/components/ChatMessageEditor';
-import ChecklistItemEditor from '../../features/checklist/components/ChecklistItemEditor';
+// import RoomInfoEditor from '../../features/room/components/RoomInfoEditor';
+// import ChatMessageEditor from '../../features/chat/components/ChatMessageEditor';
+// import ChecklistItemEditor from '../../features/checklist/components/ChecklistItemEditor';
 
 /**
  * This component manages modals for the site.
@@ -17,22 +17,29 @@ import ChecklistItemEditor from '../../features/checklist/components/ChecklistIt
 class ModalManager extends React.Component {
     constructor(props, context) {
         super(props, context);
+
+        this.closeModal = this.closeModal.bind(this);
+    }
+
+    closeModal(event) {
+        event.preventDefault();
+        this.props.actions.hideModalDialog();
     }
 
     render() {
         switch (this.props.modalDialogRequest.type) {
 
-            case modalDialogType.CHAT_MESSAGE:
-                return (<ChatMessageEditor />);
+            // case modalDialogType.CHAT_MESSAGE:
+            //     return (<ChatMessageEditor />);
 
             case modalDialogType.CHAT_PARTICIPANTS:
-                return (<ChatParticipantsModal />);
+                return (<ChatParticipantsModal onCloseRequest={this.closeModal} />);
 
-            case modalDialogType.CHECKLIST_ITEM:
-                return (<ChecklistItemEditor />);
+            // case modalDialogType.CHECKLIST_ITEM:
+            //     return (<ChecklistItemEditor />);
 
-            case modalDialogType.ROOM:
-                return (<RoomInfoEditor />);
+            // case modalDialogType.ROOM:
+            //     return (<RoomInfoEditor />);
         }
 
         return null;
@@ -40,7 +47,8 @@ class ModalManager extends React.Component {
 }
 
 ModalManager.propTypes = {
-    modalDialogRequest: PropTypes.object.isRequired
+    modalDialogRequest: PropTypes.object.isRequired,
+    actions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {

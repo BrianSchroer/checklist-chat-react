@@ -235,6 +235,11 @@ div.checklist-form-timestamps > div.form-group {
     margin-right: 1em;
 }
 
+div.chat-participants {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
 i.success-icon {
     color: green;
 }

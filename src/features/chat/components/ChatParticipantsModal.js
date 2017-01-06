@@ -1,56 +1,18 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 import ModalContainer from '../../../components/ModalContainer';
-import * as modalDialogType from '../../../app/modalDialogType';
-import {requestChatParticipantsModalDialog, hideModalDialog} from '../../../app/modalDialogDucks';
 
 class ChatParticipantsModal extends React.Component {
     constructor(props, context) {
         super(props, context);
-        this.state = {shouldDisplayModal: false};
-
-        this.resetState = this.resetState.bind(this);
-        this.closeModal = this.closeModal.bind(this);
-    }
-
-    componentWillReceiveProps(nextProps) {
-        this.resetState(nextProps);
-    }
-
-    resetState(props) {
-        this.setState({
-            shouldDisplayModal: props.shouldDisplayModal,
-            chatParticipants: props.chatParticipants
-        });
-    }
-
-    closeModal(event) {
-        event.preventDefault();
-        this.props.actions.hideModalDialog();
-    }
-
-    participantRow(participant) {
-        return(
-            <tr>
-                <td>{participant.name}</td>
-                <td>{participant.department}</td>
-                <td>{participant.title}</td>
-                <td>{participant.connection}</td>
-            </tr>
-        );
     }
 
     render() {
-        const state = this.state;
-
-        if (!state.shouldDisplayModal) {
-            return null;
-        }
+        const props = this.props;
 
         return (
-            <ModalContainer title="Who's Here?" onCloseRequest={this.closeModal}>
-                <div className="modal-body">
+            <ModalContainer title="Who's Here?" onCloseRequest={props.onCloseRequest}>
+                <div className="modal-body chat-participants">
                     <table className="table">
                         <thead>
                             <tr>
@@ -75,7 +37,7 @@ class ChatParticipantsModal extends React.Component {
 
                 <div className="modal-footer">
                     <input type="button" value="Close" className="btn btn-primary"
-                        onClick={this.closeModal}/>
+                        onClick={props.onCloseRequest}/>
                 </div>
             </ModalContainer>
         );
@@ -83,33 +45,26 @@ class ChatParticipantsModal extends React.Component {
 }
 
 ChatParticipantsModal.propTypes = {
-    shouldDisplayModal: PropTypes.bool.isRequired,
     chatParticipants: PropTypes.arrayOf(PropTypes.object).isRequired,
-    actions: PropTypes.object.isRequired
+    onCloseRequest: PropTypes.func.isRequired
 };
 
-function mapStateToProps(state) {
-    const shouldDisplayModal =
-        (state.modalDialogRequest && state.modalDialogRequest.type === modalDialogType.CHAT_PARTICIPANTS);
+function mapStateToProps(state, ownProps) {
+    let chatParticipants = [];
 
-    //const roomId = state.roomId;
+    const onCloseRequest = ownProps.onCloseRequest;
 
-    const chatParticipants = [
-        {
-            name: 'Brian Schroer',
-            department: 'Web Development Team 2C',
-            title: 'Senior Web Developer',
-            connection: 'connection description'
-        }
-    ];
+    const sortedNames = state.chatMessages.map(m => m.userName).sort();
+    const uniqueNames = [...new Set(sortedNames)];
 
-    return {shouldDisplayModal, chatParticipants};
+    chatParticipants = uniqueNames.map(userName => ({
+        name: userName,
+        department: 'Department',
+        title: 'Title',
+        connection: 'Connection'
+    }));
+
+    return {chatParticipants, onCloseRequest};
 }
 
-const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators(
-        {requestChatParticipantsModalDialog, hideModalDialog},
-        dispatch)
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ChatParticipantsModal);
+export default connect(mapStateToProps)(ChatParticipantsModal);
