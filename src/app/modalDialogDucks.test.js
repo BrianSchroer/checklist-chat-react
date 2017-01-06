@@ -14,7 +14,7 @@ describe('modalDialogDucks.reducer', () => {
         it(`should return expected value for MODAL_DIALOG_REQUEST_SUCCESS / modalDialogType.${typ}`, () => {
             const request = { type: typ, keys: []};
             const action = {
-                type: modalDialogDucks.MODAL_DIALOG_REQUEST_SUCCESS,
+                type: modalDialogDucks.MODAL_DIALOG_REQUEST_PROCESSED,
                 request
             };
             expect(reducer(initialState.modalDialogRequest, action)).toEqual(request);

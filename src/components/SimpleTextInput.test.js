@@ -62,7 +62,7 @@ describe('SimpleTextInput', () => {
         it(`should render a "textarea" element when rows = ${rows}`, () => {
             const textarea = enzymeHelper.findSingle(render({rows}), 'textarea');
             expect(textarea.props()['rows']).toBe(rows);
-            expect(textarea.props()['children']).toEqual(defaultProps.value);
+            expect(textarea.props()['value']).toEqual(defaultProps.value);
         });
     });
 });

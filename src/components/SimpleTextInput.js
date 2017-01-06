@@ -1,21 +1,23 @@
 import React, {PropTypes} from 'react';
 
 const SimpleTextInput = ({name, placeholder, value, rows, onChange}) => {
+    let Tag;
+    const optionalAttributes = {};
+
     if (rows && rows > 1) {
-        return (
-            <textarea name={name} className="form-control"
-                placeholder={placeholder} rows={rows}
-                onChange={onChange}>
-            {value}
-            </textarea>
-        );
+        Tag = 'textarea';
+        optionalAttributes.rows = rows;
     } else {
-        return (
-            <input type="text" name={name} className="form-control"
-                placeholder={placeholder} value={value || ''}
-                onChange={onChange} />
-        );
+        Tag = 'input';
+        optionalAttributes.type = 'text';
     }
+
+    return (
+        <Tag name={name} className="form-control"
+            {...optionalAttributes}
+            placeholder={placeholder} value={value || ''}
+            onChange={onChange} />
+    );
 };
 
 SimpleTextInput.propTypes = {

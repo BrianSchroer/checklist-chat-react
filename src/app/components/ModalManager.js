@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 import * as modalDialogType from '../modalDialogType';
 import {hideModalDialog} from '../modalDialogDucks';
 import ChatParticipantsModal from '../../features/chat/components/ChatParticipantsModal';
-// import RoomInfoEditor from '../../features/room/components/RoomInfoEditor';
+import RoomInfoEditorModal from '../../features/room/components/RoomInfoEditorModal';
 // import ChatMessageEditor from '../../features/chat/components/ChatMessageEditor';
 // import ChecklistItemEditor from '../../features/checklist/components/ChecklistItemEditor';
 
@@ -33,13 +33,13 @@ class ModalManager extends React.Component {
             //     return (<ChatMessageEditor />);
 
             case modalDialogType.CHAT_PARTICIPANTS:
-                return (<ChatParticipantsModal onCloseRequest={this.closeModal} />);
+                return <ChatParticipantsModal onCloseRequest={this.closeModal} />;
 
             // case modalDialogType.CHECKLIST_ITEM:
             //     return (<ChecklistItemEditor />);
 
-            // case modalDialogType.ROOM:
-            //     return (<RoomInfoEditor />);
+            case modalDialogType.ROOM:
+                return <RoomInfoEditorModal onCloseRequest={this.closeModal} />;
         }
 
         return null;

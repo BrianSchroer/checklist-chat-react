@@ -3,15 +3,15 @@ import initialState from './store/initialState';
 import * as modalDialogType from './modalDialogType';
 
 const prefix = 'checklist-chat/modalDialog/';
-export const MODAL_DIALOG_REQUEST_SUCCESS = `${prefix}MODAL_DIALOG_REQUEST_SUCCESS`;
+export const MODAL_DIALOG_REQUEST_PROCESSED = `${prefix}MODAL_DIALOG_REQUEST_PROCESSED`;
 
 // Action creators:
 
-export const setModalDialogRequestSuccess =
-    (request) => ({type: MODAL_DIALOG_REQUEST_SUCCESS, request});
+export const modalDialogRequestProcessed =
+    (request) => ({type: MODAL_DIALOG_REQUEST_PROCESSED, request});
 
 export function requestModalDialog(typ, keys) {
-    return (dispatch) => dispatch(setModalDialogRequestSuccess({type: typ, keys}));
+    return (dispatch) => dispatch(modalDialogRequestProcessed({type: typ, keys}));
 }
 
 export function requestRoomInfoModalDialog(roomId) {
@@ -41,7 +41,7 @@ export default function reducer(request = initialState.modalDialogRequest, actio
 
     switch (actionType) {
 
-        case MODAL_DIALOG_REQUEST_SUCCESS:
+        case MODAL_DIALOG_REQUEST_PROCESSED:
             return action.request;
 
         default:
