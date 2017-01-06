@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {afterRenderIsComplete} from '../../../util/uiHelpers';
 import {loadChatMessagesForRoom} from '../chatMessageDucks';
 import {loadChecklistItemsForRoom} from '../../../features/checklist/checklistItemDucks';
 import {requestChecklistItemModalDialog, requestRoomInfoModalDialog, hideModalDialog} from '../../../app/modalDialogDucks';
@@ -48,7 +49,7 @@ class ChatRoomPage extends React.Component {
 
     componentDidUpdate() {
         if (this.state.shouldScrollMessages) {
-            window.requestAnimationFrame(() => {
+            afterRenderIsComplete(() => {
                 const node = document.getElementById('chatMessageList');
                 if (node) {
                     node.scrollTop = node.scrollHeight;
