@@ -59,8 +59,10 @@ class ChatMessageEditorModal extends React.Component {
                 </div>
 
                 <div className="modal-footer">
-                    <input type="button" value="Cancel" className="btn btn-default" onClick={onCloseRequest}/>
-                    <input type="submit" value="Save" className="btn btn-primary" onClick={this.onSave}/>
+                    <input type="button" value="Cancel" className="btn btn-default"
+                        onClick={onCloseRequest}/>
+                    <input type="submit" value="Save" className="btn btn-primary"
+                        onClick={this.onSave}/>
                 </div>
             </ModalContainer>
         );
