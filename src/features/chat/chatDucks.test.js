@@ -1,14 +1,16 @@
 import expect from 'expect';
 import deepFreeze from 'deep-freeze';
-import reducer, * as chatMessageDucks from './chatMessageDucks';
+import * as chatDucks from './chatDucks';
 
 const originalChatMessages = [];
 deepFreeze(originalChatMessages);
 
-describe('chatMessageDucks.reducer', () => {
+describe('chatMessagesReducer', () => {
+    const reducer = chatDucks.chatMessagesReducer;
+
     it('should return expected value for LOAD_CHAT_MESSAGES_FOR_ROOM_SUCCESS', () => {
         const chatMessages = [ {id: 1}, {id: 2} ];
-        const action = { type: chatMessageDucks.LOAD_CHAT_MESSAGES_FOR_ROOM_SUCCESS, chatMessages };
+        const action = { type: chatDucks.LOAD_CHAT_MESSAGES_FOR_ROOM_SUCCESS, chatMessages };
 
         expect(reducer(originalChatMessages, action)).toEqual(chatMessages);
     });

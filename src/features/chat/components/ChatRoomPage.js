@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {afterRenderIsComplete} from '../../../util/uiHelpers';
-import {loadChatMessagesForRoom} from '../chatMessageDucks';
+import {loadChatMessagesForRoom} from '../chatDucks';
 import {loadChecklistItemsForRoom} from '../../../features/checklist/checklistItemDucks';
 import {requestChecklistItemModalDialog, requestRoomInfoModalDialog, hideModalDialog} from '../../../app/modalDialogDucks';
 import {setRoomId, setRoomInfo} from '../../../features/room/roomDucks';

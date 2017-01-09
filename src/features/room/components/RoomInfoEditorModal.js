@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {loadChatMessagesForRoom} from '../../../features/chat/chatMessageDucks';
+import {loadChatMessagesForRoom} from '../../../features/chat/chatDucks';
 import {saveRoomInfo} from '../../../features/room/roomDucks';
 import {validate} from '../roomInfoValidator';
 import ModalContainer from '../../../components/ModalContainer';

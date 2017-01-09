@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as chatMessageType from '../chatMessageType';
-import {saveChatMessage} from '../chatMessageDucks';
+import {saveChatMessage} from '../chatDucks';
 import {validate} from '../chatMessageValidator';
 import ModalContainer from '../../../components/ModalContainer';
 import TextInput from '../../../components/TextInput';

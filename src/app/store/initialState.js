@@ -5,6 +5,7 @@ export default {
     roomId: null,
     roomInfo: null,
     chatMessages: [],
+    chatParticipants: [],
     checklistItems: [],
     checklistItemSequenceNumber: null,
     ajaxCallsInProgressCount: 0,
