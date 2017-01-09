@@ -29,9 +29,9 @@ describe('roomDucks', () => {
     });
 
     describe('roomIdReducer', () => {
-        it('should return expected value for SET_ROOM_ID_SUCCESS', () => {
+        it('should return expected value for SET_ROOM_ID_COMPLETE', () => {
             const roomId = 3928;
-            const action = { type: roomDucks.SET_ROOM_ID_SUCCESS, roomId };
+            const action = { type: roomDucks.SET_ROOM_ID_COMPLETE, roomId };
 
             expect(roomDucks.roomIdReducer(initialState.rooms, action))
                 .toEqual(roomId);
@@ -41,23 +41,6 @@ describe('roomDucks', () => {
             it(`should return original value for unexpected action type "${actionType}"`, () => {
                 expect(roomDucks.roomIdReducer(initialState.roomId, {type: actionType}))
                     .toEqual(initialState.roomId);
-            });
-        });
-    });
-
-    describe('roomInfoReducer', () => {
-        it('should return expected value for SET_ROOM_INFO_SUCCESS', () => {
-            const roomInfo = { roomId: 32827, roomName: 'new room'};
-            const action = { type: roomDucks.SET_ROOM_INFO_SUCCESS, roomInfo };
-
-            expect(roomDucks.roomInfoReducer(initialState.roomInfo, action))
-                .toEqual(roomInfo);
-        });
-
-        [ 'unexpected action type', undefined ].forEach(actionType => {
-            it(`should return original value for unexpected action type "${actionType}"`, () => {
-                expect(roomDucks.roomInfoReducer(initialState.roomInfo, {type: actionType}))
-                    .toEqual(initialState.roomInfo);
             });
         });
     });

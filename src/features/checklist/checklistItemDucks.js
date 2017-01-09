@@ -32,11 +32,11 @@ export function loadChecklistItemsForRoom(roomId) {
     }
 }
 
-export function saveChecklistItem(checklistItem) {
+export function saveChecklistItem(checklistItem, roomId, userId) {
     return dispatch => {
         dispatch(beginAjaxCall());
 
-        return mockJsonDbApi.saveChecklistItem(checklistItem).then(() =>
+        return mockJsonDbApi.saveChecklistItem(checklistItem, roomId, userId).then(() =>
         {
             mockJsonDbApi.getChecklistItems(checklistItem.roomId).then(items => {
                 dispatch(loadChecklistItemsForRoomSuccess(items));

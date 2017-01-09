@@ -1,7 +1,6 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {loadChatMessagesForRoom} from '../../../features/chat/chatDucks';
 import {saveRoomInfo} from '../../../features/room/roomDucks';
 import {validate} from '../roomInfoValidator';
 import ModalContainer from '../../../components/ModalContainer';
@@ -33,7 +32,7 @@ class RoomInfoEditorModal extends React.Component {
         event.preventDefault();
 
         const {room, isDirty, isNewRoom} = this.state;
-        const {actions, onCloseRequest} = this.props;
+        const {actions, userId, onCloseRequest} = this.props;
 
         if (!isNewRoom && !isDirty) {
             onCloseRequest(event);
@@ -47,13 +46,11 @@ class RoomInfoEditorModal extends React.Component {
             return;
         }
 
-        actions.saveRoomInfo(room);
+        actions.saveRoomInfo(room, userId);
         onCloseRequest(event);
 
         if (isNewRoom) {
             //TODO: route to new room?
-        } else {
-            actions.loadChatMessagesForRoom(room.id);
         }
     }
 
@@ -90,6 +87,7 @@ class RoomInfoEditorModal extends React.Component {
 
 RoomInfoEditorModal.propTypes = {
     room: PropTypes.object.isRequired,
+    userId: PropTypes.string.isRequired,
     isNewRoom: PropTypes.bool.isRequired,
     onCloseRequest: PropTypes.func.isRequired,
     actions: PropTypes.object.isRequired
@@ -111,14 +109,14 @@ function mapStateToProps(state, ownProps) {
         room = rooms.find(room => room.id == roomId);
     }
 
+    const userId = state.userId;
     const onCloseRequest = ownProps.onCloseRequest;
 
-    return {onCloseRequest, room, isNewRoom};
+    return {onCloseRequest, room, userId, isNewRoom};
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators(
-        {saveRoomInfo, loadChatMessagesForRoom},
-        dispatch) });
+    actions: bindActionCreators({saveRoomInfo}, dispatch)
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomInfoEditorModal);

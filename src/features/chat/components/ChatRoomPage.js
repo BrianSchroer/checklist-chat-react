@@ -2,10 +2,8 @@ import React, {PropTypes} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {afterRenderIsComplete} from '../../../util/uiHelpers';
-import {loadChatMessagesForRoom} from '../chatDucks';
-import {loadChecklistItemsForRoom} from '../../../features/checklist/checklistItemDucks';
-import {requestChecklistItemModalDialog, requestRoomInfoModalDialog, hideModalDialog} from '../../../app/modalDialogDucks';
-import {setRoomId, setRoomInfo} from '../../../features/room/roomDucks';
+import {requestChecklistItemModalDialog, requestRoomInfoModalDialog} from '../../../app/modalDialogDucks';
+import {joinChat} from '../../../features/room/roomDucks';
 import RoomInfo from '../../../features/room/components/RoomInfo';
 import ChatMessageList from './ChatMessageList';
 import ChatButtons from './ChatButtons';
@@ -25,13 +23,9 @@ class ChatRoomPage extends React.Component {
     }
 
     componentWillMount() {
-        const actions = this.props.actions;
-        const roomId = this.props.routeParams.id;
+        const {actions, userId, routeParams} = this.props;
 
-        actions.setRoomId(roomId);
-        actions.setRoomInfo(roomId);
-        actions.loadChecklistItemsForRoom(roomId);
-        actions.loadChatMessagesForRoom(roomId);
+        actions.joinChat(routeParams.id, userId);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -98,6 +92,7 @@ class ChatRoomPage extends React.Component {
 
 ChatRoomPage.propTypes = {
     routeParams: PropTypes.object.isRequired,
+    userId: PropTypes.string.isRequired,
     room: PropTypes.object,
     checklistItems: PropTypes.arrayOf(PropTypes.object).isRequired,
     chatMessages: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -105,19 +100,18 @@ ChatRoomPage.propTypes = {
 };
 
 function mapStateToProps(state) {
-    const room = state.roomInfo;
+    const room = state.rooms.find(room => room.id == state.roomId);
+    const userId = state.userId;
     const checklistItems = state.checklistItems;
     const chatMessages = state.chatMessages;
 
-    return {room, checklistItems, chatMessages};
+    return {userId, room, checklistItems, chatMessages};
 }
 
 const mapDispatchToProps = (dispatch) => ({
     actions: bindActionCreators({
-        loadChatMessagesForRoom,
-        loadChecklistItemsForRoom,
-        requestChecklistItemModalDialog, requestRoomInfoModalDialog, hideModalDialog,
-        setRoomId, setRoomInfo
+        requestChecklistItemModalDialog, requestRoomInfoModalDialog,
+        joinChat
     }, dispatch)
 });
 

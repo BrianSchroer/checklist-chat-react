@@ -6,10 +6,6 @@ export function getRooms() {
     return get('rooms');
 }
 
-export function getRoomInfo(roomId) {
-    return get(`rooms/${roomId}`);
-}
-
 export function getChatMessages(roomId) {
     return get(`chatMessages?roomId=${roomId}&_sort=timeStamp`);
 }
@@ -20,27 +16,36 @@ export function getChecklistItems(roomId) {
         : get('checklistItems');
 }
 
-export function updateRoomInfo(roomInfo) {
+export function updateRoomInfo(roomInfo, userId) {
     const body = Object.assign({}, roomInfo);
 
     const actionMessage = {chatMessageType: 'Action'};
 
     if (roomInfo.id) {
-        actionMessage.text = 'updated the room description / phone info';
-        chat(actionMessage, body.id);
+        actionMessage.text = 'updated the room description / phone info.';
+        chat(actionMessage, body.id, userId);
         return update(`rooms/${roomInfo.id}`, JSON.stringify(body));
     } else {
         get('rooms').then(items => {
             let ids = items.map(item => item.id);
             body.id = Math.max(...ids) + 1;
-            actionMessage.text = `created new chat "${body.roomName}"`;
-            chat(actionMessage, body.id);
+            actionMessage.text = `created new chat "${body.roomName}".`;
+            chat(actionMessage, body.id, userId);
         });
         return add(`rooms`, JSON.stringify(body));
     }
 }
 
-export function chat(chatMessage, roomId) {  // eslint-disable-line no-unused-vars
+export function joinChat(roomId, userId) {
+    const actionMessage = {
+        chatMessageType: 'Action',
+        text: 'entered the room.'
+    };
+
+    return chat(actionMessage, roomId, userId);
+}
+
+export function chat(chatMessage, roomId, userId) {
     let id;
     getChatMessages().then(items => {
         const ids = items.map(item => item.id);
@@ -54,22 +59,29 @@ export function chat(chatMessage, roomId) {  // eslint-disable-line no-unused-va
             id: id,
             roomId: roomId,
             timeStamp: new Date().toISOString(),
-            userName: 'Brian Schroer'}
+            userName: userId}
     );
 
     return add(`chatMessages`, JSON.stringify(body));
 }
 
-export function saveChecklistItem(checklistItem) {
-    const body = Object.assign({}, checklistItem);
+export function saveChecklistItem(checklistItem, roomId, userId) {
+    const {sequenceNumber, description} = checklistItem;
+    const body = Object.assign({}, checklistItem, {roomId});
+
+    const actionMessage = {chatMessageType: 'Action'};
 
     if (checklistItem.id) {
+        actionMessage.text = `updated checklist item ${sequenceNumber} - "${description}".`;
+        chat(actionMessage, roomId, userId);
         return update(`checklistItems/${checklistItem.id}`, JSON.stringify(body));
     } else {
         getChecklistItems().then(items => {
             let ids = items.map(item => item.id);
             body.id = Math.max(...ids) + 1;
         });
+        actionMessage.text = `added checklist item ${sequenceNumber} - "${description}".`;
+        chat(actionMessage, roomId, userId);
         return add(`checklistItems`, JSON.stringify(body));
     }
 }

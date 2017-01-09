@@ -45,8 +45,8 @@ class ChecklistItemEditor extends React.Component {
             return;
         }
 
-        const actions = this.props.actions;
-        actions.saveChecklistItem(checklistItem);
+        const {roomId, userId, actions} = this.props;
+        actions.saveChecklistItem(checklistItem, roomId, userId);
         this.props.onCloseRequest(event);
     }
 
@@ -124,6 +124,8 @@ class ChecklistItemEditor extends React.Component {
 }
 
 ChecklistItemEditor.propTypes = {
+    roomId: PropTypes.string.isRequired,
+    userId: PropTypes.string.isRequired,
     checklistItem: PropTypes.object.isRequired,
     isNewChecklistItem: PropTypes.bool.isRequired,
     maxSequenceNumber: PropTypes.number.isRequired,
@@ -163,9 +165,10 @@ function mapStateToProps(state, ownProps) {
         checklistItem = emptyChecklistItem(roomId, maxSequenceNumber);
     }
 
+    const {userId} = state;
     const onCloseRequest = ownProps.onCloseRequest;
 
-    return {checklistItem, isNewChecklistItem, maxSequenceNumber, onCloseRequest};
+    return {roomId, userId, checklistItem, isNewChecklistItem, maxSequenceNumber, onCloseRequest};
 }
 
 const mapDispatchToProps = (dispatch) => ({

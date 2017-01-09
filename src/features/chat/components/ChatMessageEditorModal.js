@@ -12,7 +12,6 @@ class ChatMessageEditorModal extends React.Component {
         super(props, context);
 
         this.state = {
-            roomId: props.roomId,
             chatMessage: Object.assign({}, props.chatMessage),
             isSaving: false,
             isDirty: false,
@@ -32,7 +31,8 @@ class ChatMessageEditorModal extends React.Component {
     onSave(event) {
         event.preventDefault();
 
-        const {chatMessage, roomId} = this.state;
+        const {userId, roomId} = this.props;
+        const {chatMessage} = this.state;
 
         const validationResponse = validate(chatMessage);
 
@@ -42,7 +42,7 @@ class ChatMessageEditorModal extends React.Component {
         }
 
         const {actions, onCloseRequest} = this.props;
-        actions.saveChatMessage(chatMessage, roomId);
+        actions.saveChatMessage(chatMessage, roomId, userId);
         onCloseRequest(event);
     }
 
@@ -71,12 +71,14 @@ class ChatMessageEditorModal extends React.Component {
 
 ChatMessageEditorModal.propTypes = {
     roomId: PropTypes.string,
+    userId: PropTypes.string.isRequired,
     chatMessage: PropTypes.object.isRequired,
     onCloseRequest: PropTypes.func.isRequired,
     actions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
+    const userId = state.userId;
     const roomId = state.roomId;
 
     const chatMessage = {
@@ -86,7 +88,7 @@ function mapStateToProps(state, ownProps) {
 
     const onCloseRequest = ownProps.onCloseRequest;
 
-    return {roomId, chatMessage, onCloseRequest};
+    return {userId, roomId, chatMessage, onCloseRequest};
 }
 
 const mapDispatchToProps = (dispatch) => ({

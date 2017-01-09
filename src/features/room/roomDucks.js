@@ -2,20 +2,20 @@
 
 import initialState from '../../app/store/initialState';
 import {beginAjaxCall, ajaxCallError} from '../../app/ajaxStatusDucks';
+import {loadChatMessagesForRoom} from '../../features/chat/chatDucks';
+import {loadChecklistItemsForRoom} from '../../features/checklist/checklistItemDucks';
 import * as mockJsonDbApi from '../../api/mockJsonDbApi';
 
 const prefix = 'checklist-chat/room/';
 export const SAVE_ROOM_SUCCESS = `${prefix}SAVE_ROOM_SUCCESS`;
 export const LOAD_ROOMS_SUCCESS = `${prefix}LOAD_ROOMS_SUCCESS`;
-export const SET_ROOM_ID_SUCCESS = `${prefix}SET_ROOM_ID_SUCCESS`;
-export const SET_ROOM_INFO_SUCCESS = `${prefix}SET_ROOM_INFO_SUCCESS`;
+export const SET_ROOM_ID_COMPLETE = `${prefix}SET_ROOM_ID_COMPLETE`;
 
 // Actions:
 
 export const loadRoomsSuccess = (rooms) => ({type: LOAD_ROOMS_SUCCESS, rooms});
 export const saveRoomSuccess = (roomInfo) => ({type: SAVE_ROOM_SUCCESS, roomInfo});
-export const setRoomIdSuccess = (roomId) => ({type: SET_ROOM_ID_SUCCESS, roomId});
-export const setRoomInfoSuccess = (roomInfo) => ({type: SET_ROOM_INFO_SUCCESS, roomInfo});
+export const setRoomIdSuccess = (roomId) => ({type: SET_ROOM_ID_COMPLETE, roomId});
 
 export function loadRooms() {
     return dispatch => {
@@ -30,15 +30,17 @@ export function loadRooms() {
     };
 }
 
-export function saveRoomInfo(roomInfo) {
+export function saveRoomInfo(roomInfo, userId) {
     return dispatch => {
         dispatch(beginAjaxCall());
 
-        return mockJsonDbApi.updateRoomInfo(roomInfo).then(() =>
+        return mockJsonDbApi.updateRoomInfo(roomInfo, userId).then(() =>
         {
-            dispatch(saveRoomSuccess(roomInfo));
             mockJsonDbApi.getRooms().then(rooms => {
                 dispatch(loadRoomsSuccess(rooms));
+                if (roomInfo.id) {
+                    dispatch(loadChatMessagesForRoom(roomInfo.id));
+                }
             });
         }).catch(error => {
             dispatch(ajaxCallError(error));
@@ -47,24 +49,17 @@ export function saveRoomInfo(roomInfo) {
     };
 }
 
-export function setRoomId(roomId) {
-    return dispatch => dispatch(setRoomIdSuccess(roomId));
+export function joinChat(roomId, userId) {
+    return dispatch => {
+        mockJsonDbApi.joinChat(roomId, userId);
+        dispatch(setRoomIdSuccess(roomId));
+        dispatch(loadChatMessagesForRoom(roomId));
+        dispatch(loadChecklistItemsForRoom(roomId));
+    };
 }
 
-export function setRoomInfo(roomId) {
-    if (roomId) {
-        return dispatch => {
-            dispatch(beginAjaxCall());
-            return mockJsonDbApi.getRoomInfo(roomId).then(roomInfo => {
-                dispatch(setRoomInfoSuccess(roomInfo));
-            }).catch(error => {
-                dispatch(ajaxCallError(error));
-                throw (error);
-            });
-        };
-    } else {
-        return null;
-    }
+export function setRoomId(roomId) {
+    return dispatch => dispatch(setRoomIdSuccess(roomId));
 }
 
 // Reducers:
@@ -88,24 +83,10 @@ export function roomIdReducer(roomId = initialState.roomId, action) {
 
     switch (actionType) {
 
-        case SET_ROOM_ID_SUCCESS:
+        case SET_ROOM_ID_COMPLETE:
             return action.roomId;
 
         default:
             return roomId;
-    }
-}
-
-export function roomInfoReducer(roomInfo = initialState.roomInfo, action) {
-    const actionType = action.type;
-
-    switch (actionType) {
-
-        case SET_ROOM_INFO_SUCCESS:
-        case SAVE_ROOM_SUCCESS:
-            return action.roomInfo;
-
-        default:
-            return roomInfo;
     }
 }

@@ -1,9 +1,9 @@
 import * as modalDialogType from '../modalDialogType';
 
 export default {
+    userId: 'Brian Schroer',
     rooms: [],
     roomId: null,
-    roomInfo: null,
     chatMessages: [],
     chatParticipants: [],
     checklistItems: [],

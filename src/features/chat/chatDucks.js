@@ -50,11 +50,11 @@ export function loadChatMessagesForRoom(roomId) {
     }
 }
 
-export function saveChatMessage(chatMessage, roomId) {
+export function saveChatMessage(chatMessage, roomId, userId) {
     return dispatch => {
         dispatch(beginAjaxCall());
 
-        return mockJsonDbApi.chat(chatMessage, roomId).then(() =>
+        return mockJsonDbApi.chat(chatMessage, roomId, userId).then(() =>
         {
             mockJsonDbApi.getChatMessages(roomId).then(chatMessages =>
                 updateMessagesAndParticipants(chatMessages, dispatch));
