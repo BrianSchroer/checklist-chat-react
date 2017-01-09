@@ -50,19 +50,8 @@ ChatParticipantsModal.propTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
-    let chatParticipants = [];
-
+    let chatParticipants = state.chatParticipants;
     const onCloseRequest = ownProps.onCloseRequest;
-
-    const sortedNames = state.chatMessages.map(m => m.userName).sort();
-    const uniqueNames = [...new Set(sortedNames)];
-
-    chatParticipants = uniqueNames.map(userName => ({
-        name: userName,
-        department: 'Department',
-        title: 'Title',
-        connection: 'Connection'
-    }));
 
     return {chatParticipants, onCloseRequest};
 }

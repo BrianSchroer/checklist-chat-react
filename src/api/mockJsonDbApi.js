@@ -14,32 +14,10 @@ export function getChatMessages(roomId) {
     return get(`chatMessages?roomId=${roomId}&_sort=timeStamp`);
 }
 
-export function getChatParticipants(roomId) {
-    let chatParticipants;
-
-    getChatMessages(roomId).then(chatMessages => {
-        const sortedNames = chatMessages.map(m => m.userName).sort();
-        const uniqueNames = [...new Set(sortedNames)];
-
-        chatParticipants = uniqueNames.map(userName => ({
-            name: userName,
-            department: 'Department',
-            title: 'Title',
-            connection: 'Connection'
-        }))
-    });
-
-    return chatParticipants;
-}
-
 export function getChecklistItems(roomId) {
     return (roomId)
         ? get(`checklistItems?roomId=${roomId}&_sort=sequenceNumber`)
         : get('checklistItems');
-}
-
-export function joinChat(roomId) {  // eslint-disable-line no-unused-vars
-
 }
 
 export function updateRoomInfo(roomInfo) {
