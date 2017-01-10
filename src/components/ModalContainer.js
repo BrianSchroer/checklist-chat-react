@@ -9,7 +9,7 @@ const ModalContainer = ({title, onCloseRequest, children}) => {
                         <button type="button" className="close" aria-label="Close" onClick={onCloseRequest}>
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 className="modal-title">{title}</h4>
+                        <h4 className="modal-title display-linebreaks">{title}</h4>
                     </div>
 
                     {children}

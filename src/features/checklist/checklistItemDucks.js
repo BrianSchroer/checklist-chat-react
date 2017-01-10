@@ -6,14 +6,10 @@ import * as mockJsonDbApi from '../../api/mockJsonDbApi';
 
 const prefix = 'checklist-chat/checklist-item/';
 const LOAD_CHECKLIST_ITEMS_FOR_ROOM_SUCCESS = `${prefix}LOAD_CHECKLIST_ITEMS_FOR_ROOM_SUCCESS`;
-const SET_SEQUENCE_NUMBER_SUCCESS = `${prefix}SET_SEQUENCE_NUMBER_SUCCESS`;
 
-// Actions:
+// Actions
 export const loadChecklistItemsForRoomSuccess =
     (checklistItems) => ({type: LOAD_CHECKLIST_ITEMS_FOR_ROOM_SUCCESS, checklistItems});
-
-export const setSequenceNumberSuccess =
-    (sequenceNumber) => ({type: SET_SEQUENCE_NUMBER_SUCCESS, sequenceNumber});
 
 export function loadChecklistItemsForRoom(roomId) {
     if (roomId) {
@@ -48,13 +44,13 @@ export function saveChecklistItem(checklistItem, roomId, userId) {
     };
 }
 
-export function setChecklistItemSequenceNumber(sequenceNumber) {
-    return setSequenceNumberSuccess(sequenceNumber);
+export function saveChecklistItemComment(checklistItem, comment, userId) {
+
 }
 
 // Reducers:
 
-export function checklistItemsReducer(checklistItems = initialState.checklistItems, action) {
+export default function reducer(checklistItems = initialState.checklistItems, action) {
 
     const actionType = action.type;
 
@@ -65,20 +61,5 @@ export function checklistItemsReducer(checklistItems = initialState.checklistIte
 
         default:
             return checklistItems;
-    }
-}
-
-export function checklistItemSequenceNumberReducer(
-        sequenceNumber = initialState.checklistItemSequenceNumber, action) {
-
-    const actionType = action.type;
-
-    switch (actionType) {
-
-        case SET_SEQUENCE_NUMBER_SUCCESS:
-            return action.sequenceNumber;
-
-        default:
-            return sequenceNumber;
     }
 }

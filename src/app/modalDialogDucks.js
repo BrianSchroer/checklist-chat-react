@@ -30,6 +30,10 @@ export function requestChecklistItemModalDialog(roomId, sequenceNumber) {
     return requestModalDialog(modalDialogType.CHECKLIST_ITEM, [roomId, sequenceNumber]);
 }
 
+export function requestChecklistItemCommentModalDialog(roomId, sequenceNumber) {
+    return requestModalDialog(modalDialogType.CHECKLIST_ITEM_COMMENT, [roomId, sequenceNumber]);
+}
+
 export function hideModalDialog() {
     return requestModalDialog(modalDialogType.NONE, []);
 }

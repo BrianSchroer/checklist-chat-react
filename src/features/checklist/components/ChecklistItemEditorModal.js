@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {saveChecklistItem} from '../checklistItemDucks';
+import {requestChecklistItemCommentModalDialog} from '../../../app/modalDialogDucks';
 import * as checklistItemStatus from '../checklistItemStatus';
 import {validate} from '../checklistItemValidator';
 import FormGroup from '../../../components/FormGroup';
@@ -21,11 +22,13 @@ class ChecklistItemEditor extends React.Component {
             isSaving: false,
             isDeleting: false,
             isDirty: false,
+            comment: '',
             errors: {}
         };
 
         this.onChange = this.onChange.bind(this);
         this.onSave = this.onSave.bind(this);
+        this.onCommentRequest = this.onCommentRequest.bind(this);
     }
 
     onChange(event) {
@@ -45,9 +48,18 @@ class ChecklistItemEditor extends React.Component {
             return;
         }
 
-        const {roomId, userId, actions} = this.props;
-        actions.saveChecklistItem(checklistItem, roomId, userId);
+        const {userId, actions} = this.props;
+        actions.saveChecklistItem(checklistItem, checklistItem.roomId, userId);
         this.props.onCloseRequest(event);
+    }
+
+    onCommentRequest(event) {
+        event.preventDefault();
+
+        const {actions, checklistItem} = this.props;
+
+        actions.requestChecklistItemCommentModalDialog(
+            checklistItem.roomId, checklistItem.sequenceNumber);
     }
 
     render() {
@@ -89,7 +101,7 @@ class ChecklistItemEditor extends React.Component {
                     </div>
 
                     <TextInput name="description" label="Description" value={checklistItem.description}
-                        onChange={this.onChange} error={errors.description} />
+                        rows={2} onChange={this.onChange} error={errors.description} />
 
                     <div className="checklist-form-timestamps">
                         <TextInput name="scheduledStartTime" label="Start Time: Scheduled"
@@ -114,8 +126,14 @@ class ChecklistItemEditor extends React.Component {
                 </div>
 
                 <div className="modal-footer">
-                    <input type="button" value="Cancel" className="btn btn-default" onClick={onCloseRequest}/>
-                    <input type="submit" value="Save" className="btn btn-primary" onClick={this.onSave}/>
+                    {!isNewChecklistItem &&
+                        <input type="button" value="Add Comment..."
+                            className="btn btn-secondary pull-left" onClick={this.onCommentRequest} />
+                    }
+                    <input type="button" value="Cancel" className="btn btn-default"
+                        onClick={onCloseRequest}/>
+                    <input type="submit" value="Save" className="btn btn-primary"
+                        onClick={this.onSave}/>
                 </div>
 
             </ModalContainer>
@@ -124,7 +142,6 @@ class ChecklistItemEditor extends React.Component {
 }
 
 ChecklistItemEditor.propTypes = {
-    roomId: PropTypes.string.isRequired,
     userId: PropTypes.string.isRequired,
     checklistItem: PropTypes.object.isRequired,
     isNewChecklistItem: PropTypes.bool.isRequired,
@@ -168,11 +185,13 @@ function mapStateToProps(state, ownProps) {
     const {userId} = state;
     const onCloseRequest = ownProps.onCloseRequest;
 
-    return {roomId, userId, checklistItem, isNewChecklistItem, maxSequenceNumber, onCloseRequest};
+    return {userId, checklistItem, isNewChecklistItem, maxSequenceNumber, onCloseRequest};
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators({saveChecklistItem}, dispatch)
+    actions: bindActionCreators(
+        {saveChecklistItem, requestChecklistItemCommentModalDialog},
+        dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChecklistItemEditor);

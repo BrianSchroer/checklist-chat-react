@@ -7,7 +7,6 @@ export default {
     chatMessages: [],
     chatParticipants: [],
     checklistItems: [],
-    checklistItemSequenceNumber: null,
     ajaxCallsInProgressCount: 0,
     modalDialogRequest: { type: modalDialogType.NONE, keys: []}
 };

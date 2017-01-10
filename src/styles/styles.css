@@ -256,6 +256,10 @@ i.spinning-icon {
     animation: spin 2s infinite linear;
 }
 
+.display-linebreaks {
+    white-space: pre;
+}
+
 /* Animations */
 @-webkit-keyframes spin {
     0% {
