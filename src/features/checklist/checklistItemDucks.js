@@ -45,7 +45,19 @@ export function saveChecklistItem(checklistItem, roomId, userId) {
 }
 
 export function saveChecklistItemComment(checklistItem, comment, userId) {
+    return dispatch => {
+        dispatch(beginAjaxCall());
 
+        return mockJsonDbApi.saveChecklistItemComment(checklistItem, comment, userId).then(() =>
+        {
+            mockJsonDbApi.getChecklistItems(checklistItem.roomId).then(items => {
+                dispatch(loadChecklistItemsForRoomSuccess(items));
+            });
+        }).catch(error => {
+            dispatch(ajaxCallError(error));
+            throw (error);
+        });
+    };
 }
 
 // Reducers:

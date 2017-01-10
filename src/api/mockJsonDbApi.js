@@ -2,6 +2,17 @@ import 'whatwg-fetch';
 
 const mockJsonServerBaseUri = 'http://localhost:3001/';
 
+const assignChatMessageIdAndTimestamp = (chatMessage) => {
+    let id;
+    getChatMessages().then(items => {
+        const ids = items.map(item => item.id);
+        id = Math.max(...ids) + 1;
+    });
+
+    chatMessage.id = id;
+    chatMessage.timeStamp = new Date().toISOString();
+};
+
 export function getRooms() {
     return get('rooms');
 }
@@ -46,21 +57,13 @@ export function joinChat(roomId, userId) {
 }
 
 export function chat(chatMessage, roomId, userId) {
-    let id;
-    getChatMessages().then(items => {
-        const ids = items.map(item => item.id);
-        id = Math.max(...ids) + 1;
-    });
-
     const body = Object.assign(
         {},
         chatMessage,
-        {
-            id: id,
-            roomId: roomId,
-            timeStamp: new Date().toISOString(),
-            userName: userId}
+        {roomId: roomId, userName: userId}
     );
+
+    assignChatMessageIdAndTimestamp(body);
 
     return add(`chatMessages`, JSON.stringify(body));
 }
@@ -84,6 +87,30 @@ export function saveChecklistItem(checklistItem, roomId, userId) {
         chat(actionMessage, roomId, userId);
         return add(`checklistItems`, JSON.stringify(body));
     }
+}
+
+export function saveChecklistItemComment(checklistItem, comment, userId) {
+    const {roomId, sequenceNumber, description} = checklistItem;
+
+    const actionMessage = {
+        chatMessageType: 'Action',
+        text: `commented on checklist item ${sequenceNumber} - "${description}".`
+    };
+
+    chat(actionMessage, roomId, userId);
+
+    const body = Object.assign({}, checklistItem);
+
+    const chatMessage = {
+        chatMessageType: 'Chat',
+        userName: userId,
+        text: comment
+    };
+    assignChatMessageIdAndTimestamp(chatMessage);
+
+    body.chatMessages.push(chatMessage);
+
+    return update(`checklistItems/${checklistItem.id}`, JSON.stringify(body));
 }
 
 function get(url) {

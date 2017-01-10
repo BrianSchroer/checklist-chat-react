@@ -40,7 +40,7 @@ class ChecklistItemCommentEditorModal extends React.Component {
             return;
         }
 
-        actions.saveChecklistItemComment(checklistItem, comment, userId);
+        actions.saveChecklistItemComment(checklistItem, comment.text, userId);
         onCloseRequest(event);
     }
 
