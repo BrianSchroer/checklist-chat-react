@@ -1,9 +1,12 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import * as uiHelpers from '../../../util/uiHelpers';
 import {validateComment} from '../checklistItemValidator';
 import {saveChecklistItemComment} from '../checklistItemDucks';
+import ChatMessageListItem from '../../chat/components/ChatMessageListItem';
 import ModalContainer from '../../../components/ModalContainer';
+import FormGroup from '../../../components/FormGroup';
 import TextInput from '../../../components/TextInput';
 
 class ChecklistItemCommentEditorModal extends React.Component {
@@ -11,7 +14,7 @@ class ChecklistItemCommentEditorModal extends React.Component {
         super(props, context);
 
         this.state = {
-            comment: Object.assign({}, props.comment),
+            comment: {text: ''},
             isSaving: false,
             isDirty: false,
             errors: {}
@@ -19,6 +22,12 @@ class ChecklistItemCommentEditorModal extends React.Component {
 
         this.onChange = this.onChange.bind(this);
         this.onSave = this.onSave.bind(this);
+    }
+
+    componentDidMount() {
+        uiHelpers.afterRenderIsComplete(() => {
+            uiHelpers.scrollToBottom('existingChecklistItemComments');
+        });
     }
 
     onChange(event) {
@@ -48,12 +57,22 @@ class ChecklistItemCommentEditorModal extends React.Component {
         const {checklistItem, onCloseRequest} = this.props;
         const {comment, errors} = this.state;
         const {sequenceNumber, description} = checklistItem;
-        const title = `Add a comment to checklist item \n${sequenceNumber}: "${description}"`;
+        const existingComments = checklistItem.chatMessages;
+        const title = `Checklist item ${sequenceNumber}: \n${description}`;
 
         return (
             <ModalContainer title={title} onCloseRequest={onCloseRequest}>
                 <div className="modal-body">
-                    <TextInput name="text" label="Comment"
+                    {existingComments && existingComments.length &&
+                        <FormGroup name="existingChecklistItemComments" label="Comments">
+                            <ul id="existingChecklistItemComments"
+                                className="checklist-comment-list list-unstyled">
+                                {existingComments.map(comment =>
+                                    <ChatMessageListItem key={comment.id} chatMessage={comment}/> )}
+                            </ul>
+                        </FormGroup>
+                    }
+                    <TextInput name="text" label="New Comment"
                         rows={2} value={comment.text}
                         onChange={this.onChange} error={errors.text} />
                 </div>
@@ -72,7 +91,6 @@ class ChecklistItemCommentEditorModal extends React.Component {
 ChecklistItemCommentEditorModal.propTypes = {
     userId: PropTypes.string.isRequired,
     checklistItem: PropTypes.object.isRequired,
-    comment: PropTypes.object.isRequired,
     onCloseRequest: PropTypes.func.isRequired,
     actions: PropTypes.object.isRequired
 };
@@ -80,14 +98,12 @@ ChecklistItemCommentEditorModal.propTypes = {
 function mapStateToProps(state, ownProps) {
     const {userId} = state;
     const [roomId, sequenceNumber] = state.modalDialogRequest.keys;
-    const comment = { text: '' };
     const onCloseRequest = ownProps.onCloseRequest;
 
-    const checklistItems = state.checklistItems;
-    const checklistItem = checklistItems.find(item =>
+    const checklistItem = state.checklistItems.find(item =>
         item.roomId === roomId && item.sequenceNumber === sequenceNumber);
 
-    return {userId, checklistItem, comment, onCloseRequest};
+    return {userId, checklistItem, onCloseRequest};
 }
 
 const mapDispatchToProps = (dispatch) => ({
