@@ -2,12 +2,14 @@ import React, {PropTypes} from 'react';
 import ChecklistItemStatusIcon from './CheckllistItemStatusIcon';
 import PlannedVsActual from '../../../components/PlannedVsActual';
 import format from '../../../util/format';
-import ChecklistItemComments from './CheckListItemComments';
+import ChecklistItemComment from './ChecklistItemComment';
 
 // This component returns a tbody because it might require multiple tr's and React requires
 // returning a single root element. (It's legal for tables to have multiple tbody's.)
 
 const ChecklistItem = ({checklistItem, OnEditRequest}) => {
+    const comments = checklistItem.chatMessages || [];
+
     return (
         <tbody>
             <tr className="checklist-item-row">
@@ -34,8 +36,8 @@ const ChecklistItem = ({checklistItem, OnEditRequest}) => {
                 <td>&nbsp;</td>
             </tr>
             {
-                checklistItem.chatMessages && checklistItem.chatMessages.length > 0 &&
-                    <ChecklistItemComments chatMessages={checklistItem.chatMessages} />
+                comments.map(comment =>
+                    <ChecklistItemComment key={comment.id} chatMessage={comment}/>)
             }
         </tbody>
      );

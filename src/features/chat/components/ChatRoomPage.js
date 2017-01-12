@@ -8,6 +8,7 @@ import RoomInfo from '../../../features/room/components/RoomInfo';
 import ChatMessageList from './ChatMessageList';
 import ChatButtons from './ChatButtons';
 import Checklist from '../../../features/checklist/components/Checklist';
+import ChecklistButtons from '../../../features/checklist/components/ChecklistButtons';
 
 class ChatRoomPage extends React.Component {
     constructor(props, context) {
@@ -18,7 +19,6 @@ class ChatRoomPage extends React.Component {
         };
 
         this.handleRoomInfoEditRequest = this.handleRoomInfoEditRequest.bind(this);
-        this.handleChecklistItemAddRequest = this.handleChecklistItemAddRequest.bind(this);
         this.handleChecklistItemEditRequest = this.handleChecklistItemEditRequest.bind(this);
     }
 
@@ -79,8 +79,10 @@ class ChatRoomPage extends React.Component {
                 </div>
                 <div className="chat-room-checklist-column">
                     <Checklist checklistItems={this.props.checklistItems}
-                        OnAddRequest={this.handleChecklistItemAddRequest}
                         OnEditRequest={this.handleChecklistItemEditRequest}/>
+                    <div className="chat-room-buttons">
+                        <ChecklistButtons/>
+                    </div>
                 </div>
             </div>
         );

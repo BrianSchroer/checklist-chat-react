@@ -41,7 +41,7 @@ class HomePage extends React.Component {
                 <div className="col-md-2 col-offset-md-1">
                     <input type="button"
                         value="Start a new chat..."
-                        className="btn btn-success btn-lg"
+                        className="btn btn-primary btn-lg"
                         onClick={this.handleNewChatRoomRequest}/>
                 </div>
             </div>

@@ -124,7 +124,6 @@ ul.chat-message-list li:nth-child(even) div {
 }
 
 div.chat-message, div.chat-action-message {
-    background-color: #fff;
     padding-left: 6em;
     text-indent: -6em;
 }
@@ -148,6 +147,7 @@ div.checklist-table-container {
 
 table.checklist-table {
     background-color: lightgoldenrodyellow;
+    border-color: green;
 }
 
 table.checklist-table > thead > tr > th {
@@ -157,6 +157,13 @@ table.checklist-table > thead > tr > th {
 table.checklist-table > tbody > tr,
 table.checklist-table > tbody > tr > td {
     border-width: 0;
+}
+
+table.checklist-table > thead > tr > th:first-child,
+table.checklist-table > tbody > tr > td:first-child {
+    border-right-color: #ffaa9f;
+    border-right-style: double;
+    border-right-width: 3px;
 }
 
 button.checklist-item-button {
@@ -170,8 +177,11 @@ ul#existingChecklistItemComments {
     overflow-y: auto;
 }
 
+td.timestamp {
+    white-space: nowrap;
+}
+
 ul.checklist-comment-list {
-    background-color: #fff;
     padding-left: 1em;
     padding-right: 1em;
     padding-top: 0.5em;
