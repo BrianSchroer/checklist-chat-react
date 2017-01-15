@@ -7,7 +7,7 @@ import * as checklistItemStatus from '../checklistItemStatus';
 import {validate} from '../checklistItemValidator';
 import FormGroup from '../../../components/FormGroup';
 import SimpleSelectInput from '../../../components/SimpleSelectInput';
-import ModalContainer from '../../../components/ModalContainer';
+import Modal from '../../../components/Modal';
 import SelectInput from '../../../components/SelectInput';
 import TextInput from '../../../components/TextInput';
 import format from '../../../util/format';
@@ -72,12 +72,26 @@ class ChecklistItemEditor extends React.Component {
             return {value: sequenceNumber, text: sequenceNumber};
         });
 
-        return (
-            <ModalContainer
-                title={(isNewChecklistItem) ? 'Add New Checklist Item' : 'Edit Checklist Item'}
-                onCloseRequest={onCloseRequest}>
+        const buttons = (
+            <div>
+                {!isNewChecklistItem &&
+                    <input type="button" value="Add Comment..."
+                        className="btn btn-secondary pull-left" onClick={this.onCommentRequest} />
+                }
+                <input type="button" value="Cancel" className="btn btn-default"
+                    onClick={onCloseRequest}/>
+                <input type="submit" value="Save" className="btn btn-primary"
+                    onClick={this.onSave}/>
+            </div>
+        );
 
-                <div className="modal-body">
+        return (
+            <Modal
+                title={(isNewChecklistItem) ? 'Add New Checklist Item' : 'Edit Checklist Item'}
+                onCloseRequest={onCloseRequest}
+                buttons={buttons}>
+
+                <div>
                     <div className="checklist-form-sequence-number-row">
                         <SelectInput name="sequenceNumber" label="Sequence Number"
                             options={sequenceNumberOptions}
@@ -125,18 +139,7 @@ class ChecklistItemEditor extends React.Component {
                         onChange={this.onChange} error={errors.userName} />
                 </div>
 
-                <div className="modal-footer">
-                    {!isNewChecklistItem &&
-                        <input type="button" value="Add Comment..."
-                            className="btn btn-secondary pull-left" onClick={this.onCommentRequest} />
-                    }
-                    <input type="button" value="Cancel" className="btn btn-default"
-                        onClick={onCloseRequest}/>
-                    <input type="submit" value="Save" className="btn btn-primary"
-                        onClick={this.onSave}/>
-                </div>
-
-            </ModalContainer>
+            </Modal>
         );
     }
 }

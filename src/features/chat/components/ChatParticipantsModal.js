@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
-import ModalContainer from '../../../components/ModalContainer';
+import Modal from '../../../components/Modal';
 
 class ChatParticipantsModal extends React.Component {
     constructor(props, context) {
@@ -10,9 +10,14 @@ class ChatParticipantsModal extends React.Component {
     render() {
         const props = this.props;
 
+        const buttons = (
+            <input type="button" value="Close" className="btn btn-primary"
+                onClick={props.onCloseRequest}/>
+        );
+
         return (
-            <ModalContainer title="Who's Here?" onCloseRequest={props.onCloseRequest}>
-                <div className="modal-body chat-participants">
+            <Modal title="Who's Here?" onCloseRequest={props.onCloseRequest} buttons={buttons}>
+                <div className="chat-participants">
                     <table className="table">
                         <thead>
                             <tr>
@@ -34,12 +39,7 @@ class ChatParticipantsModal extends React.Component {
                         </tbody>
                     </table>
                 </div>
-
-                <div className="modal-footer">
-                    <input type="button" value="Close" className="btn btn-primary"
-                        onClick={props.onCloseRequest}/>
-                </div>
-            </ModalContainer>
+            </Modal>
         );
     }
 }

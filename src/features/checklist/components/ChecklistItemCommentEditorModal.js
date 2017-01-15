@@ -5,7 +5,7 @@ import * as uiHelpers from '../../../util/uiHelpers';
 import {validateComment} from '../checklistItemValidator';
 import {saveChecklistItemComment} from '../checklistItemDucks';
 import ChatMessageListItem from '../../chat/components/ChatMessageListItem';
-import ModalContainer from '../../../components/ModalContainer';
+import Modal from '../../../components/Modal';
 import FormGroup from '../../../components/FormGroup';
 import TextInput from '../../../components/TextInput';
 
@@ -60,9 +60,19 @@ class ChecklistItemCommentEditorModal extends React.Component {
         const existingComments = checklistItem.chatMessages;
         const title = `Checklist item ${sequenceNumber}: \n${description}`;
 
+        const buttons = (
+            <div>
+                <input type="button" value="Cancel" className="btn btn-default"
+                    onClick={onCloseRequest}/>
+                <input type="submit" value="Save" className="btn btn-primary"
+                    onClick={this.onSave}/>
+            </div>
+        );
+
         return (
-            <ModalContainer title={title} onCloseRequest={onCloseRequest}>
-                <div className="modal-body">
+            <Modal title={title} onCloseRequest={onCloseRequest} buttons={buttons}>
+
+                <div>
                     {existingComments && existingComments.length &&
                         <FormGroup name="existingChecklistItemComments" label="Comments">
                             <ul id="existingChecklistItemComments"
@@ -77,13 +87,7 @@ class ChecklistItemCommentEditorModal extends React.Component {
                         onChange={this.onChange} error={errors.text} />
                 </div>
 
-                <div className="modal-footer">
-                    <input type="button" value="Cancel" className="btn btn-default"
-                        onClick={onCloseRequest}/>
-                    <input type="submit" value="Save" className="btn btn-primary"
-                        onClick={this.onSave}/>
-                </div>
-            </ModalContainer>
+            </Modal>
         );
     }
 }

@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 import * as chatMessageType from '../chatMessageType';
 import {saveChatMessage} from '../chatDucks';
 import {validate} from '../chatMessageValidator';
-import ModalContainer from '../../../components/ModalContainer';
+import Modal from '../../../components/Modal';
 import TextInput from '../../../components/TextInput';
 
 class ChatMessageEditorModal extends React.Component {
@@ -50,21 +50,23 @@ class ChatMessageEditorModal extends React.Component {
         const {onCloseRequest} = this.props;
         const {chatMessage, errors} = this.state;
 
-        return (
-            <ModalContainer title="Say Something..." onCloseRequest={onCloseRequest}>
-                <div className="modal-body">
-                    <TextInput name="text" label="Message"
-                        rows={3} value={chatMessage.text}
-                        onChange={this.onChange} error={errors.text} />
-                </div>
+        const buttons = (
+            <div>
+                <input type="button" value="Cancel" className="btn btn-default"
+                    onClick={onCloseRequest}/>
+                <input type="submit" value="Save" className="btn btn-primary"
+                    onClick={this.onSave}/>
+            </div>
+        );
 
-                <div className="modal-footer">
-                    <input type="button" value="Cancel" className="btn btn-default"
-                        onClick={onCloseRequest}/>
-                    <input type="submit" value="Save" className="btn btn-primary"
-                        onClick={this.onSave}/>
-                </div>
-            </ModalContainer>
+        return (
+            <Modal title="Say Something..." onCloseRequest={onCloseRequest} buttons={buttons}>
+
+                <TextInput name="text" label="Message"
+                    rows={3} value={chatMessage.text}
+                    onChange={this.onChange} error={errors.text} />
+
+            </Modal>
         );
     }
 }

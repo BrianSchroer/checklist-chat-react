@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {saveRoomInfo} from '../../../features/room/roomDucks';
 import {validate} from '../roomInfoValidator';
-import ModalContainer from '../../../components/ModalContainer';
+import Modal from '../../../components/Modal';
 import TextInput from '../../../components/TextInput';
 
 class RoomInfoEditorModal extends React.Component {
@@ -58,12 +58,20 @@ class RoomInfoEditorModal extends React.Component {
         const {isNewRoom, onCloseRequest} = this.props;
         const {room, errors} = this.state;
 
-        return (
-            <ModalContainer
-                title={(isNewRoom) ? 'Add Chat Room' : 'Edit Chat Room Info'}
-                onCloseRequest={onCloseRequest}>
+        const buttons = (
+            <div>
+                <input type="button" value="Cancel" className="btn btn-default" onClick={onCloseRequest}/>
+                <input type="submit" value="Save" className="btn btn-primary" onClick={this.onSave}/>
+            </div>
+        );
 
-                <div className="modal-body">
+        return (
+            <Modal
+                title={(isNewRoom) ? 'Add Chat Room' : 'Edit Chat Room Info'}
+                onCloseRequest={onCloseRequest}
+                buttons={buttons}>
+
+                <div>
                     <TextInput name="roomName" label="Chat Room Name" value={room.roomName}
                         onChange={this.onChange} error={errors.roomName} />
 
@@ -75,12 +83,7 @@ class RoomInfoEditorModal extends React.Component {
                         onChange={this.onChange} error={errors.phoneInfo} />
                 </div>
 
-                <div className="modal-footer">
-                    <input type="button" value="Cancel" className="btn btn-default" onClick={onCloseRequest}/>
-                    <input type="submit" value="Save" className="btn btn-primary" onClick={this.onSave}/>
-                </div>
-
-            </ModalContainer>
+            </Modal>
         );
     }
 }

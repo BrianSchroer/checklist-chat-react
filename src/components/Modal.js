@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 
-const ModalContainer = ({title, onCloseRequest, children}) => {
+const Modal = ({title, onCloseRequest, children, buttons}) => {
     return (
         <div className="checklist-chat-modal-backdrop" tabIndex="-1" role="dialog">
             <div className="modal-dialog checklist-chat-modal-dialog" role="document">
@@ -11,19 +11,19 @@ const ModalContainer = ({title, onCloseRequest, children}) => {
                         </button>
                         <h4 className="modal-title display-linebreaks">{title}</h4>
                     </div>
-
-                    {children}
-
+                    <div className="modal-body">{children}</div>
+                    {buttons && <div className="modal-footer">{buttons}</div>}
                 </div>
             </div>
         </div>
     );
 };
 
-ModalContainer.propTypes = {
+Modal.propTypes = {
     title: PropTypes.string,
     onCloseRequest: PropTypes.func.isRequired,
-    children: PropTypes.node.isRequired
+    children: PropTypes.node.isRequired,
+    buttons: PropTypes.node
 };
 
-export default ModalContainer;
+export default Modal;
