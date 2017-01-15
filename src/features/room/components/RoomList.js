@@ -9,7 +9,10 @@ const RoomList = ({rooms}) => {
             <ul className="room-list list-unstyled">
                 {rooms.map(room =>
                     <li key={room.id}>
-                        <Link to={routePaths.roomView(room.id)}><strong>{room.roomName}</strong> - {room.description}</Link>
+                        <Link to={routePaths.roomView(room.id)}>
+                            <strong>{room.roomName}</strong>
+                            {room.description && ` - ${room.description}`}
+                        </Link>
                     </li>
                 )}
             </ul>

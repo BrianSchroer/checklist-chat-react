@@ -11,7 +11,7 @@ export class App extends React.Component {
             <div id="appPage" className="app-page">
                 <ModalManager />
                 <Header/>
-                <div id="appMainRow" className="container app-main-row">
+                <div id="appMainRow" className="app-main-row">
                     {this.props.children}
                 </div>
             </div>

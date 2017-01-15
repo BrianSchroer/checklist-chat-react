@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 
 const RoomInfo = ({room, onEditRequest}) => {
+    const shouldShowBody = (room.description || room.phoneInfo);
+
     return (
         <div className="panel panel-primary">
             <div className="panel-heading room-info-panel-heading">
@@ -12,16 +14,19 @@ const RoomInfo = ({room, onEditRequest}) => {
                         onClick={onEditRequest}>Edit</button>
                 </div>
             </div>
+            {shouldShowBody &&
             <div className="panel-body">
-                <p>{room.description}</p>
+                {room.description &&
+                <p id="roomDescription">{room.description}</p>
+                }
 
                 {room.phoneInfo &&
-                    <p>
-                        <i className="glyphicon glyphicon-earphone"></i>
-                            &nbsp;{room.phoneInfo}
-                    </p>
+                <p id="roomPhoneInfo">
+                    <i className="glyphicon glyphicon-earphone"></i>&nbsp;{room.phoneInfo}
+                </p>
                 }
             </div>
+            }
         </div>
     );
 };

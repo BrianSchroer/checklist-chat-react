@@ -6,7 +6,7 @@ const ChatMessage = ({chatMessage}) => {
     switch (chatMessage.chatMessageType) {
         case chatMessageType.ACTION:
             return (
-                <div className="chat-action-message">
+                <div className="chat-action-message text-muted">
                     <div className="timestamp chat-message-timestamp">
                         {format.time(chatMessage.timeStamp)}
                     </div>

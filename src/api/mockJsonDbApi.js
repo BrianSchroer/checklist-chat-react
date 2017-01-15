@@ -94,7 +94,7 @@ export function saveChecklistItemComment(checklistItem, comment, userId) {
 
     const actionMessage = {
         chatMessageType: 'Action',
-        text: `commented on checklist item ${sequenceNumber} - "${description}".`
+        text: `added a comment to checklist item ${sequenceNumber} - "${description}".`
     };
 
     chat(actionMessage, roomId, userId);
@@ -108,7 +108,11 @@ export function saveChecklistItemComment(checklistItem, comment, userId) {
     };
     assignChatMessageIdAndTimestamp(chatMessage);
 
-    body.chatMessages.push(chatMessage);
+    if (body.chatMessages) {
+        body.chatMessages.push(chatMessage);
+    } else {
+        body.chatMessages = [chatMessage];
+    }
 
     return update(`checklistItems/${checklistItem.id}`, JSON.stringify(body));
 }

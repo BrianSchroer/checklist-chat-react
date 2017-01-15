@@ -18,7 +18,7 @@ class ChecklistButtons extends React.Component {
     render() {
         return(
             <div>
-                <button className="btn btn-secondary"
+                <button className="btn btn-primary checklist-item-button pull-right"
                     onClick={this.handleChecklistItemAddRequest}>Add Checklist Item...</button>
             </div>
         );

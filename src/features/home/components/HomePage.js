@@ -5,7 +5,7 @@ import {setRoomId} from '../../../features/room/roomDucks';
 import {requestRoomInfoModalDialog} from '../../../app/modalDialogDucks';
 import RoomList from '../../../features/room/components/RoomList';
 
-class HomePage extends React.Component {
+export class HomePage extends React.Component {
     constructor(props, context) {
         super(props, context);
 
@@ -25,24 +25,26 @@ class HomePage extends React.Component {
         const hasRooms = !!(rooms && rooms.length);
 
         return (
-            <div className="row">
-                <div className="col-md-8">
-                    {hasRooms && <RoomList rooms={rooms}/>}
+            <div className="container home-page">
+                <div className="row">
+                    <div className="col-md-8">
+                        {hasRooms && <RoomList rooms={rooms}/>}
 
-                    {!hasRooms &&
-                        <div className="jumbotron">
-                            <p className="lead">
-                                There aren't any chats in progress right now. Why not start one?
-                            </p>
-                        </div>
-                    }
+                        {!hasRooms &&
+                            <div className="jumbotron">
+                                <p className="lead">
+                                    There aren't any chats in progress right now. Why not start one?
+                                </p>
+                            </div>
+                        }
 
-                </div>
-                <div className="col-md-2 col-offset-md-1">
-                    <input type="button"
-                        value="Start a new chat..."
-                        className="btn btn-primary btn-lg"
-                        onClick={this.handleNewChatRoomRequest}/>
+                    </div>
+                    <div className="col-md-2 col-offset-md-1">
+                        <input type="button"
+                            value="Start a new chat..."
+                            className="btn btn-primary btn-lg"
+                            onClick={this.handleNewChatRoomRequest}/>
+                    </div>
                 </div>
             </div>
         );

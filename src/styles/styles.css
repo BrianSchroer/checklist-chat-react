@@ -63,11 +63,16 @@ div.header-logo-img {
     padding: .5em;
 }
 
+div.home-page {
+    margin-top: 3em;
+}
+
 div.chat-room-page {
     flex-grow: 1;
     min-height: 0px;
     display: flex;
     flex-direction: row;
+    margin: 1em 3em 0 3em;
 }
 
 div.chat-room-chat-column {
@@ -147,7 +152,16 @@ div.checklist-table-container {
 
 table.checklist-table {
     background-color: lightgoldenrodyellow;
-    border-color: green;
+}
+
+table.checklist-table > thead > tr > th {
+    border-width: 1px;
+    border-color: #00cccc;
+}
+
+table.checklist-table > tbody {
+    border-width: 1px !important;
+    border-color: #00cccc !important;
 }
 
 table.checklist-table > thead > tr > th {
@@ -168,8 +182,8 @@ table.checklist-table > tbody > tr > td:first-child {
 
 button.checklist-item-button {
     color: #333;
-    border-color: #ccc;
-    background-color: transparent;
+    background-color: lightgoldenrodyellow;
+    border-color: #e1e1bd;
 }
 
 ul#existingChecklistItemComments {
