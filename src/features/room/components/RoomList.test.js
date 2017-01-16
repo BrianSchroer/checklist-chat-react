@@ -18,7 +18,7 @@ function render(propOverrides = {}) {
 }
 
 describe('RoomList', () => {
-    it.only('should render a list item for each room', () => {
+    it('should render a list item for each room', () => {
         const rooms = defaultProps.rooms;
         const ul = enzymeHelper.findSingle(render(), 'div.jumbotron > ul');
         const listItems = ul.find('li');
