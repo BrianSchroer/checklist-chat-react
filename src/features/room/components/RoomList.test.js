@@ -7,7 +7,7 @@ import RoomList from './RoomList';
 const defaultProps = {
     rooms: [
         { id: 1, roomName: 'room 1', description: 'description 1' },
-        { id: 2, roomName: 'room 2', description: 'description 2' },
+        { id: 2, roomName: 'room 2', description: '' },
         { id: 3, roomName: 'room 3', description: 'description 3' }
     ]
 };
@@ -18,7 +18,7 @@ function render(propOverrides = {}) {
 }
 
 describe('RoomList', () => {
-    it('should render a list item for each room', () => {
+    it.only('should render a list item for each room', () => {
         const rooms = defaultProps.rooms;
         const ul = enzymeHelper.findSingle(render(), 'div.jumbotron > ul');
         const listItems = ul.find('li');
@@ -26,9 +26,20 @@ describe('RoomList', () => {
 
         for (let i = 0; i < rooms.length; i++) {
             const room = rooms[i];
+
             const li = listItems.at(i);
+            expect(li.node.key).toEqual(room.id);
+
             const link = enzymeHelper.findSingle(li, 'Link');
-            // TODO: Finish this test
+            expect(link.props().to).toEqual(`room/${room.id}`);
+
+            expect(enzymeHelper.findSingle(link, 'strong').text()).toEqual(room.roomName);
+
+            if (room.description) {
+                expect(link.children().at(1).text()).toEqual(` - ${room.description}`);
+            } else {
+                expect(link.children().length).toEqual(1);
+            }
         }
     });
 });
