@@ -1,23 +1,9 @@
 import React from 'react';
 import {storiesOf, action, linkTo} from '@kadira/storybook';
-import Welcome from './Welcome';
-import Button from './Button';
+
 import PlannedVsActual from '../src/components/PlannedVsActual';
 import SimpleTextInput from '../src/components/SimpleTextInput';
 import TextInput from '../src/components/TextInput';
-
-storiesOf('Welcome', module)
-  .add('to Storybook', () => (
-    <Welcome showApp={linkTo('Button')}/>
-  ));
-
-storiesOf('Button', module)
-  .add('with text', () => (
-    <Button onClick={action('clicked')}>Hello Button</Button>
-  ))
-  .add('with some emoji', () => (
-    <Button onClick={action('clicked')}>😀 😎 👍 💯</Button>
-  ));
 
 storiesOf('PlannedVsActual', module)
     .add('when planned = actual', () => (
