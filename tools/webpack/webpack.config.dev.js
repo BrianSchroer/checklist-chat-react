@@ -3,7 +3,6 @@ import path from 'path';
 import * as REGEX from '../../src/util/regexConstants';
 
 const rootPath = path.resolve(__dirname, '../../');
-console.log(rootPath);
 
 const config = {
     debug: true,

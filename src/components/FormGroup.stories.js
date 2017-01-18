@@ -1,19 +1,19 @@
 import React from 'react';
 import {storiesOf} from '@kadira/storybook';
+import storyFrameDecorator from '../../tools/storybook/storyFrameDecorator';
 import FormGroup from './FormGroup';
 
 storiesOf('FormGroup', module)
+    .addDecorator(storyFrameDecorator)
+
     .add('without error', () => (
-         <div className="storybook-frame">
-            <FormGroup label="label" name="testName" error="">
-                <p>(input children)</p>
-            </FormGroup>
-        </div>
+        <FormGroup label="label" name="testName" error="">
+            <p>{'(<children>)'}</p>
+        </FormGroup>
     ))
+
     .add('with error', () => (
-        <div className="storybook-frame">
-            <FormGroup label="label" name="testName" error="error message">
-                <p>(input children)</p>
-            </FormGroup>
-        </div>
+        <FormGroup label="label" name="testName" error="error message">
+            <p>{'(<children>)'}</p>
+        </FormGroup>
     ));

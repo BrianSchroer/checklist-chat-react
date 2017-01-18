@@ -1,41 +1,37 @@
 import React from 'react';
-import {storiesOf, action} from '@kadira/storybook';
+import { storiesOf, action } from '@kadira/storybook';
+import storyFrameDecorator from '../../tools/storybook/storyFrameDecorator';
 import TextInput from './TextInput';
 
 storiesOf('TextInput', module)
+    .addDecorator(storyFrameDecorator)
+
     .add('single line "TextBox" with placeholder', () => (
-        <div className="storybook-frame">
-            <TextInput label="label" name="testName" placeholder="placeholder"
-                onChange={action('onChange')} error="" />
-        </div>
+        <TextInput label="label" name="testName" placeholder="placeholder"
+            onChange={action('onChange')} error="" />
     ))
+
     .add('single line "TextBox" with value', () => (
-        <div className="storybook-frame">
-            <TextInput label="label" name="testName" placeholder="placeholder"
-                onChange={action('onChange')} value="value" error="" />
-        </div>
+        <TextInput label="label" name="testName" placeholder="placeholder"
+            onChange={action('onChange')} value="value" error="" />
     ))
+
     .add('single line "TextBox" with error', () => (
-        <div className="storybook-frame">
-            <TextInput label="label" name="testName" placeholder="placeholder"
-                onChange={action('onChange')} value="value" error="Error message" />
-        </div>
+        <TextInput label="label" name="testName" placeholder="placeholder"
+            onChange={action('onChange')} value="value" error="Error message" />
     ))
+
     .add('textarea with placeholder', () => (
-        <div className="storybook-frame">
-            <TextInput label="label" name="testName" placeholder="placeholder"
-                onChange={action('onChange')} error="" rows="3" />
-        </div>
+        <TextInput label="label" name="testName" placeholder="placeholder"
+            onChange={action('onChange')} error="" rows="3" />
     ))
+
     .add('textarea with value', () => (
-        <div className="storybook-frame">
-            <TextInput label="label" name="testName" placeholder="placeholder"
-                onChange={action('onChange')} value="value" error="" rows="3" />
-        </div>
+        <TextInput label="label" name="testName" placeholder="placeholder"
+            onChange={action('onChange')} value="value" error="" rows="3" />
     ))
+
     .add('textarea with error', () => (
-        <div className="storybook-frame">
-            <TextInput label="label" name="testName" placeholder="placeholder"
-                onChange={action('onChange')} value="value" error="Error message" rows="3" />
-        </div>
+        <TextInput label="label" name="testName" placeholder="placeholder"
+            onChange={action('onChange')} value="value" error="Error message" rows="3" />
     ));

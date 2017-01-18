@@ -6,7 +6,7 @@ import {validate} from '../roomInfoValidator';
 import Modal from '../../../components/Modal';
 import TextInput from '../../../components/TextInput';
 
-class RoomInfoEditorModal extends React.Component {
+export class RoomInfoEditorModal extends React.Component {
     constructor(props, context) {
         super(props, context);
 

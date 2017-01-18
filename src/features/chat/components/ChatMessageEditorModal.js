@@ -7,7 +7,7 @@ import {validate} from '../chatMessageValidator';
 import Modal from '../../../components/Modal';
 import TextInput from '../../../components/TextInput';
 
-class ChatMessageEditorModal extends React.Component {
+export class ChatMessageEditorModal extends React.Component {
     constructor(props, context) {
         super(props, context);
 

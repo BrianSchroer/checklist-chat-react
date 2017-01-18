@@ -98,7 +98,7 @@ div.chat-room-checklist-column {
 
 ul.chat-message-list {
     padding-left: 5px;
-    height: 10px; /* (overridden by flexbox, but needed to make overflow work) */
+    height: 100px; /* (overridden by flexbox, but needed to make overflow work) */
     flex-grow: 1;
     overflow-y: auto;
 }

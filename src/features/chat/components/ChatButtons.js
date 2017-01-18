@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {requestChatMessageModalDialog, requestChatParticipantsModalDialog} from '../../../app/modalDialogDucks';
 
-class ChatButtons extends React.Component {
+export class ChatButtons extends React.Component {
     constructor(props, context) {
         super(props, context);
 
