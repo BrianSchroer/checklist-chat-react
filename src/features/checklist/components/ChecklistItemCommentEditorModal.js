@@ -9,7 +9,7 @@ import Modal from '../../../components/Modal';
 import FormGroup from '../../../components/FormGroup';
 import TextInput from '../../../components/TextInput';
 
-class ChecklistItemCommentEditorModal extends React.Component {
+export class ChecklistItemCommentEditorModal extends React.Component {
     constructor(props, context) {
         super(props, context);
 
@@ -27,6 +27,7 @@ class ChecklistItemCommentEditorModal extends React.Component {
     componentDidMount() {
         uiHelpers.afterRenderIsComplete(() => {
             uiHelpers.scrollToBottom('existingChecklistItemComments');
+            uiHelpers.setFocusToFirstInputInForm('checklistItemCommentEditorModalForm');
         });
     }
 
@@ -70,7 +71,11 @@ class ChecklistItemCommentEditorModal extends React.Component {
         );
 
         return (
-            <Modal title={title} onCloseRequest={onCloseRequest} buttons={buttons}>
+            <Modal
+                formId="checklistItemCommentEditorModalForm"
+                title={title}
+                onCloseRequest={onCloseRequest}
+                buttons={buttons}>
 
                 <div>
                     {existingComments && existingComments.length &&

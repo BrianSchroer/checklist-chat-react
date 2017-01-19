@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -8,6 +9,7 @@ import ChatParticipantsModal from '../../features/chat/components/ChatParticipan
 import ChecklistItemEditorModal from '../../features/checklist/components/ChecklistItemEditorModal';
 import ChecklistItemCommentEditorModal from '../../features/checklist/components/ChecklistItemCommentEditorModal';
 import RoomInfoEditorModal from '../../features/room/components/RoomInfoEditorModal';
+/* eslint-enable */
 
 /**
  * This component manages modals for the site.

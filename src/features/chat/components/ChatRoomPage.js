@@ -6,7 +6,7 @@ import {requestChecklistItemModalDialog, requestRoomInfoModalDialog} from '../..
 import {joinChat} from '../../../features/room/roomDucks';
 import RoomInfo from '../../../features/room/components/RoomInfo';
 import ChatMessageList from './ChatMessageList';
-import ChatButtons from './ChatButtons';
+import ChatButtons from './ChatButtons';  // eslint-disable-line import/no-named-as-default
 import Checklist from '../../../features/checklist/components/Checklist';
 import ChecklistButtons from '../../../features/checklist/components/ChecklistButtons';
 

@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import Modal from '../../../components/Modal';
 
-class ChatParticipantsModal extends React.Component {
+export class ChatParticipantsModal extends React.Component {
     constructor(props, context) {
         super(props, context);
     }

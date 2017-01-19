@@ -13,7 +13,7 @@ import TextInput from '../../../components/TextInput';
 import format from '../../../util/format';
 import ChecklistItemStatusIcon from './CheckllistItemStatusIcon';
 
-class ChecklistItemEditor extends React.Component {
+export class ChecklistItemEditorModal extends React.Component {
     constructor(props, context) {
         super(props, context);
 
@@ -144,7 +144,7 @@ class ChecklistItemEditor extends React.Component {
     }
 }
 
-ChecklistItemEditor.propTypes = {
+ChecklistItemEditorModal.propTypes = {
     userId: PropTypes.string.isRequired,
     checklistItem: PropTypes.object.isRequired,
     isNewChecklistItem: PropTypes.bool.isRequired,
@@ -197,4 +197,4 @@ const mapDispatchToProps = (dispatch) => ({
         dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChecklistItemEditor);
+export default connect(mapStateToProps, mapDispatchToProps)(ChecklistItemEditorModal);

@@ -6,6 +6,7 @@ import {saveChatMessage} from '../chatDucks';
 import {validate} from '../chatMessageValidator';
 import Modal from '../../../components/Modal';
 import TextInput from '../../../components/TextInput';
+import * as uiHelpers from '../../../util/uiHelpers';
 
 export class ChatMessageEditorModal extends React.Component {
     constructor(props, context) {
@@ -20,6 +21,12 @@ export class ChatMessageEditorModal extends React.Component {
 
         this.onChange = this.onChange.bind(this);
         this.onSave = this.onSave.bind(this);
+    }
+
+    componentDidMount() {
+        uiHelpers.afterRenderIsComplete(() => {
+            uiHelpers.setFocusToFirstInputInForm('chatMessageEditorModalForm');
+        });
     }
 
     onChange(event) {
@@ -54,13 +61,17 @@ export class ChatMessageEditorModal extends React.Component {
             <div>
                 <input type="button" value="Cancel" className="btn btn-default"
                     onClick={onCloseRequest}/>
-                <input type="submit" value="Save" className="btn btn-primary"
-                    onClick={this.onSave}/>
+                <input type="submit" value="Save" className="btn btn-primary" />
             </div>
         );
 
         return (
-            <Modal title="Say Something..." onCloseRequest={onCloseRequest} buttons={buttons}>
+            <Modal
+                formId="chatMessageEditorModalForm"
+                title="Say Something..."
+                onSubmit={this.onSave}
+                onCloseRequest={onCloseRequest}
+                buttons={buttons}>
 
                 <TextInput name="text" label="Message"
                     rows={3} value={chatMessage.text}

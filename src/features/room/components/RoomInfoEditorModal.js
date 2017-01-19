@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import * as uiHelpers from '../../../util/uiHelpers';
 import {saveRoomInfo} from '../../../features/room/roomDucks';
 import {validate} from '../roomInfoValidator';
 import Modal from '../../../components/Modal';
@@ -20,6 +21,12 @@ export class RoomInfoEditorModal extends React.Component {
 
         this.onChange = this.onChange.bind(this);
         this.onSave = this.onSave.bind(this);
+    }
+
+    componentDidMount() {
+        uiHelpers.afterRenderIsComplete(() => {
+            uiHelpers.setFocusToFirstInputInForm('roomInfoEditorModalForm');
+        });
     }
 
     onChange(event) {
@@ -67,6 +74,7 @@ export class RoomInfoEditorModal extends React.Component {
 
         return (
             <Modal
+                formId="roomInfoEditorModalForm"
                 title={(isNewRoom) ? 'Add Chat Room' : 'Edit Chat Room Info'}
                 onCloseRequest={onCloseRequest}
                 buttons={buttons}>
