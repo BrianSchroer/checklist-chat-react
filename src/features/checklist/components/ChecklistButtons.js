@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {requestChecklistItemModalDialog} from '../../../app/modalDialogDucks';
 
-class ChecklistButtons extends React.Component {
+export class ChecklistButtons extends React.Component {
     constructor(props, context) {
         super(props, context);
 

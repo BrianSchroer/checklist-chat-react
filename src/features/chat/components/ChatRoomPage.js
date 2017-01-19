@@ -8,9 +8,9 @@ import RoomInfo from '../../../features/room/components/RoomInfo';
 import ChatMessageList from './ChatMessageList';
 import ChatButtons from './ChatButtons';  // eslint-disable-line import/no-named-as-default
 import Checklist from '../../../features/checklist/components/Checklist';
-import ChecklistButtons from '../../../features/checklist/components/ChecklistButtons';
+import {ChecklistButtons} from '../../../features/checklist/components/ChecklistButtons';
 
-class ChatRoomPage extends React.Component {
+export class ChatRoomPage extends React.Component {
     constructor(props, context) {
         super(props, context);
 

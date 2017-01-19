@@ -1,9 +1,26 @@
-import {configure} from '@kadira/storybook';
+import { configure } from '@kadira/storybook';
 
-function fileNameWithoutPath(fileName) {
+function extractFileName(path) {
     const separator = '/';
-    const nodes = fileName.split(separator);
-    return nodes[nodes.length - 1];
+    const nodes = path.split(separator);
+    const fileName = nodes[nodes.length - 1];
+    return fileName;
+}
+
+function pathComparer(path1, path2) {
+    const fileName1 = extractFileName(path1);
+    const fileName2 = extractFileName(path2);
+    let response = 0;
+
+    if (fileName1 < fileName2) {
+        response = -1;
+    } else {
+        if (fileName1 > fileName2) {
+            response = 1;
+        }
+    }
+
+    return response;
 }
 
 function loadStories() {
@@ -12,7 +29,11 @@ function loadStories() {
         /* includeSubdirectories: */ true,
         /.stories.js$/);
 
-    req.keys().sort(fileNameWithoutPath).forEach((fileName) => req(fileName));
+    const sortedKeys = req.keys().sort(pathComparer);
+    console.log('sorted:');
+    console.log(sortedKeys);
+
+    req.keys().sort(pathComparer).forEach((fileName) => req(fileName));
 }
 
 configure(loadStories, module);

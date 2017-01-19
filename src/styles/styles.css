@@ -145,7 +145,7 @@ ul.room-list li {
 
 div.checklist-table-container {
     margin-bottom: 1em;
-    height: 10px; /* (overridden by flexbox, but needed to make overflow work) */
+    height: 240px; /* (overridden by flexbox, but needed to make overflow work) */
     flex-grow: 1;
     overflow-y: auto;
 }
