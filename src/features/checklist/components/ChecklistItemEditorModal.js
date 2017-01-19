@@ -11,7 +11,7 @@ import Modal from '../../../components/Modal';
 import SelectInput from '../../../components/SelectInput';
 import TextInput from '../../../components/TextInput';
 import format from '../../../util/format';
-import ChecklistItemStatusIcon from './CheckllistItemStatusIcon';
+import ChecklistItemStatusIcon from './ChecklistItemStatusIcon';
 
 export class ChecklistItemEditorModal extends React.Component {
     constructor(props, context) {

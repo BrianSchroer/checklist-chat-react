@@ -74,6 +74,6 @@ storiesOf('ChatRoomPage', module)
                 }
             ]}
             actions={{
-                joinChat: (roomId, userId) => action('joinChat')
+                joinChat: () => action('joinChat')
             }} />
     ));
