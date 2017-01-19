@@ -1,42 +1,16 @@
 import React, {PropTypes} from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {requestChecklistItemModalDialog} from '../../../app/modalDialogDucks';
 
-export class ChecklistButtons extends React.Component {
-    constructor(props, context) {
-        super(props, context);
-
-        this.handleChecklistItemAddRequest  = this.handleChecklistItemAddRequest. bind(this);
-    }
-
-    handleChecklistItemAddRequest(event) {
-        event.preventDefault();
-        this.props.actions.requestChecklistItemModalDialog();
-    }
-
-    render() {
-        return(
-            <div>
-                <button className="btn btn-primary checklist-item-button pull-right"
-                    onClick={this.handleChecklistItemAddRequest}>Add Checklist Item...</button>
-            </div>
-        );
-    }
-}
-
-ChecklistButtons.propTypes = {
-    actions: PropTypes.object.isRequired
+const ChecklistButtons = ({OnChecklistItemAddRequest}) => {
+    return(
+        <div>
+            <button className="btn btn-primary checklist-item-button pull-right"
+                onClick={OnChecklistItemAddRequest}>Add Checklist Item...</button>
+        </div>
+    );
 };
 
-function mapStateToProps(state) {
-    return state;
-}
+ChecklistButtons.propTypes = {
+    OnChecklistItemAddRequest: PropTypes.func.isRequired
+};
 
-const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators(
-        {requestChecklistItemModalDialog},
-        dispatch)
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ChecklistButtons);
+export default ChecklistButtons;

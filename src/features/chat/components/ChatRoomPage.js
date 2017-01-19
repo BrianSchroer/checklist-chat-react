@@ -2,13 +2,13 @@ import React, {PropTypes} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as uiHelpers from '../../../util/uiHelpers';
-import {requestChecklistItemModalDialog, requestRoomInfoModalDialog} from '../../../app/modalDialogDucks';
+import * as modalDialogActions from '../../../app/modalDialogDucks';
 import {joinChat} from '../../../features/room/roomDucks';
 import RoomInfo from '../../../features/room/components/RoomInfo';
 import ChatMessageList from './ChatMessageList';
 import ChatButtons from './ChatButtons';  // eslint-disable-line import/no-named-as-default
 import Checklist from '../../../features/checklist/components/Checklist';
-import {ChecklistButtons} from '../../../features/checklist/components/ChecklistButtons';
+import ChecklistButtons from '../../../features/checklist/components/ChecklistButtons';
 
 export class ChatRoomPage extends React.Component {
     constructor(props, context) {
@@ -19,6 +19,9 @@ export class ChatRoomPage extends React.Component {
         };
 
         this.handleRoomInfoEditRequest = this.handleRoomInfoEditRequest.bind(this);
+        this.handleChatMessageAddRequest = this.handleChatMessageAddRequest.bind(this);
+        this.handleChatParticipantsRequest = this.handleChatParticipantsRequest.bind(this);
+        this.handleChecklistItemAddRequest = this.handleChecklistItemAddRequest.bind(this);
         this.handleChecklistItemEditRequest = this.handleChecklistItemEditRequest.bind(this);
     }
 
@@ -54,6 +57,16 @@ export class ChatRoomPage extends React.Component {
         this.props.actions.requestRoomInfoModalDialog(this.props.room.id);
     }
 
+    handleChatMessageAddRequest(event) {
+        event.preventDefault();
+        this.props.actions.requestChatMessageModalDialog();
+    }
+
+    handleChatParticipantsRequest(event) {
+        event.preventDefault();
+        this.props.actions.requestChatParticipantsModalDialog();
+    }
+
     handleChecklistItemAddRequest(event) {
         event.preventDefault;
         this.props.actions.requestChecklistItemModalDialog(this.props.room.id);
@@ -74,14 +87,17 @@ export class ChatRoomPage extends React.Component {
                         {room && <RoomInfo room={room} onEditRequest={this.handleRoomInfoEditRequest} />}                    </div>
                     <ChatMessageList chatMessages={this.props.chatMessages} />
                     <div className="chat-room-buttons">
-                        <ChatButtons/>
+                        <ChatButtons
+                            OnChatMessageAddRequest={this.handleChatMessageAddRequest}
+                            OnChatParticipantsRequest={this.handleChatParticipantsRequest}
+                        />
                     </div>
                 </div>
                 <div className="chat-room-checklist-column">
                     <Checklist checklistItems={this.props.checklistItems}
                         OnEditRequest={this.handleChecklistItemEditRequest}/>
                     <div className="chat-room-buttons">
-                        <ChecklistButtons/>
+                        <ChecklistButtons OnChecklistItemAddRequest={this.handleChecklistItemAddRequest} />
                     </div>
                 </div>
             </div>
@@ -109,7 +125,10 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => ({
     actions: bindActionCreators({
-        requestChecklistItemModalDialog, requestRoomInfoModalDialog,
+        requestChatMessageModalDialog: modalDialogActions.requestChatMessageModalDialog,
+        requestChatParticipantsModalDialog: modalDialogActions.requestChatParticipantsModalDialog,
+        requestChecklistItemModalDialog: modalDialogActions.requestChecklistItemModalDialog,
+        requestRoomInfoModalDialog: modalDialogActions.requestRoomInfoModalDialog,
         joinChat
     }, dispatch)
 });

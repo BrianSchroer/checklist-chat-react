@@ -29,10 +29,6 @@ function loadStories() {
         /* includeSubdirectories: */ true,
         /.stories.js$/);
 
-    const sortedKeys = req.keys().sort(pathComparer);
-    console.log('sorted:');
-    console.log(sortedKeys);
-
     req.keys().sort(pathComparer).forEach((fileName) => req(fileName));
 }
 
