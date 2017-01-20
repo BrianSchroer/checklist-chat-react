@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 import * as uiHelpers from '../../../util/uiHelpers';
 import {validateComment} from '../checklistItemValidator';
 import {saveChecklistItemComment} from '../checklistItemDucks';
-import ChatMessageListItem from '../../chat/components/ChatMessageListItem';
+import ChatMessage from '../../chat/components/ChatMessage';
 import Modal from '../../../components/Modal';
 import FormGroup from '../../../components/FormGroup';
 import TextInput from '../../../components/TextInput';
@@ -27,7 +27,9 @@ export class ChecklistItemCommentEditorModal extends React.Component {
     componentDidMount() {
         uiHelpers.afterRenderIsComplete(() => {
             uiHelpers.scrollToBottom('existingChecklistItemComments');
-            uiHelpers.setFocusToFirstInputInForm('checklistItemCommentEditorModalForm');
+            if (this.props.shouldFocus) {
+                uiHelpers.setFocusToFirstInputInForm('checklistItemCommentEditorModalForm');
+            }
         });
     }
 
@@ -83,7 +85,7 @@ export class ChecklistItemCommentEditorModal extends React.Component {
                             <ul id="existingChecklistItemComments"
                                 className="checklist-comment-list list-unstyled">
                                 {existingComments.map(comment =>
-                                    <ChatMessageListItem key={comment.id} chatMessage={comment}/> )}
+                                    <li key={comment.id}><ChatMessage chatMessage={comment}/></li>)}
                             </ul>
                         </FormGroup>
                     }
@@ -100,6 +102,7 @@ export class ChecklistItemCommentEditorModal extends React.Component {
 ChecklistItemCommentEditorModal.propTypes = {
     userId: PropTypes.string.isRequired,
     checklistItem: PropTypes.object.isRequired,
+    shouldFocus: PropTypes.bool,
     onCloseRequest: PropTypes.func.isRequired,
     actions: PropTypes.object.isRequired
 };
@@ -109,10 +112,12 @@ function mapStateToProps(state, ownProps) {
     const [roomId, sequenceNumber] = state.modalDialogRequest.keys;
     const onCloseRequest = ownProps.onCloseRequest;
 
+    const shouldFocus = (state.shouldFocus == undefined) ? true : state.shouldFocus;
+
     const checklistItem = state.checklistItems.find(item =>
         item.roomId === roomId && item.sequenceNumber === sequenceNumber);
 
-    return {userId, checklistItem, onCloseRequest};
+    return {userId, checklistItem, shouldFocus, onCloseRequest};
 }
 
 const mapDispatchToProps = (dispatch) => ({

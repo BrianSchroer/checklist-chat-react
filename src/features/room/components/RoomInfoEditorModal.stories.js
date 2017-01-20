@@ -7,7 +7,8 @@ storiesOf('RoomInfoEditorModal', module)
         <RoomInfoEditorModal
             room={{id: '', roomName: '', description: '', phoneInfo: ''}}
             userId="userId"
-            isNewRoom="true"
+            isNewRoom
+            shouldFocus={false}
             actions={{}}
             onCloseRequest={action('onCloseRequest')}
          />
@@ -16,7 +17,8 @@ storiesOf('RoomInfoEditorModal', module)
         <RoomInfoEditorModal
             room={{id: 'id', roomName: 'roomName', description: 'description', phoneInfo: 'phoneInfo'}}
             userId="userId"
-            isNewRoom="false"
+            isNewRoom={false}
+            shouldFocus={false}
             actions={{}}
             onCloseRequest={action('onCloseRequest')}
          />

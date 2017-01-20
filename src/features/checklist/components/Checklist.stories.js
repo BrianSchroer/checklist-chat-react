@@ -35,5 +35,5 @@ storiesOf('Checklist', module)
                     ]
                 }
             ]}
-            OnEditRequest={action('OnEditRequest')} />
+            onEditRequest={action('onEditRequest')} />
     ));

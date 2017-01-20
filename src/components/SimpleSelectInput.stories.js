@@ -32,7 +32,7 @@ storiesOf('SimpleSelectInput', module)
     .add('listbox - no value selected', () => (
         <SimpleSelectInput
             name="name"
-            size="3"
+            size={3}
             options={options}
             multiple={false}
             onChange={action('onChange')} />
@@ -41,7 +41,7 @@ storiesOf('SimpleSelectInput', module)
     .add('listbox - value 2 selected', () => (
         <SimpleSelectInput
             name="name"
-            size="3"
+            size={3}
             value="Value2"
             options={options}
             multiple={false}
@@ -51,8 +51,8 @@ storiesOf('SimpleSelectInput', module)
     .add('listbox - multiselect', () => (
         <SimpleSelectInput
             name="name"
-            size="3"
+            size={3}
             options={options}
-            multiple={true}
+            multiple
             onChange={action('onChange')} />
     ));

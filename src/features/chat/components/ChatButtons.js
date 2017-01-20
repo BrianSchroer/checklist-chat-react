@@ -1,19 +1,19 @@
 import React, {PropTypes} from 'react';
 
-const ChatButtons = ({OnChatMessageAddRequest, OnChatParticipantsRequest}) => {
+const ChatButtons = ({onChatMessageAddRequest, onChatParticipantsRequest}) => {
     return(
         <div>
             <button className="btn btn-primary"
-                onClick={OnChatMessageAddRequest}>Say something...</button>
+                onClick={onChatMessageAddRequest}>Say something...</button>
             <button className="btn btn-default pull-right"
-                onClick={OnChatParticipantsRequest}>Who's here?</button>
+                onClick={onChatParticipantsRequest}>Who's here?</button>
         </div>
     );
 };
 
 ChatButtons.propTypes = {
-    OnChatMessageAddRequest: PropTypes.func.isRequired,
-    OnChatParticipantsRequest: PropTypes.func.isRequired
+    onChatMessageAddRequest: PropTypes.func.isRequired,
+    onChatParticipantsRequest: PropTypes.func.isRequired
 };
 
 export default ChatButtons;

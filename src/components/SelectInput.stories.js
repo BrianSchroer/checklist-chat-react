@@ -41,7 +41,7 @@ storiesOf('SelectInput', module)
     .add('listbox - no value selected', () => (
         <SelectInput
             name="name" label="label"
-            size="3"
+            size={3}
             options={options}
             multiple={false}
             onChange={action('onChange')} />
@@ -50,7 +50,7 @@ storiesOf('SelectInput', module)
     .add('listbox - value 2 selected', () => (
         <SelectInput
             name="name" label="label"
-            size="3"
+            size={3}
             value="Value2"
             options={options}
             multiple={false}
@@ -60,18 +60,18 @@ storiesOf('SelectInput', module)
     .add('listbox - multiselect', () => (
         <SelectInput
             name="name" label="label"
-            size="3"
+            size={3}
             options={options}
-            multiple={true}
+            multiple
             onChange={action('onChange')} />
     ))
 
     .add('listbox with error', () => (
         <SelectInput
             name="name" label="label"
-            size="3"
+            size={3}
             error="Make up your mind!"
             options={options}
             multiple={false}
             onChange={action('onChange')} />
-    ))
+    ));

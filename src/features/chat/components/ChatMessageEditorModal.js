@@ -13,7 +13,10 @@ export class ChatMessageEditorModal extends React.Component {
         super(props, context);
 
         this.state = {
-            chatMessage: Object.assign({}, props.chatMessage),
+            chatMessage: {
+                chatMessageType: chatMessageType.CHAT,
+                text: ''
+            },
             isSaving: false,
             isDirty: false,
             errors: {}
@@ -24,9 +27,11 @@ export class ChatMessageEditorModal extends React.Component {
     }
 
     componentDidMount() {
-        uiHelpers.afterRenderIsComplete(() => {
-            uiHelpers.setFocusToFirstInputInForm('chatMessageEditorModalForm');
-        });
+        if (this.props.shouldFocus) {
+            uiHelpers.afterRenderIsComplete(() => {
+                uiHelpers.setFocusToFirstInputInForm('chatMessageEditorModalForm');
+            });
+        }
     }
 
     onChange(event) {
@@ -85,23 +90,18 @@ export class ChatMessageEditorModal extends React.Component {
 ChatMessageEditorModal.propTypes = {
     roomId: PropTypes.string,
     userId: PropTypes.string.isRequired,
-    chatMessage: PropTypes.object.isRequired,
+    shouldFocus: PropTypes.bool,
     onCloseRequest: PropTypes.func.isRequired,
     actions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
-    const userId = state.userId;
-    const roomId = state.roomId;
-
-    const chatMessage = {
-        chatMessageType: chatMessageType.CHAT,
-        text: ''
-    };
+    const {userId, roomId} = state;
+    const shouldFocus = (state.shouldFocus == undefined) ? true : state.shouldFocus;
 
     const onCloseRequest = ownProps.onCloseRequest;
 
-    return {userId, roomId, chatMessage, onCloseRequest};
+    return {userId, roomId, shouldFocus, onCloseRequest};
 }
 
 const mapDispatchToProps = (dispatch) => ({

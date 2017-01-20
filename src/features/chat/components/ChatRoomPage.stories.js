@@ -6,6 +6,7 @@ import {ChatRoomPage} from './ChatRoomPage';
 
 storiesOf('ChatRoomPage', module)
     .add('ChatRoomPage', () => (
+        <div style={{height: "500px", display: "flex"}}>
         <ChatRoomPage
             routeParams={{id: 123}}
             userId="userId"
@@ -76,4 +77,5 @@ storiesOf('ChatRoomPage', module)
             actions={{
                 joinChat: () => action('joinChat')
             }} />
+        </div>
     ));

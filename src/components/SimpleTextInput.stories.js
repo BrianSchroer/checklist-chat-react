@@ -17,11 +17,11 @@ storiesOf('SimpleTextInput', module)
     ))
 
     .add('textarea with placeholder', () => (
-        <SimpleTextInput name="testName" rows="3" placeholder="placeholder"
+        <SimpleTextInput name="testName" rows={3} placeholder="placeholder"
             onChange={action('onChange')} />
     ))
 
     .add('textarea with value', () => (
-        <SimpleTextInput name="testName" rows="3" placeholder="placeholder"
+        <SimpleTextInput name="testName" rows={3} placeholder="placeholder"
             value="value" onChange={action('onChange')} />
     ));

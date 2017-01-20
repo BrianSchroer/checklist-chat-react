@@ -23,15 +23,15 @@ storiesOf('TextInput', module)
 
     .add('textarea with placeholder', () => (
         <TextInput label="label" name="testName" placeholder="placeholder"
-            onChange={action('onChange')} error="" rows="3" />
+            onChange={action('onChange')} error="" rows={3} />
     ))
 
     .add('textarea with value', () => (
         <TextInput label="label" name="testName" placeholder="placeholder"
-            onChange={action('onChange')} value="value" error="" rows="3" />
+            onChange={action('onChange')} value="value" error="" rows={3} />
     ))
 
     .add('textarea with error', () => (
         <TextInput label="label" name="testName" placeholder="placeholder"
-            onChange={action('onChange')} value="value" error="Error message" rows="3" />
+            onChange={action('onChange')} value="value" error="Error message" rows={3} />
     ));

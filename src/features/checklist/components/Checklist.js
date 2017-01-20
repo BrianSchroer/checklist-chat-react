@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import ChecklistItem from './ChecklistItem';
 
-const Checklist = ({checklistItems, OnEditRequest}) => {
+const Checklist = ({checklistItems, onEditRequest}) => {
     return (
         <div className="checklist-table-container">
             <table className="table checklist-table">
@@ -19,8 +19,8 @@ const Checklist = ({checklistItems, OnEditRequest}) => {
                 {checklistItems.map(item =>
                     <ChecklistItem key={item.id}
                         checklistItem={item}
-                        OnEditRequest={function(event) {
-                            OnEditRequest(event, item.roomId, item.sequenceNumber);
+                        onEditRequest={function(event) {
+                            onEditRequest(event, item.roomId, item.sequenceNumber);
                         }}/>)}
             </table>
         </div>
@@ -29,7 +29,7 @@ const Checklist = ({checklistItems, OnEditRequest}) => {
 
 Checklist.propTypes = {
     checklistItems: PropTypes.arrayOf(PropTypes.object).isRequired,
-    OnEditRequest: PropTypes.func.isRequired
+    onEditRequest: PropTypes.func.isRequired
 };
 
 export default Checklist;

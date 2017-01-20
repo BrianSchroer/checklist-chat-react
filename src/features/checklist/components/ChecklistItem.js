@@ -7,7 +7,7 @@ import ChecklistItemComment from './ChecklistItemComment';
 // This component returns a tbody because it might require multiple tr's and React requires
 // returning a single root element. (It's legal for tables to have multiple tbody's.)
 
-const ChecklistItem = ({checklistItem, OnEditRequest}) => {
+const ChecklistItem = ({checklistItem, onEditRequest}) => {
     const comments = checklistItem.chatMessages || [];
 
     return (
@@ -16,7 +16,7 @@ const ChecklistItem = ({checklistItem, OnEditRequest}) => {
                 <td>
                     <button className="btn btn-primary btn-sm checklist-item-button"
                         title="Edit this item"
-                        onClick={OnEditRequest}>
+                        onClick={onEditRequest}>
                         {checklistItem.sequenceNumber}
                     </button>
                  </td>
@@ -45,7 +45,7 @@ const ChecklistItem = ({checklistItem, OnEditRequest}) => {
 
 ChecklistItem.propTypes = {
     checklistItem: PropTypes.object.isRequired,
-    OnEditRequest: PropTypes.func.isRequired
+    onEditRequest: PropTypes.func.isRequired
 };
 
 export default ChecklistItem;

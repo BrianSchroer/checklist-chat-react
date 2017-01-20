@@ -88,16 +88,16 @@ export class ChatRoomPage extends React.Component {
                     <ChatMessageList chatMessages={this.props.chatMessages} />
                     <div className="chat-room-buttons">
                         <ChatButtons
-                            OnChatMessageAddRequest={this.handleChatMessageAddRequest}
-                            OnChatParticipantsRequest={this.handleChatParticipantsRequest}
+                            onChatMessageAddRequest={this.handleChatMessageAddRequest}
+                            onChatParticipantsRequest={this.handleChatParticipantsRequest}
                         />
                     </div>
                 </div>
                 <div className="chat-room-checklist-column">
                     <Checklist checklistItems={this.props.checklistItems}
-                        OnEditRequest={this.handleChecklistItemEditRequest}/>
+                        onEditRequest={this.handleChecklistItemEditRequest}/>
                     <div className="chat-room-buttons">
-                        <ChecklistButtons OnChecklistItemAddRequest={this.handleChecklistItemAddRequest} />
+                        <ChecklistButtons onChecklistItemAddRequest={this.handleChecklistItemAddRequest} />
                     </div>
                 </div>
             </div>

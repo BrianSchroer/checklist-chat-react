@@ -7,5 +7,5 @@ storiesOf('Header', module)
     .addDecorator(storyFrameDecorator)
 
     .add('Header', () => (
-        <Header isLoading="false" />
+        <Header isLoading={false} />
     ));

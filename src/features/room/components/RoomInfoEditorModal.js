@@ -24,9 +24,11 @@ export class RoomInfoEditorModal extends React.Component {
     }
 
     componentDidMount() {
-        uiHelpers.afterRenderIsComplete(() => {
-            uiHelpers.setFocusToFirstInputInForm('roomInfoEditorModalForm');
-        });
+        if (this.props.shouldFocus) {
+            uiHelpers.afterRenderIsComplete(() => {
+                uiHelpers.setFocusToFirstInputInForm('roomInfoEditorModalForm');
+            });
+        }
     }
 
     onChange(event) {
@@ -55,10 +57,6 @@ export class RoomInfoEditorModal extends React.Component {
 
         actions.saveRoomInfo(room, userId);
         onCloseRequest(event);
-
-        if (isNewRoom) {
-            //TODO: route to new room?
-        }
     }
 
     render() {
@@ -100,6 +98,7 @@ RoomInfoEditorModal.propTypes = {
     room: PropTypes.object.isRequired,
     userId: PropTypes.string.isRequired,
     isNewRoom: PropTypes.bool.isRequired,
+    shouldFocus: PropTypes.bool.isRequired,
     onCloseRequest: PropTypes.func.isRequired,
     actions: PropTypes.object.isRequired
 };
@@ -123,7 +122,9 @@ function mapStateToProps(state, ownProps) {
     const userId = state.userId;
     const onCloseRequest = ownProps.onCloseRequest;
 
-    return {onCloseRequest, room, userId, isNewRoom};
+    const shouldFocus = (state.shouldFocus == undefined) ? true : state.shouldFocus;
+
+    return {onCloseRequest, room, userId, isNewRoom, shouldFocus};
 }
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,11 +1,11 @@
 import React, {PropTypes} from 'react';
-import ChatMessageListItem from './ChatMessageListItem';
+import ChatMessage from './ChatMessage';
 
 const ChatMessageList = ({chatMessages}) => {
     return (
         <ul id="chatMessageList" className="chat-message-list list-unstyled">
             {chatMessages.map(message =>
-                <ChatMessageListItem key={message.id} chatMessage={message}/>
+                <li key={message.id}><ChatMessage chatMessage={message}/></li>
             )}
         </ul>
     );

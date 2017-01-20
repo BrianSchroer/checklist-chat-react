@@ -20,7 +20,7 @@ storiesOf('ChecklistItem', module)
                     actualEndTime: null,
                     userName: 'Jabba Script'
                 }}
-                OnEditRequest={action('OnEditRequest')} />
+                onEditRequest={action('onEditRequest')} />
         </table>
     ))
 
@@ -41,6 +41,6 @@ storiesOf('ChecklistItem', module)
                         { timeStamp: '2016-12-08T13:01:00.222Z', userName: 'Sue Pervisor', text: "Hold your horses, big guy." }
                     ]
                 }}
-                OnEditRequest={action('OnEditRequest')} />
+                onEditRequest={action('onEditRequest')} />
         </table>
     ));

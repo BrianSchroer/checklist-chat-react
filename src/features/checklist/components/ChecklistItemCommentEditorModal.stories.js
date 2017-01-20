@@ -10,10 +10,11 @@ storiesOf('ChecklistItemCommentEditorModal', module)
                 sequenceNumber: 1,
                 description: 'checklist item description',
                 chatMessages: [
-                    {  timeStamp: '2016-12-08T14:57:10.222Z', userName: 'user name', text: "existing comment" },
-                    {  timeStamp: '2016-12-08T14:57:10.222Z', userName: 'user name', text: "existing comment" }
+                    { id: 1, timeStamp: '2016-12-08T14:57:10.222Z', userName: 'user name', text: "existing comment" },
+                    { id: 2, timeStamp: '2016-12-08T14:57:10.222Z', userName: 'user name', text: "existing comment" }
                 ]
             }}
+            shouldFocus={false}
             actions={{}}
             onCloseRequest={action('onCloseRequest')}
          />
