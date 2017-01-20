@@ -1,7 +1,11 @@
 import React, {PropTypes} from 'react';
+import ChecklistAddInvitation from './ChecklistAddInvitation';
 import ChecklistItem from './ChecklistItem';
 
 const Checklist = ({checklistItems, onEditRequest}) => {
+    const hasItems = checklistItems.length > 0;
+    const hasNoItems = !hasItems;
+
     return (
         <div className="checklist-table-container">
             <table className="table checklist-table">
@@ -13,15 +17,19 @@ const Checklist = ({checklistItems, onEditRequest}) => {
                         <th>End</th>
                         <th>Description</th>
                         <th>Performed by</th>
-                        <th>&nbsp;</th>
                     </tr>
                 </thead>
-                {checklistItems.map(item =>
-                    <ChecklistItem key={item.id}
-                        checklistItem={item}
-                        onEditRequest={function(event) {
-                            onEditRequest(event, item.roomId, item.sequenceNumber);
-                        }}/>)}
+                {hasItems &&
+                    checklistItems.map(item =>
+                        <ChecklistItem key={item.id}
+                            checklistItem={item}
+                            onEditRequest={function(event) {
+                                onEditRequest(event, item.roomId, item.sequenceNumber);
+                            }}
+                        />
+                    )
+                }
+                {hasNoItems && <ChecklistAddInvitation/>}
             </table>
         </div>
     );

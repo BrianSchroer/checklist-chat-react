@@ -7,7 +7,7 @@ import Checklist from './Checklist';
 storiesOf('Checklist', module)
     .addDecorator(storyFrameDecorator)
 
-    .add('Checklist', () => (
+    .add('with checklist items', () => (
         <Checklist
             checklistItems={[
                 {
@@ -35,5 +35,11 @@ storiesOf('Checklist', module)
                     ]
                 }
             ]}
+            onEditRequest={action('onEditRequest')} />
+    ))
+
+    .add('without checklist items', () => (
+        <Checklist
+            checklistItems={[]}
             onEditRequest={action('onEditRequest')} />
     ));

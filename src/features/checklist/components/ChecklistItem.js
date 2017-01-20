@@ -33,7 +33,6 @@ const ChecklistItem = ({checklistItem, onEditRequest}) => {
                 </td>
                 <td>{checklistItem.description}</td>
                 <td>{checklistItem.userName}</td>
-                <td>&nbsp;</td>
             </tr>
             {
                 comments.map(comment =>
