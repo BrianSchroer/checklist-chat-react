@@ -6,6 +6,7 @@ import * as modalDialogType from '../modalDialogType';
 import {hideModalDialog} from '../modalDialogDucks';
 import ChatMessageEditorModal from '../../features/chat/components/ChatMessageEditorModal';
 import ChatParticipantsModal from '../../features/chat/components/ChatParticipantsModal';
+import ChatPriorityNotificationModal from '../../features/chat/components/ChatPriorityNotificationModal';
 import ChecklistItemEditorModal from '../../features/checklist/components/ChecklistItemEditorModal';
 import ChecklistItemCommentEditorModal from '../../features/checklist/components/ChecklistItemCommentEditorModal';
 import RoomInfoEditorModal from '../../features/room/components/RoomInfoEditorModal';
@@ -17,7 +18,7 @@ import RoomInfoEditorModal from '../../features/room/components/RoomInfoEditorMo
  * @class ModalManager
  * @extends {React.Component}
  */
-class ModalManager extends React.Component {
+export class ModalManager extends React.Component {
     constructor(props, context) {
         super(props, context);
 
@@ -37,6 +38,9 @@ class ModalManager extends React.Component {
 
             case modalDialogType.CHAT_PARTICIPANTS:
                 return <ChatParticipantsModal onCloseRequest={this.closeModal}/>;
+
+            case modalDialogType.CHAT_PRIORITY_NOTIFICATION:
+                return <ChatPriorityNotificationModal onCloseRequest={this.closeModal}/>;
 
             case modalDialogType.CHECKLIST_ITEM:
                 return <ChecklistItemEditorModal onCloseRequest={this.closeModal}/>;

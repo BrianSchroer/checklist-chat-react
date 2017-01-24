@@ -18,6 +18,19 @@ storiesOf('ChatMessage', module)
         />
     ))
 
+    .add('chatMessageType.CHAT high priority', () => (
+        <ChatMessage
+            userId="currentUser"
+            chatMessage={{
+                chatMessageType: chatMessageType.CHAT,
+                userName: 'Sue Pervisor',
+                timeStamp: '2016-12-08T14:57:10.222Z',
+                text: 'Grow up, people! *@#$% profanity will not be tolerated!',
+                priorityNotificationRecipients: ['currentUser', 'anotherUser']
+            }}
+        />
+    ))
+
     .add('chatMessageType.CHAT long message', () => (
         <ChatMessage
             chatMessage={{

@@ -34,6 +34,10 @@ export function requestChecklistItemCommentModalDialog(roomId, sequenceNumber) {
     return requestModalDialog(modalDialogType.CHECKLIST_ITEM_COMMENT, [roomId, sequenceNumber]);
 }
 
+export function requestPriorityNotificationModalDialog(chatMessage) {
+    return requestModalDialog(modalDialogType.CHAT_PRIORITY_NOTIFICATION, [chatMessage]);
+}
+
 export function hideModalDialog() {
     return requestModalDialog(modalDialogType.NONE, []);
 }

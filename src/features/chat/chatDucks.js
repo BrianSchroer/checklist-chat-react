@@ -5,16 +5,22 @@ import {beginAjaxCall, ajaxCallError} from '../../app/ajaxStatusDucks';
 import * as mockJsonDbApi from '../../api/mockJsonDbApi';
 
 const prefix = 'checklist-chat/chat/';
+
+// won't be used with SignalR?:
 export const LOAD_CHAT_MESSAGES_FOR_ROOM_SUCCESS = `${prefix}LOAD_CHAT_MESSAGES_FOR_ROOM_SUCCESS`;
-export const LOADED_CHAT_PARTICIPANTS_FOR_ROOM = `${prefix}LOADED_CHAT_PARTICIPANTS_FOR_ROOM`;
+
+export const DISPLAY_CHAT_MESSAGE = `${prefix}DISPLAY_CHAT_MESSAGE`;
+export const DISPLAY_CHAT_USER_ACTION = `${prefix}DISPLAY_CHAT_USER_ACTION`;
+export const DISPLAY_PRIORITY_NOTIFICATION = `${prefix}DISPLAY_PRIORITY_NOTIFICATION`;
+export const UPDATE_CHAT_PARTICIPANTS = `${prefix}UPDATE_CHAT_PARTICIPANTS`;
 
 // Actions:
 
 export const loadChatMessagesForRoomSuccess =
     (chatMessages) => ({type: LOAD_CHAT_MESSAGES_FOR_ROOM_SUCCESS, chatMessages});
 
-export const loadedChatParticipantsForRoom =
-    (chatParticipants) => ({type: LOADED_CHAT_PARTICIPANTS_FOR_ROOM, chatParticipants});
+export const updateChatParticipants =
+    (chatParticipants) => ({type: UPDATE_CHAT_PARTICIPANTS, chatParticipants});
 
 const updateMessagesAndParticipants = (chatMessages, dispatch) => {
     dispatch(loadChatMessagesForRoomSuccess(chatMessages));
@@ -30,7 +36,7 @@ const updateMessagesAndParticipants = (chatMessages, dispatch) => {
         connection: 'Connection'
     }));
 
-    dispatch(loadedChatParticipantsForRoom(chatParticipants));
+    dispatch(updateChatParticipants(chatParticipants));
 };
 
 export function loadChatMessagesForRoom(roomId) {
@@ -75,6 +81,10 @@ export function chatMessagesReducer(chatMessages = initialState.chatMessages, ac
         case LOAD_CHAT_MESSAGES_FOR_ROOM_SUCCESS:
             return action.chatMessages;
 
+        case DISPLAY_CHAT_MESSAGE:
+        case DISPLAY_CHAT_USER_ACTION:
+            return [...chatMessages, Object.assign({}, action.chatMessage)];
+
         default:
             return chatMessages;
     }
@@ -85,7 +95,7 @@ export function chatParticipantsReducer(chatParticipants = initialState.chatPart
 
     switch (actionType) {
 
-        case LOADED_CHAT_PARTICIPANTS_FOR_ROOM:
+        case UPDATE_CHAT_PARTICIPANTS:
             return action.chatParticipants;
 
         default:

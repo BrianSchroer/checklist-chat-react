@@ -3,7 +3,12 @@ import { configure } from '@kadira/storybook';
 function extractFileName(path) {
     const separator = '/';
     const nodes = path.split(separator);
-    const fileName = nodes[nodes.length - 1];
+    let fileName = nodes[nodes.length - 1];
+
+    if (fileName.startsWith('_')) {
+        fileName = ' ' + fileName.substring(1);
+    }
+
     return fileName;
 }
 
@@ -29,7 +34,8 @@ function loadStories() {
         /* includeSubdirectories: */ true,
         /.stories.js$/);
 
-    req.keys().sort(pathComparer).forEach((fileName) => req(fileName));
+    const sortedKeys = req.keys().sort(pathComparer);
+    sortedKeys.forEach((fileName) => req(fileName));
 }
 
 configure(loadStories, module);

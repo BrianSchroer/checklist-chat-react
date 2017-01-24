@@ -9,7 +9,7 @@ storiesOf('ChatRoomPage', module)
         <div style={{height: "500px", display: "flex"}}>
         <ChatRoomPage
             routeParams={{id: 123}}
-            userId="userId"
+            userId="currentUser"
             room={{
                 id: 123,
                 roomName: "room name",
@@ -22,6 +22,13 @@ storiesOf('ChatRoomPage', module)
                     userName: 'User Name',
                     timeStamp: '2016-12-08T14:57:10.222Z',
                     text: 'has joined the chat'
+                },
+                {
+                    chatMessageType: chatMessageType.CHAT,
+                    userName: 'Sue Pervisor',
+                    timeStamp: '2016-12-08T14:57:10.222Z',
+                    text: 'Grow up, people! *@#$% profanity will not be tolerated!',
+                    priorityNotificationRecipients: ['currentUser', 'anotherUser']
                 },
                 {
                     chatMessageType: chatMessageType.CHAT,

@@ -167,8 +167,11 @@ table.checklist-table > tbody {
 table.checklist-table > thead > tr > th {
     white-space: nowrap;
 }
+table.checklist-table > tbody > tr {
+    border-width: 0;
+    vertical-align: top;
+}
 
-table.checklist-table > tbody > tr,
 table.checklist-table > tbody > tr > td {
     border-width: 0;
 }
@@ -189,6 +192,10 @@ button.checklist-item-button {
 ul#existingChecklistItemComments {
     max-height: 500x;
     overflow-y: auto;
+}
+
+.high-priority {
+    color: red;
 }
 
 td.timestamp {

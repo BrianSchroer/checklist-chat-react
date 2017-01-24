@@ -19,8 +19,8 @@ storiesOf('ChecklistItemEditorModal', module)
                 actualStartTime: null,
                 actualEndTime: null
             }}
-            isNewChecklistItem="true"
-            maxSequenceNumber="3"
+            isNewChecklistItem
+            maxSequenceNumber={3}
             actions={{}}
             onCloseRequest={action('onCloseRequest')}
         />
@@ -41,8 +41,8 @@ storiesOf('ChecklistItemEditorModal', module)
                 actualEndTime: null,
                 userName: 'Jabba Script'
             }}
-            isNewChecklistItem="true"
-            maxSequenceNumber="3"
+            isNewChecklistItem={false}
+            maxSequenceNumber={3}
             actions={{}}
             onCloseRequest={action('onCloseRequest')}
         />

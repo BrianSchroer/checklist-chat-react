@@ -9,12 +9,20 @@ storiesOf('ChatMessageList', module)
 
     .add('ChatMessageList', () => (
         <ChatMessageList
+            userId="currentUser"
             chatMessages={[
                 {
                     chatMessageType: chatMessageType.ACTION,
                     userName: 'User Name',
                     timeStamp: '2016-12-08T14:57:10.222Z',
                     text: 'has joined the chat'
+                },
+                {
+                    chatMessageType: chatMessageType.CHAT,
+                    userName: 'Sue Pervisor',
+                    timeStamp: '2016-12-08T14:57:10.222Z',
+                    text: 'Grow up, people! *@#$% profanity will not be tolerated!',
+                    priorityNotificationRecipients: ['currentUser', 'anotherUser']
                 },
                 {
                     chatMessageType: chatMessageType.CHAT,

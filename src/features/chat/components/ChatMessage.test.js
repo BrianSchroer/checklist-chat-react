@@ -13,7 +13,11 @@ const testMessage = {
 };
 
 function render(messageOverrides) {
-    const props = {chatMessage: Object.assign({}, testMessage, messageOverrides)};
+    const props = {
+        userId: 'currentUser',
+        chatMessage: Object.assign({}, testMessage, messageOverrides)
+    };
+
     return shallow(<ChatMessage {...props}/>);
 }
 
@@ -49,6 +53,28 @@ describe('ChatMessage', () => {
             const elem = enzymeHelper.findSingle(render({chatMessageType: chatMessageType.CHAT}),
                 'div.chat-message > span.chat-message-text');
             expect(elem.text()).toBe(testMessage.text);
+        });
+
+        it('should style high priority messages as expected', () => {
+            const div = enzymeHelper.findSingle(
+                render({
+                    chatMessageType: chatMessageType.CHAT,
+                    priorityNotificationRecipients: ['currentUser', 'anotherUser']
+                }),
+                'div.chat-message');
+
+            expect(div.hasClass('high-priority')).toBe(true);
+        });
+
+        it('should style normal priority messages as expected', () => {
+            const div = enzymeHelper.findSingle(
+                render({
+                    chatMessageType: chatMessageType.CHAT,
+                    priorityNotificationRecipients: ['anotherUser', 'yetAnotherUser']
+                }),
+                'div.chat-message');
+
+            expect(div.hasClass('high-priority')).toBe(false);
         });
     });
 });

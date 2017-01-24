@@ -1,17 +1,18 @@
 import React, {PropTypes} from 'react';
 import ChatMessage from './ChatMessage';
 
-const ChatMessageList = ({chatMessages}) => {
+const ChatMessageList = ({userId, chatMessages}) => {
     return (
         <ul id="chatMessageList" className="chat-message-list list-unstyled">
             {chatMessages.map(message =>
-                <li key={message.id}><ChatMessage chatMessage={message}/></li>
+                <li key={message.id}><ChatMessage userId={userId} chatMessage={message}/></li>
             )}
         </ul>
     );
 };
 
 ChatMessageList.propTypes = {
+    userId: PropTypes.string.isRequired,
     chatMessages: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 

@@ -2,7 +2,20 @@ import React, {PropTypes} from 'react';
 import format from '../../../util/format';
 import * as chatMessageType from '../chatMessageType';
 
-const ChatMessage = ({chatMessage}) => {
+const withPriorityClass = (className, chatMessage, userId) => {
+    let priorityClass = className;
+
+    if (userId) {
+        const {priorityNotificationRecipients} = chatMessage;
+        if (priorityNotificationRecipients && priorityNotificationRecipients.includes(userId)) {
+            priorityClass += ' high-priority';
+        }
+    }
+
+    return priorityClass;
+};
+
+const ChatMessage = ({chatMessage, userId}) => {
     switch (chatMessage.chatMessageType) {
         case chatMessageType.ACTION:
             return (
@@ -13,10 +26,11 @@ const ChatMessage = ({chatMessage}) => {
                     <span className="chat-action-message-text">{`${chatMessage.userName} ${chatMessage.text}`}</span>
                 </div>
             );
+
         case chatMessageType.CHAT:
         default:
             return (
-                <div className="chat-message">
+                <div className={withPriorityClass('chat-message', chatMessage, userId)}>
                     <div className="timestamp chat-message-timestamp">
                         {format.time(chatMessage.timeStamp)}
                     </div>
@@ -28,7 +42,8 @@ const ChatMessage = ({chatMessage}) => {
 };
 
 ChatMessage.propTypes = {
-    chatMessage: PropTypes.object.isRequired
+    chatMessage: PropTypes.object.isRequired,
+    userId: PropTypes.string
 };
 
 export default ChatMessage;

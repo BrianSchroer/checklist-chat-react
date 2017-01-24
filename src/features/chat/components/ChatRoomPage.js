@@ -78,14 +78,14 @@ export class ChatRoomPage extends React.Component {
     }
 
     render() {
-        const room = this.props.room;
+        const {room, userId, chatMessages} = this.props;
 
         return (
             <div className="chat-room-page">
                 <div className="chat-room-chat-column">
                     <div className="chat-room-room-info">
                         {room && <RoomInfo room={room} onEditRequest={this.handleRoomInfoEditRequest} />}                    </div>
-                    <ChatMessageList chatMessages={this.props.chatMessages} />
+                    <ChatMessageList userId={userId} chatMessages={chatMessages} />
                     <div className="chat-room-buttons">
                         <ChatButtons
                             onChatMessageAddRequest={this.handleChatMessageAddRequest}

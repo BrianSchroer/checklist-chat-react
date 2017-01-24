@@ -3,7 +3,7 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import Header from '../../features/header/components/Header';
-import ModalManager from './ModalManager';
+import ModalManager from './ModalManager'; // eslint-disable-line import/no-named-as-default
 
 export class App extends React.Component {
     render() {
