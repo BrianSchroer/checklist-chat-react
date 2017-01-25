@@ -26,7 +26,7 @@
     "build": "babel-node tools/build.js",
     "postbuild": "babel-node tools/distServer.js",
     "storybook": "start-storybook --port 6006 --config-dir ./tools/storybook --static-dir ./node_modules/bootstrap/fonts,./node_modules/bootstrap/dist/css,./src/styles,./src/images",
-    "build-storybook": "build-storybook -c ./tools/storybook -o .out",
+    "build-storybook": "build-storybook --config-dir ./tools/storybook --static-dir ./node_modules/bootstrap/fonts,./node_modules/bootstrap/dist/css,./src/styles,./src/images -o .out",
     "deploy-storybook": "storybook-to-ghpages"
   },
   "author": "Brian Schroer",
