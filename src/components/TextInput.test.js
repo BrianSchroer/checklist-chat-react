@@ -50,4 +50,25 @@ describe('TextInput', () => {
             expect(input.props()['rows']).toBe(rows);
         });
     });
+
+    it('should call onChange when changed', () => {
+        let onChangeWasCalled = false;
+
+        const input = enzymeHelper.findSingle(
+            render({ onChange: () => onChangeWasCalled = true }),
+            'FormGroup > SimpleTextInput');
+
+        input.simulate('change');
+        expect(onChangeWasCalled).toBe(true);
+    });
+
+    it('should not call onChange when not changed', () => {
+        let onChangeWasCalled = false;
+
+        enzymeHelper.findSingle(
+            render({ onChange: () => onChangeWasCalled = true }),
+            'FormGroup > SimpleTextInput');
+
+        expect(onChangeWasCalled).toBe(false);
+    });
 });
