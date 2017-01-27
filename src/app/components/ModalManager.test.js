@@ -40,4 +40,24 @@ describe('ModalManager', () => {
             }
         });
     });
+
+    it('should call hideModalDialog action when closeModal is called', () => {
+        let preventDefaultWasCalled = false;
+        let hideModalDialogWasCalled = false;
+
+        const props = {
+            modalDialogRequest: { type: modalDialogType.ROOM },
+            actions: {
+                hideModalDialog: () => hideModalDialogWasCalled = true
+            }
+        };
+
+        const manager = new ModalManager(props, null);
+
+        const event = { preventDefault: () => preventDefaultWasCalled = true};
+        manager.closeModal(event);
+
+        expect(preventDefaultWasCalled);
+        expect(hideModalDialogWasCalled);
+    });
 });

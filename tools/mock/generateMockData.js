@@ -27,7 +27,7 @@ mockData.rooms.forEach(room => {
     const roomId = room.id;
 
     room.chatMessages.forEach(chatMessage => {
-        chatMessage.timeStamp = format.isoDateTime(chatMessage.timeStamp);
+        chatMessage.timeStamp = format.dateTimeString(chatMessage.timeStamp);
         chatMessage.roomId = roomId;
     });
     mockData.chatMessages.push(...room.chatMessages);
@@ -37,13 +37,13 @@ mockData.rooms.forEach(room => {
     room.checklistItems.forEach(checklistItem => {
         checklistItem.roomId = roomId;
         checklistItem.sequenceNumber = ++sequenceNumber;
-        checklistItem.scheduledStartTime = format.isoDateTime(checklistItem.scheduledStartTime);
-        checklistItem.scheduledEndTime = format.isoDateTime(checklistItem.scheduledEndTime);
-        checklistItem.actualStartTime = format.isoDateTime(checklistItem.actualStartTime);
-        checklistItem.actualEndTime = format.isoDateTime(checklistItem.actualEndTime);
+        checklistItem.scheduledStartTime = format.dateTimeString(checklistItem.scheduledStartTime);
+        checklistItem.scheduledEndTime = format.dateTimeString(checklistItem.scheduledEndTime);
+        checklistItem.actualStartTime = format.dateTimeString(checklistItem.actualStartTime);
+        checklistItem.actualEndTime = format.dateTimeString(checklistItem.actualEndTime);
         if (checklistItem.chatMessages) {
             checklistItem.chatMessages.forEach(chatMessage => {
-                chatMessage.timeStamp = format.isoDateTime(chatMessage.timeStamp);
+                chatMessage.timeStamp = format.dateTimeString(chatMessage.timeStamp);
             });
         }
     });

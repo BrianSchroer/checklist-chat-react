@@ -19,6 +19,9 @@ coverage
 # build-storybook output
 .out
 
+# Istanbul output
+.nyc_output
+
 # node-waf configuration
 .lock-wscript
 

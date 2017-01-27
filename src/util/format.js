@@ -13,10 +13,6 @@ export default class {
         return formatted;
     }
 
-    static isoDateTime(input) {
-        return this.dateTimeString(input);
-    }
-
     static dateTimeString(input, formatString) {
         let formatted = input;
 
