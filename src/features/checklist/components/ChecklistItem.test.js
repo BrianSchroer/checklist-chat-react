@@ -61,7 +61,7 @@ describe('ChecklistItem', () => {
     });
 
     it('should render start/end time columns', () => {
-        const clms = enzymeHelper.nestedFind(
+        const clms = enzymeHelper.find(
             render(),
             'tbody > tr > td.timestamp > PlannedVsActual');
 
@@ -77,12 +77,12 @@ describe('ChecklistItem', () => {
     });
 
     it('should render a desription column', () => {
-        const td = enzymeHelper.nestedFind(render(), 'tbody > tr > td').at(4);
+        const td = enzymeHelper.find(render(), 'tbody > tr > td').at(4);
         expect(td.text()).toEqual(defaultChecklistItem.description);
     });
 
     it('should render a "performed by" column', () => {
-        const td = enzymeHelper.nestedFind(render(), 'tbody > tr > td').at(5);
+        const td = enzymeHelper.find(render(), 'tbody > tr > td').at(5);
         expect(td.text()).toEqual(defaultChecklistItem.userName);
     });
 });

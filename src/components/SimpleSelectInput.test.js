@@ -56,7 +56,7 @@ describe('SimpleSelectInput', () => {
             { value: 'Value3', text: 'Text 3' }
         ];
 
-        const actualOptions = enzymeHelper.nestedFind(render({ options }), 'select > option');
+        const actualOptions = enzymeHelper.find(render({ options }), 'select > option');
 
         expect(actualOptions.length).toBe(3);
     });

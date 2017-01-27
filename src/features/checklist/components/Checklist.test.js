@@ -28,7 +28,7 @@ describe('Checklist', () => {
         const table = renderTable({checklistItems: []});
 
         it('should not render ChecklistItem rows', () => {
-            const rows = enzymeHelper.nestedFind(table, 'ChecklistItem');
+            const rows = enzymeHelper.find(table, 'ChecklistItem');
             expect(rows.length).toEqual(0);
         });
 
@@ -41,12 +41,12 @@ describe('Checklist', () => {
         const table = renderTable();
 
         it('should render ChecklistItem rows', () => {
-            const rows = enzymeHelper.nestedFind(table, 'ChecklistItem');
+            const rows = enzymeHelper.find(table, 'ChecklistItem');
             expect(rows.length).toEqual(defaultProps.checklistItems.length);
         });
 
         it('should not render a ChecklistAddInvitation', () => {
-            const invitationElements = enzymeHelper.nestedFind(table, 'ChecklistAddInvitation');
+            const invitationElements = enzymeHelper.find(table, 'ChecklistAddInvitation');
             expect(invitationElements.length).toEqual(0);
         });
     });

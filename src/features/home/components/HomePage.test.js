@@ -19,7 +19,7 @@ function render(propOverrides = {}) {
 }
 
 function findNoRoomsParagraph(renderedWrapper) {
-    return enzymeHelper.nestedFind(renderedWrapper,
+    return enzymeHelper.find(renderedWrapper,
         'div.home-page > div.row > div > div.jumbotron > p.lead');
 }
 

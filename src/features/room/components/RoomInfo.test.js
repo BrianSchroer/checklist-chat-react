@@ -63,7 +63,7 @@ describe('RoomInfo', () => {
         it(`should${(scenario.shouldShowBody) ? '' : ' not'} render panel-body`
             + ` when ${scenario.situation}`, () => {
 
-            const found = enzymeHelper.nestedFind(
+            const found = enzymeHelper.find(
                 render(scenario.roomAdjustments),'div.panel > div.panel-body');
 
             expect(found.length).toEqual((scenario.shouldShowBody) ? 1 : 0);

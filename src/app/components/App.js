@@ -20,7 +20,7 @@ export class App extends React.Component {
 }
 
 App.propTypes = {
-    children: PropTypes.object.isRequired,
+    children: PropTypes.node.isRequired,
     isLoading: PropTypes.bool
 };
 

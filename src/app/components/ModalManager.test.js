@@ -1,6 +1,7 @@
 import expect from 'expect';
 import React from 'react';
 import {shallow} from 'enzyme';
+import enzymeHelper from '../../util/enzymeHelper';
 import * as modalDialogType from '../modalDialogType';
 import {ModalManager} from './ModalManager';
 
@@ -29,13 +30,13 @@ describe('ModalManager', () => {
                 throw(`Missing test for modalDialogType.${type}.`);
             }
 
-            const node = render(type).nodes[0];
             const tag = typeMap.get(type);
+            const wrapper = render(type);
 
             if (tag == null) {
-                expect(node).toBe(null);
+                expect(wrapper.get(0)).toBe(null);
             } else {
-                expect(node.type.displayName).toInclude(tag);
+                enzymeHelper.findSingle(wrapper, tag, 'Connect');
             }
         });
     });

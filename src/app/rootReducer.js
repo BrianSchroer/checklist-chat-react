@@ -8,7 +8,7 @@ import initialState from './store/initialState';
 
 const userId = (userId = initialState.userId, action) => userId;  // eslint-disable-line no-unused-vars
 
-const rootReducer = combineReducers({
+export const reducers = {
     userId,
     rooms: roomsReducer,
     roomId: roomIdReducer,
@@ -17,6 +17,8 @@ const rootReducer = combineReducers({
     checklistItems,
     ajaxCallsInProgressCount,
     modalDialogRequest
-});
+};
+
+const rootReducer = combineReducers(reducers);
 
 export default rootReducer;
