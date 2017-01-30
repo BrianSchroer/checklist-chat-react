@@ -1,7 +1,7 @@
 import webpack from 'webpack';
 import path from 'path';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import * as REGEX from '../../src/util/regexConstants';
+import * as REGEX from './regexConstants';
 
 const rootPath = path.resolve(__dirname, '../../');
 

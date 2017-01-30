@@ -1,6 +1,6 @@
 import webpack from 'webpack';
 import path from 'path';
-import * as REGEX from '../../src/util/regexConstants';
+import * as REGEX from './regexConstants';
 
 const rootPath = path.resolve(__dirname, '../../');
 
@@ -39,22 +39,27 @@ const config = {
             },
             {
                 test: REGEX.IMAGES_PATH,
+                include: path.join(rootPath, 'src/images'),
                 loader: 'url-loader'
             },
             {
                 test: REGEX.EOT_PATH,
+                //include: path.join(rootPath, 'node_modules/bootstrap/fonts'),
                 loader: 'file-loader'
             },
             {
                 test: REGEX.WOFF_OR_WOFF2_PATH,
+                //include: path.join(rootPath, 'node_modules/bootstrap/fonts'),
                 loader: 'url-loader?limit=10000&mimetype=application/font-woff'
             },
             {
                 test: REGEX.TTF_PATH,
+                //include: path.join(rootPath, 'node_modules/bootstrap/fonts'),
                 loader: 'url-loader?limit=10000&mimetype=application/octet-stream'
             },
             {
                 test: REGEX.SVG_PATH,
+                //include: path.join(rootPath, 'node_modules/bootstrap/fonts'),
                 loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
             }
         ]
