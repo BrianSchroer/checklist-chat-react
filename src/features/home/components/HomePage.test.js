@@ -4,13 +4,16 @@ import {shallow} from 'enzyme';
 import enzymeHelper from '../../../util/enzymeHelper';
 import {HomePage} from './HomePage';
 
+const defaultActions = {
+    setRoomId: () => {},
+    requestRoomInfoModalDialog: () => {}
+};
+
 const defaultProps = {
     rooms: [
         { roomName: 'test room name' }
     ],
-    actions: {
-        setRoomId: () => {}
-    }
+    actions: defaultActions
 };
 
 function render(propOverrides = {}) {
@@ -38,5 +41,26 @@ describe('HomePage', () => {
     it('should not display a "start a chat" message when there are rooms', () => {
         const p = findNoRoomsParagraph(render( {rooms: [{roomName: 'room 1'}]} ));
         expect(p.length).toEqual(0);
+    });
+
+    it('should handle new chat room request', () => {
+        let wasCalled = false;
+        let actualRoomId = undefined;
+
+        const testActions = {
+            requestRoomInfoModalDialog: (roomId) => {
+                wasCalled = true;
+                actualRoomId = roomId;}
+        };
+
+        const actions = Object.assign({}, defaultActions, testActions);
+
+        const homePage = render({actions});
+
+        const button = enzymeHelper.findSingle(homePage, 'input');
+        button.simulate('click');
+
+        expect(wasCalled);
+        expect(actualRoomId).toBe(null);
     });
 });

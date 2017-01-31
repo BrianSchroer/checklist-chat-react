@@ -6,6 +6,8 @@ import {storiesOf} from '@kadira/storybook';
 /* eslint-disable import/no-named-as-default */
 /* eslint-disable import/no-named-as-default-member */
 /* eslint-disable no-unused-vars */
+import styles from '../styles/styles.css';
+import bootstrapCss from '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import logo from '../images/logo.png';
 /* eslint-enable */
 

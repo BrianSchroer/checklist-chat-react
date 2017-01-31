@@ -1,20 +1,26 @@
-export function afterRenderIsComplete(callback) {
-    window.requestAnimationFrame(callback);
+/**
+ * Perform callback function after window render is complete
+ *
+ * @export
+ * @param {any} callback
+ * @param {any} [win=window] (for unit testing)
+ */
+export function afterRenderIsComplete(callback, win = window) {
+    win.requestAnimationFrame(callback);
 }
 
-export function scrollToBottom(elementId) {
-    const node = document.getElementById(elementId);
+export function scrollToBottom(elementId, doc = document) {
+    const node = doc.getElementById(elementId);
     if (node) {
         node.scrollTop = node.scrollHeight;
     }
 }
 
-export function setFocusToFirstInputInForm(formId) {
-    const form = document.getElementById(formId);
+export function setFocusToFirstInputInForm(formId, doc = document) {
+    let firstInput = null;
+    const form = doc.getElementById(formId);
 
     if (form) {
-        let firstInput = null;
-
         for (let child of form) {
             if (isFocusableInput(child)) {
                 firstInput = child;
@@ -26,9 +32,11 @@ export function setFocusToFirstInputInForm(formId) {
             firstInput.focus();
         }
     }
+
+    return firstInput;
 }
 
-function isFocusableInput(elem) {
+export function isFocusableInput(elem) {
     let meetsCriteria = false;
 
     switch (elem.tagName.toLowerCase()) {
