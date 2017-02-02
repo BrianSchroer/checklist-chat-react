@@ -1,6 +1,5 @@
 import React from 'react';
-import {shallow} from 'enzyme';
-import enzymeHelper from '../../../util/enzymeHelper';
+import {shallow, enzymeHelper} from '../../../util/testHelpers';
 import Header from './Header';
 
 const defaultProps = {

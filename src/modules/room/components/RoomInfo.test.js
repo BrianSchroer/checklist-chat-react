@@ -1,7 +1,6 @@
 import expect from 'expect';
 import React from 'react';
-import {shallow} from 'enzyme';
-import enzymeHelper from '../../../util/enzymeHelper';
+import {shallow, enzymeHelper} from '../../../util/testHelpers';
 import RoomInfo from './RoomInfo';
 
 const testRoom = {

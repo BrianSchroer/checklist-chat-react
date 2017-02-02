@@ -1,8 +1,7 @@
 import expect from 'expect';
 import React from 'react';
-import {shallow} from 'enzyme';
+import {shallow, enzymeHelper} from '../../../util/testHelpers';
 import TextInput from './TextInput';
-import enzymeHelper from '../../../util/enzymeHelper';
 
 const defaultProps = {
     name: 'TestName',
