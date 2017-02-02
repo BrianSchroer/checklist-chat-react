@@ -1,6 +1,6 @@
 import assert from 'assert';
 
-const enzymeHelper = class {
+export default class {
 
     /**
      * This method wraps the enzyme find method with the ability to perform
@@ -47,7 +47,7 @@ const enzymeHelper = class {
      * @returns array of found results
      */
     static assertFindCount(expectedCount, wrapper, selector, higherOrderComponent) {
-        const found = enzymeHelper.find(wrapper, selector, higherOrderComponent);
+        const found = this.find(wrapper, selector, higherOrderComponent);
 
         if (found.length != expectedCount) {
             const errorMessage =
@@ -116,6 +116,4 @@ const enzymeHelper = class {
     static logDebugHtml(wrapper) {
         console.log(this.getDebugHtml(wrapper));  // eslint-disable-line no-console
     }
-};
-
-export default enzymeHelper;
+}

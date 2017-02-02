@@ -1,6 +1,6 @@
 import React from 'react';
 import {storiesOf, action} from '@kadira/storybook';
-import * as chatMessageType from '../chatMessageType';
+import {chatMessageType} from '../../chat';
 import * as checklistItemStatus from '../../../modules/checklist/checklistItemStatus';
 import {ChatRoomPage} from './ChatRoomPage';
 

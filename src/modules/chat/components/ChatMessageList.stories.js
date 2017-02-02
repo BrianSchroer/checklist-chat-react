@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
-import * as chatMessageType from '../chatMessageType';
+import {chatMessageType} from '../../chat';
 import storyFrameDecorator from '../../../../tools/storybook/storyFrameDecorator';
 import ChatMessageList from './ChatMessageList';
 

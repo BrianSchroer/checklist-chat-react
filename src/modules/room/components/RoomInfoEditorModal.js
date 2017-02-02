@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as uiHelpers from '../../../util/uiHelpers';
+import uiHelper from '../../../util/uiHelper';
 import {saveRoomInfo} from '../../../modules/room/roomDucks';
 import {validate} from '../roomInfoValidator';
 import {Modal, TextInput} from '../../../modules/core';
@@ -24,8 +24,8 @@ export class RoomInfoEditorModal extends React.Component {
 
     componentDidMount() {
         if (this.props.shouldFocus) {
-            uiHelpers.afterRenderIsComplete(() => {
-                uiHelpers.setFocusToFirstInputInForm('roomInfoEditorModalForm');
+            uiHelper.afterRenderIsComplete(() => {
+                uiHelper.setFocusToFirstInputInForm('roomInfoEditorModalForm');
             });
         }
     }

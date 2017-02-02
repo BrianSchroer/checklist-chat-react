@@ -1,7 +1,7 @@
 import expect from 'expect';
-import * as uiHelpers from './uiHelpers';
+import uiHelper from './uiHelper';
 
-describe('uiHelpers', () => {
+describe('uiHelper', () => {
 
     describe('.afterRenderIsComplete', () => {
         it('should call window.requestAnimationFrame with callback', () => {
@@ -12,7 +12,7 @@ describe('uiHelpers', () => {
                 requestAnimationFrame: function(cb) { this.passedCallback = cb; }
             };
 
-            uiHelpers.afterRenderIsComplete(testCallback, mockWindow);
+            uiHelper.afterRenderIsComplete(testCallback, mockWindow);
             expect(mockWindow.passedCallback).toBe(testCallback);
         });
     });
@@ -22,14 +22,14 @@ describe('uiHelpers', () => {
             const elem = { scrollTop: 0, scrollHeight: 123 };
             const mockDoc = { getElementById: () => elem };
 
-            uiHelpers.scrollToBottom('testId', mockDoc);
+            uiHelper.scrollToBottom('testId', mockDoc);
 
             expect(elem.scrollTop).toEqual(elem.scrollHeight);
         });
 
         it('should handle element not found', () => {
             const mockDoc = { getElementById: () => undefined };
-            uiHelpers.scrollToBottom('testId', mockDoc);
+            uiHelper.scrollToBottom('testId', mockDoc);
         });
     });
 
@@ -47,7 +47,7 @@ describe('uiHelpers', () => {
 
             const mockDoc = {getElementById: () => form};
 
-            const firstInput = uiHelpers.setFocusToFirstInputInForm('testFormId', mockDoc);
+            const firstInput = uiHelper.setFocusToFirstInputInForm('testFormId', mockDoc);
             expect(wasFocused);
             expect(firstInput).toBe(elem2);
         });
@@ -56,7 +56,7 @@ describe('uiHelpers', () => {
     describe('.setFocusToFirstInputInForm', () => {
         it('should handle form not found', () => {
             const mockDoc = { getElementById: () => undefined };
-            const node = uiHelpers.setFocusToFirstInputInForm('testFormId', mockDoc);
+            const node = uiHelper.setFocusToFirstInputInForm('testFormId', mockDoc);
             expect(node).toBe(null);
         });
     });
@@ -82,7 +82,7 @@ describe('uiHelpers', () => {
         ]
         .forEach(scenario => {
             it(`should return ${scenario.expected} for ${JSON.stringify(scenario.elem)}`, () => {
-                expect(uiHelpers.isFocusableInput(scenario.elem)).toBe(scenario.expected);
+                expect(uiHelper.isFocusableInput(scenario.elem)).toBe(scenario.expected);
             });
         });
     });

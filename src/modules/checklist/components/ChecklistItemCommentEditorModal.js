@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as uiHelpers from '../../../util/uiHelpers';
+import uiHelper from '../../../util/uiHelper';
 import {validateComment} from '../checklistItemValidator';
 import {saveChecklistItemComment} from '../checklistItemDucks';
 import ChatMessage from '../../chat/components/ChatMessage';
@@ -23,10 +23,10 @@ export class ChecklistItemCommentEditorModal extends React.Component {
     }
 
     componentDidMount() {
-        uiHelpers.afterRenderIsComplete(() => {
-            uiHelpers.scrollToBottom('existingChecklistItemComments');
+        uiHelper.afterRenderIsComplete(() => {
+            uiHelper.scrollToBottom('existingChecklistItemComments');
             if (this.props.shouldFocus) {
-                uiHelpers.setFocusToFirstInputInForm('checklistItemCommentEditorModalForm');
+                uiHelper.setFocusToFirstInputInForm('checklistItemCommentEditorModalForm');
             }
         });
     }

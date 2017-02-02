@@ -3,7 +3,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import enzymeHelper from '../../../util/enzymeHelper';
 import ChatMessage from './ChatMessage';
-import * as chatMessageType from '../chatMessageType';
+import {chatMessageType} from '../../chat';
 import format from '../../../util/format';
 
 const testMessage = {

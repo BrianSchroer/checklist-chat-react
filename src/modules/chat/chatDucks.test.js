@@ -1,6 +1,6 @@
 import expect from 'expect';
 import deepFreeze from 'deep-freeze';
-import * as chatMessageType from './chatMessageType';
+import {chatMessageType} from '../chat';
 import * as chatDucks from './chatDucks';
 
 describe('chatMessagesReducer', () => {

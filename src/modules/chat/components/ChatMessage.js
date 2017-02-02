@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import format from '../../../util/format';
-import * as chatMessageType from '../chatMessageType';
+import {chatMessageType} from '../../chat';
 
 const withPriorityClass = (className, chatMessage, userId) => {
     let priorityClass = className;

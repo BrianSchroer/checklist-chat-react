@@ -1,9 +1,9 @@
-import {validateFields, missingRequiredValue} from '../../util/validationHelper';
+import validationHelper from '../../util/validationHelper';
 
 export function validate(roomInfo) {
-    return validateFields([{
+    return validationHelper.validateFields([{
         fieldName: 'roomName',
-        predicate: missingRequiredValue(roomInfo.roomName),
+        predicate: validationHelper.missingRequiredValue(roomInfo.roomName),
         errorMessage: 'Room name is required.'
     }]);
 }

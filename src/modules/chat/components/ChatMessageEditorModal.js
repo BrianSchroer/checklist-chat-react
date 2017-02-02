@@ -1,11 +1,11 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as chatMessageType from '../chatMessageType';
+import {chatMessageType} from '../../chat';
 import {saveChatMessage} from '../chatDucks';
 import {validate} from '../chatMessageValidator';
 import {Modal, TextInput} from '../../../modules/core';
-import * as uiHelpers from '../../../util/uiHelpers';
+import uiHelper from '../../../util/uiHelper';
 
 export class ChatMessageEditorModal extends React.Component {
     constructor(props, context) {
@@ -27,8 +27,8 @@ export class ChatMessageEditorModal extends React.Component {
 
     componentDidMount() {
         if (this.props.shouldFocus) {
-            uiHelpers.afterRenderIsComplete(() => {
-                uiHelpers.setFocusToFirstInputInForm('chatMessageEditorModalForm');
+            uiHelper.afterRenderIsComplete(() => {
+                uiHelper.setFocusToFirstInputInForm('chatMessageEditorModalForm');
             });
         }
     }

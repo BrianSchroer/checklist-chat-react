@@ -1,5 +1,5 @@
 import expect from 'expect';
-import * as validationHelper from './validationHelper';
+import validationHelper from './validationHelper';
 
 describe('validationHelper.validateField', () => {
     const testFieldName = 'testFieldName';

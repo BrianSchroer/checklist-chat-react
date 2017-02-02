@@ -1,9 +1,9 @@
-import {validateFields, missingRequiredValue} from '../../util/validationHelper';
+import validationHelper from '../../util/validationHelper';
 
 export function validate(chatMessage) {
-    return validateFields([{
+    return validationHelper.validateFields([{
         fieldName: 'text',
-        predicate: missingRequiredValue(chatMessage.text),
+        predicate: validationHelper.missingRequiredValue(chatMessage.text),
         errorMessage: 'Message is required.'
     }]);
 }
