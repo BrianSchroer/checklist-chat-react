@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, {PropTypes} from 'react';
 import * as checklistItemStatus from '../checklistItemStatus';
 
 const ChecklistItemStatusIcon = ({status}) => {
@@ -25,7 +25,7 @@ const ChecklistItemStatusIcon = ({status}) => {
             return <i title="canceled" className="glyphicon glyphicon-trash error-icon"></i>;
 
         default:
-            return '';
+            return null;
     }
 };
 
