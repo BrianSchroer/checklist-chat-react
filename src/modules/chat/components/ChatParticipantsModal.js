@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
-import Modal from '../../../components/Modal';
+import Modal from '../../../modules/core/Modal';
 
 export class ChatParticipantsModal extends React.Component {
     constructor(props, context) {

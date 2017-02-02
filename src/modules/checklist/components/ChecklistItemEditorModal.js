@@ -5,11 +5,11 @@ import {saveChecklistItem} from '../checklistItemDucks';
 import {requestChecklistItemCommentModalDialog} from '../../../app/modalDialogDucks';
 import * as checklistItemStatus from '../checklistItemStatus';
 import {validate} from '../checklistItemValidator';
-import FormGroup from '../../../components/FormGroup';
-import SimpleSelectInput from '../../../components/SimpleSelectInput';
-import Modal from '../../../components/Modal';
-import SelectInput from '../../../components/SelectInput';
-import TextInput from '../../../components/TextInput';
+import FormGroup from '../../../modules/core/FormGroup';
+import SimpleSelectInput from '../../../modules/core/SimpleSelectInput';
+import Modal from '../../../modules/core/Modal';
+import SelectInput from '../../../modules/core/SelectInput';
+import TextInput from '../../../modules/core/TextInput';
 import format from '../../../util/format';
 import ChecklistItemStatusIcon from './ChecklistItemStatusIcon';
 
