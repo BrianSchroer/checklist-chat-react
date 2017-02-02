@@ -2,7 +2,7 @@ import expect from 'expect';
 import React from 'react';
 import {shallow} from 'enzyme';
 import enzymeHelper from '../../../util/enzymeHelper';
-import format from '../../../util/format';
+import {format} from '../../../util';
 import ChecklistItemComment from './ChecklistItemComment';
 
 const chatMessage = {

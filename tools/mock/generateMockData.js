@@ -11,7 +11,7 @@ import colors from 'colors'; // eslint-disable-line no-unused-vars
 import fs from 'fs';
 import jsonSchemaFaker from 'json-schema-faker';
 import path from 'path';
-import format from '../../src/util/format';
+import {format} from '../../src/util';
 import {schema} from './mockDataSchema';
 
  console.log(

@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import uiHelper from '../../../util/uiHelper';
+import {uiHelper} from '../../../util';
 import {validateComment} from '../checklistItemValidator';
 import {saveChecklistItemComment} from '../checklistItemDucks';
 import ChatMessage from '../../chat/components/ChatMessage';

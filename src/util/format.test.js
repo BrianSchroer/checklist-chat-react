@@ -1,5 +1,5 @@
 import expect from 'expect';
-import format from './format';
+import {format} from '../util';
 
 function isoDateTime(timeStamp) {
     return `2016-12-30T${timeStamp}:00-06:00`;

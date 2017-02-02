@@ -1,4 +1,4 @@
-import validationHelper from '../../util/validationHelper';
+import {validationHelper} from '../../util';
 
 export function validate(roomInfo) {
     return validationHelper.validateFields([{

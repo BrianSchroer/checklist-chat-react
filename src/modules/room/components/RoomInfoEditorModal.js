@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import uiHelper from '../../../util/uiHelper';
+import {uiHelper} from '../../../util';
 import {saveRoomInfo} from '../../../modules/room/roomDucks';
 import {validate} from '../roomInfoValidator';
 import {Modal, TextInput} from '../../../modules/core';

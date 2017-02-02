@@ -5,7 +5,7 @@ import {chatMessageType} from '../../chat';
 import {saveChatMessage} from '../chatDucks';
 import {validate} from '../chatMessageValidator';
 import {Modal, TextInput} from '../../../modules/core';
-import uiHelper from '../../../util/uiHelper';
+import {uiHelper} from '../../../util';
 
 export class ChatMessageEditorModal extends React.Component {
     constructor(props, context) {

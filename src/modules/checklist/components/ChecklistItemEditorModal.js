@@ -6,7 +6,7 @@ import {requestChecklistItemCommentModalDialog} from '../../../app/modalDialogDu
 import * as checklistItemStatus from '../checklistItemStatus';
 import {validate} from '../checklistItemValidator';
 import {FormGroup, Modal, SelectInput, TextInput, SimpleSelectInput} from '../../../modules/core';
-import format from '../../../util/format';
+import {format} from '../../../util';
 import ChecklistItemStatusIcon from './ChecklistItemStatusIcon';
 
 export class ChecklistItemEditorModal extends React.Component {

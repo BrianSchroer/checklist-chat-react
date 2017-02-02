@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import enzymeHelper from '../../../util/enzymeHelper';
 import ChatMessage from './ChatMessage';
 import {chatMessageType} from '../../chat';
-import format from '../../../util/format';
+import {format} from '../../../util';
 
 const testMessage = {
     timeStamp: '2016-12-08T14:57:10.222Z',

@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import ChecklistItemStatusIcon from './ChecklistItemStatusIcon';
 import {PlannedVsActual} from '../../../modules/core';
-import format from '../../../util/format';
+import {format} from '../../../util';
 import ChecklistItemComment from './ChecklistItemComment';
 
 // This component returns a tbody because it might require multiple tr's and React requires

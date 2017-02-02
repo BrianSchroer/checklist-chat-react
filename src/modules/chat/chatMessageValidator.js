@@ -1,4 +1,4 @@
-import validationHelper from '../../util/validationHelper';
+import {validationHelper} from '../../util';
 
 export function validate(chatMessage) {
     return validationHelper.validateFields([{

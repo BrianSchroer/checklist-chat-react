@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import uiHelper from '../../../util/uiHelper';
+import {uiHelper} from '../../../util';
 import * as modalDialogActions from '../../../app/modalDialogDucks';
 import {joinChat} from '../../../modules/room/roomDucks';
 import RoomInfo from '../../../modules/room/components/RoomInfo';
