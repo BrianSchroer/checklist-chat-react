@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
-import Modal from '../../../modules/core/components/Modal';
+import {Modal} from '../../../modules/core';
 import ChatMessage from './ChatMessage';
 
 export class ChatPriorityNotificationModal extends React.Component {

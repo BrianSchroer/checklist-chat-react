@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import ChecklistItemStatusIcon from './ChecklistItemStatusIcon';
-import PlannedVsActual from '../../../modules/core/components/PlannedVsActual';
+import {PlannedVsActual} from '../../../modules/core';
 import format from '../../../util/format';
 import ChecklistItemComment from './ChecklistItemComment';
 

@@ -4,8 +4,7 @@ import {bindActionCreators} from 'redux';
 import * as chatMessageType from '../chatMessageType';
 import {saveChatMessage} from '../chatDucks';
 import {validate} from '../chatMessageValidator';
-import Modal from '../../../modules/core/components/Modal';
-import TextInput from '../../../modules/core/components/TextInput';
+import {Modal, TextInput} from '../../../modules/core';
 import * as uiHelpers from '../../../util/uiHelpers';
 
 export class ChatMessageEditorModal extends React.Component {
