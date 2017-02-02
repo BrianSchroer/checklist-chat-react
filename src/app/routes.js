@@ -2,8 +2,8 @@
 import React from 'react';
 import {Route, IndexRoute, browserHistory} from 'react-router';
 import App from './components/App';
-import HomePage from '../features/home/components/HomePage';
-import ChatRoomPage from '../features/chat/components/ChatRoomPage';
+import HomePage from '../modules/home/components/HomePage';
+import ChatRoomPage from '../modules/chat/components/ChatRoomPage';
 /* eslint-enable */
 
 export const routePaths = {

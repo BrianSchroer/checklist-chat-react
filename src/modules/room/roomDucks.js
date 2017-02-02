@@ -2,8 +2,8 @@
 
 import initialState from '../../app/store/initialState';
 import {beginAjaxCall, ajaxCallError} from '../../app/ajaxStatusDucks';
-import {loadChatMessagesForRoom} from '../../features/chat/chatDucks';
-import {loadChecklistItemsForRoom} from '../../features/checklist/checklistItemDucks';
+import {loadChatMessagesForRoom} from '../../modules/chat/chatDucks';
+import {loadChecklistItemsForRoom} from '../../modules/checklist/checklistItemDucks';
 import * as mockJsonDbApi from '../../api/mockJsonDbApi';
 
 const prefix = 'checklist-chat/room/';

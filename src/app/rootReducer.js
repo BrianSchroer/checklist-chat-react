@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
-import {roomsReducer, roomIdReducer} from '../features/room/roomDucks';
-import {chatMessagesReducer, chatParticipantsReducer} from '../features/chat/chatDucks';
-import checklistItems from '../features/checklist/checklistItemDucks';
+import {roomsReducer, roomIdReducer} from '../modules/room/roomDucks';
+import {chatMessagesReducer, chatParticipantsReducer} from '../modules/chat/chatDucks';
+import checklistItems from '../modules/checklist/checklistItemDucks';
 import ajaxCallsInProgressCount from '../app/ajaxStatusDucks';
 import modalDialogRequest from '../app/modalDialogDucks';
 import initialState from './store/initialState';

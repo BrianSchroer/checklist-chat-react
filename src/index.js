@@ -5,7 +5,7 @@ import {Router, browserHistory} from 'react-router';
 import {Provider} from 'react-redux';
 import routes from './app/routes';
 import configureStore from './app/store/configureStore';  // eslint-disable-line import/default
-import * as roomActions from './features/room/roomDucks';
+import * as roomActions from './modules/room/roomDucks';
 
 // for Webpack:
 import './styles/styles.css';

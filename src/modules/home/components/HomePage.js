@@ -1,9 +1,9 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {setRoomId} from '../../../features/room/roomDucks';
+import {setRoomId} from '../../../modules/room/roomDucks';
 import {requestRoomInfoModalDialog} from '../../../app/modalDialogDucks';
-import RoomList from '../../../features/room/components/RoomList';
+import RoomList from '../../../modules/room/components/RoomList';
 
 export class HomePage extends React.Component {
     constructor(props, context) {

@@ -4,12 +4,12 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as modalDialogType from '../modalDialogType';
 import {hideModalDialog} from '../modalDialogDucks';
-import ChatMessageEditorModal from '../../features/chat/components/ChatMessageEditorModal';
-import ChatParticipantsModal from '../../features/chat/components/ChatParticipantsModal';
-import ChatPriorityNotificationModal from '../../features/chat/components/ChatPriorityNotificationModal';
-import ChecklistItemEditorModal from '../../features/checklist/components/ChecklistItemEditorModal';
-import ChecklistItemCommentEditorModal from '../../features/checklist/components/ChecklistItemCommentEditorModal';
-import RoomInfoEditorModal from '../../features/room/components/RoomInfoEditorModal';
+import ChatMessageEditorModal from '../../modules/chat/components/ChatMessageEditorModal';
+import ChatParticipantsModal from '../../modules/chat/components/ChatParticipantsModal';
+import ChatPriorityNotificationModal from '../../modules/chat/components/ChatPriorityNotificationModal';
+import ChecklistItemEditorModal from '../../modules/checklist/components/ChecklistItemEditorModal';
+import ChecklistItemCommentEditorModal from '../../modules/checklist/components/ChecklistItemCommentEditorModal';
+import RoomInfoEditorModal from '../../modules/room/components/RoomInfoEditorModal';
 /* eslint-enable */
 
 /**

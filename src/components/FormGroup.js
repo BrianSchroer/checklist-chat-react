@@ -1,5 +1,4 @@
 // form label, input, error message
-
 import React, {PropTypes} from 'react';
 
 const FormGroup = ({name, label, error, children}) => {

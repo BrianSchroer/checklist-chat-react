@@ -2,7 +2,7 @@
 // this.props.children contains the child components (HomePage, AboutPage) from the router.
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
-import Header from '../../features/header/components/Header';
+import Header from '../../modules/header/components/Header';
 import ModalManager from './ModalManager'; // eslint-disable-line import/no-named-as-default
 
 export class App extends React.Component {

@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as uiHelpers from '../../../util/uiHelpers';
-import {saveRoomInfo} from '../../../features/room/roomDucks';
+import {saveRoomInfo} from '../../../modules/room/roomDucks';
 import {validate} from '../roomInfoValidator';
 import Modal from '../../../components/Modal';
 import TextInput from '../../../components/TextInput';

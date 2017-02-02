@@ -2,7 +2,7 @@ import expect from 'expect';
 import React from 'react';
 import enzymeHelper from './enzymeHelper';
 import {shallow} from 'enzyme';
-import Header from '../../src/features/header/components/Header';
+import Header from '../../src/modules/header/components/Header';
 
 describe('enzymeHelper', () => {
     describe('.assertFindCount', () => {

@@ -3,12 +3,12 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as uiHelpers from '../../../util/uiHelpers';
 import * as modalDialogActions from '../../../app/modalDialogDucks';
-import {joinChat} from '../../../features/room/roomDucks';
-import RoomInfo from '../../../features/room/components/RoomInfo';
+import {joinChat} from '../../../modules/room/roomDucks';
+import RoomInfo from '../../../modules/room/components/RoomInfo';
 import ChatMessageList from './ChatMessageList';
 import ChatButtons from './ChatButtons';  // eslint-disable-line import/no-named-as-default
-import Checklist from '../../../features/checklist/components/Checklist';
-import ChecklistButtons from '../../../features/checklist/components/ChecklistButtons';
+import Checklist from '../../../modules/checklist/components/Checklist';
+import ChecklistButtons from '../../../modules/checklist/components/ChecklistButtons';
 
 export class ChatRoomPage extends React.Component {
     constructor(props, context) {
