@@ -5,9 +5,9 @@ import * as uiHelpers from '../../../util/uiHelpers';
 import {validateComment} from '../checklistItemValidator';
 import {saveChecklistItemComment} from '../checklistItemDucks';
 import ChatMessage from '../../chat/components/ChatMessage';
-import Modal from '../../../modules/core/Modal';
-import FormGroup from '../../../modules/core/FormGroup';
-import TextInput from '../../../modules/core/TextInput';
+import Modal from '../../../modules/core/components/Modal';
+import FormGroup from '../../../modules/core/components/FormGroup';
+import TextInput from '../../../modules/core/components/TextInput';
 
 export class ChecklistItemCommentEditorModal extends React.Component {
     constructor(props, context) {

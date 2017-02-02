@@ -1,7 +1,7 @@
 import React from 'react';
 import {storiesOf, action} from '@kadira/storybook';
-import storyFrameDecorator from '../../../tools/storybook/storyFrameDecorator';
-import SimpleSelectInput from './SimpleSelectInput';
+import storyFrameDecorator from '../../../../tools/storybook/storyFrameDecorator';
+import SelectInput from './SelectInput';
 
 const options = [
     { value: 'Value1', text: 'Text 1' },
@@ -9,29 +9,38 @@ const options = [
     { value: 'Value3', text: 'Text 3' }
 ];
 
-storiesOf('SimpleSelectInput', module)
+storiesOf('SelectInput', module)
     .addDecorator(storyFrameDecorator)
 
     .add('dropdown - no value selected', () => (
-        <SimpleSelectInput
-            name="name"
+        <SelectInput
+            name="name" label="label"
             options={options}
             multiple={false}
             onChange={action('onChange')} />
     ))
 
     .add('dropdown - value 2 selected', () => (
-        <SimpleSelectInput
-            name="name"
+        <SelectInput
+            name="name" label="label"
             value="Value2"
             options={options}
             multiple={false}
             onChange={action('onChange')} />
     ))
 
+    .add('dropdown with error', () => (
+        <SelectInput
+            name="name" label="label"
+            error="Bad choice!"
+            options={options}
+            multiple={false}
+            onChange={action('onChange')} />
+    ))
+
     .add('listbox - no value selected', () => (
-        <SimpleSelectInput
-            name="name"
+        <SelectInput
+            name="name" label="label"
             size={3}
             options={options}
             multiple={false}
@@ -39,8 +48,8 @@ storiesOf('SimpleSelectInput', module)
     ))
 
     .add('listbox - value 2 selected', () => (
-        <SimpleSelectInput
-            name="name"
+        <SelectInput
+            name="name" label="label"
             size={3}
             value="Value2"
             options={options}
@@ -49,10 +58,20 @@ storiesOf('SimpleSelectInput', module)
     ))
 
     .add('listbox - multiselect', () => (
-        <SimpleSelectInput
-            name="name"
+        <SelectInput
+            name="name" label="label"
             size={3}
             options={options}
             multiple
+            onChange={action('onChange')} />
+    ))
+
+    .add('listbox with error', () => (
+        <SelectInput
+            name="name" label="label"
+            size={3}
+            error="Make up your mind!"
+            options={options}
+            multiple={false}
             onChange={action('onChange')} />
     ));

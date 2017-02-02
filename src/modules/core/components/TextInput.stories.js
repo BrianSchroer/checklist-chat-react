@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
-import storyFrameDecorator from '../../../tools/storybook/storyFrameDecorator';
+import storyFrameDecorator from '../../../../tools/storybook/storyFrameDecorator';
 import TextInput from './TextInput';
 
 storiesOf('TextInput', module)

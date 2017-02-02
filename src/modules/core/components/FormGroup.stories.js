@@ -1,6 +1,6 @@
 import React from 'react';
 import {storiesOf} from '@kadira/storybook';
-import storyFrameDecorator from '../../../tools/storybook/storyFrameDecorator';
+import storyFrameDecorator from '../../../../tools/storybook/storyFrameDecorator';
 import FormGroup from './FormGroup';
 
 storiesOf('FormGroup', module)

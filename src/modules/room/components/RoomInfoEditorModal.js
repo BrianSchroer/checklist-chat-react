@@ -4,8 +4,8 @@ import {bindActionCreators} from 'redux';
 import * as uiHelpers from '../../../util/uiHelpers';
 import {saveRoomInfo} from '../../../modules/room/roomDucks';
 import {validate} from '../roomInfoValidator';
-import Modal from '../../../modules/core/Modal';
-import TextInput from '../../../modules/core/TextInput';
+import Modal from '../../../modules/core/components/Modal';
+import TextInput from '../../../modules/core/components/TextInput';
 
 export class RoomInfoEditorModal extends React.Component {
     constructor(props, context) {
