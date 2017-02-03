@@ -1,10 +1,10 @@
 import React from 'react';
 import {storiesOf} from '@kadira/storybook';
-import storyFrameDecorator from '../../../../tools/storybook/storyFrameDecorator';
+import {storybookFrameDecorator} from '../../../../tools/storybook';
 import ChecklistItemComment from './ChecklistItemComment';
 
 storiesOf('ChecklistItemComment', module)
-    .addDecorator(storyFrameDecorator)
+    .addDecorator(storybookFrameDecorator)
 
     .add('short comment', () => (
         <table className="table checklist-table">

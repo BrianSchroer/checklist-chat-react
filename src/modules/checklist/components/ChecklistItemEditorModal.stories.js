@@ -1,6 +1,6 @@
 import React from 'react';
 import {storiesOf, action} from '@kadira/storybook';
-import * as checklistItemStatus from '../checklistItemStatus';
+import {checklistItemStatus} from '../../checklist';
 import {ChecklistItemEditorModal} from './ChecklistItemEditorModal';
 
 storiesOf('ChecklistItemEditorModal', module)

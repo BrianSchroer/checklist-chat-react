@@ -1,11 +1,11 @@
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
 import {chatMessageType} from '../../chat';
-import storyFrameDecorator from '../../../../tools/storybook/storyFrameDecorator';
+import {storybookFrameDecorator} from '../../../../tools/storybook';
 import ChatMessage from './ChatMessage';
 
 storiesOf('ChatMessage', module)
-    .addDecorator(storyFrameDecorator)
+    .addDecorator(storybookFrameDecorator)
 
     .add('chatMessageType.CHAT', () => (
         <ChatMessage

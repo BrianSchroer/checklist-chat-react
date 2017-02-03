@@ -1,10 +1,10 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
-import storyFrameDecorator from '../../../../tools/storybook/storyFrameDecorator';
+import {storybookFrameDecorator} from '../../../../tools/storybook';
 import TextInput from './TextInput';
 
 storiesOf('TextInput', module)
-    .addDecorator(storyFrameDecorator)
+    .addDecorator(storybookFrameDecorator)
 
     .add('single line "TextBox" with placeholder', () => (
         <TextInput label="label" name="testName" placeholder="placeholder"

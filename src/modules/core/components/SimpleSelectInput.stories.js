@@ -1,6 +1,6 @@
 import React from 'react';
 import {storiesOf, action} from '@kadira/storybook';
-import storyFrameDecorator from '../../../../tools/storybook/storyFrameDecorator';
+import {storybookFrameDecorator} from '../../../../tools/storybook';
 import SimpleSelectInput from './SimpleSelectInput';
 
 const options = [
@@ -10,7 +10,7 @@ const options = [
 ];
 
 storiesOf('SimpleSelectInput', module)
-    .addDecorator(storyFrameDecorator)
+    .addDecorator(storybookFrameDecorator)
 
     .add('dropdown - no value selected', () => (
         <SimpleSelectInput

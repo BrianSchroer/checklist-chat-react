@@ -1,11 +1,11 @@
 import React from 'react';
 import {storiesOf} from '@kadira/storybook';
-import storyFrameDecorator from '../../../../tools/storybook/storyFrameDecorator';
-import * as checklistItemStatus from '../checklistItemStatus';
+import {storybookFrameDecorator} from '../../../../tools/storybook';
+import {checklistItemStatus} from '../../checklist';
 import ChecklistItemStatusIcon from './ChecklistItemStatusIcon';
 
 storiesOf('ChecklistItemStatusIcon', module)
-    .addDecorator(storyFrameDecorator)
+    .addDecorator(storybookFrameDecorator)
 
     .add('icons', () => (
         <ul className="list-unstyled">

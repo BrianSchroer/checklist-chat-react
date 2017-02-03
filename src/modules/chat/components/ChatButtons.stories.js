@@ -1,10 +1,10 @@
 import React from 'react';
 import {storiesOf, action} from '@kadira/storybook';
 import ChatButtons from './ChatButtons';
-import storyFrameDecorator from '../../../../tools/storybook/storyFrameDecorator';
+import {storybookFrameDecorator} from '../../../../tools/storybook';
 
 storiesOf('ChatButtons', module)
-    .addDecorator(storyFrameDecorator)
+    .addDecorator(storybookFrameDecorator)
 
     .add('ChatButtons', () => (
         <ChatButtons

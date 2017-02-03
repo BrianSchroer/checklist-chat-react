@@ -1,11 +1,11 @@
 import React from 'react';
 import {storiesOf, action} from '@kadira/storybook';
-import storyFrameDecorator from '../../../../tools/storybook/storyFrameDecorator';
-import * as checklistItemStatus from '../checklistItemStatus';
+import {storybookFrameDecorator} from '../../../../tools/storybook';
+import {checklistItemStatus} from '../../checklist';
 import ChecklistItem from './ChecklistItem';
 
 storiesOf('ChecklistItem', module)
-    .addDecorator(storyFrameDecorator)
+    .addDecorator(storybookFrameDecorator)
 
     .add('without comments', () => (
         <table className="table checklist-table">

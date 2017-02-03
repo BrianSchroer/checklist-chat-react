@@ -1,6 +1,6 @@
 import React from 'react';
-import { storiesOf, action } from '@kadira/storybook';
-import { ChatMessageEditorModal } from './ChatMessageEditorModal';
+import {storiesOf, action} from '@kadira/storybook';
+import {ChatMessageEditorModal} from './ChatMessageEditorModal';
 
 storiesOf('ChatMessageEditorModal', module)
     .add('ChatMessageEditorModal', () => (

@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import * as checklistItemStatus from '../checklistItemStatus';
+import {checklistItemStatus} from '../../checklist';
 
 const ChecklistItemStatusIcon = ({status}) => {
     switch (status) {

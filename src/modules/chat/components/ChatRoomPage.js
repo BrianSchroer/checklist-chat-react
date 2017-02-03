@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {uiHelper} from '../../../util';
 import * as modalDialogActions from '../../../app/modalDialogDucks';
 import {joinChat} from '../../../modules/room/roomDucks';
-import RoomInfo from '../../../modules/room/components/RoomInfo';
+import {RoomInfo} from '../../../modules/room';
 import ChatMessageList from './ChatMessageList';
 import ChatButtons from './ChatButtons';  // eslint-disable-line import/no-named-as-default
 import Checklist from '../../../modules/checklist/components/Checklist';

@@ -1,11 +1,11 @@
 import React from 'react';
 import {storiesOf, action} from '@kadira/storybook';
-import storyFrameDecorator from '../../../../tools/storybook/storyFrameDecorator';
-import * as checklistItemStatus from '../checklistItemStatus';
+import {storybookFrameDecorator} from '../../../../tools/storybook';
+import {checklistItemStatus} from '../../checklist';
 import Checklist from './Checklist';
 
 storiesOf('Checklist', module)
-    .addDecorator(storyFrameDecorator)
+    .addDecorator(storybookFrameDecorator)
 
     .add('with checklist items', () => (
         <Checklist

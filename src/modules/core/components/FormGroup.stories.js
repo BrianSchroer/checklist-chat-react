@@ -1,10 +1,10 @@
 import React from 'react';
 import {storiesOf} from '@kadira/storybook';
-import storyFrameDecorator from '../../../../tools/storybook/storyFrameDecorator';
+import {storybookFrameDecorator} from '../../../../tools/storybook';
 import FormGroup from './FormGroup';
 
 storiesOf('FormGroup', module)
-    .addDecorator(storyFrameDecorator)
+    .addDecorator(storybookFrameDecorator)
 
     .add('without error', () => (
         <FormGroup label="label" name="testName" error="">

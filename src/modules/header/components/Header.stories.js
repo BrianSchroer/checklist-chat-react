@@ -1,10 +1,10 @@
 import React from 'react';
 import {storiesOf} from '@kadira/storybook';
-import storyFrameDecorator from '../../../../tools/storybook/storyFrameDecorator';
+import {storybookFrameDecorator} from '../../../../tools/storybook';
 import Header from './Header';
 
 storiesOf('Header', module)
-    .addDecorator(storyFrameDecorator)
+    .addDecorator(storybookFrameDecorator)
 
     .add('Header', () => (
         <Header isLoading={false} />

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {saveChecklistItem} from '../checklistItemDucks';
 import {requestChecklistItemCommentModalDialog} from '../../../app/modalDialogDucks';
-import * as checklistItemStatus from '../checklistItemStatus';
+import {checklistItemStatus} from '../../checklist';
 import {validate} from '../checklistItemValidator';
 import {FormGroup, Modal, SelectInput, TextInput, SimpleSelectInput} from '../../../modules/core';
 import {format} from '../../../util';

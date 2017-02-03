@@ -1,10 +1,10 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
-import storyFrameDecorator from '../../../../tools/storybook/storyFrameDecorator';
+import {storybookFrameDecorator} from '../../../../tools/storybook';
 import RoomInfo from './RoomInfo';
 
 storiesOf('RoomInfo', module)
-    .addDecorator(storyFrameDecorator)
+    .addDecorator(storybookFrameDecorator)
 
     .add('RoomInfo', () => (
         <RoomInfo room={{
