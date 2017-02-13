@@ -49,7 +49,7 @@ ChatParticipantsModal.propTypes = {
     onCloseRequest: PropTypes.func.isRequired
 };
 
-function mapStateToProps(state, ownProps) {
+export function mapStateToProps(state, ownProps) {
     let chatParticipants = state.chatParticipants;
     const onCloseRequest = ownProps.onCloseRequest;
 

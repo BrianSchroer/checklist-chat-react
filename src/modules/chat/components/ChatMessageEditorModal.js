@@ -94,7 +94,7 @@ ChatMessageEditorModal.propTypes = {
     actions: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state, ownProps) {
+export function mapStateToProps(state, ownProps) {
     const {userId, roomId} = state;
     const shouldFocus = (state.shouldFocus == undefined) ? true : state.shouldFocus;
 

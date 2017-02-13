@@ -20,8 +20,8 @@ export default function configureStore(initialState) {
         middleware.push(reduxImmutableStateInvariant());
     }
 
-    let shouldAddLoggingToDispatch = false;
-    shouldAddLoggingToDispatch = (console.group && !isProduction);  // eslint-disable-line no-console
+    const shouldAddLoggingToDispatch = (console.group && !isProduction);  // eslint-disable-line no-console
+
     if (shouldAddLoggingToDispatch) {
         middleware.push(dispatchLoggerMiddleware);
     }

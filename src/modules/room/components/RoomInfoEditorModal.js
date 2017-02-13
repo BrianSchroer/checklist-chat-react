@@ -106,7 +106,7 @@ function emptyRoom() {
     return {id: '', roomName: '', description: '', phoneInfo: ''};
 }
 
-function mapStateToProps(state, ownProps) {
+export function mapStateToProps(state, ownProps) {
     let isNewRoom = true;
     let room = emptyRoom();
 

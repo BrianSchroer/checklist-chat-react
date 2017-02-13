@@ -12,7 +12,7 @@ describe('enzymeHelper', () => {
                throw('Expected error was not thrown.');
             } catch (error) {
                 expect(error.message).toContain(
-                    'Expected 1 find for selector "badSelector", but found 0.');
+                    'Expected 1 element(s) for selector "badSelector", but found 0.');
             }
         });
     });

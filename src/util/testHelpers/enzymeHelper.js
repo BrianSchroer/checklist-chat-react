@@ -52,7 +52,7 @@ export default class {
         if (found.length != expectedCount) {
             const errorMessage =
                 [
-                    `Expected ${expectedCount} find for selector "${selector}", but found ${found.length}.`,
+                    `Expected ${expectedCount} element(s) for selector "${selector}", but found ${found.length}.`,
                     '',
                     this.getDebugHtml(wrapper),
                     ''
