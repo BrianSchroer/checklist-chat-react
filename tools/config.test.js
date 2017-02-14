@@ -1,3 +1,4 @@
+import assert from 'assert';
 import expect from 'expect';
 import config from './config';
 
@@ -12,7 +13,10 @@ describe('config', () => {
             config.getValue('bad key');
         } catch (error) {
             expect(error).toContain('"bad key" not found in package.json config values: {');
+            return;
         }
+
+        assert.fail(null, null, 'Expected error was not thrown.');
     });
 
     it('getPort should return port from package.json config', () => {
