@@ -2,10 +2,11 @@ import express from 'express';
 import path from 'path';
 import open from 'open';
 import compression from 'compression';
+import config from './config';
 
 /* eslint-disable no-console */
 
-const port = 3000;
+const port = config.getPort();
 const app = express();
 
 app.use(compression());

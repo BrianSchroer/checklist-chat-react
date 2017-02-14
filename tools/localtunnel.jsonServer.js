@@ -4,16 +4,19 @@
 
 import colors from 'colors'; // eslint-disable-line no-unused-vars
 import localtunnel from 'localtunnel';
+import config from './config';
 
 /* eslint-disable no-console */
 
-const tunnel = localtunnel(3001, {subdomain: 'bschroerjson'},
+const port = config.getMockApiPort();
+
+const tunnel = localtunnel(port, {subdomain: 'bschroerjson'},
     function(err, tunnel) {
         if (err) {
             console.log(err);
         } else {
             console.log(
-                `Sharing http://localhost:3001 at ${tunnel.url}...`.bold.green);
+                `Sharing http://localhost:${port} at ${tunnel.url}...`.bold.green);
         }
     }
 );
