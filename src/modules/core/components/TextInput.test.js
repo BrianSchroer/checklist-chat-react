@@ -1,5 +1,5 @@
 import React from 'react';
-import {expect, shallow, enzymeHelper} from '../../../util/testHelpers';
+import{shallow, enzymeHelper} from '../../../util/testHelpers';
 import TextInput from './TextInput';
 
 const defaultProps = {

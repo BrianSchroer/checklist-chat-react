@@ -1,5 +1,5 @@
 import React from 'react';
-import {expect, shallow, enzymeHelper} from '../../../util/testHelpers';
+import{shallow, enzymeHelper} from '../../../util/testHelpers';
 import RoomList from './RoomList';
 
 const defaultProps = {
@@ -26,7 +26,7 @@ describe('RoomList', () => {
             const room = rooms[i];
 
             const li = listItems.at(i);
-            expect(li.node.key).toEqual(room.id);
+            expect(li.node.key).toEqual(room.id.toString());
 
             const link = enzymeHelper.findSingle(li, 'Link');
             expect(link.props().to).toEqual(`room/${room.id}`);

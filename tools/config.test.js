@@ -1,11 +1,10 @@
 import assert from 'assert';
-import {expect} from '../src/util/testHelpers';
 import config from './config';
 
 describe('config', () => {
     it('getValue should return value for valid key', () => {
         const actual = config.getValue('port');
-        expect(actual).toExist();
+        expect(actual).toBeDefined();
     });
 
     it('getValue should throw error for invalid key', () => {
@@ -21,16 +20,16 @@ describe('config', () => {
 
     it('getPort should return port from package.json config', () => {
         const actual = config.getPort();
-        expect(actual).toExist();
+        expect(actual).toBeDefined();
     });
 
     it('getMockApiPort should return port from package.json config', () => {
         const actual = config.getMockApiPort();
-        expect(actual).toExist();
+        expect(actual).toBeDefined();
     });
 
     it('getStorybookPort should return port from package.json config', () => {
         const actual = config.getStorybookPort();
-        expect(actual).toExist();
+        expect(actual).toBeDefined();
     });
 });

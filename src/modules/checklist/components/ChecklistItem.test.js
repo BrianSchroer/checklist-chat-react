@@ -1,5 +1,5 @@
 import React from 'react';
-import {expect, shallow, enzymeHelper} from '../../../util/testHelpers';
+import{shallow, enzymeHelper} from '../../../util/testHelpers';
 import {format} from '../../../util';
 import {checklistItemStatus} from '../../checklist';
 import ChecklistItem from './ChecklistItem';
@@ -31,7 +31,7 @@ describe('ChecklistItem', () => {
 
         it('should be rendered with sequence number', () => {
             const button = enzymeHelper.findSingle(render(), selector);
-            expect(button.text()).toEqual(defaultChecklistItem.sequenceNumber);
+            expect(button.text()).toEqual(defaultChecklistItem.sequenceNumber.toString());
         });
 
         it('should call onEditRequest when clicked', () => {

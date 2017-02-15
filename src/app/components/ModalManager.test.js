@@ -1,5 +1,5 @@
 import React from 'react';
-import {expect, shallow, enzymeHelper} from '../../util/testHelpers';
+import {shallow, enzymeHelper} from '../../util/testHelpers';
 import * as modalDialogType from '../modalDialogType';
 import {ModalManager} from './ModalManager';
 
@@ -33,6 +33,7 @@ describe('ModalManager', () => {
 
             if (tag == null) {
                 expect(wrapper.get(0)).toBe(null);
+
             } else {
                 enzymeHelper.findSingle(wrapper, tag, 'Connect');
             }

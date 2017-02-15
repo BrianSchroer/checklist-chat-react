@@ -1,4 +1,3 @@
-import {expect} from '../../util/testHelpers';
 import {validate, validateComment} from './checklistItemValidator';
 
 describe('checklistItemValidator', () => {

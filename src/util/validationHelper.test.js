@@ -1,4 +1,3 @@
-import {expect} from '../util/testHelpers';
 import validationHelper from './validationHelper';
 
 describe('validationHelper.validateField', () => {

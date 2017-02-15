@@ -1,4 +1,3 @@
-import {expect} from '../util/testHelpers';
 import {format} from '../util';
 
 function isoDateTime(timeStamp) {

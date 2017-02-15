@@ -1,4 +1,3 @@
-import {expect} from '../../util/testHelpers';
 import deepFreeze from 'deep-freeze';
 import {chatMessageType} from '../chat';
 import * as chatDucks from './chatDucks';

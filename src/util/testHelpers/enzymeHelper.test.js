@@ -1,6 +1,6 @@
 import assert from 'assert';
 import React from 'react';
-import {expect, shallow, enzymeHelper} from '../testHelpers';
+import{shallow, enzymeHelper} from '../testHelpers';
 import Header from '../../../src/modules/header/components/Header';
 
 describe('enzymeHelper', () => {

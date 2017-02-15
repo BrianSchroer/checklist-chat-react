@@ -1,4 +1,3 @@
-import {expect} from '../../src/util/testHelpers';
 import * as REGEX from './regexConstants';
 
 describe('regexConstants', () => {

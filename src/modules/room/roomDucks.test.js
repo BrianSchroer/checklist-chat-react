@@ -1,4 +1,3 @@
-import {expect} from '../../util/testHelpers';
 import deepFreeze from 'deep-freeze';
 import * as roomDucks from './roomDucks';
 

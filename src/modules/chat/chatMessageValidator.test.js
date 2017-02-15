@@ -1,4 +1,3 @@
-import {expect} from '../../util/testHelpers';
 import {validate} from './chatMessageValidator';
 
 const messageRequiredError = 'Message is required.';

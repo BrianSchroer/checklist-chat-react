@@ -1,4 +1,3 @@
-import {expect} from '../util/testHelpers';
 import uiHelper from './uiHelper';
 
 describe('uiHelper', () => {
