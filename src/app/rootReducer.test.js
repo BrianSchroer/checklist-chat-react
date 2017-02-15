@@ -1,4 +1,4 @@
-import expect from 'expect';
+import {expect} from '../util/testHelpers';
 import initialState from '../app/store/initialState';
 import {reducers} from './rootReducer';
 

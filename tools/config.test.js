@@ -1,5 +1,5 @@
 import assert from 'assert';
-import expect from 'expect';
+import {expect} from '../src/util/testHelpers';
 import config from './config';
 
 describe('config', () => {

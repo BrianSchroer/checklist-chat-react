@@ -1,7 +1,6 @@
-import expect from 'expect';
+import assert from 'assert';
 import React from 'react';
-import enzymeHelper from './enzymeHelper';
-import {shallow} from 'enzyme';
+import {expect, shallow, enzymeHelper} from '../testHelpers';
 import Header from '../../../src/modules/header/components/Header';
 
 describe('enzymeHelper', () => {
@@ -9,11 +8,13 @@ describe('enzymeHelper', () => {
         it('should fail with expected message when counts differ', () => {
             try {
                enzymeHelper.assertFindCount(1, shallow(<Header />), 'badSelector');
-               throw('Expected error was not thrown.');
             } catch (error) {
                 expect(error.message).toContain(
                     'Expected 1 element(s) for selector "badSelector", but found 0.');
+                return;
             }
+
+            assert(null, null, 'Expected error was not thrown.');
         });
     });
 });

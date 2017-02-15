@@ -1,4 +1,4 @@
-import expect from 'expect';
+import {expect} from '../../util/testHelpers';
 import {validate} from './roomInfoValidator';
 
 const nameRequiredError = 'Room name is required.';

@@ -1,4 +1,4 @@
-import expect from 'expect';
+import {expect} from '../../util/testHelpers';
 import dispatchLoggerMiddleware from './dispatchLoggerMiddleware';
 
 describe('dispatchLoggerMiddleware', () => {

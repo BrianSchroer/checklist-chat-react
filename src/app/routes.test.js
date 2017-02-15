@@ -1,4 +1,3 @@
-//import expect from 'expect';
 import {createRoutes, createMemoryHistory, match} from 'react-router';
 import routes from './routes';
 

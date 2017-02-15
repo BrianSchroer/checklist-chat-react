@@ -1,4 +1,4 @@
-import expect from 'expect';
+import {expect} from '../util/testHelpers';
 import deepFreeze from 'deep-freeze';
 import reducer, * as modalDialogDucks from './modalDialogDucks';
 import * as modalDialogType from './modalDialogType';

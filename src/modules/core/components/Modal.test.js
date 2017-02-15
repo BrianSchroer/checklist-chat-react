@@ -1,6 +1,5 @@
-import expect from 'expect';
 import React from 'react';
-import {shallow, enzymeHelper} from '../../../util/testHelpers';
+import {expect, shallow, enzymeHelper} from '../../../util/testHelpers';
 import Modal from './Modal';
 
 const defaultProps = {

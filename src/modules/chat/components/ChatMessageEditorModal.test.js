@@ -1,7 +1,6 @@
-import expect from 'expect';
 import React from 'react';
 import initialState from '../../../app/store/initialState';
-import {shallow, enzymeHelper} from '../../../util/testHelpers';
+import {expect, shallow, enzymeHelper} from '../../../util/testHelpers';
 import {ChatMessageEditorModal, mapStateToProps} from './ChatMessageEditorModal';
 
 const defaultProps = {
