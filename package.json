@@ -11,12 +11,12 @@
     "prestart": "babel-node tools/startMessage.js",
     "start": "npm-run-all --parallel start-mockapi test:watch open:src lint:watch",
     "open:src": "babel-node tools/srcServer.js",
-    "lint": "node_modules/.bin/esw webpack.config.* src tools",
-    "lint:watch": "nodemon --verbose --exec \"npm run lint\"",
+    "lint": "esw src tools",
+    "lint:watch": "npm run lint -- --watch",
     "localtunnel": "babel-node tools/localtunnel.js",
     "localtunnel-jsonServer": "babel-node tools/localtunnel.jsonServer.js",
     "test": "jest",
-    "test:watch": "jest --watch --notify",
+    "test:watch": "npm test -- --watch --notify",
     "test-verbose": "npm test -- --verbose",
     "test-verbose:watch": "npm run test:watch -- --verbose",
     "test-coverage": "npm test -- --coverage",
@@ -32,14 +32,6 @@
     "storybook": "cross-var start-storybook --port $npm_package_config_storybook_port --config-dir ./tools/storybook",
     "build-storybook": "build-storybook --config-dir ./tools/storybook -o .out",
     "deploy-storybook": "storybook-to-ghpages"
-  },
-  "nyc": {
-    "exclude": [
-      "**/*.test.js",
-      "**/mockJsonDbApi.js",
-      "node_modules",
-      "build"
-    ]
   },
   "author": "Brian Schroer",
   "license": "MIT",
@@ -88,7 +80,6 @@
     "localtunnel": "^1.8.2",
     "mocha": "^2.4.5",
     "nock": "^8.0.0",
-    "nodemon": "^1.11.0",
     "npm-run-all": "^1.8.0",
     "open": "^0.0.5",
     "react-addons-test-utils": "^15.0.2",
