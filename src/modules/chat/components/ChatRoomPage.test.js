@@ -1,5 +1,5 @@
 import React from 'react';
-import{shallow, enzymeHelper} from '../../../util/testHelpers';
+import {shallow, enzymeHelper} from '../../../util/testHelpers';
 import {ChatRoomPage} from './ChatRoomPage';
 
 const defaultProps = {

@@ -1,5 +1,5 @@
 import React from 'react';
-import{shallow, enzymeHelper} from '../../../util/testHelpers';
+import {shallow, enzymeHelper} from '../../../util/testHelpers';
 import {HomePage} from './HomePage';
 
 const defaultActions = {
