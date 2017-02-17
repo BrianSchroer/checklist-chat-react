@@ -21,6 +21,30 @@ export function addChecklistItem(roomId, checklistItem) {
     return add(`checklistItems`, JSON.stringify(body));
 }
 
+export function addChecklistItemComment(roomId, checklistItemId, comment) {
+    return get(`checklistItems/${checklistItemId}`).then(checklistItem => {
+        const {sequenceNumber, description} = checklistItem;
+
+        const commentMessage = assignChatMessageIdsAndTimestamp({chatMessageType: 'Chat', text: comment});
+
+        const body = Object.assign({}, checklistItem);
+
+        if (body.chatMessages) {
+            body.chatMessages.push(commentMessage);
+        } else {
+            body.chatMessages = [commentMessage];
+        }
+
+        const actionMessage = {
+            chatMessageType: 'Action',
+            text: `added a comment to checklist item ${sequenceNumber} - "${description}".`
+        };
+        chat(actionMessage, roomId);
+
+        return update(`checklistItems/${checklistItem.id}`, JSON.stringify(body));
+    });
+}
+
 export function chat(chatMessage, roomId) {
     const body = assignChatMessageIdsAndTimestamp(Object.assign({}, chatMessage, {roomId}));
 
@@ -52,28 +76,6 @@ export function joinChat(roomId) {
     };
 
     return chat(actionMessage, roomId);
-}
-
-export function saveChecklistItemComment(checklistItem, comment) {
-    const {roomId, sequenceNumber, description} = checklistItem;
-
-    const commentMessage = assignChatMessageIdsAndTimestamp({chatMessageType: 'Chat', text: comment});
-
-    const body = Object.assign({}, checklistItem);
-
-    if (body.chatMessages) {
-        body.chatMessages.push(commentMessage);
-    } else {
-        body.chatMessages = [commentMessage];
-    }
-
-    const actionMessage = {
-        chatMessageType: 'Action',
-        text: `added a comment to checklist item ${sequenceNumber} - "${description}".`
-    };
-    chat(actionMessage, roomId);
-
-    return update(`checklistItems/${checklistItem.id}`, JSON.stringify(body));
 }
 
 export function updateChecklistItem(roomId, checklistItem) {
