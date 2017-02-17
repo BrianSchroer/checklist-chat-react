@@ -91,14 +91,14 @@ export function updateChecklistItem(roomId, checklistItem) {
     return update(`checklistItems/${checklistItem.id}`, JSON.stringify(body));
 }
 
-export function updateRoomInfo(roomInfo) {
+export function updateRoomInfo(roomId, roomInfo) {
     const body = Object.assign({}, roomInfo);
 
     const actionMessage = {chatMessageType: 'Action'};
 
-    if (roomInfo.id) {
+    if (roomId) {
         actionMessage.text = 'updated the room description / phone info.';
-        chat(body.id, actionMessage);
+        chat(roomId, actionMessage);
         return update(`rooms/${roomInfo.id}`, JSON.stringify(body));
     } else {
         get('rooms').then(items => {

@@ -34,7 +34,7 @@ export function saveRoomInfo(roomInfo) {
     return dispatch => {
         dispatch(beginAjaxCall());
 
-        return mockSignalR.updateRoomInfo(roomInfo).then(() =>
+        return mockSignalR.updateRoomInfo(roomInfo.id, roomInfo).then(() =>
         {
             mockSignalR.getRooms().then(rooms => {
                 dispatch(loadRoomsSuccess(rooms));
