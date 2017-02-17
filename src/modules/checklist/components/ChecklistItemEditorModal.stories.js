@@ -7,7 +7,6 @@ storiesOf('ChecklistItemEditorModal', module)
 
     .add('new item', () => (
         <ChecklistItemEditorModal
-            userId="userId"
             checklistItem={{
                 id: null,
                 roomId: 123,
@@ -28,7 +27,6 @@ storiesOf('ChecklistItemEditorModal', module)
 
     .add('existing item', () => (
         <ChecklistItemEditorModal
-            userId="userId"
             checklistItem={{
                 id: 123,
                 roomId: 123,

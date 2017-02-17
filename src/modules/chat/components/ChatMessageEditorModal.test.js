@@ -4,7 +4,6 @@ import {shallow, enzymeHelper} from '../../../util/testHelpers';
 import {ChatMessageEditorModal, mapStateToProps} from './ChatMessageEditorModal';
 
 const defaultProps = {
-    userId: 'TestUserId',
     roomId: '123',
     onCloseRequest: () => {},
     actions: {}
@@ -45,7 +44,6 @@ describe('ChatMessageEditorModal', () => {
             const stateOverrides = { roomId: 666 };
             const props = callMapStateToProps(stateOverrides);
 
-            expect(props.userId).toBe(initialState.userId);
             expect(props.roomId).toBe(stateOverrides.roomId);
             expect(props.shouldFocus).toBe(true);
             expect(props.onCloseRequest).toBe(defaultOwnProps.onCloseRequest);

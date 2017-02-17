@@ -6,7 +6,6 @@ storiesOf('RoomInfoEditorModal', module)
     .add('new room', () => (
         <RoomInfoEditorModal
             room={{id: '', roomName: '', description: '', phoneInfo: ''}}
-            userId="userId"
             isNewRoom
             shouldFocus={false}
             actions={{}}
@@ -16,7 +15,6 @@ storiesOf('RoomInfoEditorModal', module)
     .add('existing room', () => (
         <RoomInfoEditorModal
             room={{id: 'id', roomName: 'roomName', description: 'description', phoneInfo: 'phoneInfo'}}
-            userId="userId"
             isNewRoom={false}
             shouldFocus={false}
             actions={{}}

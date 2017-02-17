@@ -30,11 +30,11 @@ export function loadRooms() {
     };
 }
 
-export function saveRoomInfo(roomInfo, userId) {
+export function saveRoomInfo(roomInfo) {
     return dispatch => {
         dispatch(beginAjaxCall());
 
-        return mockSignalR.updateRoomInfo(roomInfo, userId).then(() =>
+        return mockSignalR.updateRoomInfo(roomInfo).then(() =>
         {
             mockSignalR.getRooms().then(rooms => {
                 dispatch(loadRoomsSuccess(rooms));
@@ -49,9 +49,9 @@ export function saveRoomInfo(roomInfo, userId) {
     };
 }
 
-export function joinChat(roomId, userId) {
+export function joinChat(roomId) {
     return dispatch => {
-        mockSignalR.joinChat(roomId, userId);
+        mockSignalR.joinChat(roomId);
         dispatch(setRoomIdSuccess(roomId));
         dispatch(loadChatMessagesForRoom(roomId));
         dispatch(loadChecklistItemsForRoom(roomId));

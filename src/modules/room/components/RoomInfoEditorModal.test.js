@@ -12,7 +12,6 @@ const defaultRoom = {
 
 const defaultProps = {
     room: defaultRoom,
-    userId: 'TestUserId',
     isNewRoom: false,
     shouldFocus: false,
     onCloseRequest: () => {},
@@ -45,7 +44,6 @@ describe('RoomInfoEditorModal', () => {
         it('should return expected props', () => {
             const props = callMapStateToProps();
             expect(props.onCloseRequest).toBe(defaultOwnProps.onCloseRequest);
-            expect(props.userId).toBe(initialState.userId);
             expect(props.shouldFocus).toBe(true);
         });
 

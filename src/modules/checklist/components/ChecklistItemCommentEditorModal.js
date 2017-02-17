@@ -40,7 +40,7 @@ export class ChecklistItemCommentEditorModal extends React.Component {
     onSave(event) {
         event.preventDefault();
 
-        const {userId, checklistItem, actions, onCloseRequest} = this.props;
+        const {checklistItem, actions, onCloseRequest} = this.props;
         const {comment} = this.state;
 
         const validationResponse = validateComment(comment);
@@ -50,7 +50,7 @@ export class ChecklistItemCommentEditorModal extends React.Component {
             return;
         }
 
-        actions.saveChecklistItemComment(checklistItem, comment.text, userId);
+        actions.saveChecklistItemComment(checklistItem, comment.text);
         onCloseRequest(event);
     }
 
@@ -98,7 +98,6 @@ export class ChecklistItemCommentEditorModal extends React.Component {
 }
 
 ChecklistItemCommentEditorModal.propTypes = {
-    userId: PropTypes.string.isRequired,
     checklistItem: PropTypes.object.isRequired,
     shouldFocus: PropTypes.bool,
     onCloseRequest: PropTypes.func.isRequired,
@@ -106,7 +105,6 @@ ChecklistItemCommentEditorModal.propTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
-    const {userId} = state;
     const [roomId, sequenceNumber] = state.modalDialogRequest.keys;
     const onCloseRequest = ownProps.onCloseRequest;
 
@@ -115,7 +113,7 @@ function mapStateToProps(state, ownProps) {
     const checklistItem = state.checklistItems.find(item =>
         item.roomId === roomId && item.sequenceNumber === sequenceNumber);
 
-    return {userId, checklistItem, shouldFocus, onCloseRequest};
+    return {checklistItem, shouldFocus, onCloseRequest};
 }
 
 const mapDispatchToProps = (dispatch) => ({

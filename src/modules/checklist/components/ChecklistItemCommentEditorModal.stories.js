@@ -5,7 +5,6 @@ import {ChecklistItemCommentEditorModal} from './ChecklistItemCommentEditorModal
 storiesOf('ChecklistItemCommentEditorModal', module)
     .add('ChecklistItemCommentEditorModal', () => (
         <ChecklistItemCommentEditorModal
-            userId="userId"
             checklistItem={{
                 sequenceNumber: 1,
                 description: 'checklist item description',

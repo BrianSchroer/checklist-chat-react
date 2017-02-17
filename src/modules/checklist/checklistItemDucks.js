@@ -56,11 +56,11 @@ export function saveChecklistItem(checklistItem, roomId) {
     };
 }
 
-export function saveChecklistItemComment(checklistItem, comment, userId) {
+export function saveChecklistItemComment(checklistItem, comment) {
     return dispatch => {
         dispatch(beginAjaxCall());
 
-        return mockSignalR.saveChecklistItemComment(checklistItem, comment, userId).then(() =>
+        return mockSignalR.saveChecklistItemComment(checklistItem, comment).then(() =>
         {
             mockSignalR.getChecklistItems(checklistItem.roomId).then(items => {
                 dispatch(loadChecklistItemsForRoomSuccess(items));

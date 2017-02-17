@@ -42,7 +42,7 @@ export class ChatMessageEditorModal extends React.Component {
     onSave(event) {
         event.preventDefault();
 
-        const {userId, roomId} = this.props;
+        const {roomId} = this.props;
         const {chatMessage} = this.state;
 
         const validationResponse = validate(chatMessage);
@@ -53,7 +53,7 @@ export class ChatMessageEditorModal extends React.Component {
         }
 
         const {actions, onCloseRequest} = this.props;
-        actions.saveChatMessage(chatMessage, roomId, userId);
+        actions.saveChatMessage(chatMessage, roomId);
         onCloseRequest(event);
     }
 
@@ -88,19 +88,18 @@ export class ChatMessageEditorModal extends React.Component {
 
 ChatMessageEditorModal.propTypes = {
     roomId: PropTypes.string,
-    userId: PropTypes.string.isRequired,
     shouldFocus: PropTypes.bool,
     onCloseRequest: PropTypes.func.isRequired,
     actions: PropTypes.object.isRequired
 };
 
 export function mapStateToProps(state, ownProps) {
-    const {userId, roomId} = state;
+    const {roomId} = state;
     const shouldFocus = (state.shouldFocus == undefined) ? true : state.shouldFocus;
 
     const onCloseRequest = ownProps.onCloseRequest;
 
-    return {userId, roomId, shouldFocus, onCloseRequest};
+    return {roomId, shouldFocus, onCloseRequest};
 }
 
 const mapDispatchToProps = (dispatch) => ({

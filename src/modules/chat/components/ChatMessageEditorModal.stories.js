@@ -5,7 +5,6 @@ import {ChatMessageEditorModal} from './ChatMessageEditorModal';
 storiesOf('ChatMessageEditorModal', module)
     .add('ChatMessageEditorModal', () => (
         <ChatMessageEditorModal
-            userId="userId"
             shouldFocus={false}
             actions={{}}
             onCloseRequest={action('onCloseRequest')}

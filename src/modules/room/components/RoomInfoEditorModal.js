@@ -40,7 +40,7 @@ export class RoomInfoEditorModal extends React.Component {
         event.preventDefault();
 
         const {room, isDirty, isNewRoom} = this.state;
-        const {actions, userId, onCloseRequest} = this.props;
+        const {actions, onCloseRequest} = this.props;
 
         if (!isNewRoom && !isDirty) {
             onCloseRequest(event);
@@ -54,7 +54,7 @@ export class RoomInfoEditorModal extends React.Component {
             return;
         }
 
-        actions.saveRoomInfo(room, userId);
+        actions.saveRoomInfo(room);
         onCloseRequest(event);
     }
 
@@ -95,7 +95,6 @@ export class RoomInfoEditorModal extends React.Component {
 
 RoomInfoEditorModal.propTypes = {
     room: PropTypes.object.isRequired,
-    userId: PropTypes.string.isRequired,
     isNewRoom: PropTypes.bool.isRequired,
     shouldFocus: PropTypes.bool.isRequired,
     onCloseRequest: PropTypes.func.isRequired,
@@ -118,12 +117,11 @@ export function mapStateToProps(state, ownProps) {
         room = rooms.find(room => room.id == roomId);
     }
 
-    const userId = state.userId;
     const onCloseRequest = ownProps.onCloseRequest;
 
     const shouldFocus = (state.shouldFocus == undefined) ? true : state.shouldFocus;
 
-    return {onCloseRequest, room, userId, isNewRoom, shouldFocus};
+    return {onCloseRequest, room, isNewRoom, shouldFocus};
 }
 
 const mapDispatchToProps = (dispatch) => ({

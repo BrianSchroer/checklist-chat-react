@@ -3,7 +3,6 @@ import 'whatwg-fetch';
 const mockJsonServerBaseUri = 'http://localhost:3001/';
 
 export function addChecklistItem(roomId, checklistItem) {
-    const userId = getUserName();
     const {sequenceNumber, description} = checklistItem;
     const body = Object.assign({}, checklistItem, {roomId});
 
@@ -17,17 +16,15 @@ export function addChecklistItem(roomId, checklistItem) {
         text: `added checklist item ${sequenceNumber} - "${description}".`
     };
 
-    chat(actionMessage, roomId, userId);
+    chat(actionMessage, roomId);
 
     return add(`checklistItems`, JSON.stringify(body));
 }
 
-export function getUserName() {
-    return 'Brian Schroer';
-}
+export function chat(chatMessage, roomId) {
+    const body = assignChatMessageIdsAndTimestamp(Object.assign({}, chatMessage, {roomId}));
 
-export function getRooms() {
-    return get('rooms');
+    return add(`chatMessages`, JSON.stringify(body));
 }
 
 export function getChatMessages(roomId) {
@@ -40,77 +37,46 @@ export function getChecklistItems(roomId) {
         : get('checklistItems');
 }
 
-export function updateRoomInfo(roomInfo, userId) {
-    const body = Object.assign({}, roomInfo);
-
-    const actionMessage = {chatMessageType: 'Action'};
-
-    if (roomInfo.id) {
-        actionMessage.text = 'updated the room description / phone info.';
-        chat(actionMessage, body.id, userId);
-        return update(`rooms/${roomInfo.id}`, JSON.stringify(body));
-    } else {
-        get('rooms').then(items => {
-            let ids = items.map(item => item.id);
-            body.id = Math.max(...ids) + 1;
-            actionMessage.text = `created new chat "${body.roomName}".`;
-            chat(actionMessage, body.id, userId);
-        });
-        return add(`rooms`, JSON.stringify(body));
-    }
+export function getRooms() {
+    return get('rooms');
 }
 
-export function joinChat(roomId, userId) {
+export function getUserName() {
+    return 'Brian Schroer';
+}
+
+export function joinChat(roomId) {
     const actionMessage = {
         chatMessageType: 'Action',
         text: 'entered the room.'
     };
 
-    return chat(actionMessage, roomId, userId);
+    return chat(actionMessage, roomId);
 }
 
-export function chat(chatMessage, roomId, userId) {
-    const body = Object.assign(
-        {},
-        chatMessage,
-        {roomId: roomId, userName: userId}
-    );
-
-    assignChatMessageIdAndTimestamp(body);
-
-    return add(`chatMessages`, JSON.stringify(body));
-}
-
-export function saveChecklistItemComment(checklistItem, comment, userId) {
+export function saveChecklistItemComment(checklistItem, comment) {
     const {roomId, sequenceNumber, description} = checklistItem;
+
+    const commentMessage = assignChatMessageIdsAndTimestamp({chatMessageType: 'Chat', text: comment});
+
+    const body = Object.assign({}, checklistItem);
+
+    if (body.chatMessages) {
+        body.chatMessages.push(commentMessage);
+    } else {
+        body.chatMessages = [commentMessage];
+    }
 
     const actionMessage = {
         chatMessageType: 'Action',
         text: `added a comment to checklist item ${sequenceNumber} - "${description}".`
     };
-
-    chat(actionMessage, roomId, userId);
-
-    const body = Object.assign({}, checklistItem);
-
-    const chatMessage = {
-        chatMessageType: 'Chat',
-        userName: userId,
-        text: comment
-    };
-    assignChatMessageIdAndTimestamp(chatMessage);
-
-    if (body.chatMessages) {
-        body.chatMessages.push(chatMessage);
-    } else {
-        body.chatMessages = [chatMessage];
-    }
+    chat(actionMessage, roomId);
 
     return update(`checklistItems/${checklistItem.id}`, JSON.stringify(body));
 }
 
 export function updateChecklistItem(roomId, checklistItem) {
-    const userId = getUserName();
     const {sequenceNumber, description} = checklistItem;
     const body = Object.assign({}, checklistItem, {roomId});
 
@@ -118,12 +84,32 @@ export function updateChecklistItem(roomId, checklistItem) {
         chatMessageType: 'Action',
         text: `updated checklist item ${sequenceNumber} - "${description}".` };
 
-    chat(actionMessage, roomId, userId);
+    chat(actionMessage, roomId);
 
     return update(`checklistItems/${checklistItem.id}`, JSON.stringify(body));
 }
 
-function assignChatMessageIdAndTimestamp(chatMessage) {
+export function updateRoomInfo(roomInfo) {
+    const body = Object.assign({}, roomInfo);
+
+    const actionMessage = {chatMessageType: 'Action'};
+
+    if (roomInfo.id) {
+        actionMessage.text = 'updated the room description / phone info.';
+        chat(actionMessage, body.id);
+        return update(`rooms/${roomInfo.id}`, JSON.stringify(body));
+    } else {
+        get('rooms').then(items => {
+            let ids = items.map(item => item.id);
+            body.id = Math.max(...ids) + 1;
+            actionMessage.text = `created new chat "${body.roomName}".`;
+            chat(actionMessage, body.id);
+        });
+        return add(`rooms`, JSON.stringify(body));
+    }
+}
+
+function assignChatMessageIdsAndTimestamp(chatMessage) {
     let id;
     getChatMessages().then(items => {
         const ids = items.map(item => item.id);
@@ -132,6 +118,9 @@ function assignChatMessageIdAndTimestamp(chatMessage) {
 
     chatMessage.id = id;
     chatMessage.timeStamp = new Date().toISOString();
+    chatMessage.userName = getUserName();
+
+    return chatMessage;
 }
 
 function get(url) {
