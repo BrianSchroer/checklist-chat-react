@@ -2,7 +2,7 @@
 
 import initialState from '../../app/store/initialState';
 import {beginAjaxCall, ajaxCallError} from '../../app/ajaxStatusDucks';
-import * as mockJsonDbApi from '../../api/mockJsonDbApi';
+import * as mockSignalR from '../../api/mockSignalR';
 
 const prefix = 'checklist-chat/checklist-item/';
 const LOAD_CHECKLIST_ITEMS_FOR_ROOM_SUCCESS = `${prefix}LOAD_CHECKLIST_ITEMS_FOR_ROOM_SUCCESS`;
@@ -16,7 +16,7 @@ export function loadChecklistItemsForRoom(roomId) {
         return dispatch => {
             dispatch(beginAjaxCall());
 
-            return mockJsonDbApi.getChecklistItems(roomId).then(checklistItems => {
+            return mockSignalR.getChecklistItems(roomId).then(checklistItems => {
                 dispatch(loadChecklistItemsForRoomSuccess(checklistItems));
             }).catch(error => {
                 dispatch(ajaxCallError(error));
@@ -28,13 +28,25 @@ export function loadChecklistItemsForRoom(roomId) {
     }
 }
 
-export function saveChecklistItem(checklistItem, roomId, userId) {
+export function saveChecklistItem(checklistItem, roomId) {
     return dispatch => {
         dispatch(beginAjaxCall());
 
-        return mockJsonDbApi.saveChecklistItem(checklistItem, roomId, userId).then(() =>
+        if (checklistItem.id) {
+            return mockSignalR.updateChecklistItem(roomId, checklistItem).then(() =>
+            {
+                mockSignalR.getChecklistItems(checklistItem.roomId).then(items => {
+                    dispatch(loadChecklistItemsForRoomSuccess(items));
+                });
+            }).catch(error => {
+                dispatch(ajaxCallError(error));
+                throw (error);
+            });
+        }
+
+        return mockSignalR.addChecklistItem(roomId, checklistItem).then(() =>
         {
-            mockJsonDbApi.getChecklistItems(checklistItem.roomId).then(items => {
+            mockSignalR.getChecklistItems(checklistItem.roomId).then(items => {
                 dispatch(loadChecklistItemsForRoomSuccess(items));
             });
         }).catch(error => {
@@ -48,9 +60,9 @@ export function saveChecklistItemComment(checklistItem, comment, userId) {
     return dispatch => {
         dispatch(beginAjaxCall());
 
-        return mockJsonDbApi.saveChecklistItemComment(checklistItem, comment, userId).then(() =>
+        return mockSignalR.saveChecklistItemComment(checklistItem, comment, userId).then(() =>
         {
-            mockJsonDbApi.getChecklistItems(checklistItem.roomId).then(items => {
+            mockSignalR.getChecklistItems(checklistItem.roomId).then(items => {
                 dispatch(loadChecklistItemsForRoomSuccess(items));
             });
         }).catch(error => {

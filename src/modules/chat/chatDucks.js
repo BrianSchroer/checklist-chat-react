@@ -2,7 +2,7 @@
 
 import initialState from '../../app/store/initialState';
 import {beginAjaxCall, ajaxCallError} from '../../app/ajaxStatusDucks';
-import * as mockJsonDbApi from '../../api/mockJsonDbApi';
+import * as mockSignalR from '../../api/mockSignalR';
 
 const prefix = 'checklist-chat/chat/';
 
@@ -44,7 +44,7 @@ export function loadChatMessagesForRoom(roomId) {
         return dispatch => {
             dispatch(beginAjaxCall());
 
-            return mockJsonDbApi.getChatMessages(roomId).then(chatMessages =>
+            return mockSignalR.getChatMessages(roomId).then(chatMessages =>
                 updateMessagesAndParticipants(chatMessages, dispatch)
             ).catch(error => {
                 dispatch(ajaxCallError(error));
@@ -60,9 +60,9 @@ export function saveChatMessage(chatMessage, roomId, userId) {
     return dispatch => {
         dispatch(beginAjaxCall());
 
-        return mockJsonDbApi.chat(chatMessage, roomId, userId).then(() =>
+        return mockSignalR.chat(chatMessage, roomId, userId).then(() =>
         {
-            mockJsonDbApi.getChatMessages(roomId).then(chatMessages =>
+            mockSignalR.getChatMessages(roomId).then(chatMessages =>
                 updateMessagesAndParticipants(chatMessages, dispatch));
         }).catch(error => {
             dispatch(ajaxCallError(error));

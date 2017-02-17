@@ -44,9 +44,9 @@ export class ChecklistItemEditorModal extends React.Component {
             return;
         }
 
-        const {userId, actions} = this.props;
-        actions.saveChecklistItem(checklistItem, checklistItem.roomId, userId);
-        this.props.onCloseRequest(event);
+        const {actions, onCloseRequest} = this.props;
+        actions.saveChecklistItem(checklistItem, checklistItem.roomId);
+        onCloseRequest(event);
     }
 
     onCommentRequest(event) {
@@ -141,7 +141,6 @@ export class ChecklistItemEditorModal extends React.Component {
 }
 
 ChecklistItemEditorModal.propTypes = {
-    userId: PropTypes.string.isRequired,
     checklistItem: PropTypes.object.isRequired,
     isNewChecklistItem: PropTypes.bool.isRequired,
     maxSequenceNumber: PropTypes.number.isRequired,
@@ -181,10 +180,9 @@ function mapStateToProps(state, ownProps) {
         checklistItem = emptyChecklistItem(roomId, maxSequenceNumber);
     }
 
-    const {userId} = state;
     const onCloseRequest = ownProps.onCloseRequest;
 
-    return {userId, checklistItem, isNewChecklistItem, maxSequenceNumber, onCloseRequest};
+    return {checklistItem, isNewChecklistItem, maxSequenceNumber, onCloseRequest};
 }
 
 const mapDispatchToProps = (dispatch) => ({
