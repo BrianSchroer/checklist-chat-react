@@ -60,7 +60,7 @@ export function saveChatMessage(chatMessage, roomId) {
     return dispatch => {
         dispatch(beginAjaxCall());
 
-        return mockSignalR.chat(chatMessage, roomId).then(() =>
+        return mockSignalR.chat(roomId, chatMessage).then(() =>
         {
             mockSignalR.getChatMessages(roomId).then(chatMessages =>
                 updateMessagesAndParticipants(chatMessages, dispatch));

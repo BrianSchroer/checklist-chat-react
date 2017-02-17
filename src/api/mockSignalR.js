@@ -16,7 +16,7 @@ export function addChecklistItem(roomId, checklistItem) {
         text: `added checklist item ${sequenceNumber} - "${description}".`
     };
 
-    chat(actionMessage, roomId);
+    chat(roomId, actionMessage);
 
     return add(`checklistItems`, JSON.stringify(body));
 }
@@ -39,13 +39,13 @@ export function addChecklistItemComment(roomId, checklistItemId, comment) {
             chatMessageType: 'Action',
             text: `added a comment to checklist item ${sequenceNumber} - "${description}".`
         };
-        chat(actionMessage, roomId);
+        chat(roomId, actionMessage);
 
         return update(`checklistItems/${checklistItem.id}`, JSON.stringify(body));
     });
 }
 
-export function chat(chatMessage, roomId) {
+export function chat(roomId, chatMessage) {
     const body = assignChatMessageIdsAndTimestamp(Object.assign({}, chatMessage, {roomId}));
 
     return add(`chatMessages`, JSON.stringify(body));
@@ -75,7 +75,7 @@ export function joinChat(roomId) {
         text: 'entered the room.'
     };
 
-    return chat(actionMessage, roomId);
+    return chat(roomId, actionMessage);
 }
 
 export function updateChecklistItem(roomId, checklistItem) {
@@ -86,7 +86,7 @@ export function updateChecklistItem(roomId, checklistItem) {
         chatMessageType: 'Action',
         text: `updated checklist item ${sequenceNumber} - "${description}".` };
 
-    chat(actionMessage, roomId);
+    chat(roomId, actionMessage);
 
     return update(`checklistItems/${checklistItem.id}`, JSON.stringify(body));
 }
@@ -98,14 +98,14 @@ export function updateRoomInfo(roomInfo) {
 
     if (roomInfo.id) {
         actionMessage.text = 'updated the room description / phone info.';
-        chat(actionMessage, body.id);
+        chat(body.id, actionMessage);
         return update(`rooms/${roomInfo.id}`, JSON.stringify(body));
     } else {
         get('rooms').then(items => {
             let ids = items.map(item => item.id);
             body.id = Math.max(...ids) + 1;
             actionMessage.text = `created new chat "${body.roomName}".`;
-            chat(actionMessage, body.id);
+            chat(body.id, actionMessage);
         });
         return add(`rooms`, JSON.stringify(body));
     }
