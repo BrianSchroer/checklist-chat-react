@@ -22,27 +22,28 @@ export function addChecklistItem(roomId, checklistItem) {
 }
 
 export function addChecklistItemComment(roomId, checklistItemId, comment) {
-    return get(`checklistItems/${checklistItemId}`).then(checklistItem => {
-        const {sequenceNumber, description} = checklistItem;
+    return get(`checklistItems/${checklistItemId}`)
+        .then(checklistItem => {
+            const {sequenceNumber, description} = checklistItem;
 
-        const commentMessage = assignChatMessageIdsAndTimestamp({chatMessageType: 'Chat', text: comment});
+            const commentMessage = assignChatMessageIdsAndTimestamp({chatMessageType: 'Chat', text: comment});
 
-        const body = Object.assign({}, checklistItem);
+            const body = Object.assign({}, checklistItem);
 
-        if (body.chatMessages) {
-            body.chatMessages.push(commentMessage);
-        } else {
-            body.chatMessages = [commentMessage];
-        }
+            if (body.chatMessages) {
+                body.chatMessages.push(commentMessage);
+            } else {
+                body.chatMessages = [commentMessage];
+            }
 
-        const actionMessage = {
-            chatMessageType: 'Action',
-            text: `added a comment to checklist item ${sequenceNumber} - "${description}".`
-        };
-        chat(roomId, actionMessage);
+            const actionMessage = {
+                chatMessageType: 'Action',
+                text: `added a comment to checklist item ${sequenceNumber} - "${description}".`
+            };
+            chat(roomId, actionMessage);
 
-        return update(`checklistItems/${checklistItem.id}`, JSON.stringify(body));
-    });
+            return update(`checklistItems/${checklistItem.id}`, JSON.stringify(body));
+        });
 }
 
 export function chat(roomId, chatMessage) {
