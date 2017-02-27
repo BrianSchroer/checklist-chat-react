@@ -6,7 +6,15 @@ import {requestRoomInfoModalDialog} from '../../../app/modalDialogDucks';
 import RoomList from '../../../modules/room/components/RoomList';
 
 export class HomePage extends React.Component {
-    constructor(props, context) {
+
+    static get propTypes() {
+        return {
+            rooms: PropTypes.arrayOf(PropTypes.object).isRequired,
+            actions: PropTypes.object.isRequired
+        };
+    }
+
+   constructor(props, context) {
         super(props, context);
 
         this.handleNewChatRoomRequest = this.handleNewChatRoomRequest.bind(this);
@@ -50,11 +58,6 @@ export class HomePage extends React.Component {
         );
     }
 }
-
-HomePage.propTypes = {
-    rooms: PropTypes.arrayOf(PropTypes.object).isRequired,
-    actions: PropTypes.object.isRequired
-};
 
 const mapStateToProps = (state) => ({ rooms: state.rooms });
 

@@ -7,7 +7,17 @@ import {validate} from '../roomInfoValidator';
 import {Modal, TextInput} from '../../../modules/core';
 
 export class RoomInfoEditorModal extends React.Component {
-    constructor(props, context) {
+    static get propTypes() {
+        return {
+            room: PropTypes.object.isRequired,
+            isNewRoom: PropTypes.bool.isRequired,
+            shouldFocus: PropTypes.bool.isRequired,
+            onCloseRequest: PropTypes.func.isRequired,
+            actions: PropTypes.object.isRequired
+        };
+    }
+
+   constructor(props, context) {
         super(props, context);
 
         this.state = {
@@ -92,14 +102,6 @@ export class RoomInfoEditorModal extends React.Component {
         );
     }
 }
-
-RoomInfoEditorModal.propTypes = {
-    room: PropTypes.object.isRequired,
-    isNewRoom: PropTypes.bool.isRequired,
-    shouldFocus: PropTypes.bool.isRequired,
-    onCloseRequest: PropTypes.func.isRequired,
-    actions: PropTypes.object.isRequired
-};
 
 function emptyRoom() {
     return {id: '', roomName: '', description: '', phoneInfo: ''};

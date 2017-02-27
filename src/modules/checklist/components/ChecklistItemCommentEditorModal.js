@@ -8,7 +8,17 @@ import ChatMessage from '../../chat/components/ChatMessage';
 import {Modal, FormGroup, TextInput} from '../../../modules/core';
 
 export class ChecklistItemCommentEditorModal extends React.Component {
-    constructor(props, context) {
+
+    static get propTypes() {
+        return {
+            checklistItem: PropTypes.object.isRequired,
+            shouldFocus: PropTypes.bool,
+            onCloseRequest: PropTypes.func.isRequired,
+            actions: PropTypes.object.isRequired
+        };
+    }
+
+   constructor(props, context) {
         super(props, context);
 
         this.state = {
@@ -96,13 +106,6 @@ export class ChecklistItemCommentEditorModal extends React.Component {
         );
     }
 }
-
-ChecklistItemCommentEditorModal.propTypes = {
-    checklistItem: PropTypes.object.isRequired,
-    shouldFocus: PropTypes.bool,
-    onCloseRequest: PropTypes.func.isRequired,
-    actions: PropTypes.object.isRequired
-};
 
 function mapStateToProps(state, ownProps) {
     const [roomId, sequenceNumber] = state.modalDialogRequest.keys;

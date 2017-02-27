@@ -232,14 +232,12 @@ div.planned-value-missing, div.actual-value-missing, div.actual-equals-planned {
     display: none;
 }
 
-div.checklist-form-sequence-number-row {
+div.checklist-form-sequence-and-status-row {
     display: flex;
     flex-direction: row;
 }
-
-div.checklist-form-status-row {
-    display: flex;
-    flex-direction: row;
+div.checklist-form-sequence-and-status-row div.form-group {
+    padding-right: 1em;
 }
 
 div.checklist-form-status-and-dropdown {

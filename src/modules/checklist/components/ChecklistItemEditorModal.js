@@ -10,7 +10,18 @@ import {format} from '../../../util';
 import ChecklistItemStatusIcon from './ChecklistItemStatusIcon';
 
 export class ChecklistItemEditorModal extends React.Component {
-    constructor(props, context) {
+
+    static get propTypes() {
+        return {
+            checklistItem: PropTypes.object.isRequired,
+            isNewChecklistItem: PropTypes.bool.isRequired,
+            maxSequenceNumber: PropTypes.number.isRequired,
+            onCloseRequest: PropTypes.func.isRequired,
+            actions: PropTypes.object.isRequired
+        };
+    }
+
+   constructor(props, context) {
         super(props, context);
 
         this.state = {
@@ -88,14 +99,12 @@ export class ChecklistItemEditorModal extends React.Component {
                 buttons={buttons}>
 
                 <div>
-                    <div className="checklist-form-sequence-number-row">
-                        <SelectInput name="sequenceNumber" label="Sequence Number"
+                    <div className="checklist-form-sequence-and-status-row">
+                        <SelectInput name="sequenceNumber" label="Seq #"
                             options={sequenceNumberOptions}
                             value={checklistItem.sequenceNumber.toString()}
                             onChange={this.onChange} error={errors.sequenceNumber} />
-                    </div>
 
-                    <div className="checklist-form-status-row">
                         <FormGroup name="status" label="Status" error={errors.status}>
                             <div className="checklist-form-status-and-dropdown">
                                     <div className="form-control checklist-form-status-div">
@@ -139,14 +148,6 @@ export class ChecklistItemEditorModal extends React.Component {
         );
     }
 }
-
-ChecklistItemEditorModal.propTypes = {
-    checklistItem: PropTypes.object.isRequired,
-    isNewChecklistItem: PropTypes.bool.isRequired,
-    maxSequenceNumber: PropTypes.number.isRequired,
-    onCloseRequest: PropTypes.func.isRequired,
-    actions: PropTypes.object.isRequired
-};
 
 function emptyChecklistItem(roomId, sequenceNumber) {
     return {

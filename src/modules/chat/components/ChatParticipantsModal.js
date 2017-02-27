@@ -3,6 +3,14 @@ import {connect} from 'react-redux';
 import {Modal} from '../../../modules/core';
 
 export class ChatParticipantsModal extends React.Component {
+
+    static get propTypes() {
+        return {
+            chatParticipants: PropTypes.arrayOf(PropTypes.object).isRequired,
+            onCloseRequest: PropTypes.func.isRequired
+        };
+    }
+
     constructor(props, context) {
         super(props, context);
     }
@@ -43,11 +51,6 @@ export class ChatParticipantsModal extends React.Component {
         );
     }
 }
-
-ChatParticipantsModal.propTypes = {
-    chatParticipants: PropTypes.arrayOf(PropTypes.object).isRequired,
-    onCloseRequest: PropTypes.func.isRequired
-};
 
 export function mapStateToProps(state, ownProps) {
     let chatParticipants = state.chatParticipants;

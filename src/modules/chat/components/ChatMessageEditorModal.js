@@ -8,6 +8,16 @@ import {Modal, TextInput} from '../../../modules/core';
 import {uiHelper} from '../../../util';
 
 export class ChatMessageEditorModal extends React.Component {
+
+    static get propTypes() {
+        return {
+            roomId: PropTypes.string.isRequired,
+            shouldFocus: PropTypes.bool,
+            onCloseRequest: PropTypes.func.isRequired,
+            actions: PropTypes.object.isRequired
+        };
+    }
+
     constructor(props, context) {
         super(props, context);
 
@@ -65,7 +75,7 @@ export class ChatMessageEditorModal extends React.Component {
             <div>
                 <input type="button" value="Cancel" className="btn btn-default"
                     onClick={onCloseRequest}/>
-                <input type="submit" value="Save" className="btn btn-primary" />
+                <input type="submit" value="Submit" className="btn btn-primary" />
             </div>
         );
 
@@ -85,13 +95,6 @@ export class ChatMessageEditorModal extends React.Component {
         );
     }
 }
-
-ChatMessageEditorModal.propTypes = {
-    roomId: PropTypes.string,
-    shouldFocus: PropTypes.bool,
-    onCloseRequest: PropTypes.func.isRequired,
-    actions: PropTypes.object.isRequired
-};
 
 export function mapStateToProps(state, ownProps) {
     const {roomId} = state;

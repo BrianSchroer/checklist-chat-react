@@ -11,6 +11,18 @@ import Checklist from '../../../modules/checklist/components/Checklist';
 import ChecklistButtons from '../../../modules/checklist/components/ChecklistButtons';
 
 export class ChatRoomPage extends React.Component {
+
+    static get propTypes() {
+        return {
+            routeParams: PropTypes.object.isRequired,
+            userId: PropTypes.string.isRequired,
+            room: PropTypes.object,
+            checklistItems: PropTypes.arrayOf(PropTypes.object).isRequired,
+            chatMessages: PropTypes.arrayOf(PropTypes.object).isRequired,
+            actions: PropTypes.object.isRequired
+        };
+    }
+
     constructor(props, context) {
         super(props, context);
 
@@ -104,15 +116,6 @@ export class ChatRoomPage extends React.Component {
         );
     }
 }
-
-ChatRoomPage.propTypes = {
-    routeParams: PropTypes.object.isRequired,
-    userId: PropTypes.string.isRequired,
-    room: PropTypes.object,
-    checklistItems: PropTypes.arrayOf(PropTypes.object).isRequired,
-    chatMessages: PropTypes.arrayOf(PropTypes.object).isRequired,
-    actions: PropTypes.object.isRequired
-};
 
 function mapStateToProps(state) {
     const room = state.rooms.find(room => room.id == state.roomId);

@@ -4,7 +4,15 @@ import {Modal} from '../../../modules/core';
 import ChatMessage from './ChatMessage';
 
 export class ChatPriorityNotificationModal extends React.Component {
-    constructor(props, context) {
+
+    static get propTypes()  {
+        return {
+            chatMessage: PropTypes.object.isRequired,
+            onCloseRequest: PropTypes.func.isRequired
+        };
+    }
+
+   constructor(props, context) {
         super(props, context);
     }
 
@@ -27,11 +35,6 @@ export class ChatPriorityNotificationModal extends React.Component {
         );
     }
 }
-
-ChatPriorityNotificationModal.propTypes = {
-    chatMessage: PropTypes.object.isRequired,
-    onCloseRequest: PropTypes.func.isRequired
-};
 
 function mapStateToProps(state, ownProps) {
     const [chatMessage] = state.modalDialogRequest.keys;
