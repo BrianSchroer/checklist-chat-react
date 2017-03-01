@@ -38,6 +38,10 @@ const config = {
                 loaders: ['babel-loader']
             },
             {
+                test: REGEX.JSON_PATH,
+                loaders: ['json-loader']
+            },
+            {
                 test: REGEX.CSS_PATH,
                 loaders: ['style-loader', 'css-loader']
             },

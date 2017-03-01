@@ -8,5 +8,5 @@ storiesOf('ChatMessageEditorModal', module)
             shouldFocus={false}
             actions={{}}
             onCloseRequest={action('onCloseRequest')}
-            />
+        />
     ));
