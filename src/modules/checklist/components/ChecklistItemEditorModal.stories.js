@@ -1,5 +1,5 @@
 import React from 'react';
-import {storiesOf, action} from '@kadira/storybook';
+import {storiesOf, linkTo} from '@kadira/storybook';
 import {checklistItemStatus} from '../../checklist';
 import {ChecklistItemEditorModal} from './ChecklistItemEditorModal';
 
@@ -21,7 +21,7 @@ storiesOf('ChecklistItemEditorModal', module)
             isNewChecklistItem
             maxSequenceNumber={3}
             actions={{}}
-            onCloseRequest={action('onCloseRequest')}
+            onCloseRequest={linkTo('ChecklistButtons')}
         />
     ))
 
@@ -42,6 +42,6 @@ storiesOf('ChecklistItemEditorModal', module)
             isNewChecklistItem={false}
             maxSequenceNumber={3}
             actions={{}}
-            onCloseRequest={action('onCloseRequest')}
+            onCloseRequest={linkTo('Checklist', 'with checklist items')}
         />
     ));

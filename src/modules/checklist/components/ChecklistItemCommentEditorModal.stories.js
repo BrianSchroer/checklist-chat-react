@@ -1,5 +1,5 @@
 import React from 'react';
-import {storiesOf, action} from '@kadira/storybook';
+import {storiesOf, linkTo} from '@kadira/storybook';
 import {ChecklistItemCommentEditorModal} from './ChecklistItemCommentEditorModal';
 
 storiesOf('ChecklistItemCommentEditorModal', module)
@@ -15,6 +15,6 @@ storiesOf('ChecklistItemCommentEditorModal', module)
             }}
             shouldFocus={false}
             actions={{}}
-            onCloseRequest={action('onCloseRequest')}
+            onCloseRequest={linkTo('ChecklistItemEditorModal', 'existing item')}
          />
     ));

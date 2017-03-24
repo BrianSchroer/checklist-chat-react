@@ -1,5 +1,5 @@
 import React from 'react';
-import {storiesOf, action} from '@kadira/storybook';
+import {storiesOf, linkTo} from '@kadira/storybook';
 import {storybookFrameDecorator} from '../../../../tools/storybook';
 import {checklistItemStatus} from '../../checklist';
 import ChecklistItem from './ChecklistItem';
@@ -20,7 +20,7 @@ storiesOf('ChecklistItem', module)
                     actualEndTime: null,
                     userName: 'Jabba Script'
                 }}
-                onEditRequest={action('onEditRequest')} />
+                onEditRequest={linkTo('ChecklistItemEditorModal', 'existing item')} />
         </table>
     ))
 
@@ -41,6 +41,6 @@ storiesOf('ChecklistItem', module)
                         { timeStamp: '2016-12-08T13:01:00.222Z', userName: 'Sue Pervisor', text: "Hold your horses, big guy." }
                     ]
                 }}
-                onEditRequest={action('onEditRequest')} />
+                onEditRequest={linkTo('ChecklistItemEditorModal', 'existing item')} />
         </table>
     ));

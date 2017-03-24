@@ -1,5 +1,5 @@
 import React from 'react';
-import {storiesOf, action} from '@kadira/storybook';
+import {storiesOf, action, linkTo} from '@kadira/storybook';
 import {storybookFrameDecorator} from '../../../../tools/storybook';
 import {checklistItemStatus} from '../../checklist';
 import Checklist from './Checklist';
@@ -35,7 +35,7 @@ storiesOf('Checklist', module)
                     ]
                 }
             ]}
-            onEditRequest={action('onEditRequest')} />
+            onEditRequest={linkTo('ChecklistItemEditorModal', 'existing item')} />
     ))
 
     .add('without checklist items', () => (

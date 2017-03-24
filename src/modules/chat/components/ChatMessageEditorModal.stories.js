@@ -1,5 +1,5 @@
 import React from 'react';
-import {storiesOf, action} from '@kadira/storybook';
+import {storiesOf, linkTo} from '@kadira/storybook';
 import {ChatMessageEditorModal} from './ChatMessageEditorModal';
 
 storiesOf('ChatMessageEditorModal', module)
@@ -7,6 +7,6 @@ storiesOf('ChatMessageEditorModal', module)
         <ChatMessageEditorModal
             shouldFocus={false}
             actions={{}}
-            onCloseRequest={action('onCloseRequest')}
+            onCloseRequest={linkTo('ChatButtons')}
         />
     ));

@@ -1,5 +1,5 @@
 import React from 'react';
-import {storiesOf, action} from '@kadira/storybook';
+import {storiesOf, linkTo} from '@kadira/storybook';
 import {ChatParticipantsModal} from './ChatParticipantsModal';
 
 storiesOf('ChatParticipantsModal', module)
@@ -13,5 +13,5 @@ storiesOf('ChatParticipantsModal', module)
                 {name: 'name', department: 'department', title: 'title', connection: 'connection' },
                 {name: 'name', department: 'department', title: 'title', connection: 'connection' }
             ]}
-            onCloseRequest={action('onCloseRequest')} />
+            onCloseRequest={linkTo('ChatButtons')} />
     ));

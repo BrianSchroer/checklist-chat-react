@@ -1,5 +1,5 @@
 import React from 'react';
-import {storiesOf, action} from '@kadira/storybook';
+import {storiesOf, linkTo} from '@kadira/storybook';
 import {storybookFrameDecorator} from '../../../../tools/storybook';
 import ChecklistButtons from './ChecklistButtons';
 
@@ -9,6 +9,6 @@ storiesOf('ChecklistButtons', module)
     .add('ChecklistButtons', () => (
         <ChecklistButtons
             actions={{}}
-            onChecklistItemAddRequest={action('onChecklistItemAddRequest')}
+            onChecklistItemAddRequest={linkTo('ChecklistItemEditorModal', 'new item')}
         />
     ));

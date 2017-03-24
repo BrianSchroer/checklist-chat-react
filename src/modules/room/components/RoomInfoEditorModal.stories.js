@@ -1,5 +1,5 @@
 import React from 'react';
-import {storiesOf, action} from '@kadira/storybook';
+import {storiesOf, linkTo} from '@kadira/storybook';
 import {RoomInfoEditorModal} from './RoomInfoEditorModal';
 
 storiesOf('RoomInfoEditorModal', module)
@@ -9,7 +9,7 @@ storiesOf('RoomInfoEditorModal', module)
             isNewRoom
             shouldFocus={false}
             actions={{}}
-            onCloseRequest={action('onCloseRequest')}
+            onCloseRequest={linkTo('HomePage')}
          />
     ))
     .add('existing room', () => (
@@ -18,6 +18,6 @@ storiesOf('RoomInfoEditorModal', module)
             isNewRoom={false}
             shouldFocus={false}
             actions={{}}
-            onCloseRequest={action('onCloseRequest')}
+            onCloseRequest={linkTo('RoomInfo')}
          />
     ));

@@ -1,5 +1,5 @@
 import React from 'react';
-import {storiesOf, action} from '@kadira/storybook';
+import {storiesOf, action, linkTo} from '@kadira/storybook';
 import {chatMessageType} from '../../chat';
 import {checklistItemStatus} from '../../checklist';
 import {ChatRoomPage} from './ChatRoomPage';

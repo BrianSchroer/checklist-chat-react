@@ -1,5 +1,5 @@
 import React from 'react';
-import {storiesOf, action} from '@kadira/storybook';
+import {storiesOf, linkTo} from '@kadira/storybook';
 import ChatButtons from './ChatButtons';
 import {storybookFrameDecorator} from '../../../../tools/storybook';
 
@@ -9,7 +9,7 @@ storiesOf('ChatButtons', module)
     .add('ChatButtons', () => (
         <ChatButtons
             actions={{}}
-            onChatMessageAddRequest={action('onChatMessageAddRequest')}
-            onChatParticipantsRequest={action('onChatParticipantsRequest')}
+            onChatMessageAddRequest={linkTo('ChatMessageEditorModal')}
+            onChatParticipantsRequest={linkTo('ChatParticipantsModal')}
         />
     ));
