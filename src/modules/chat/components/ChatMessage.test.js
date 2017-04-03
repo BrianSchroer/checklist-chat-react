@@ -1,5 +1,5 @@
 import React from 'react';
-import {shallow, enzymeHelper} from '../../../util/testHelpers';
+import {renderer, shallow, enzymeHelper} from '../../../util/testHelpers';
 import ChatMessage from './ChatMessage';
 import {chatMessageType} from '../../chat';
 import {format} from '../../../util';
@@ -19,8 +19,25 @@ function render(messageOverrides) {
     return shallow(<ChatMessage {...props}/>);
 }
 
+function renderToJson(messageOverrides) {
+    const props = {
+        userId: 'currentUser',
+        chatMessage: Object.assign({}, testMessage, messageOverrides)
+    };
+
+    return renderer.create(<ChatMessage {...props}/>).toJSON();
+}
+
+function expectSnapshotMatch(messageOverrides) {
+    expect(renderToJson(messageOverrides)).toMatchSnapshot();
+}
+
 describe('ChatMessage', () => {
     describe(`when chatMessageType = "${chatMessageType.ACTION}"`, () => {
+        it('should render correctly', () => {
+            expectSnapshotMatch({chatMessageType: chatMessageType.ACTION});
+        });
+
         it('should render message.timeStamp', () =>{
             const elem = enzymeHelper.findSingle(render({chatMessageType: chatMessageType.ACTION}),
                 'div.chat-action-message > div.chat-message-timestamp');
@@ -35,6 +52,10 @@ describe('ChatMessage', () => {
     });
 
     describe(`when chatMessageType = "${chatMessageType.CHAT}"`, () => {
+        it('should render correctly', () => {
+            expectSnapshotMatch({chatMessageType: chatMessageType.CHAT});
+        });
+
         it('should render message.timeStamp', () => {
             const elem = enzymeHelper.findSingle(render({chatMessageType: chatMessageType.CHAT}),
                 'div.chat-message > div.chat-message-timestamp');

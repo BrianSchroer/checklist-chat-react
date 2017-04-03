@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChatMessage when chatMessageType = "Action" should render correctly 1`] = `
+<div
+  className="chat-action-message text-muted"
+>
+  <div
+    className="timestamp chat-message-timestamp"
+  >
+    8:57 am
+  </div>
+  <span
+    className="chat-action-message-text"
+  >
+    test userName test text
+  </span>
+</div>
+`;
+
+exports[`ChatMessage when chatMessageType = "Chat" should render correctly 1`] = `
+<div
+  className="chat-message"
+>
+  <div
+    className="timestamp chat-message-timestamp"
+  >
+    8:57 am
+  </div>
+  <strong>
+    test userName: 
+  </strong>
+  <span
+    className="chat-message-text"
+  >
+    test text
+  </span>
+</div>
+`;
