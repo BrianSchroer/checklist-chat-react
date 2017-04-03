@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChatButtons should render correctly 1`] = `
+<div>
+  <button
+    className="btn btn-primary"
+    onClick={[Function]}
+  >
+    Say something...
+  </button>
+  <button
+    className="btn btn-default pull-right"
+    onClick={[Function]}
+  >
+    Who's here?
+  </button>
+</div>
+`;

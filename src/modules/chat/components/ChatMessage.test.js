@@ -1,5 +1,5 @@
 import React from 'react';
-import {renderer, shallow, enzymeHelper} from '../../../util/testHelpers';
+import {testRendererHelper, shallow, enzymeHelper} from '../../../util/testHelpers';
 import ChatMessage from './ChatMessage';
 import {chatMessageType} from '../../chat';
 import {format} from '../../../util';
@@ -19,17 +19,13 @@ function render(messageOverrides) {
     return shallow(<ChatMessage {...props}/>);
 }
 
-function renderToJson(messageOverrides) {
+function expectSnapshotMatch(messageOverrides) {
     const props = {
         userId: 'currentUser',
         chatMessage: Object.assign({}, testMessage, messageOverrides)
     };
 
-    return renderer.create(<ChatMessage {...props}/>).toJSON();
-}
-
-function expectSnapshotMatch(messageOverrides) {
-    expect(renderToJson(messageOverrides)).toMatchSnapshot();
+    testRendererHelper.expectSnapshotMatch(<ChatMessage {...props}/>);
 }
 
 describe('ChatMessage', () => {
