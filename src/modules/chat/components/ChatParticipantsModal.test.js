@@ -1,6 +1,6 @@
 import React from 'react';
 import initialState from '../../../app/store/initialState';
-import {shallow, enzymeHelper} from '../../../util/testHelpers';
+import {shallow, enzymeHelper, snapshotHelper} from '../../../util/testHelpers';
 import {ChatParticipantsModal, mapStateToProps} from './ChatParticipantsModal';
 
 const defaultProps = {

@@ -1,7 +1,7 @@
 import renderer from 'react-test-renderer';
 import {shallow, mount} from 'enzyme';
 import enzymeHelper from './enzymeHelper';
-import testRendererHelper from './testRendererHelper';
+import snapshotHelper from './snapshotHelper';
 import testStoreHelper from './testStoreHelper';
 
 export {
@@ -9,6 +9,6 @@ export {
     shallow as shallow,
     mount as mount,
     enzymeHelper as enzymeHelper,
-    testRendererHelper as testRendererHelper,
+    snapshotHelper as snapshotHelper,
     testStoreHelper as testStoreHelper
 };

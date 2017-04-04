@@ -1,6 +1,6 @@
 import React from 'react';
 import initialState from '../../../app/store/initialState';
-import {shallow, enzymeHelper} from '../../../util/testHelpers';
+import {shallow, enzymeHelper, snapshotHelper} from '../../../util/testHelpers';
 import {ChatMessageEditorModal, mapStateToProps} from './ChatMessageEditorModal';
 
 const defaultProps = {
@@ -26,6 +26,10 @@ function callMapStateToProps(stateOverrides, ownPropsOverrides) {
 }
 
 describe('ChatMessageEditorModal', () => {
+    it('should render correctly', () => {
+        snapshotHelper.assertMatch(<ChatMessageEditorModal {...defaultProps}/>);
+    });
+
     it('should render Modal with expected title', () => {
         expect(enzymeHelper.findSingle(render(), 'Modal').props().title).toBe('Say Something...');
     });

@@ -1,5 +1,5 @@
 import React from 'react';
-import {testRendererHelper, shallow, enzymeHelper} from '../../../util/testHelpers';
+import {snapshotHelper, shallow, enzymeHelper} from '../../../util/testHelpers';
 import ChatButtons from './ChatButtons';
 
 const defaultProps = {
@@ -14,7 +14,7 @@ function shallowRender(propOverrides) {
 
 describe('ChatButtons', () => {
     it('should render correctly', () => {
-        testRendererHelper.expectSnapshotMatch(<ChatButtons {...defaultProps}/>);
+        snapshotHelper.assertMatch(<ChatButtons {...defaultProps}/>);
     });
 
     it('should handle chat message add request', () => {

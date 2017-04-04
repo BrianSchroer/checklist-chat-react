@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChatMessageList should render correctly 1`] = `
+<ul
+  className="chat-message-list list-unstyled"
+  id="chatMessageList"
+>
+  <li>
+    <div
+      className="chat-message"
+    >
+      <div
+        className="timestamp chat-message-timestamp"
+      >
+        8:57 am
+      </div>
+      <strong>
+        user1: 
+      </strong>
+      <span
+        className="chat-message-text"
+      >
+        text1
+      </span>
+    </div>
+  </li>
+  <li>
+    <div
+      className="chat-action-message text-muted"
+    >
+      <div
+        className="timestamp chat-message-timestamp"
+      >
+        8:57 am
+      </div>
+      <span
+        className="chat-action-message-text"
+      >
+        user2 text2
+      </span>
+    </div>
+  </li>
+  <li>
+    <div
+      className="chat-message"
+    >
+      <div
+        className="timestamp chat-message-timestamp"
+      >
+        8:57 am
+      </div>
+      <strong>
+        user3: 
+      </strong>
+      <span
+        className="chat-message-text"
+      >
+        text3
+      </span>
+    </div>
+  </li>
+</ul>
+`;

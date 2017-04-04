@@ -1,5 +1,5 @@
 import React from 'react';
-import {testRendererHelper, shallow, enzymeHelper} from '../../../util/testHelpers';
+import {snapshotHelper, shallow, enzymeHelper} from '../../../util/testHelpers';
 import ChatMessage from './ChatMessage';
 import {chatMessageType} from '../../chat';
 import {format} from '../../../util';
@@ -19,19 +19,19 @@ function render(messageOverrides) {
     return shallow(<ChatMessage {...props}/>);
 }
 
-function expectSnapshotMatch(messageOverrides) {
+function assertSnapshotMatch(messageOverrides) {
     const props = {
         userId: 'currentUser',
         chatMessage: Object.assign({}, testMessage, messageOverrides)
     };
 
-    testRendererHelper.expectSnapshotMatch(<ChatMessage {...props}/>);
+    snapshotHelper.assertMatch(<ChatMessage {...props}/>);
 }
 
 describe('ChatMessage', () => {
     describe(`when chatMessageType = "${chatMessageType.ACTION}"`, () => {
         it('should render correctly', () => {
-            expectSnapshotMatch({chatMessageType: chatMessageType.ACTION});
+            assertSnapshotMatch({chatMessageType: chatMessageType.ACTION});
         });
 
         it('should render message.timeStamp', () =>{
@@ -49,7 +49,7 @@ describe('ChatMessage', () => {
 
     describe(`when chatMessageType = "${chatMessageType.CHAT}"`, () => {
         it('should render correctly', () => {
-            expectSnapshotMatch({chatMessageType: chatMessageType.CHAT});
+            assertSnapshotMatch({chatMessageType: chatMessageType.CHAT});
         });
 
         it('should render message.timeStamp', () => {
