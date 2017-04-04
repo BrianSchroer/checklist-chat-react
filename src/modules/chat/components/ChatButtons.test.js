@@ -7,14 +7,21 @@ const defaultProps = {
     onChatParticipantsRequest: () => {}
 };
 
+function overrideProps(propOverrides) {
+    return Object.assign({}, defaultProps, propOverrides);
+}
+
 function shallowRender(propOverrides) {
-    const props = Object.assign({}, defaultProps, propOverrides);
-    return shallow(<ChatButtons {...props} />);
+    return shallow(<ChatButtons {...overrideProps(propOverrides)} />);
+}
+
+function assertSnapshotMatch(propOverrides = {}) {
+    snapshotHelper.assertMatch(<ChatButtons {...overrideProps(propOverrides)} />);
 }
 
 describe('ChatButtons', () => {
     it('should render correctly', () => {
-        snapshotHelper.assertMatch(<ChatButtons {...defaultProps}/>);
+        assertSnapshotMatch();
     });
 
     it('should handle chat message add request', () => {

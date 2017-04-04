@@ -1,12 +1,17 @@
 import React from 'react';
 import initialState from '../../../app/store/initialState';
 import {snapshotHelper} from '../../../util/testHelpers';
-import {ChatMessageEditorModal, mapStateToProps} from './ChatMessageEditorModal';
+import {ChatPriorityNotificationModal, mapStateToProps} from './ChatPriorityNotificationModal';
+import {chatMessageType} from '../../chat';
 
 const defaultProps = {
-    roomId: '123',
-    onCloseRequest: () => {},
-    actions: {}
+    chatMessage: {
+        timeStamp: '2016-12-08T14:57:10.222Z',
+        userName: 'test userName',
+        text: 'test text',
+        chatMessageType: chatMessageType.CHAT
+    },
+    onCloseRequest: () => {}
 };
 
 const defaultOwnProps = {
@@ -18,7 +23,7 @@ function overrideProps(propOverrides) {
 }
 
 function assertSnapshotMatch(propOverrides = {}) {
-    snapshotHelper.assertMatch(<ChatMessageEditorModal {...overrideProps(propOverrides)} />);
+    snapshotHelper.assertMatch(<ChatPriorityNotificationModal {...overrideProps(propOverrides)} />);
 }
 
 function callMapStateToProps(stateOverrides, ownPropsOverrides) {
@@ -28,18 +33,18 @@ function callMapStateToProps(stateOverrides, ownPropsOverrides) {
     return mapStateToProps(state, ownProps);
 }
 
-describe('ChatMessageEditorModal', () => {
+describe('ChatPriorityNotificationModal', () => {
     it('should render correctly', () => {
         assertSnapshotMatch();
     });
 
     describe('mapStateToProps', () => {
         it('should return expected props', () => {
-            const stateOverrides = { roomId: 666 };
+            const testMessage = { id: 123 };
+            const stateOverrides = { modalDialogRequest: { keys: [testMessage]} };
             const props = callMapStateToProps(stateOverrides);
 
-            expect(props.roomId).toBe(stateOverrides.roomId);
-            expect(props.shouldFocus).toBe(true);
+            expect(props.chatMessage).toBe(testMessage);
             expect(props.onCloseRequest).toBe(defaultOwnProps.onCloseRequest);
         });
     });

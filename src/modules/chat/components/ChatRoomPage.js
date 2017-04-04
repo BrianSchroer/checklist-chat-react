@@ -117,7 +117,7 @@ export class ChatRoomPage extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
+export function mapStateToProps(state) {
     const room = state.rooms.find(room => room.id == state.roomId);
     const userId = state.userId;
     const checklistItems = state.checklistItems;

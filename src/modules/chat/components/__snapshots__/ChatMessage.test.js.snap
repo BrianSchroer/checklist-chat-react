@@ -36,3 +36,43 @@ exports[`ChatMessage when chatMessageType = "Chat" should render correctly 1`] =
   </span>
 </div>
 `;
+
+exports[`ChatMessage when chatMessageType = "Chat" should render priority notification for current recipient with "high-priority" class 1`] = `
+<div
+  className="chat-message high-priority"
+>
+  <div
+    className="timestamp chat-message-timestamp"
+  >
+    8:57 am
+  </div>
+  <strong>
+    test userName: 
+  </strong>
+  <span
+    className="chat-message-text"
+  >
+    test text
+  </span>
+</div>
+`;
+
+exports[`ChatMessage when chatMessageType = "Chat" should render priority notification for other recipients without "high-priority" class 1`] = `
+<div
+  className="chat-message"
+>
+  <div
+    className="timestamp chat-message-timestamp"
+  >
+    8:57 am
+  </div>
+  <strong>
+    test userName: 
+  </strong>
+  <span
+    className="chat-message-text"
+  >
+    test text
+  </span>
+</div>
+`;

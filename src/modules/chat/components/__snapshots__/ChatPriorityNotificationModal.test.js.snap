@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChatPriorityNotificationModal should render correctly 1`] = `
+<div
+  className="checklist-chat-modal-backdrop"
+  role="dialog"
+  tabIndex="-1"
+>
+  <div
+    className="modal-dialog checklist-chat-modal-dialog"
+    role="document"
+  >
+    <div
+      className="modal-content"
+    >
+      <form
+        onSubmit={[Function]}
+      >
+        <div
+          className="modal-header bg-primary text-white"
+        >
+          <button
+            aria-label="Close"
+            className="close"
+            onClick={[Function]}
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+            >
+              ×
+            </span>
+          </button>
+          <h4
+            className="modal-title display-linebreaks"
+          >
+            Important message from test userName
+          </h4>
+        </div>
+        <div
+          className="modal-body"
+        >
+          <div
+            className="chat-message"
+          >
+            <div
+              className="timestamp chat-message-timestamp"
+            >
+              8:57 am
+            </div>
+            <strong>
+              test userName: 
+            </strong>
+            <span
+              className="chat-message-text"
+            >
+              test text
+            </span>
+          </div>
+        </div>
+        <div
+          className="modal-footer"
+        >
+          <input
+            className="btn btn-primary"
+            onClick={[Function]}
+            type="button"
+            value="Close"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;

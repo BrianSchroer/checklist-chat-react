@@ -1,6 +1,7 @@
 import React from 'react';
-import {shallow, enzymeHelper} from '../../../util/testHelpers';
-import {ChatRoomPage} from './ChatRoomPage';
+import initialState from '../../../app/store/initialState';
+import {snapshotHelper} from '../../../util/testHelpers';
+import {ChatRoomPage, mapStateToProps} from './ChatRoomPage';
 
 const defaultProps = {
     routeParams: {},
@@ -13,30 +14,37 @@ const defaultProps = {
     }
 };
 
-function render(propOverrides = {}) {
-    const props = Object.assign({}, defaultProps, propOverrides);
-    return shallow(<ChatRoomPage {...props} />);
+function overrideProps(propOverrides) {
+    return Object.assign({}, defaultProps, propOverrides);
+}
+
+function assertSnapshotMatch(propOverrides = {}) {
+    snapshotHelper.assertMatch(<ChatRoomPage {...overrideProps(propOverrides)} />);
+}
+
+function callMapStateToProps(stateOverrides) {
+    const state = Object.assign({}, initialState, stateOverrides || {});
+    return mapStateToProps(state);
 }
 
 describe('ChatRoomPage', () => {
-    it('should render RoomInfo', () => {
-        const roomInfo = enzymeHelper.findSingle(render(),
-            'div.chat-room-page > div.chat-room-chat-column > div.chat-room-room-info > RoomInfo');
-        expect(roomInfo.props().room).toBe(defaultProps.room);
+    it('should render correctly', () => {
+        assertSnapshotMatch();
     });
 
-    it('should render ChatButtons', () => {
-        enzymeHelper.findSingle(render(),
-            'div.chat-room-page > div.chat-room-chat-column > div.chat-room-buttons > ChatButtons');
-    });
+    describe('mapStateToProps', () => {
+        it('should return expected props', () => {
+            const stateOverrides =
+            {
+                roomId: 666,
+                rooms: [ {id: 666} ]
+            };
+            const props = callMapStateToProps(stateOverrides);
 
-    it('should render Checklist', () => {
-        enzymeHelper.findSingle(render(),
-            'div.chat-room-page > div.chat-room-checklist-column > Checklist');
-    });
-
-    it('should render ChecklistButtons', () => {
-        enzymeHelper.findSingle(render(),
-            'div.chat-room-page > div.chat-room-checklist-column > div.chat-room-buttons > ChecklistButtons');
-    });
+            expect(props.userId).toBe(initialState.userId);
+            expect(props.room.id).toBe(stateOverrides.roomId);
+            expect(props.checklistItems).toBe(initialState.checklistItems);
+            expect(props.chatMessages).toBe(initialState.chatMessages);
+        });
+    })
 });

@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChatRoomPage should render correctly 1`] = `
+<div
+  className="chat-room-page"
+>
+  <div
+    className="chat-room-chat-column"
+  >
+    <div
+      className="chat-room-room-info"
+    >
+      <div
+        className="panel panel-primary"
+      >
+        <div
+          className="panel-heading room-info-panel-heading"
+        >
+          <div
+            className="room-info-panel-title"
+          >
+            <h3
+              className="panel-title"
+            />
+          </div>
+          <div
+            className="room-info-panel-buttons"
+          >
+            <button
+              className="pull-right btn btn-primary btn-sm"
+              onClick={[Function]}
+            >
+              Edit
+            </button>
+          </div>
+        </div>
+      </div>
+                          
+    </div>
+    <ul
+      className="chat-message-list list-unstyled"
+      id="chatMessageList"
+    />
+    <div
+      className="chat-room-buttons"
+    >
+      <div>
+        <button
+          className="btn btn-primary"
+          onClick={[Function]}
+        >
+          Say something...
+        </button>
+        <button
+          className="btn btn-default pull-right"
+          onClick={[Function]}
+        >
+          Who's here?
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    className="chat-room-checklist-column"
+  >
+    <div
+      className="checklist-table-container"
+    >
+      <table
+        className="table checklist-table"
+      >
+        <thead>
+          <tr>
+            <th>
+               
+            </th>
+            <th>
+               
+            </th>
+            <th>
+              Start
+            </th>
+            <th>
+              End
+            </th>
+            <th>
+              Description
+            </th>
+            <th>
+              Performed by
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+               
+            </td>
+            <td>
+               
+            </td>
+            <td
+              className="text-success"
+              colSpan="4"
+            >
+              <h4>
+                This chat has no checklist items.
+              </h4>
+              <h4>
+                Use the "Add Checklist Item" button below to add one.
+              </h4>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div
+      className="chat-room-buttons"
+    >
+      <div>
+        <button
+          className="btn btn-primary checklist-item-button pull-right"
+          onClick={[Function]}
+        >
+          Add Checklist Item...
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

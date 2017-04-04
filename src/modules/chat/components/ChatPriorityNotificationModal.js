@@ -36,7 +36,7 @@ export class ChatPriorityNotificationModal extends React.Component {
     }
 }
 
-function mapStateToProps(state, ownProps) {
+export function mapStateToProps(state, ownProps) {
     const [chatMessage] = state.modalDialogRequest.keys;
     const onCloseRequest = ownProps.onCloseRequest;
 
