@@ -149,7 +149,7 @@ export class ChecklistItemEditorModal extends React.Component {
     }
 }
 
-function emptyChecklistItem(roomId, sequenceNumber) {
+export function emptyChecklistItem(roomId, sequenceNumber) {
     return {
         id: null,
         roomId: roomId,
@@ -163,7 +163,7 @@ function emptyChecklistItem(roomId, sequenceNumber) {
     };
 }
 
-function mapStateToProps(state, ownProps) {
+export function mapStateToProps(state, ownProps) {
     let isNewChecklistItem = true;
     let maxSequenceNumber = 1;
     let checklistItem = {};

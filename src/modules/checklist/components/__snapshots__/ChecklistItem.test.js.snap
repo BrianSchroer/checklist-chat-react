@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChecklistItem should render correctly 1`] = `
+<tbody>
+  <tr
+    className="checklist-item-row"
+  >
+    <td>
+      <button
+        className="btn btn-primary btn-sm checklist-item-button"
+        onClick={[Function]}
+        title="Edit this item"
+      >
+        1
+      </button>
+    </td>
+    <td>
+      <i
+        className="glyphicon glyphicon-unchecked"
+        title="not started"
+      />
+    </td>
+    <td
+      className="timestamp"
+    >
+      <div
+        className="planned-vs-actual"
+      >
+        <div
+          className="planned-value-inaccurate"
+        >
+          8:00 am
+        </div>
+        <div
+          className="actual-value"
+        >
+          8:03 am
+        </div>
+      </div>
+    </td>
+    <td
+      className="timestamp"
+    >
+      <div
+        className="planned-vs-actual"
+      >
+        <div
+          className="planned-value-inaccurate"
+        >
+          9:00 am
+        </div>
+        <div
+          className="actual-value"
+        >
+          9:30 am
+        </div>
+      </div>
+    </td>
+    <td>
+      item description
+    </td>
+    <td>
+      Jabba Script
+    </td>
+  </tr>
+</tbody>
+`;

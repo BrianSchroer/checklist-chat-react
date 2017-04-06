@@ -1,0 +1,206 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checklist with existing items should render correctly 1`] = `
+<div
+  className="checklist-table-container"
+>
+  <table
+    className="table checklist-table"
+  >
+    <thead>
+      <tr>
+        <th>
+           
+        </th>
+        <th>
+           
+        </th>
+        <th>
+          Start
+        </th>
+        <th>
+          End
+        </th>
+        <th>
+          Description
+        </th>
+        <th>
+          Performed by
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        className="checklist-item-row"
+      >
+        <td>
+          <button
+            className="btn btn-primary btn-sm checklist-item-button"
+            onClick={[Function]}
+            title="Edit this item"
+          >
+            1
+          </button>
+        </td>
+        <td>
+          <i
+            className="glyphicon glyphicon-repeat success-icon spinning-icon"
+            title="in progress"
+          />
+        </td>
+        <td
+          className="timestamp"
+        >
+          <div
+            className="planned-vs-actual"
+          >
+            <div
+              className="planned-value-missing"
+            >
+              
+            </div>
+            <div
+              className="actual-value-missing"
+            >
+              
+            </div>
+          </div>
+        </td>
+        <td
+          className="timestamp"
+        >
+          <div
+            className="planned-vs-actual"
+          >
+            <div
+              className="planned-value-missing"
+            >
+              
+            </div>
+            <div
+              className="actual-value-missing"
+            >
+              
+            </div>
+          </div>
+        </td>
+        <td />
+        <td />
+      </tr>
+    </tbody>
+    <tbody>
+      <tr
+        className="checklist-item-row"
+      >
+        <td>
+          <button
+            className="btn btn-primary btn-sm checklist-item-button"
+            onClick={[Function]}
+            title="Edit this item"
+          >
+            2
+          </button>
+        </td>
+        <td>
+          <i
+            className="glyphicon glyphicon-unchecked"
+            title="not started"
+          />
+        </td>
+        <td
+          className="timestamp"
+        >
+          <div
+            className="planned-vs-actual"
+          >
+            <div
+              className="planned-value-missing"
+            >
+              
+            </div>
+            <div
+              className="actual-value-missing"
+            >
+              
+            </div>
+          </div>
+        </td>
+        <td
+          className="timestamp"
+        >
+          <div
+            className="planned-vs-actual"
+          >
+            <div
+              className="planned-value-missing"
+            >
+              
+            </div>
+            <div
+              className="actual-value-missing"
+            >
+              
+            </div>
+          </div>
+        </td>
+        <td />
+        <td />
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Checklist with no existing items should render correctly 1`] = `
+<div
+  className="checklist-table-container"
+>
+  <table
+    className="table checklist-table"
+  >
+    <thead>
+      <tr>
+        <th>
+           
+        </th>
+        <th>
+           
+        </th>
+        <th>
+          Start
+        </th>
+        <th>
+          End
+        </th>
+        <th>
+          Description
+        </th>
+        <th>
+          Performed by
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+           
+        </td>
+        <td>
+           
+        </td>
+        <td
+          className="text-success"
+          colSpan="4"
+        >
+          <h4>
+            This chat has no checklist items.
+          </h4>
+          <h4>
+            Use the "Add Checklist Item" button below to add one.
+          </h4>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;

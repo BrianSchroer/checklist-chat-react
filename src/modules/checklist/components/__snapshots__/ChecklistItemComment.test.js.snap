@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChecklistItemComment should render correctly 1`] = `
+<tr
+  className="checklist-item-comment-row small text-muted"
+>
+  <td>
+     
+  </td>
+  <td>
+     
+  </td>
+  <td
+    className="timestamp"
+  >
+    8:57 am
+  </td>
+  <td
+    colSpan="4"
+  >
+    <strong>
+      test userName: 
+    </strong>
+    <span
+      className="chat-message-text"
+    >
+      test text
+    </span>
+  </td>
+</tr>
+`;

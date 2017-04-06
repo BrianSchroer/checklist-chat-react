@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChecklistAddInvitation should render correctly 1`] = `
+<tbody>
+  <tr>
+    <td>
+       
+    </td>
+    <td>
+       
+    </td>
+    <td
+      className="text-success"
+      colSpan="4"
+    >
+      <h4>
+        This chat has no checklist items.
+      </h4>
+      <h4>
+        Use the "Add Checklist Item" button below to add one.
+      </h4>
+    </td>
+  </tr>
+</tbody>
+`;

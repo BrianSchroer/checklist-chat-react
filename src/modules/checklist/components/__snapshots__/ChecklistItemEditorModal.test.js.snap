@@ -1,0 +1,627 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChecklistItemEditorModal for existing item should render correctly 1`] = `
+<div
+  className="checklist-chat-modal-backdrop"
+  role="dialog"
+  tabIndex="-1"
+>
+  <div
+    className="modal-dialog checklist-chat-modal-dialog"
+    role="document"
+  >
+    <div
+      className="modal-content"
+    >
+      <form
+        onSubmit={[Function]}
+      >
+        <div
+          className="modal-header bg-primary text-white"
+        >
+          <button
+            aria-label="Close"
+            className="close"
+            onClick={[Function]}
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+            >
+              ×
+            </span>
+          </button>
+          <h4
+            className="modal-title display-linebreaks"
+          >
+            Edit Checklist Item
+          </h4>
+        </div>
+        <div
+          className="modal-body"
+        >
+          <div>
+            <div
+              className="checklist-form-sequence-and-status-row"
+            >
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor="sequenceNumber"
+                >
+                  Seq #
+                </label>
+                <div
+                  className="field"
+                >
+                  <select
+                    className="form-control"
+                    name="sequenceNumber"
+                    onChange={[Function]}
+                    value="1"
+                  >
+                    <option
+                      value="1"
+                    >
+                      1
+                    </option>
+                    <option
+                      value="2"
+                    >
+                      2
+                    </option>
+                    <option
+                      value="3"
+                    >
+                      3
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor="status"
+                >
+                  Status
+                </label>
+                <div
+                  className="field"
+                >
+                  <div
+                    className="checklist-form-status-and-dropdown"
+                  >
+                    <div
+                      className="form-control checklist-form-status-div"
+                    >
+                      <i
+                        className="glyphicon glyphicon-unchecked"
+                        title="not started"
+                      />
+                    </div>
+                    <select
+                      className="form-control"
+                      name="status"
+                      onChange={[Function]}
+                      value="NotStarted"
+                    >
+                      <option
+                        value="NotStarted"
+                      >
+                        Not Started
+                      </option>
+                      <option
+                        value="InProgress"
+                      >
+                        In Progress
+                      </option>
+                      <option
+                        value="InProgressWithIssues"
+                      >
+                        In Progress With Issues
+                      </option>
+                      <option
+                        value="CompletedSuccessfully"
+                      >
+                        Completed Successfully
+                      </option>
+                      <option
+                        value="CompletedWithIssues"
+                      >
+                        Completed with Issues
+                      </option>
+                      <option
+                        value="CompletedWithErrors"
+                      >
+                        Completed with Errors
+                      </option>
+                      <option
+                        value="Canceled"
+                      >
+                        Canceled
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="description"
+              >
+                Description
+              </label>
+              <div
+                className="field"
+              >
+                <textarea
+                  className="form-control"
+                  name="description"
+                  onChange={[Function]}
+                  placeholder={undefined}
+                  rows={2}
+                  value="item description"
+                />
+              </div>
+            </div>
+            <div
+              className="checklist-form-timestamps"
+            >
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor="scheduledStartTime"
+                >
+                  Start Time: Scheduled
+                </label>
+                <div
+                  className="field"
+                >
+                  <input
+                    className="form-control"
+                    name="scheduledStartTime"
+                    onChange={[Function]}
+                    placeholder={undefined}
+                    type="text"
+                    value="8:00 am"
+                  />
+                </div>
+              </div>
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor="actualStartTime"
+                >
+                  Actual
+                </label>
+                <div
+                  className="field"
+                >
+                  <input
+                    className="form-control"
+                    name="actualStartTime"
+                    onChange={[Function]}
+                    placeholder={undefined}
+                    type="text"
+                    value="8:03 am"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              className="checklist-form-timestamps"
+            >
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor="scheduledEndTime"
+                >
+                  End Time: Scheduled
+                </label>
+                <div
+                  className="field"
+                >
+                  <input
+                    className="form-control"
+                    name="scheduledEndTime"
+                    onChange={[Function]}
+                    placeholder={undefined}
+                    type="text"
+                    value="9:00 am"
+                  />
+                </div>
+              </div>
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor="actualEndTime"
+                >
+                  Actual
+                </label>
+                <div
+                  className="field"
+                >
+                  <input
+                    className="form-control"
+                    name="actualEndTime"
+                    onChange={[Function]}
+                    placeholder={undefined}
+                    type="text"
+                    value="9:30 am"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="userName"
+              >
+                Performed by
+              </label>
+              <div
+                className="field"
+              >
+                <input
+                  className="form-control"
+                  name="userName"
+                  onChange={[Function]}
+                  placeholder={undefined}
+                  type="text"
+                  value="Jabba Script"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="modal-footer"
+        >
+          <div>
+            <input
+              className="btn btn-secondary pull-left"
+              onClick={[Function]}
+              type="button"
+              value="Add Comment..."
+            />
+            <input
+              className="btn btn-default"
+              onClick={[Function]}
+              type="button"
+              value="Cancel"
+            />
+            <input
+              className="btn btn-primary"
+              onClick={[Function]}
+              type="submit"
+              value="Save"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ChecklistItemEditorModal for new item should render correctly 1`] = `
+<div
+  className="checklist-chat-modal-backdrop"
+  role="dialog"
+  tabIndex="-1"
+>
+  <div
+    className="modal-dialog checklist-chat-modal-dialog"
+    role="document"
+  >
+    <div
+      className="modal-content"
+    >
+      <form
+        onSubmit={[Function]}
+      >
+        <div
+          className="modal-header bg-primary text-white"
+        >
+          <button
+            aria-label="Close"
+            className="close"
+            onClick={[Function]}
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+            >
+              ×
+            </span>
+          </button>
+          <h4
+            className="modal-title display-linebreaks"
+          >
+            Edit Checklist Item
+          </h4>
+        </div>
+        <div
+          className="modal-body"
+        >
+          <div>
+            <div
+              className="checklist-form-sequence-and-status-row"
+            >
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor="sequenceNumber"
+                >
+                  Seq #
+                </label>
+                <div
+                  className="field"
+                >
+                  <select
+                    className="form-control"
+                    name="sequenceNumber"
+                    onChange={[Function]}
+                    value="3"
+                  >
+                    <option
+                      value="1"
+                    >
+                      1
+                    </option>
+                    <option
+                      value="2"
+                    >
+                      2
+                    </option>
+                    <option
+                      value="3"
+                    >
+                      3
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor="status"
+                >
+                  Status
+                </label>
+                <div
+                  className="field"
+                >
+                  <div
+                    className="checklist-form-status-and-dropdown"
+                  >
+                    <div
+                      className="form-control checklist-form-status-div"
+                    >
+                      <i
+                        className="glyphicon glyphicon-unchecked"
+                        title="not started"
+                      />
+                    </div>
+                    <select
+                      className="form-control"
+                      name="status"
+                      onChange={[Function]}
+                      value="NotStarted"
+                    >
+                      <option
+                        value="NotStarted"
+                      >
+                        Not Started
+                      </option>
+                      <option
+                        value="InProgress"
+                      >
+                        In Progress
+                      </option>
+                      <option
+                        value="InProgressWithIssues"
+                      >
+                        In Progress With Issues
+                      </option>
+                      <option
+                        value="CompletedSuccessfully"
+                      >
+                        Completed Successfully
+                      </option>
+                      <option
+                        value="CompletedWithIssues"
+                      >
+                        Completed with Issues
+                      </option>
+                      <option
+                        value="CompletedWithErrors"
+                      >
+                        Completed with Errors
+                      </option>
+                      <option
+                        value="Canceled"
+                      >
+                        Canceled
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="description"
+              >
+                Description
+              </label>
+              <div
+                className="field"
+              >
+                <textarea
+                  className="form-control"
+                  name="description"
+                  onChange={[Function]}
+                  placeholder={undefined}
+                  rows={2}
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              className="checklist-form-timestamps"
+            >
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor="scheduledStartTime"
+                >
+                  Start Time: Scheduled
+                </label>
+                <div
+                  className="field"
+                >
+                  <input
+                    className="form-control"
+                    name="scheduledStartTime"
+                    onChange={[Function]}
+                    placeholder={undefined}
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor="actualStartTime"
+                >
+                  Actual
+                </label>
+                <div
+                  className="field"
+                >
+                  <input
+                    className="form-control"
+                    name="actualStartTime"
+                    onChange={[Function]}
+                    placeholder={undefined}
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              className="checklist-form-timestamps"
+            >
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor="scheduledEndTime"
+                >
+                  End Time: Scheduled
+                </label>
+                <div
+                  className="field"
+                >
+                  <input
+                    className="form-control"
+                    name="scheduledEndTime"
+                    onChange={[Function]}
+                    placeholder={undefined}
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div
+                className="form-group"
+              >
+                <label
+                  htmlFor="actualEndTime"
+                >
+                  Actual
+                </label>
+                <div
+                  className="field"
+                >
+                  <input
+                    className="form-control"
+                    name="actualEndTime"
+                    onChange={[Function]}
+                    placeholder={undefined}
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="userName"
+              >
+                Performed by
+              </label>
+              <div
+                className="field"
+              >
+                <input
+                  className="form-control"
+                  name="userName"
+                  onChange={[Function]}
+                  placeholder={undefined}
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="modal-footer"
+        >
+          <div>
+            <input
+              className="btn btn-secondary pull-left"
+              onClick={[Function]}
+              type="button"
+              value="Add Comment..."
+            />
+            <input
+              className="btn btn-default"
+              onClick={[Function]}
+              type="button"
+              value="Cancel"
+            />
+            <input
+              className="btn btn-primary"
+              onClick={[Function]}
+              type="submit"
+              value="Save"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;

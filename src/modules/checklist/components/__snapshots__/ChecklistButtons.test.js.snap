@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChecklistButtons should render correctly 1`] = `
+<div>
+  <button
+    className="btn btn-primary checklist-item-button pull-right"
+    onClick={[Function]}
+  >
+    Add Checklist Item...
+  </button>
+</div>
+`;
