@@ -1,5 +1,5 @@
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
+import {storiesOf} from '@kadira/storybook';
 import {chatMessageType} from '../../chat';
 import {storybookFrameDecorator} from '../../../../tools/storybook';
 import ChatMessage from './ChatMessage';
@@ -7,7 +7,9 @@ import ChatMessage from './ChatMessage';
 storiesOf('ChatMessage', module)
     .addDecorator(storybookFrameDecorator)
 
-    .add('chatMessageType.CHAT', () => (
+    .addWithInfo('chatMessageType.CHAT',
+        'chat message with normal priority',
+        () => (
         <ChatMessage
             chatMessage={{
                 chatMessageType: chatMessageType.CHAT,
@@ -18,7 +20,9 @@ storiesOf('ChatMessage', module)
         />
     ))
 
-    .add('chatMessageType.CHAT high priority', () => (
+    .addWithInfo('chatMessageType.CHAT high priority',
+        'chat message with high priority for current user',
+        () => (
         <ChatMessage
             userId="currentUser"
             chatMessage={{
@@ -31,7 +35,9 @@ storiesOf('ChatMessage', module)
         />
     ))
 
-    .add('chatMessageType.CHAT long message', () => (
+    .addWithInfo('chatMessageType.CHAT long message',
+        'Long chat message should wrap with the proper indent',
+        () => (
         <ChatMessage
             chatMessage={{
                 chatMessageType: chatMessageType.CHAT,
@@ -42,7 +48,9 @@ storiesOf('ChatMessage', module)
         />
     ))
 
-    .add('chatMessageType.ACTION', () => (
+    .addWithInfo('chatMessageType.ACTION',
+        'action message',
+        () => (
         <ChatMessage
             chatMessage={{
                 chatMessageType: chatMessageType.ACTION,
@@ -53,7 +61,9 @@ storiesOf('ChatMessage', module)
         />
     ))
 
-    .add('chatMessageType.ACTION long message', () => (
+    .addWithInfo('chatMessageType.ACTION long message',
+        'Long action message should wrap with the proper indentation',
+        () => (
         <ChatMessage
             chatMessage={{
                 chatMessageType: chatMessageType.ACTION,

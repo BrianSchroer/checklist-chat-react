@@ -1,4 +1,5 @@
-import { configure } from '@kadira/storybook';
+import {configure, setAddon} from '@kadira/storybook';
+import infoAddon from '@kadira/react-storybook-addon-info';
 
 function extractFileName(path) {
     const separator = '/';
@@ -37,5 +38,7 @@ function loadStories() {
     const sortedKeys = req.keys().sort(pathComparer);
     sortedKeys.forEach((fileName) => req(fileName));
 }
+
+setAddon(infoAddon);
 
 configure(loadStories, module);
