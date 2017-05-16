@@ -1,5 +1,6 @@
 // form label, input, error message
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const FormGroup = ({name, label, error, children}) => {
     const wrapperClass =

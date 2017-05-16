@@ -1,6 +1,7 @@
 // This component handles the App template used on every page.
 // this.props.children contains the child components (HomePage, AboutPage) from the router.
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Header from '../../modules/header/components/Header';
 import ModalManager from './ModalManager'; // eslint-disable-line import/no-named-as-default
