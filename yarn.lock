@@ -2699,7 +2699,7 @@ fb-watchman@^2.0.0:
   dependencies:
     bser "^2.0.0"
 
-fbjs@^0.8.1, fbjs@^0.8.4, fbjs@^0.8.9:
+fbjs@^0.8.4, fbjs@^0.8.9:
   version "0.8.9"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.9.tgz#180247fbd347dcc9004517b904f865400a0c8f14"
   dependencies:
@@ -5190,7 +5190,13 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10:
+prop-types@15.5.0-alpha.0:
+  version "15.5.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.0-alpha.0.tgz#a342108678256db125eee3d1ae2f889af3531bd7"
+  dependencies:
+    fbjs "^0.8.9"
+
+prop-types@^15.5.10, prop-types@~15.5.0:
   version "15.5.10"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.10.tgz#2797dfc3126182e3a95e3dfbb2e893ddd7456154"
   dependencies:
@@ -5332,13 +5338,14 @@ react-docgen@^2.12.1:
     node-dir "^0.1.10"
     recast "^0.11.5"
 
-react-dom@^15.0.2:
-  version "15.4.2"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.4.2.tgz#015363f05b0a1fd52ae9efdd3a0060d90695208f"
+react-dom@15.5.0:
+  version "15.5.0"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.5.0.tgz#86a8d6dcde388473815039de3840706e1f28f697"
   dependencies:
-    fbjs "^0.8.1"
+    fbjs "^0.8.9"
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
+    prop-types "~15.5.0"
 
 react-fuzzy@^0.3.3:
   version "0.3.3"
@@ -5434,11 +5441,11 @@ react-stubber@^1.0.0:
   dependencies:
     babel-runtime "^6.5.0"
 
-react-test-renderer@^15.4.2:
-  version "15.4.2"
-  resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-15.4.2.tgz#27e1dff5d26d0e830f99614c487622bc831416f3"
+react-test-renderer@^15.5.4:
+  version "15.5.4"
+  resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-15.5.4.tgz#d4ebb23f613d685ea8f5390109c2d20fbf7c83bc"
   dependencies:
-    fbjs "^0.8.4"
+    fbjs "^0.8.9"
     object-assign "^4.1.0"
 
 react-transform-catch-errors@^1.0.2:
@@ -5452,13 +5459,14 @@ react-transform-hmr@^1.0.3:
     global "^4.3.0"
     react-proxy "^1.1.7"
 
-react@^15.0.2:
-  version "15.4.2"
-  resolved "https://registry.yarnpkg.com/react/-/react-15.4.2.tgz#41f7991b26185392ba9bae96c8889e7e018397ef"
+react@15.5.0:
+  version "15.5.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-15.5.0.tgz#1f8e4b492dcfbf77479eb4fdfc48da425002e505"
   dependencies:
-    fbjs "^0.8.4"
+    fbjs "^0.8.9"
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
+    prop-types "15.5.0-alpha.0"
 
 read-all-stream@^3.0.0:
   version "3.1.0"
