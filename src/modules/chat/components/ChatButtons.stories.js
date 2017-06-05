@@ -1,5 +1,5 @@
 import React from 'react';
-import {storiesOf, linkTo} from '@kadira/storybook';
+import {storiesOf, linkTo} from '@storybook/react';
 import ChatButtons from './ChatButtons';
 import {storybookFrameDecorator} from '../../../../tools/storybook';
 

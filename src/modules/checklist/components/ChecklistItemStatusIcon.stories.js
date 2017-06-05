@@ -1,5 +1,5 @@
 import React from 'react';
-import {storiesOf} from '@kadira/storybook';
+import {storiesOf} from '@storybook/react';
 import {storybookFrameDecorator} from '../../../../tools/storybook';
 import {checklistItemStatus} from '../../checklist';
 import ChecklistItemStatusIcon from './ChecklistItemStatusIcon';
