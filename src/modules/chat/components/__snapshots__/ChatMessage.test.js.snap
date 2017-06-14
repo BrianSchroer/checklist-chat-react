@@ -29,11 +29,13 @@ exports[`ChatMessage when chatMessageType = "Chat" should render correctly 1`] =
   <strong>
     test userName: 
   </strong>
-  <span
+  <div
     className="chat-message-text"
   >
-    test text
-  </span>
+    <p>
+      test text
+    </p>
+  </div>
 </div>
 `;
 
@@ -49,11 +51,13 @@ exports[`ChatMessage when chatMessageType = "Chat" should render priority notifi
   <strong>
     test userName: 
   </strong>
-  <span
+  <div
     className="chat-message-text"
   >
-    test text
-  </span>
+    <p>
+      test text
+    </p>
+  </div>
 </div>
 `;
 
@@ -69,10 +73,12 @@ exports[`ChatMessage when chatMessageType = "Chat" should render priority notifi
   <strong>
     test userName: 
   </strong>
-  <span
+  <div
     className="chat-message-text"
   >
-    test text
-  </span>
+    <p>
+      test text
+    </p>
+  </div>
 </div>
 `;

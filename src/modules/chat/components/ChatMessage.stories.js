@@ -20,6 +20,19 @@ storiesOf('ChatMessage', module)
         />
     ))
 
+    .addWithInfo('chatMessageType.CHAT - multiline',
+        'chat message with normal priority - multiine',
+        () => (
+        <ChatMessage
+            chatMessage={{
+                chatMessageType: chatMessageType.CHAT,
+                userName: 'User Name',
+                timeStamp: '2016-12-08T14:57:10.222Z',
+                text: 'This is line 1.\nThis is line 2.\nThis is line 3.'
+            }}
+        />
+    ))
+
     .addWithInfo('chatMessageType.CHAT high priority',
         'chat message with high priority for current user',
         () => (

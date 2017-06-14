@@ -51,11 +51,13 @@ exports[`ChatPriorityNotificationModal should render correctly 1`] = `
             <strong>
               test userName: 
             </strong>
-            <span
+            <div
               className="chat-message-text"
             >
-              test text
-            </span>
+              <p>
+                test text
+              </p>
+            </div>
           </div>
         </div>
         <div

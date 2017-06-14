@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {format} from '../../../util';
+import ChatMessageMarkdown from './ChatMessageMarkdown';
 import {chatMessageType} from '../../chat';
 
 const withPriorityClass = (className, chatMessage, userId) => {
@@ -36,7 +37,7 @@ const ChatMessage = ({chatMessage, userId}) => {
                         {format.time(chatMessage.timeStamp)}
                     </div>
                     <strong>{`${chatMessage.userName}: `}</strong>
-                    <span className="chat-message-text">{chatMessage.text}</span>
+                    <ChatMessageMarkdown source={chatMessage.text} className="chat-message-text" />
                 </div>
             );
     }

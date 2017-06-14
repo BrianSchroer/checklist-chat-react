@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {format} from '../../../util';
+import {ChatMessageMarkdown} from '../../chat';
 
 const ChecklistItemComment = ({chatMessage}) => {
     return (
@@ -10,7 +11,7 @@ const ChecklistItemComment = ({chatMessage}) => {
             <td className="timestamp">{format.time(chatMessage.timeStamp)}</td>
             <td colSpan="4">
                 <strong>{`${chatMessage.userName}: `}</strong>
-                <span className="chat-message-text">{chatMessage.text}</span>
+                <ChatMessageMarkdown source={chatMessage.text} className="chat-message-text" />
             </td>
         </tr>
     );

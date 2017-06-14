@@ -1,33 +1,36 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
-import ReactMarkdown from 'react-markdown';
+import ChatMessageMarkdown from './ChatMessageMarkdown';
 
 const sample = (...sourceStrings) => {
-    const source = sourceStrings.join('');
+    return sampleWithClassName(sourceStrings.join(''));
+};
+
+const sampleWithClassName = (source, className) => {
     return (
         <div style={{margin: "1em"}}>
-            <p style={{fontStyle: "italic"}}>
-                (ReactMarkdown is imported from the 'react-markdown' npm package,
-                not a custom component written for this project.)
-            </p>
-            <hr />
             <h4>source:</h4>
             <pre>{source}</pre>
+            <h4>className:</h4>
+            <div>{className || '(none)'}</div>
             <h4>output:</h4>
-            <ReactMarkdown {...Object.assign({escapeHtml: true, softBreak: 'br'}, {source})} />
+            <ChatMessageMarkdown source={source} className={className} />
         </div>
     );
 };
 
-storiesOf('ReactMarkdown', module)
+storiesOf('ChatMessageMarkdown', module)
 
     .add('source without markdown', () =>
         sample('Source without any markdown formatting renders as a "p" within a "div".'))
 
-    .add('Headings', () =>
+    .add('Headings (not allowed)', () =>
         sample('# H1',
             '\n## H2',
             '\n### H3'))
+
+    .add('source with className', () =>
+        sampleWithClassName('This should be italic.', 'chat-action-message-text'))
 
     .add('emphasis (italic)', () =>
         sample('Text within *asterisks* or _underscores_ is rendered within "em" tags.'))
@@ -48,6 +51,7 @@ storiesOf('ReactMarkdown', module)
     .add('line feeds', () =>
         sample('Line1 \nLine2 \nLine3 \n(\\n is converted to <br>)'))
 
+
     .add('unordered list', () =>
         sample('can be specified with asterisks:',
             '\n* item 1',
@@ -66,8 +70,9 @@ storiesOf('ReactMarkdown', module)
             '\n2) item 2'
         ))
 
-    .add('horizontal rule', () =>
-        sample('can be specified with three underscores:',
+
+    .add('horizontal rule (not allowed)', () =>
+        sample('Horizontal rule cannot be specified with three underscores:',
             '\n___',
             '\nor with three asterisks',
             '\n***'

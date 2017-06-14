@@ -17,11 +17,13 @@ exports[`ChatMessageList should render correctly 1`] = `
       <strong>
         user1: 
       </strong>
-      <span
+      <div
         className="chat-message-text"
       >
-        text1
-      </span>
+        <p>
+          text1
+        </p>
+      </div>
     </div>
   </li>
   <li>
@@ -52,11 +54,13 @@ exports[`ChatMessageList should render correctly 1`] = `
       <strong>
         user3: 
       </strong>
-      <span
+      <div
         className="chat-message-text"
       >
-        text3
-      </span>
+        <p>
+          text3
+        </p>
+      </div>
     </div>
   </li>
 </ul>

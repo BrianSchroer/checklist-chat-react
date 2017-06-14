@@ -103,11 +103,11 @@ ul.chat-message-list {
     overflow-y: auto;
 }
 
-ul.chat-message-list li {
+ul.chat-message-list > li {
     padding-bottom: 0.5em;
 }
 
-ul.chat-message-list li:last-child {
+ul.chat-message-list > li:last-child {
     -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
        -moz-animation: fadein 2s; /* Firefox < 16 */
         -ms-animation: fadein 2s; /* Internet Explorer */
@@ -115,7 +115,7 @@ ul.chat-message-list li:last-child {
             animation: fadein 2s;
 }
 
-ul.chat-message-list li:nth-child(even) div {
+ul.chat-message-list > li:nth-child(even) div {
     background-color: #eeeeee;
 }
 
@@ -126,11 +126,22 @@ ul.chat-message-list li:nth-child(even) div {
 .chat-message-timestamp {
     display: inline-block;
     text-indent: 0;
+    vertical-align: top;
 }
 
 div.chat-message, div.chat-action-message {
     padding-left: 6em;
     text-indent: -6em;
+    vertical-align: top;
+}
+
+div.chat-message ul {
+    list-style-type: disc;
+}
+
+div.chat-message ul li {
+    text-indent: 0;
+    text-align: left;
 }
 
 ul.room-list li {
@@ -141,6 +152,17 @@ ul.room-list li {
 
 .chat-action-message-text {
     font-style: italic;
+}
+
+div.chat-message-text {
+    display: inline;
+    vertical-align: top;
+}
+
+div.chat-message-text p,
+div.chat-message-text h1,
+div.chat-message-text h2 {
+    display: inline;
 }
 
 div.checklist-table-container {
