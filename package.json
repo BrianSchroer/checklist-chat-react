@@ -41,14 +41,14 @@
     "bootstrap": "^3.3.6",
     "moment": "^2.17.1",
     "prop-types": "^15.5.10",
-    "react": "15.5.0",
-    "react-dom": "15.5.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
     "react-markdown": "^2.4.4",
     "react-redux": "^5.0.5",
     "react-router": "^2.8.1",
     "react-router-redux": "^4.0.4",
-    "redux": "^3.5.2",
-    "redux-thunk": "^2.0.1"
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "@storybook/addon-info": "^3.0.1",
