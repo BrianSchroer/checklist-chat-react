@@ -9,7 +9,7 @@
   },
   "scripts": {
     "prestart": "babel-node tools/startMessage.js",
-    "start": "npm-run-all --parallel start-mockapi test:watch open:src lint:watch",
+    "start": "npm-run-all --parallel start-mockapi open:src lint:watch",
     "open:src": "babel-node tools/srcServer.js",
     "lint": "esw src tools",
     "lint:watch": "npm run lint -- --watch",

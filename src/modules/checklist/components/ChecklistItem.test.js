@@ -3,17 +3,6 @@ import {snapshotHelper, shallow, enzymeHelper} from '../../../util/testHelpers';
 import {checklistItemStatus} from '../../checklist';
 import ChecklistItem from './ChecklistItem';
 
-const defaultChecklistItem = {
-    sequenceNumber: 1,
-    status: checklistItemStatus.NOT_STARTED,
-    description: "item description",
-    scheduledStartTime: '2016-12-08T14:00:00.222Z',
-    scheduledEndTime: '2016-12-08T15:00:00.222Z',
-    actualStartTime: '2016-12-08T14:03:00.222Z',
-    actualEndTime: '2016-12-08T15:30:00.222Z',
-    userName: 'Jabba Script'
-};
-
 const defaultProps = {
     checklistItem: {
         sequenceNumber: 1,

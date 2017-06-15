@@ -46,5 +46,5 @@ describe('ChatRoomPage', () => {
             expect(props.checklistItems).toBe(initialState.checklistItems);
             expect(props.chatMessages).toBe(initialState.chatMessages);
         });
-    })
+    });
 });
