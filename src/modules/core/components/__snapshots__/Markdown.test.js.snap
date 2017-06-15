@@ -1,0 +1,541 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Markdown should escape inline HTML 1`] = `
+<div>
+  <h4>
+    source:
+  </h4>
+  <pre>
+    Inline HTML gets "escaped", like this: &lt;span&gt;inline HTML&lt;/span&gt;
+  </pre>
+  <h4>
+    className:
+  </h4>
+  <div>
+    (none)
+  </div>
+  <h4>
+    output:
+  </h4>
+  <div>
+    <p>
+      Inline HTML gets "escaped", like this: 
+      <span>
+        &lt;span&gt;
+      </span>
+      inline HTML
+      <span>
+        &lt;/span&gt;
+      </span>
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Markdown should not allowe headings 1`] = `
+<div>
+  <h4>
+    source:
+  </h4>
+  <pre>
+    # H1
+    ## H2
+    ### H3
+  </pre>
+  <h4>
+    className:
+  </h4>
+  <div>
+    (none)
+  </div>
+  <h4>
+    output:
+  </h4>
+  <div>
+    H1
+    H2
+    H3
+  </div>
+</div>
+`;
+
+exports[`Markdown should not render horizontal rules 1`] = `
+<div>
+  <h4>
+    source:
+  </h4>
+  <pre>
+    Horizontal rule cannot be specified with three underscores:
+    ___
+    or with three asterisks
+    ***
+  </pre>
+  <h4>
+    className:
+  </h4>
+  <div>
+    (none)
+  </div>
+  <h4>
+    output:
+  </h4>
+  <div>
+    <p>
+      Horizontal rule cannot be specified with three underscores:
+    </p>
+    <p>
+      or with three asterisks
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Markdown should render block quotes 1`] = `
+<div>
+  <h4>
+    source:
+  </h4>
+  <pre>
+    Hofstadter's law states:
+    &gt; It always takes longer than you expect, even when you take into account Hofstadter's Law
+    
+    That was Hofstadter's law.
+  </pre>
+  <h4>
+    className:
+  </h4>
+  <div>
+    (none)
+  </div>
+  <h4>
+    output:
+  </h4>
+  <div>
+    <p>
+      Hofstadter's law states:
+    </p>
+    <blockquote>
+      <p>
+        It always takes longer than you expect, even when you take into account Hofstadter's Law
+      </p>
+    </blockquote>
+    <p>
+      That was Hofstadter's law.
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Markdown should render code blocks 1`] = `
+<div>
+  <h4>
+    source:
+  </h4>
+  <pre>
+    Here's some assertSnapshotMatch JavaScript:
+    \`\`\`
+    function addOne(number) {
+        return number + 1;
+    }
+    \`\`\`
+    That was a code block.
+  </pre>
+  <h4>
+    className:
+  </h4>
+  <div>
+    (none)
+  </div>
+  <h4>
+    output:
+  </h4>
+  <div>
+    <p>
+      Here's some assertSnapshotMatch JavaScript:
+    </p>
+    <pre
+      data-sourcepos={undefined}
+    >
+      <code
+        className={undefined}
+      >
+        function addOne(number) {
+            return number + 1;
+        }
+        
+      </code>
+    </pre>
+    <p>
+      That was a code block.
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Markdown should render emphasis (italic) 1`] = `
+<div>
+  <h4>
+    source:
+  </h4>
+  <pre>
+    Text within *asterisks* or _underscores_ is rendered within "em" tags.
+  </pre>
+  <h4>
+    className:
+  </h4>
+  <div>
+    (none)
+  </div>
+  <h4>
+    output:
+  </h4>
+  <div>
+    <p>
+      Text within 
+      <em>
+        asterisks
+      </em>
+       or 
+      <em>
+        underscores
+      </em>
+       is rendered within "em" tags.
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Markdown should render images 1`] = `
+<div>
+  <h4>
+    source:
+  </h4>
+  <pre>
+    Here's an image: ![Image](https://media.giphy.com/media/OxgjxSpRwMXoA/giphy.gif)
+  </pre>
+  <h4>
+    className:
+  </h4>
+  <div>
+    (none)
+  </div>
+  <h4>
+    output:
+  </h4>
+  <div>
+    <p>
+      Here's an image: 
+      <img
+        alt="Image"
+        src="https://media.giphy.com/media/OxgjxSpRwMXoA/giphy.gif"
+        title={undefined}
+      />
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Markdown should render inline code 1`] = `
+<div>
+  <h4>
+    source:
+  </h4>
+  <pre>
+    An arrow function looks like this: \`number =&gt; number + 1\`.
+  </pre>
+  <h4>
+    className:
+  </h4>
+  <div>
+    (none)
+  </div>
+  <h4>
+    output:
+  </h4>
+  <div>
+    <p>
+      An arrow function looks like this: 
+      <code
+        data-sourcepos={undefined}
+      >
+        number =&gt; number + 1
+      </code>
+      .
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Markdown should render line feeds 1`] = `
+<div>
+  <h4>
+    source:
+  </h4>
+  <pre>
+    Line1 
+    Line2 
+    Line3 
+    (\\n is converted to &lt;br&gt;)
+  </pre>
+  <h4>
+    className:
+  </h4>
+  <div>
+    (none)
+  </div>
+  <h4>
+    output:
+  </h4>
+  <div>
+    <p>
+      Line1
+      <br />
+      Line2
+      <br />
+      Line3
+      <br />
+      (\\n is converted to 
+      <span>
+        &lt;br&gt;
+      </span>
+      )
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Markdown should render links 1`] = `
+<div>
+  <h4>
+    source:
+  </h4>
+  <pre>
+    Here are links to the "react-markdown" github repo:
+    [https://github.com/rexxars/react-markdown](https://github.com/rexxars/react-markdown),
+    and to  a [markdown reference page](http://commonmark.org/help/)
+  </pre>
+  <h4>
+    className:
+  </h4>
+  <div>
+    (none)
+  </div>
+  <h4>
+    output:
+  </h4>
+  <div>
+    <p>
+      Here are links to the "react-markdown" github repo:
+      <br />
+      <a
+        href="https://github.com/rexxars/react-markdown"
+        title={undefined}
+      >
+        https://github.com/rexxars/react-markdown
+      </a>
+      ,
+      <br />
+      and to  a 
+      <a
+        href="http://commonmark.org/help/"
+        title={undefined}
+      >
+        markdown reference page
+      </a>
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Markdown should render ordered lists 1`] = `
+<div>
+  <h4>
+    source:
+  </h4>
+  <pre>
+    can be specified like this:
+    1. item 1
+    2. item 2
+    
+    ...or like this:
+    1) item 1
+    2) item 2
+  </pre>
+  <h4>
+    className:
+  </h4>
+  <div>
+    (none)
+  </div>
+  <h4>
+    output:
+  </h4>
+  <div>
+    <p>
+      can be specified like this:
+    </p>
+    <ol
+      data-sourcepos={undefined}
+    >
+      <li>
+        item 1
+      </li>
+      <li>
+        item 2
+      </li>
+    </ol>
+    <p>
+      ...or like this:
+    </p>
+    <ol
+      data-sourcepos={undefined}
+    >
+      <li>
+        item 1
+      </li>
+      <li>
+        item 2
+      </li>
+    </ol>
+  </div>
+</div>
+`;
+
+exports[`Markdown should render source with className 1`] = `
+<div>
+  <h4>
+    source:
+  </h4>
+  <pre>
+    This should be italic.
+  </pre>
+  <h4>
+    className:
+  </h4>
+  <div>
+    chat-action-message-text
+  </div>
+  <h4>
+    output:
+  </h4>
+  <div
+    className="chat-action-message-text"
+  >
+    <p>
+      This should be italic.
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Markdown should render source without markdown 1`] = `
+<div>
+  <h4>
+    source:
+  </h4>
+  <pre>
+    Source without any markdown formatting renders as a "p" within a "div".
+  </pre>
+  <h4>
+    className:
+  </h4>
+  <div>
+    (none)
+  </div>
+  <h4>
+    output:
+  </h4>
+  <div>
+    <p>
+      Source without any markdown formatting renders as a "p" within a "div".
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Markdown should render strong (bold) 1`] = `
+<div>
+  <h4>
+    source:
+  </h4>
+  <pre>
+    Text within **double asterisks** or **double underscores** is rendered within "strong" tags.
+  </pre>
+  <h4>
+    className:
+  </h4>
+  <div>
+    (none)
+  </div>
+  <h4>
+    output:
+  </h4>
+  <div>
+    <p>
+      Text within 
+      <strong>
+        double asterisks
+      </strong>
+       or 
+      <strong>
+        double underscores
+      </strong>
+       is rendered within "strong" tags.
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Markdown should render unordered lists 1`] = `
+<div>
+  <h4>
+    source:
+  </h4>
+  <pre>
+    can be specified with asterisks:
+    * item 1
+    * item 2
+    
+    ...or with dashes:
+    - item 1
+    - item 2
+  </pre>
+  <h4>
+    className:
+  </h4>
+  <div>
+    (none)
+  </div>
+  <h4>
+    output:
+  </h4>
+  <div>
+    <p>
+      can be specified with asterisks:
+    </p>
+    <ul
+      data-sourcepos={undefined}
+    >
+      <li>
+        item 1
+      </li>
+      <li>
+        item 2
+      </li>
+    </ul>
+    <p>
+      ...or with dashes:
+    </p>
+    <ul
+      data-sourcepos={undefined}
+    >
+      <li>
+        item 1
+      </li>
+      <li>
+        item 2
+      </li>
+    </ul>
+  </div>
+</div>
+`;

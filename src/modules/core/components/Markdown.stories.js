@@ -1,6 +1,6 @@
 import React from 'react';
-import {storiesOf} from '@storybook/react';
-import ChatMessageMarkdown from './ChatMessageMarkdown';
+import {storiesOf, linkTo} from '@storybook/react';
+import Markdown from './Markdown';
 
 const sample = (...sourceStrings) => {
     return sampleWithClassName(sourceStrings.join(''));
@@ -9,17 +9,22 @@ const sample = (...sourceStrings) => {
 const sampleWithClassName = (source, className) => {
     return (
         <div style={{margin: "1em"}}>
+            <p>
+                Customized markdown component that wraps the"react-markdown" npm package's
+                "<a href="#" onClick={linkTo('ReactMarkdown')}>ReactMarkdown</a>" component.
+            </p>
+            <hr />
             <h4>source:</h4>
             <pre>{source}</pre>
             <h4>className:</h4>
             <div>{className || '(none)'}</div>
             <h4>output:</h4>
-            <ChatMessageMarkdown source={source} className={className} />
+            <Markdown source={source} className={className} />
         </div>
     );
 };
 
-storiesOf('ChatMessageMarkdown', module)
+storiesOf('Markdown', module)
 
     .add('source without markdown', () =>
         sample('Source without any markdown formatting renders as a "p" within a "div".'))

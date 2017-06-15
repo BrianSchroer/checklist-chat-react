@@ -1,5 +1,5 @@
 import React from 'react';
-import {storiesOf} from '@storybook/react';
+import {storiesOf, linkTo} from '@storybook/react';
 import ReactMarkdown from 'react-markdown';
 
 const sample = (...sourceStrings) => {
@@ -7,8 +7,9 @@ const sample = (...sourceStrings) => {
     return (
         <div style={{margin: "1em"}}>
             <p style={{fontStyle: "italic"}}>
-                (ReactMarkdown is imported from the 'react-markdown' npm package,
-                not a custom component written for this project.)
+                (ReactMarkdown is imported from the "react-markdown" npm package.
+                Used by this project's customized "<a href="#" onClick={linkTo('Markdown')}>Markdown</a>"
+                component.)
             </p>
             <hr />
             <h4>source:</h4>

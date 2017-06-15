@@ -1,6 +1,6 @@
 import React from 'react';
 import {snapshotHelper} from '../../../util/testHelpers';
-import ChatMessageMarkdown from './ChatMessageMarkdown';
+import Markdown from './Markdown';
 
 function assertSnapshotMatch(...sourceStrings) {
     assertSnapshotMatchWithClassName(sourceStrings.join(''));
@@ -14,11 +14,11 @@ function assertSnapshotMatchWithClassName(source, className) {
             <h4>className:</h4>
             <div>{className || '(none)'}</div>
             <h4>output:</h4>
-            <ChatMessageMarkdown source={source} className={className} />
+            <Markdown source={source} className={className} />
         </div>);
 }
 
-describe('ChatMessageMarkdown', () => {
+describe('Markdown', () => {
 
     it('should render source without markdown', () =>
         assertSnapshotMatch('Source without any markdown formatting renders as a "p" within a "div".'));

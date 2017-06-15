@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 
-const ChatMessageMarkdown = ({source, className}) => {
+const Markdown = ({source, className}) => {
     return (
         <ReactMarkdown
             className={className}
@@ -14,9 +14,9 @@ const ChatMessageMarkdown = ({source, className}) => {
         />);
 };
 
-ChatMessageMarkdown.propTypes = {
+Markdown.propTypes = {
     source: PropTypes.string.isRequired,
     className: PropTypes.string
 };
 
-export default ChatMessageMarkdown;
+export default Markdown;
