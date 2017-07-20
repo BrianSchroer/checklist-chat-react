@@ -24,7 +24,7 @@ describe('Markdown', () => {
         assertSnapshotMatch('Source without any markdown formatting renders as a "p" within a "div".'));
 
 
-    it('should not allowe headings', () =>
+    it('should not allow headings', () =>
         assertSnapshotMatch('# H1',
             '\n## H2',
             '\n### H3'));

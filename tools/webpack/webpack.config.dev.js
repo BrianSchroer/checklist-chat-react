@@ -4,7 +4,7 @@ import * as REGEX from './regexConstants';
 
 const rootPath = path.resolve(__dirname, '../../');
 
-export default {
+const config = {
     debug: true,
     devtool: 'inline-source-map',
     noInfo: false,
@@ -69,3 +69,5 @@ export default {
         ]
     }
 };
+
+export default config;

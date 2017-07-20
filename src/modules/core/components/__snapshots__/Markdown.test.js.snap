@@ -20,11 +20,17 @@ exports[`Markdown should escape inline HTML 1`] = `
   <div>
     <p>
       Inline HTML gets "escaped", like this: 
-      <span>
+      <span
+        className={undefined}
+        data-sourcepos={undefined}
+      >
         &lt;span&gt;
       </span>
       inline HTML
-      <span>
+      <span
+        className={undefined}
+        data-sourcepos={undefined}
+      >
         &lt;/span&gt;
       </span>
     </p>
@@ -32,7 +38,7 @@ exports[`Markdown should escape inline HTML 1`] = `
 </div>
 `;
 
-exports[`Markdown should not allowe headings 1`] = `
+exports[`Markdown should not allow headings 1`] = `
 <div>
   <h4>
     source:
@@ -154,6 +160,7 @@ exports[`Markdown should render code blocks 1`] = `
       Here's some assertSnapshotMatch JavaScript:
     </p>
     <pre
+      className={undefined}
       data-sourcepos={undefined}
     >
       <code
@@ -256,6 +263,7 @@ exports[`Markdown should render inline code 1`] = `
     <p>
       An arrow function looks like this: 
       <code
+        className={undefined}
         data-sourcepos={undefined}
       >
         number =&gt; number + 1
@@ -295,7 +303,10 @@ exports[`Markdown should render line feeds 1`] = `
       Line3
       <br />
       (\\n is converted to 
-      <span>
+      <span
+        className={undefined}
+        data-sourcepos={undefined}
+      >
         &lt;br&gt;
       </span>
       )
@@ -375,6 +386,7 @@ exports[`Markdown should render ordered lists 1`] = `
       can be specified like this:
     </p>
     <ol
+      className={undefined}
       data-sourcepos={undefined}
     >
       <li>
@@ -388,6 +400,7 @@ exports[`Markdown should render ordered lists 1`] = `
       ...or like this:
     </p>
     <ol
+      className={undefined}
       data-sourcepos={undefined}
     >
       <li>
@@ -514,6 +527,7 @@ exports[`Markdown should render unordered lists 1`] = `
       can be specified with asterisks:
     </p>
     <ul
+      className={undefined}
       data-sourcepos={undefined}
     >
       <li>
@@ -527,6 +541,7 @@ exports[`Markdown should render unordered lists 1`] = `
       ...or with dashes:
     </p>
     <ul
+      className={undefined}
       data-sourcepos={undefined}
     >
       <li>
