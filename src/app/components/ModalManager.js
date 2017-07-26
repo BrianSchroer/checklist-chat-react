@@ -58,7 +58,10 @@ export class ModalManager extends React.Component {
 }
 
 ModalManager.propTypes = {
-    modalDialogRequest: PropTypes.object.isRequired,
+    modalDialogRequest: PropTypes.shape({
+        type: PropTypes.string.isRequired,
+        keys: PropTypes.array
+    }).isRequired,
     actions: PropTypes.object.isRequired
 };
 
