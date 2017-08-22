@@ -9,9 +9,12 @@ const defaultProps = {
     isLoading: false
 };
 
+function overrideProps(propOverrides) {
+    return Object.assign({}, defaultProps, propOverrides);
+}
+
 function render(propOverrides = {}) {
-    const props = Object.assign({}, defaultProps, propOverrides);
-    return shallow(<App {...props} />);
+    return shallow(<App {...overrideProps(propOverrides)} />);
 }
 
 describe('App', () => {
@@ -26,16 +29,5 @@ describe('App', () => {
 
     it('should render Header', () => {
         enzymeHelper.findSingle(render(), 'div#appPage > Header', 'Connect');
-    });
-
-    it('should render children', () => {
-        const div = enzymeHelper.findSingle(render(), 'div#appPage > div#appMainRow');
-
-        const actualChildren = div.props().children;
-        expect(actualChildren.length).toEqual(testChildren.length);
-
-        for (let i = 0; i < testChildren.length; i++) {
-            expect(actualChildren[i]).toBe(testChildren[i]);
-        }
     });
 });

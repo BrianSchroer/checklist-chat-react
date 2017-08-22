@@ -10,9 +10,12 @@ const defaultProps = {
     ]
 };
 
+function overrideProps(propOverrides) {
+    return Object.assign({}, defaultProps, propOverrides);
+}
+
 function render(propOverrides = {}) {
-    const props = Object.assign({}, defaultProps, propOverrides);
-    return shallow(<RoomList {...props} />);
+    return shallow(<RoomList RoomList {...overrideProps(propOverrides)} />);
 }
 
 describe('RoomList', () => {
@@ -29,7 +32,7 @@ describe('RoomList', () => {
             expect(li.node.key).toEqual(room.id.toString());
 
             const link = enzymeHelper.findSingle(li, 'Link');
-            expect(link.props().to).toEqual(`room/${room.id}`);
+            expect(link.props().to).toEqual(`/room/${room.id}`);
 
             expect(enzymeHelper.findSingle(link, 'strong').text()).toEqual(room.roomName);
 

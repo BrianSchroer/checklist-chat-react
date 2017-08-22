@@ -15,7 +15,11 @@ export class ChatRoomPage extends React.Component {
 
     static get propTypes() {
         return {
-            routeParams: PropTypes.object.isRequired,
+            match: PropTypes.shape({
+                parms: PropTypes.shape({
+                    id: PropTypes.number.isRequired
+                })
+            }),
             userId: PropTypes.string.isRequired,
             room: PropTypes.object,
             checklistItems: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -39,9 +43,9 @@ export class ChatRoomPage extends React.Component {
     }
 
     componentWillMount() {
-        const {actions, userId, routeParams} = this.props;
+        const {actions, userId, match} = this.props;
 
-        actions.joinChat(routeParams.id, userId);
+        actions.joinChat(match.params.id, userId);
     }
 
     componentWillReceiveProps(nextProps) {

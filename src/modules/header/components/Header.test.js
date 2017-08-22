@@ -18,6 +18,6 @@ describe('Header', () => {
 
     it('should render home page link with logo', () => {
         enzymeHelper.findSingle(render(),
-            'div#appHeaderRow > nav.navbar > div.nav > IndexLink > div.header-logo-img');
+            'div#appHeaderRow > nav.navbar > div.nav > Link.navbar-brand > div.header-logo-img');
     });
 });

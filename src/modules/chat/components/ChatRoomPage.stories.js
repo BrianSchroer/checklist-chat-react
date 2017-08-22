@@ -8,7 +8,7 @@ storiesOf('ChatRoomPage', module)
     .add('ChatRoomPage', () => (
         <div style={{height: "500px", display: "flex"}}>
         <ChatRoomPage
-            routeParams={{id: 123}}
+            match={{params: { id: 123 } }}
             userId="currentUser"
             room={{
                 id: 123,

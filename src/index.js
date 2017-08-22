@@ -1,10 +1,9 @@
 import 'babel-polyfill';
 import React from 'react';
 import {render} from 'react-dom';
-import {Router, browserHistory} from 'react-router';
 import {Provider} from 'react-redux';
-import routes from './app/routes';
 import configureStore from './app/store/configureStore';  // eslint-disable-line import/default
+import App from './app/components/App';  // eslint-disable-line import/no-named-as-default
 import * as roomActions from './modules/room/roomDucks';
 
 // for Webpack:
@@ -16,7 +15,7 @@ store.dispatch(roomActions.loadRooms());
 
 render(
     <Provider store={store}>
-        <Router history={browserHistory} routes={routes} />
+        <App />
     </Provider>,
     document.getElementById('app')
 );

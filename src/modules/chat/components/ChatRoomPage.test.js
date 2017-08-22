@@ -4,7 +4,7 @@ import {snapshotHelper} from '../../../util/testHelpers';
 import {ChatRoomPage, mapStateToProps} from './ChatRoomPage';
 
 const defaultProps = {
-    routeParams: {},
+    match: { params: { id: 123 } },
     userId: 'TestUserId',
     room: {id: 123},
     checklistItems: [],

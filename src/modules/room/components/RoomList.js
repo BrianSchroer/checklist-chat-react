@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router';
-import {routePaths} from '../../../app/routes';
+import {Link} from 'react-router-dom';
+import routePaths from '../../../app/routePaths';
 
 const RoomList = ({rooms}) => {
     return (
