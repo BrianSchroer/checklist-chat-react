@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {MemoryRouter} from 'react-router-dom';
 import {setRoomId} from '../../../modules/room/roomDucks';
 import {requestRoomInfoModalDialog} from '../../../app/modalDialogDucks';
 import RoomList from '../../../modules/room/components/RoomList';
