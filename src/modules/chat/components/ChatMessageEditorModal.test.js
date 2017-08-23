@@ -39,7 +39,6 @@ describe('ChatMessageEditorModal', () => {
             const props = callMapStateToProps(stateOverrides);
 
             expect(props.roomId).toBe(stateOverrides.roomId);
-            expect(props.shouldFocus).toBe(true);
             expect(props.onCloseRequest).toBe(defaultOwnProps.onCloseRequest);
         });
     });

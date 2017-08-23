@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {uiHelper} from '../../../util';
 import {saveRoomInfo} from '../../../modules/room/roomDucks';
 import {validate} from '../roomInfoValidator';
 import {Modal, TextInput} from '../../../modules/core';
@@ -31,14 +30,6 @@ export class RoomInfoEditorModal extends React.Component {
 
         this.onChange = this.onChange.bind(this);
         this.onSave = this.onSave.bind(this);
-    }
-
-    componentDidMount() {
-        if (this.props.shouldFocus) {
-            uiHelper.afterRenderIsComplete(() => {
-                uiHelper.setFocusToFirstInputInForm('roomInfoEditorModalForm');
-            });
-        }
     }
 
     onChange(event) {
@@ -82,7 +73,6 @@ export class RoomInfoEditorModal extends React.Component {
 
         return (
             <Modal
-                formId="roomInfoEditorModalForm"
                 title={(isNewRoom) ? 'Add Chat Room' : 'Edit Chat Room Info'}
                 onCloseRequest={onCloseRequest}
                 buttons={buttons}>
@@ -122,9 +112,7 @@ export function mapStateToProps(state, ownProps) {
 
     const onCloseRequest = ownProps.onCloseRequest;
 
-    const shouldFocus = (state.shouldFocus == undefined) ? true : state.shouldFocus;
-
-    return {onCloseRequest, room, isNewRoom, shouldFocus};
+    return {onCloseRequest, room, isNewRoom};
 }
 
 const mapDispatchToProps = (dispatch) => ({

@@ -18,21 +18,18 @@ describe('uiHelper', () => {
 
     describe('.scrollToBottom', () => {
         it('should set .scrollTop to .scrollHeight', () => {
-            const elem = { scrollTop: 0, scrollHeight: 123 };
-            const mockDoc = { getElementById: () => elem };
+            const node = { scrollTop: 0, scrollHeight: 123 };
+            uiHelper.scrollToBottom(node);
 
-            uiHelper.scrollToBottom('testId', mockDoc);
-
-            expect(elem.scrollTop).toEqual(elem.scrollHeight);
+            expect(node.scrollTop).toEqual(node.scrollHeight);
         });
 
         it('should handle element not found', () => {
-            const mockDoc = { getElementById: () => undefined };
-            uiHelper.scrollToBottom('testId', mockDoc);
+            uiHelper.scrollToBottom(undefined);
         });
     });
 
-    describe('.setFocusToFirstInputInForm', () => {
+    describe('.setFocusToFirstInput', () => {
         it('should set focus to the expected element', () => {
             let wasFocused = false;
             const elem1 = {tagName: 'p'};
@@ -44,18 +41,16 @@ describe('uiHelper', () => {
 
             const form = [elem1, elem2];
 
-            const mockDoc = {getElementById: () => form};
+            const firstInput = uiHelper.setFocusToFirstInput(form);
 
-            const firstInput = uiHelper.setFocusToFirstInputInForm('testFormId', mockDoc);
             expect(wasFocused);
             expect(firstInput).toBe(elem2);
         });
     });
 
-    describe('.setFocusToFirstInputInForm', () => {
+    describe('.setFocusToFirstInput', () => {
         it('should handle form not found', () => {
-            const mockDoc = { getElementById: () => undefined };
-            const node = uiHelper.setFocusToFirstInputInForm('testFormId', mockDoc);
+            const node = uiHelper.setFocusToFirstInput(undefined);
             expect(node).toBe(null);
         });
     });

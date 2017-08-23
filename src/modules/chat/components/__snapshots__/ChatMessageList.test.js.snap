@@ -3,7 +3,6 @@
 exports[`ChatMessageList should render correctly 1`] = `
 <ul
   className="chat-message-list list-unstyled"
-  id="chatMessageList"
 >
   <li>
     <div

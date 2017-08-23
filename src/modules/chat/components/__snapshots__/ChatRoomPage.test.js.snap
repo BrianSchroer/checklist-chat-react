@@ -35,11 +35,9 @@ exports[`ChatRoomPage should render correctly 1`] = `
           </div>
         </div>
       </div>
-                          
     </div>
     <ul
       className="chat-message-list list-unstyled"
-      id="chatMessageList"
     />
     <div
       className="chat-room-buttons"

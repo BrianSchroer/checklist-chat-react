@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {uiHelper} from '../../../util';
 import {validateComment} from '../checklistItemValidator';
 import {saveChecklistItemComment} from '../checklistItemDucks';
 import ChatMessage from '../../chat/components/ChatMessage';
@@ -31,15 +30,6 @@ export class ChecklistItemCommentEditorModal extends React.Component {
 
         this.onChange = this.onChange.bind(this);
         this.onSave = this.onSave.bind(this);
-    }
-
-    componentDidMount() {
-        uiHelper.afterRenderIsComplete(() => {
-            uiHelper.scrollToBottom('existingChecklistItemComments');
-            if (this.props.shouldFocus) {
-                uiHelper.setFocusToFirstInputInForm('checklistItemCommentEditorModalForm');
-            }
-        });
     }
 
     onChange(event) {
@@ -83,7 +73,6 @@ export class ChecklistItemCommentEditorModal extends React.Component {
 
         return (
             <Modal
-                formId="checklistItemCommentEditorModalForm"
                 title={title}
                 onCloseRequest={onCloseRequest}
                 buttons={buttons}>
@@ -112,12 +101,10 @@ function mapStateToProps(state, ownProps) {
     const [roomId, sequenceNumber] = state.modalDialogRequest.keys;
     const onCloseRequest = ownProps.onCloseRequest;
 
-    const shouldFocus = (state.shouldFocus == undefined) ? true : state.shouldFocus;
-
     const checklistItem = state.checklistItems.find(item =>
         item.roomId === roomId && item.sequenceNumber === sequenceNumber);
 
-    return {checklistItem, shouldFocus, onCloseRequest};
+    return {checklistItem, onCloseRequest};
 }
 
 const mapDispatchToProps = (dispatch) => ({

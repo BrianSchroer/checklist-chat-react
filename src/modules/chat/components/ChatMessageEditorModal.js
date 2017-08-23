@@ -6,14 +6,12 @@ import {chatMessageType} from '../../chat';
 import {saveChatMessage} from '../chatDucks';
 import {validate} from '../chatMessageValidator';
 import {Modal, TextInput} from '../../../modules/core';
-import {uiHelper} from '../../../util';
 
 export class ChatMessageEditorModal extends React.Component {
 
     static get propTypes() {
         return {
             roomId: PropTypes.string.isRequired,
-            shouldFocus: PropTypes.bool,
             onCloseRequest: PropTypes.func.isRequired,
             actions: PropTypes.object.isRequired
         };
@@ -34,14 +32,6 @@ export class ChatMessageEditorModal extends React.Component {
 
         this.onChange = this.onChange.bind(this);
         this.onSave = this.onSave.bind(this);
-    }
-
-    componentDidMount() {
-        if (this.props.shouldFocus) {
-            uiHelper.afterRenderIsComplete(() => {
-                uiHelper.setFocusToFirstInputInForm('chatMessageEditorModalForm');
-            });
-        }
     }
 
     onChange(event) {
@@ -82,7 +72,6 @@ export class ChatMessageEditorModal extends React.Component {
 
         return (
             <Modal
-                formId="chatMessageEditorModalForm"
                 title="Say Something..."
                 onSubmit={this.onSave}
                 onCloseRequest={onCloseRequest}
@@ -99,11 +88,10 @@ export class ChatMessageEditorModal extends React.Component {
 
 export function mapStateToProps(state, ownProps) {
     const {roomId} = state;
-    const shouldFocus = (state.shouldFocus == undefined) ? true : state.shouldFocus;
 
     const onCloseRequest = ownProps.onCloseRequest;
 
-    return {roomId, shouldFocus, onCloseRequest};
+    return {roomId, onCloseRequest};
 }
 
 const mapDispatchToProps = (dispatch) => ({

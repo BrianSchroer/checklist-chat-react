@@ -44,7 +44,6 @@ describe('RoomInfoEditorModal', () => {
         it('should return expected props', () => {
             const props = callMapStateToProps();
             expect(props.onCloseRequest).toBe(defaultOwnProps.onCloseRequest);
-            expect(props.shouldFocus).toBe(true);
         });
 
         it('should set expected room properties when modalDialogRequest.key exists', () => {

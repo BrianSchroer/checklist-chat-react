@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {uiHelper} from '../../../util';
 import * as modalDialogActions from '../../../app/modalDialogDucks';
 import {joinChat} from '../../../modules/room/roomDucks';
 import {RoomInfo} from '../../../modules/room';
@@ -61,14 +60,6 @@ export class ChatRoomPage extends React.Component {
         this.setState({shouldScrollMessages});
     }
 
-    componentDidUpdate() {
-        if (this.state.shouldScrollMessages) {
-            uiHelper.afterRenderIsComplete(() => {
-                uiHelper.scrollToBottom('chatMessageList');
-            });
-        }
-    }
-
     handleRoomInfoEditRequest(event) {
         event.preventDefault();
         this.props.actions.requestRoomInfoModalDialog(this.props.room.id);
@@ -101,8 +92,13 @@ export class ChatRoomPage extends React.Component {
             <div className="chat-room-page">
                 <div className="chat-room-chat-column">
                     <div className="chat-room-room-info">
-                        {room && <RoomInfo room={room} onEditRequest={this.handleRoomInfoEditRequest} />}                    </div>
-                    <ChatMessageList userId={userId} chatMessages={chatMessages} />
+                        {room && <RoomInfo room={room} onEditRequest={this.handleRoomInfoEditRequest} />}
+                    </div>
+                    <ChatMessageList
+                        userId={userId}
+                        chatMessages={chatMessages}
+                        shouldScrollToBottom={this.state.shouldScrollMessages}
+                    />
                     <div className="chat-room-buttons">
                         <ChatButtons
                             onChatMessageAddRequest={this.handleChatMessageAddRequest}

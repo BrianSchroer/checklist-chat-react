@@ -11,19 +11,17 @@ export default class {
         win.requestAnimationFrame(callback);
     }
 
-    static scrollToBottom(elementId, doc = document) {
-        const node = doc.getElementById(elementId);
+    static scrollToBottom(node) {
         if (node) {
             node.scrollTop = node.scrollHeight;
         }
     }
 
-    static setFocusToFirstInputInForm(formId, doc = document) {
+    static setFocusToFirstInput(node) {
         let firstInput = null;
-        const form = doc.getElementById(formId);
 
-        if (form) {
-            for (let child of form) {
+        if (node) {
+            for (let child of node) {
                 if (this.isFocusableInput(child)) {
                     firstInput = child;
                     break;
