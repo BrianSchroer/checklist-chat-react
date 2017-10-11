@@ -1,14 +1,17 @@
 import React from 'react';
-import {storiesOf, linkTo} from '@storybook/react';
-import {storybookFrameDecorator} from '../../../../tools/storybook';
+import { storiesOf, linkTo } from '@storybook/react';
+import {
+  storybookFrameDecorator,
+  withInfoDecorator
+} from '../../../../tools/storybook';
 import ChecklistButtons from './ChecklistButtons';
 
 storiesOf('ChecklistButtons', module)
-    .addDecorator(storybookFrameDecorator)
-
-    .add('ChecklistButtons', () => (
-        <ChecklistButtons
-            actions={{}}
-            onChecklistItemAddRequest={linkTo('ChecklistItemEditorModal', 'new item')}
-        />
-    ));
+  .addDecorator(withInfoDecorator)
+  .addDecorator(storybookFrameDecorator)
+  .add('ChecklistButtons', () => (
+    <ChecklistButtons
+      actions={{}}
+      onChecklistItemAddRequest={linkTo('ChecklistItemEditorModal', 'new item')}
+    />
+  ));

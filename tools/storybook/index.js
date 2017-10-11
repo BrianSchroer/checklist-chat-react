@@ -1,5 +1,5 @@
+import { withInfo } from '@storybook/addon-info';
 import storybookFrameDecorator from './storybookFrameDecorator';
+import withInfoDecorator from './withInfoDecorator';
 
-export {
-    storybookFrameDecorator as storybookFrameDecorator
-};
+export { withInfo, withInfoDecorator, storybookFrameDecorator };

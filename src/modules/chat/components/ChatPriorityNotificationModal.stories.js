@@ -1,17 +1,19 @@
 import React from 'react';
-import {storiesOf, action} from '@storybook/react';
-import {chatMessageType} from '../../chat';
-import {ChatPriorityNotificationModal} from './ChatPriorityNotificationModal';
+import { storiesOf, action } from '@storybook/react';
+import { withInfoDecorator } from '../../../../tools/storybook';
+import { chatMessageType } from '../../chat';
+import { ChatPriorityNotificationModal } from './ChatPriorityNotificationModal';
 
 storiesOf('ChatPriorityNotificationModal', module)
-    .add('ChatPriorityNotificationModal', () => (
-        <ChatPriorityNotificationModal
-            chatMessage={{
-                chatMessageType: chatMessageType.CHAT,
-                userName: 'Sue Pervisor',
-                timeStamp: '2016-12-08T14:57:10.222Z',
-                text: 'Grow up, people! *@#$% profanity will not be tolerated!'
-            }}
-            onCloseRequest={action('onCloseRequest')}
-        />
-    ));
+  .addDecorator(withInfoDecorator)
+  .add('ChatPriorityNotificationModal', () => (
+    <ChatPriorityNotificationModal
+      chatMessage={{
+        chatMessageType: chatMessageType.CHAT,
+        userName: 'Sue Pervisor',
+        timeStamp: '2016-12-08T14:57:10.222Z',
+        text: 'Grow up, people! *@#$% profanity will not be tolerated!'
+      }}
+      onCloseRequest={action('onCloseRequest')}
+    />
+  ));

@@ -45,8 +45,8 @@ exports[`Markdown should not allow headings 1`] = `
   </h4>
   <pre>
     # H1
-    ## H2
-    ### H3
+## H2
+### H3
   </pre>
   <h4>
     className:
@@ -72,9 +72,9 @@ exports[`Markdown should not render horizontal rules 1`] = `
   </h4>
   <pre>
     Horizontal rule cannot be specified with three underscores:
-    ___
-    or with three asterisks
-    ***
+___
+or with three asterisks
+***
   </pre>
   <h4>
     className:
@@ -103,9 +103,9 @@ exports[`Markdown should render block quotes 1`] = `
   </h4>
   <pre>
     Hofstadter's law states:
-    &gt; It always takes longer than you expect, even when you take into account Hofstadter's Law
-    
-    That was Hofstadter's law.
+&gt; It always takes longer than you expect, even when you take into account Hofstadter's Law
+
+That was Hofstadter's law.
   </pre>
   <h4>
     className:
@@ -139,12 +139,12 @@ exports[`Markdown should render code blocks 1`] = `
   </h4>
   <pre>
     Here's some assertSnapshotMatch JavaScript:
-    \`\`\`
-    function addOne(number) {
-        return number + 1;
-    }
-    \`\`\`
-    That was a code block.
+\`\`\`
+function addOne(number) {
+    return number + 1;
+}
+\`\`\`
+That was a code block.
   </pre>
   <h4>
     className:
@@ -167,9 +167,9 @@ exports[`Markdown should render code blocks 1`] = `
         className={undefined}
       >
         function addOne(number) {
-            return number + 1;
-        }
-        
+    return number + 1;
+}
+
       </code>
     </pre>
     <p>
@@ -281,9 +281,9 @@ exports[`Markdown should render line feeds 1`] = `
   </h4>
   <pre>
     Line1 
-    Line2 
-    Line3 
-    (\\n is converted to &lt;br&gt;)
+Line2 
+Line3 
+(\\n is converted to &lt;br&gt;)
   </pre>
   <h4>
     className:
@@ -322,8 +322,8 @@ exports[`Markdown should render links 1`] = `
   </h4>
   <pre>
     Here are links to the "react-markdown" github repo:
-    [https://github.com/rexxars/react-markdown](https://github.com/rexxars/react-markdown),
-    and to  a [markdown reference page](http://commonmark.org/help/)
+[https://github.com/rexxars/react-markdown](https://github.com/rexxars/react-markdown),
+and to  a [markdown reference page](http://commonmark.org/help/)
   </pre>
   <h4>
     className:
@@ -365,12 +365,12 @@ exports[`Markdown should render ordered lists 1`] = `
   </h4>
   <pre>
     can be specified like this:
-    1. item 1
-    2. item 2
-    
-    ...or like this:
-    1) item 1
-    2) item 2
+1. item 1
+2. item 2
+
+...or like this:
+1) item 1
+2) item 2
   </pre>
   <h4>
     className:
@@ -506,12 +506,12 @@ exports[`Markdown should render unordered lists 1`] = `
   </h4>
   <pre>
     can be specified with asterisks:
-    * item 1
-    * item 2
-    
-    ...or with dashes:
-    - item 1
-    - item 2
+* item 1
+* item 2
+
+...or with dashes:
+- item 1
+- item 2
   </pre>
   <h4>
     className:

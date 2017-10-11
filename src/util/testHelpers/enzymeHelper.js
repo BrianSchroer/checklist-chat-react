@@ -1,8 +1,11 @@
 import assert from 'assert';
+import { configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+configure({ adapter: new Adapter() });
 
 export default class {
-
-    /**
+  /**
      * This method wraps the enzyme find method with the ability to perform
      * "nested" finds (e.g. "div.main > div.sub > p.instructions").
      *
@@ -13,29 +16,29 @@ export default class {
      *      that selector may be wrapped with.
      * @returns array of found results
      */
-    static find(wrapper, selector, higherOrderComponent) {
-        const selectors = selector.split('>').map(node => node.trim());
-        let parent = wrapper;
-        let found = [];
+  static find(wrapper, selector, higherOrderComponent) {
+    const selectors = selector.split('>').map(node => node.trim());
+    let parent = wrapper;
+    let found = [];
 
-        for (let i = 0; i < selectors.length; i++) {
-            found = parent.find(selectors[i]);
+    for (let i = 0; i < selectors.length; i++) {
+      found = parent.find(selectors[i]);
 
-            if (found.length == 0) {
-                if (higherOrderComponent) {
-                    found = parent.find(`${higherOrderComponent}(${selectors[i]})`);
-                }
-
-                if (found.length == 0) {
-                    break;
-                }
-            }
+      if (found.length == 0) {
+        if (higherOrderComponent) {
+          found = parent.find(`${higherOrderComponent}(${selectors[i]})`);
         }
 
-        return found;
+        if (found.length == 0) {
+          break;
+        }
+      }
     }
 
-    /**
+    return found;
+  }
+
+  /**
      * Call enzyme find and assert the expected match count.
      *
      * @static
@@ -46,26 +49,29 @@ export default class {
      *      that selector may be wrapped with.
      * @returns array of found results
      */
-    static assertFindCount(expectedCount, wrapper, selector, higherOrderComponent) {
-        const found = this.find(wrapper, selector, higherOrderComponent);
+  static assertFindCount(
+    expectedCount,
+    wrapper,
+    selector,
+    higherOrderComponent
+  ) {
+    const found = this.find(wrapper, selector, higherOrderComponent);
 
-        if (found.length != expectedCount) {
-            const errorMessage =
-                [
-                    `Expected ${expectedCount} element(s) for selector "${selector}", but found ${found.length}.`,
-                    '',
-                    this.getDebugHtml(wrapper),
-                    ''
-                ]
-                .join('\n');
+    if (found.length != expectedCount) {
+      const errorMessage = [
+        `Expected ${expectedCount} element(s) for selector "${selector}", but found ${found.length}.`,
+        '',
+        this.getDebugHtml(wrapper),
+        ''
+      ].join('\n');
 
-            assert.equal(found.length, expectedCount, errorMessage);
-        }
-
-        return found;
+      assert.equal(found.length, expectedCount, errorMessage);
     }
 
-    /**
+    return found;
+  }
+
+  /**
      * Call enzyme find and assert that no matches are found.
      *
      * @static
@@ -74,11 +80,11 @@ export default class {
      * @param {string} higherOrderComponent = optional higher-order component (e.g. "Connect")
      *      that selector may be wrapped with.
      */
-    static assertNoMatch(wrapper, selector, higherOrderComponent) {
-        this.assertFindCount(0, wrapper, selector, higherOrderComponent);
-    }
+  static assertNoMatch(wrapper, selector, higherOrderComponent) {
+    this.assertFindCount(0, wrapper, selector, higherOrderComponent);
+  }
 
-    /**
+  /**
      * Call enzyme find and assert that one and only one match is found.
      *
      * @static
@@ -88,12 +94,17 @@ export default class {
      *      that selector may be wrapped with.
      * @returns the found node
      */
-    static findSingle(wrapper, selector, higherOrderComponent) {
-        const found = this.assertFindCount(1, wrapper, selector, higherOrderComponent);
-        return found.first();
-    }
+  static findSingle(wrapper, selector, higherOrderComponent) {
+    const found = this.assertFindCount(
+      1,
+      wrapper,
+      selector,
+      higherOrderComponent
+    );
+    return found.first();
+  }
 
-    /**
+  /**
      * Returns an HTML-like string of the wrapper for debugging purposes. Useful to
      * log to the console when tests are not passing when you expect them to.
      *
@@ -101,11 +112,11 @@ export default class {
      * @param {any} wrapper
      * @returns the resulting string
      */
-    static getDebugHtml(wrapper) {
-        return wrapper.debug();
-    }
+  static getDebugHtml(wrapper) {
+    return wrapper.debug();
+  }
 
-    /**
+  /**
      * Logs an HTML-like string of the wrapper for debugging purposes. Useful to
      * log to the console when tests are not passing when you expect them to.
      *
@@ -113,7 +124,7 @@ export default class {
      * @param {any} wrapper
      * @returns the resulting string
      */
-    static logDebugHtml(wrapper) {
-        console.log(this.getDebugHtml(wrapper));  // eslint-disable-line no-console
-    }
+  static logDebugHtml(wrapper) {
+    console.log(this.getDebugHtml(wrapper)); // eslint-disable-line no-console
+  }
 }
