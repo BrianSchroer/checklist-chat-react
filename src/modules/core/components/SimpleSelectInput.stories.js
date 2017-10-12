@@ -1,9 +1,5 @@
 import React from 'react';
-import { storiesOf, action } from '@storybook/react';
-import {
-  storybookFrameDecorator,
-  withInfoDecorator
-} from '../../../../tools/storybook';
+import { storybookStories, action } from '../../../../tools/storybook';
 import SimpleSelectInput from './SimpleSelectInput';
 
 const options = [
@@ -12,9 +8,7 @@ const options = [
   { value: 'Value3', text: 'Text 3' }
 ];
 
-storiesOf('SimpleSelectInput', module)
-  .addDecorator(withInfoDecorator)
-  .addDecorator(storybookFrameDecorator)
+storybookStories('SimpleSelectInput')
   .add('dropdown - no value selected', () => (
     <SimpleSelectInput
       name="name"

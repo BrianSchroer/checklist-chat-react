@@ -1,15 +1,9 @@
 import React from 'react';
-import { storiesOf, linkTo } from '@storybook/react';
-import {
-  storybookFrameDecorator,
-  withInfoDecorator
-} from '../../../../tools/storybook';
+import { storybookStories, linkTo } from '../../../../tools/storybook';
 import { checklistItemStatus } from '../../checklist';
 import ChecklistItem from './ChecklistItem';
 
-storiesOf('ChecklistItem', module)
-  .addDecorator(withInfoDecorator)
-  .addDecorator(storybookFrameDecorator)
+storybookStories('ChecklistItem')
   .add('without comments', () => (
     <table className="table checklist-table">
       <ChecklistItem

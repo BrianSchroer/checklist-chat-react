@@ -1,14 +1,8 @@
 import React from 'react';
-import { storiesOf, action } from '@storybook/react';
+import { storybookStories, action } from '../../../../tools/storybook';
 import SimpleTextInput from './SimpleTextInput';
-import {
-  storybookFrameDecorator,
-  withInfoDecorator
-} from '../../../../tools/storybook';
 
-storiesOf('SimpleTextInput', module)
-  .addDecorator(withInfoDecorator)
-  .addDecorator(storybookFrameDecorator)
+storybookStories('SimpleTextInput')
   .add('single line "TextBox" with placeholder', () => (
     <SimpleTextInput
       name="testName"

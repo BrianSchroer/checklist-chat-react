@@ -1,6 +1,9 @@
 import React from 'react';
-import { storiesOf, linkTo } from '@storybook/react';
-import { withInfoDecorator } from '../../../../tools/storybook';
+import {
+  storiesOf,
+  linkTo,
+  infoDecorator
+} from '../../../../tools/storybook';
 import ReactMarkdown from 'react-markdown';
 
 const sample = (...sourceStrings) => {
@@ -25,7 +28,7 @@ const sample = (...sourceStrings) => {
 };
 
 storiesOf('ReactMarkdown', module)
-  .addDecorator(withInfoDecorator)
+  .addDecorator(infoDecorator)
   .add('source without markdown', () =>
     sample(
       'Source without any markdown formatting renders as a "p" within a "div".'

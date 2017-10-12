@@ -1,11 +1,14 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { storiesOf, action } from '@storybook/react';
-import { withInfoDecorator } from '../../../../tools/storybook';
+import {
+  storiesOf,
+  action,
+  infoDecorator
+} from '../../../../tools/storybook';
 import { HomePage } from './HomePage';
 
 storiesOf('HomePage', module)
-  .addDecorator(withInfoDecorator)
+  .addDecorator(infoDecorator)
   .add('with no current chat rooms', () => (
     <HomePage
       rooms={[]}

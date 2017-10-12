@@ -1,5 +1,15 @@
-import { withInfo } from '@storybook/addon-info';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
+import { linkTo } from '@storybook/addon-links';
 import storybookFrameDecorator from './storybookFrameDecorator';
-import withInfoDecorator from './withInfoDecorator';
+import infoDecorator from './infoDecorator';
+import storybookStories from './storybookStories';
 
-export { withInfo, withInfoDecorator, storybookFrameDecorator };
+export {
+  action,
+  storiesOf,
+  linkTo,
+  infoDecorator,
+  storybookFrameDecorator,
+  storybookStories
+};

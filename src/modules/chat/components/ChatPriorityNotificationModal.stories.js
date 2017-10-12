@@ -1,11 +1,14 @@
 import React from 'react';
-import { storiesOf, action } from '@storybook/react';
-import { withInfoDecorator } from '../../../../tools/storybook';
+import {
+  storiesOf,
+  action,
+  infoDecorator
+} from '../../../../tools/storybook';
 import { chatMessageType } from '../../chat';
 import { ChatPriorityNotificationModal } from './ChatPriorityNotificationModal';
 
 storiesOf('ChatPriorityNotificationModal', module)
-  .addDecorator(withInfoDecorator)
+  .addDecorator(infoDecorator)
   .add('ChatPriorityNotificationModal', () => (
     <ChatPriorityNotificationModal
       chatMessage={{

@@ -1,14 +1,14 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import {
+  storiesOf,
   storybookFrameDecorator,
-  withInfoDecorator
+  infoDecorator
 } from '../../../../tools/storybook';
 import { checklistItemStatus } from '../../checklist';
 import ChecklistItemStatusIcon from './ChecklistItemStatusIcon';
 
 storiesOf('ChecklistItemStatusIcon', module)
-  .addDecorator(withInfoDecorator)
+  .addDecorator(infoDecorator)
   .addDecorator(storybookFrameDecorator)
   .add('icons', () => (
     <ul className="list-unstyled">

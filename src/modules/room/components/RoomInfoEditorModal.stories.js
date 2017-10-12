@@ -1,10 +1,13 @@
 import React from 'react';
-import { storiesOf, linkTo } from '@storybook/react';
-import { withInfoDecorator } from '../../../../tools/storybook';
+import {
+  storiesOf,
+  linkTo,
+  infoDecorator
+} from '../../../../tools/storybook';
 import { RoomInfoEditorModal } from './RoomInfoEditorModal';
 
 storiesOf('RoomInfoEditorModal', module)
-  .addDecorator(withInfoDecorator)
+  .addDecorator(infoDecorator)
   .add('new room', () => (
     <RoomInfoEditorModal
       room={{ id: '', roomName: '', description: '', phoneInfo: '' }}

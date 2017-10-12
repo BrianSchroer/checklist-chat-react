@@ -1,14 +1,8 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import {
-  storybookFrameDecorator,
-  withInfoDecorator
-} from '../../../../tools/storybook';
+import { storybookStories } from '../../../../tools/storybook';
 import ChecklistItemComment from './ChecklistItemComment';
 
-storiesOf('ChecklistItemComment', module)
-  .addDecorator(withInfoDecorator)
-  .addDecorator(storybookFrameDecorator)
+storybookStories('ChecklistItemComment')
   .add('short comment', () => (
     <table className="table checklist-table">
       <tbody>

@@ -1,8 +1,9 @@
 import React from 'react';
-import { storiesOf, action } from '@storybook/react';
 import {
+  storiesOf,
+  action,
   storybookFrameDecorator,
-  withInfoDecorator
+  infoDecorator
 } from '../../../../tools/storybook';
 import SelectInput from './SelectInput';
 
@@ -13,7 +14,7 @@ const options = [
 ];
 
 storiesOf('SelectInput', module)
-  .addDecorator(withInfoDecorator)
+  .addDecorator(infoDecorator)
   .addDecorator(storybookFrameDecorator)
   .add('dropdown - no value selected', () => (
     <SelectInput

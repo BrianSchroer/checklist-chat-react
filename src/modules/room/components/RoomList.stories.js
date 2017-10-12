@@ -1,11 +1,10 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withInfoDecorator } from '../../../../tools/storybook';
+import { storiesOf, infoDecorator } from '../../../../tools/storybook';
 import { MemoryRouter } from 'react-router-dom';
 import RoomList from './RoomList';
 
 storiesOf('RoomList', module)
-  .addDecorator(withInfoDecorator)
+  .addDecorator(infoDecorator)
   .add('RoomList', () => (
     <MemoryRouter>
       <div className="container">

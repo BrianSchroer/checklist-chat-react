@@ -1,15 +1,9 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { chatMessageType } from '../../chat';
-import {
-  storybookFrameDecorator,
-  withInfoDecorator
-} from '../../../../tools/storybook';
+import { storybookStories } from '../../../../tools/storybook';
 import ChatMessage from './ChatMessage';
 
-storiesOf('ChatMessage', module)
-  .addDecorator(withInfoDecorator)
-  .addDecorator(storybookFrameDecorator)
+storybookStories('ChatMessage')
   .add('chatMessageType.CHAT', () => (
     <ChatMessage
       chatMessage={{

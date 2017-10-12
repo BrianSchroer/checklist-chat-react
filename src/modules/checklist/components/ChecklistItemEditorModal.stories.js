@@ -1,11 +1,14 @@
 import React from 'react';
-import { storiesOf, linkTo } from '@storybook/react';
-import { withInfoDecorator } from '../../../../tools/storybook';
+import {
+  storiesOf,
+  linkTo,
+  infoDecorator
+} from '../../../../tools/storybook';
 import { checklistItemStatus } from '../../checklist';
 import { ChecklistItemEditorModal } from './ChecklistItemEditorModal';
 
 storiesOf('ChecklistItemEditorModal', module)
-  .addDecorator(withInfoDecorator)
+  .addDecorator(infoDecorator)
   .add('new item', () => (
     <ChecklistItemEditorModal
       checklistItem={{
