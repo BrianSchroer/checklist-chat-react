@@ -1,53 +1,73 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {uiHelper} from '../../../util';
+import { uiHelper } from '../../../util';
 
 class Modal extends React.Component {
-    componentDidMount() {
-        uiHelper.setFocusToFirstInput(this.form);
+  componentDidMount() {
+    uiHelper.setFocusToFirstInput(this.form);
+  }
+
+  render() {
+    const {
+      title,
+      formId,
+      onSubmit,
+      onCloseRequest,
+      children,
+      buttons
+    } = this.props;
+
+    const formAttributes = {
+      onSubmit: onSubmit ? onSubmit : event => event.preventDefault()
+    };
+
+    if (formId) {
+      formAttributes.id = formId;
     }
 
-    render() {
-        const {title, formId, onSubmit, onCloseRequest, children, buttons} = this.props;
-
-        const formAttributes = {
-            onSubmit: (onSubmit)
-                ? onSubmit
-                : (event) => event.preventDefault()
-        };
-
-        if (formId) {
-            formAttributes.id = formId;
-        }
-
-        return (
-            <div className="checklist-chat-modal-backdrop" tabIndex="-1" role="dialog">
-                <div className="modal-dialog checklist-chat-modal-dialog" role="document">
-                    <div className="modal-content">
-                        <form {...formAttributes} ref={(form) => {this.form = form; }}>
-                            <div className="modal-header bg-primary text-white">
-                                <button type="button" className="close" aria-label="Close" onClick={onCloseRequest}>
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <h4 className="modal-title display-linebreaks">{title}</h4>
-                            </div>
-                            <div className="modal-body">{children}</div>
-                            {buttons && <div className="modal-footer">{buttons}</div>}
-                        </form>
-                    </div>
-                </div>
-            </div>
-        );
-    }
+    return (
+      <div
+        className="checklist-chat-modal-backdrop"
+        tabIndex="-1"
+        role="dialog"
+      >
+        <div
+          className="modal-dialog checklist-chat-modal-dialog"
+          role="document"
+        >
+          <div className="modal-content">
+            <form
+              {...formAttributes}
+              ref={form => (this.form = form)} //eslint-disable-line react/jsx-no-bind
+            >
+              <div className="modal-header bg-primary text-white">
+                <button
+                  type="button"
+                  className="close"
+                  aria-label="Close"
+                  onClick={onCloseRequest}
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 className="modal-title display-linebreaks">{title}</h4>
+              </div>
+              <div className="modal-body">{children}</div>
+              {buttons && <div className="modal-footer">{buttons}</div>}
+            </form>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 Modal.propTypes = {
-    title: PropTypes.string,
-    formId: PropTypes.string,
-    onCloseRequest: PropTypes.func.isRequired,
-    onSubmit: PropTypes.func,
-    children: PropTypes.node.isRequired,
-    buttons: PropTypes.node
+  title: PropTypes.string,
+  formId: PropTypes.string,
+  onCloseRequest: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func,
+  children: PropTypes.node.isRequired,
+  buttons: PropTypes.node
 };
 
 export default Modal;
