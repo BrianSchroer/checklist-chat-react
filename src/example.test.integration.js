@@ -1,3 +1,8 @@
+/* global Cypress, cy, context */
+
+// This example file came from cypress. Disable eslint warnings:
+/* eslint-disable */
+
 //
 // **** Kitchen Sink Tests ****
 //

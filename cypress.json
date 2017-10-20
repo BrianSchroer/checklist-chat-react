@@ -1,9 +1,11 @@
 {
     "fixturesFolder": "tools/cypress/fixtures",
     "screenshotsFolder": "tools/cypress/screenshots",
+    "supportFile": "tools/cypress/support",
     "integrationFolder": "src",
     "ignoreTestFiles": [
-        "ignore.*",
-        "!*integration.test.js"
-    ]
+        "example.test.integration.js",
+        "!*test.integration.js"
+    ],
+    "baseUrl": "http://localhost:3000"
 }

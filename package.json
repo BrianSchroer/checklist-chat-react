@@ -110,7 +110,7 @@
             "raf/polyfill"
         ],
         "testPathIgnorePatterns": [
-            "integration.test.js"
+            "test.integration.js"
         ]
     },
     "repository": {
