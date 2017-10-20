@@ -110,7 +110,7 @@
             "raf/polyfill"
         ],
         "testPathIgnorePatterns": [
-            "/cypress/"
+            "integration.test.js"
         ]
     },
     "repository": {

@@ -1,1 +1,9 @@
-{}
+{
+    "fixturesFolder": "tools/cypress/fixtures",
+    "screenshotsFolder": "tools/cypress/screenshots",
+    "integrationFolder": "src",
+    "ignoreTestFiles": [
+        "ignore.*",
+        "!*integration.test.js"
+    ]
+}
