@@ -1,153 +1,194 @@
 import 'whatwg-fetch';
 
 const mockJsonServerBaseUri = 'http://localhost:3001/';
+const shouldUseFetch = false;
 
-export function addChecklistItem(roomId, checklistItem) {
-    const {sequenceNumber, description} = checklistItem;
-    const body = Object.assign({}, checklistItem, {roomId});
+function callApi(url, options) {
+  if (shouldUseFetch) {
+    return fetch(url, options);
+  }
 
-    getChecklistItems().then(items => {
-        let ids = items.map(item => item.id);
-        body.id = Math.max(...ids) + 1;
-    });
+  // fetch syntax is much nicer, but cypress.io can't mock it, so use XMLHttpRequest instead:
+  const opts = Object.assign(
+    { method: 'GET', headers: null, body: null },
+    options
+  );
 
-    const actionMessage = {
-        chatMessageType: 'Action',
-        text: `added checklist item ${sequenceNumber} - "${description}".`
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open(opts.method, url);
+
+    if (opts.headers) {
+      Object.keys(opts.headers).forEach(key => {
+        xhr.setRequestHeader(key, opts.headers[key]);
+      });
+    }
+
+    xhr.onload = () => {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        resolve(xhr.response);
+      } else {
+        reject(xhr.statusText);
+      }
     };
 
-    chat(roomId, actionMessage);
+    xhr.onerror = () => reject(xhr.statusText);
 
-    return add(`checklistItems`, JSON.stringify(body));
+    if (opts.body) {
+      xhr.body = opts.body;
+    }
+
+    xhr.send(opts.body);
+  });
+}
+
+export function addChecklistItem(roomId, checklistItem) {
+  const { sequenceNumber, description } = checklistItem;
+  const body = Object.assign({}, checklistItem, { roomId });
+
+  getChecklistItems().then(items => {
+    let ids = items.map(item => item.id);
+    body.id = Math.max(...ids) + 1;
+  });
+
+  const actionMessage = {
+    chatMessageType: 'Action',
+    text: `added checklist item ${sequenceNumber} - "${description}".`
+  };
+
+  chat(roomId, actionMessage);
+
+  return add(`checklistItems`, JSON.stringify(body));
 }
 
 export function addChecklistItemComment(roomId, checklistItemId, comment) {
-    return get(`checklistItems/${checklistItemId}`)
-        .then(checklistItem => {
-            const {sequenceNumber, description} = checklistItem;
+  return get(`checklistItems/${checklistItemId}`).then(checklistItem => {
+    const { sequenceNumber, description } = checklistItem;
 
-            const commentMessage = assignChatMessageIdsAndTimestamp({chatMessageType: 'Chat', text: comment});
+    const commentMessage = assignChatMessageIdsAndTimestamp({
+      chatMessageType: 'Chat',
+      text: comment
+    });
 
-            const body = Object.assign({}, checklistItem);
+    const body = Object.assign({}, checklistItem);
 
-            if (body.chatMessages) {
-                body.chatMessages.push(commentMessage);
-            } else {
-                body.chatMessages = [commentMessage];
-            }
+    if (body.chatMessages) {
+      body.chatMessages.push(commentMessage);
+    } else {
+      body.chatMessages = [commentMessage];
+    }
 
-            const actionMessage = {
-                chatMessageType: 'Action',
-                text: `added a comment to checklist item ${sequenceNumber} - "${description}".`
-            };
-            chat(roomId, actionMessage);
-
-            return update(`checklistItems/${checklistItem.id}`, JSON.stringify(body));
-        });
-}
-
-export function chat(roomId, chatMessage) {
-    const body = assignChatMessageIdsAndTimestamp(Object.assign({}, chatMessage, {roomId}));
-
-    return add(`chatMessages`, JSON.stringify(body));
-}
-
-export function getChatMessages(roomId) {
-    return get(`chatMessages?roomId=${roomId}&_sort=timeStamp`);
-}
-
-export function getChecklistItems(roomId) {
-    return (roomId)
-        ? get(`checklistItems?roomId=${roomId}&_sort=sequenceNumber`)
-        : get('checklistItems');
-}
-
-export function getRooms() {
-    return get('rooms');
-}
-
-export function getUserName() {
-    return 'Brian Schroer';
-}
-
-export function joinChat(roomId) {
     const actionMessage = {
-        chatMessageType: 'Action',
-        text: 'entered the room.'
+      chatMessageType: 'Action',
+      text: `added a comment to checklist item ${sequenceNumber} - "${description}".`
     };
-
-    return chat(roomId, actionMessage);
-}
-
-export function updateChecklistItem(roomId, checklistItem) {
-    const {sequenceNumber, description} = checklistItem;
-    const body = Object.assign({}, checklistItem, {roomId});
-
-    const actionMessage = {
-        chatMessageType: 'Action',
-        text: `updated checklist item ${sequenceNumber} - "${description}".` };
-
     chat(roomId, actionMessage);
 
     return update(`checklistItems/${checklistItem.id}`, JSON.stringify(body));
+  });
+}
+
+export function chat(roomId, chatMessage) {
+  const body = assignChatMessageIdsAndTimestamp(
+    Object.assign({}, chatMessage, { roomId })
+  );
+
+  return add(`chatMessages`, JSON.stringify(body));
+}
+
+export function getChatMessages(roomId) {
+  return get(`chatMessages?roomId=${roomId}&_sort=timeStamp`);
+}
+
+export function getChecklistItems(roomId) {
+  return roomId
+    ? get(`checklistItems?roomId=${roomId}&_sort=sequenceNumber`)
+    : get('checklistItems');
+}
+
+export function getRooms() {
+  return get('rooms');
+}
+
+export function getUserName() {
+  return 'Brian Schroer';
+}
+
+export function joinChat(roomId) {
+  const actionMessage = {
+    chatMessageType: 'Action',
+    text: 'entered the room.'
+  };
+
+  return chat(roomId, actionMessage);
+}
+
+export function updateChecklistItem(roomId, checklistItem) {
+  const { sequenceNumber, description } = checklistItem;
+  const body = Object.assign({}, checklistItem, { roomId });
+
+  const actionMessage = {
+    chatMessageType: 'Action',
+    text: `updated checklist item ${sequenceNumber} - "${description}".`
+  };
+
+  chat(roomId, actionMessage);
+
+  return update(`checklistItems/${checklistItem.id}`, JSON.stringify(body));
 }
 
 export function updateRoomInfo(roomId, roomInfo) {
-    const body = Object.assign({}, roomInfo);
+  const body = Object.assign({}, roomInfo);
 
-    const actionMessage = {chatMessageType: 'Action'};
+  const actionMessage = { chatMessageType: 'Action' };
 
-    if (roomId) {
-        actionMessage.text = 'updated the room description / phone info.';
-        chat(roomId, actionMessage);
-        return update(`rooms/${roomInfo.id}`, JSON.stringify(body));
-    } else {
-        get('rooms').then(items => {
-            let ids = items.map(item => item.id);
-            body.id = Math.max(...ids) + 1;
-            actionMessage.text = `created new chat "${body.roomName}".`;
-            chat(body.id, actionMessage);
-        });
-        return add(`rooms`, JSON.stringify(body));
-    }
+  if (roomId) {
+    actionMessage.text = 'updated the room description / phone info.';
+    chat(roomId, actionMessage);
+    return update(`rooms/${roomInfo.id}`, JSON.stringify(body));
+  } else {
+    get('rooms').then(items => {
+      let ids = items.map(item => item.id);
+      body.id = Math.max(...ids) + 1;
+      actionMessage.text = `created new chat "${body.roomName}".`;
+      chat(body.id, actionMessage);
+    });
+    return add(`rooms`, JSON.stringify(body));
+  }
 }
 
 function assignChatMessageIdsAndTimestamp(chatMessage) {
-    let id;
-    getChatMessages().then(items => {
-        const ids = items.map(item => item.id);
-        id = Math.max(...ids) + 1;
-    });
+  let id;
+  getChatMessages().then(items => {
+    const ids = items.map(item => item.id);
+    id = Math.max(...ids) + 1;
+  });
 
-    chatMessage.id = id;
-    chatMessage.timeStamp = new Date().toISOString();
-    chatMessage.userName = getUserName();
+  chatMessage.id = id;
+  chatMessage.timeStamp = new Date().toISOString();
+  chatMessage.userName = getUserName();
 
-    return chatMessage;
+  return chatMessage;
 }
 
 function get(url) {
-    return fetch(mockJsonServerBaseUri + url).then(onSuccess, onError);
+  return callApi(mockJsonServerBaseUri + url).then(onSuccess, onError);
 }
 
 function add(url, body) {
-    return fetch(
-        mockJsonServerBaseUri + url, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: body
-        })
-        .then(onSuccess, onError);
+  return callApi(mockJsonServerBaseUri + url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: body
+  }).then(onSuccess, onError);
 }
 
 function update(url, body) {
-    return fetch(
-        mockJsonServerBaseUri + url, {
-            method: 'PATCH',
-            headers: {'Content-Type': 'application/json'},
-            body: body
-        })
-        .then(onSuccess, onError);
+  return callApi(mockJsonServerBaseUri + url, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: body
+  }).then(onSuccess, onError);
 }
 
 // (Can't call this function 'delete' because that's a JavaScript reserved word)
@@ -157,9 +198,11 @@ function update(url, body) {
 // }
 
 function onSuccess(response) {
-    return response.json();
+  return typeof response.json === 'function'
+    ? response.json()
+    : JSON.parse(response);
 }
 
 function onError(error) {
-    console.log(error); // eslint-disable-line no-console
+  console.log(error); // eslint-disable-line no-console
 }

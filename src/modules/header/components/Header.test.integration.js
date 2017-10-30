@@ -3,6 +3,7 @@
 describe('The header', () => {
   before(() => {
     cy.visit('/');
+    cy.get('div.navbar-nav').as('header');
   });
 
   beforeEach(() => {
