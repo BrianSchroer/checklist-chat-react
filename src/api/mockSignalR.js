@@ -1,45 +1,14 @@
 import 'whatwg-fetch';
+import xhrWrapper from './xhrWrapper';
 
 const mockJsonServerBaseUri = 'http://localhost:3001/';
 const shouldUseFetch = false;
 
 function callApi(url, options) {
-  if (shouldUseFetch) {
-    return fetch(url, options);
-  }
-
   // fetch syntax is much nicer, but cypress.io can't mock it, so use XMLHttpRequest instead:
-  const opts = Object.assign(
-    { method: 'GET', headers: null, body: null },
-    options
-  );
-
-  return new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
-    xhr.open(opts.method, url);
-
-    if (opts.headers) {
-      Object.keys(opts.headers).forEach(key => {
-        xhr.setRequestHeader(key, opts.headers[key]);
-      });
-    }
-
-    xhr.onload = () => {
-      if (xhr.status >= 200 && xhr.status < 300) {
-        resolve(xhr.response);
-      } else {
-        reject(xhr.statusText);
-      }
-    };
-
-    xhr.onerror = () => reject(xhr.statusText);
-
-    if (opts.body) {
-      xhr.body = opts.body;
-    }
-
-    xhr.send(opts.body);
-  });
+  return shouldUseFetch
+    ? fetch(url, options)
+    : xhrWrapper.promise(url, options);
 }
 
 export function addChecklistItem(roomId, checklistItem) {

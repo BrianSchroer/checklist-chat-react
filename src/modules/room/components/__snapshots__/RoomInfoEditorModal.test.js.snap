@@ -1,0 +1,261 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RoomInfoEditorModal should render correctly for existing room 1`] = `
+<div
+  className="checklist-chat-modal-backdrop"
+  role="dialog"
+  tabIndex="-1"
+>
+  <div
+    className="modal-dialog checklist-chat-modal-dialog"
+    role="document"
+  >
+    <div
+      className="modal-content"
+    >
+      <form
+        onSubmit={[Function]}
+      >
+        <div
+          className="modal-header bg-primary text-white"
+        >
+          <button
+            aria-label="Close"
+            className="close"
+            onClick={[Function]}
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+            >
+              ×
+            </span>
+          </button>
+          <h4
+            className="modal-title display-linebreaks"
+          >
+            Edit Chat Room Info
+          </h4>
+        </div>
+        <div
+          className="modal-body"
+        >
+          <div>
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="roomName"
+              >
+                Chat Room Name
+              </label>
+              <div
+                className="field"
+              >
+                <input
+                  className="form-control"
+                  name="roomName"
+                  onChange={[Function]}
+                  placeholder={undefined}
+                  type="text"
+                  value="TestName"
+                />
+              </div>
+            </div>
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="description"
+              >
+                Room Description
+              </label>
+              <div
+                className="field"
+              >
+                <textarea
+                  className="form-control"
+                  name="description"
+                  onChange={[Function]}
+                  placeholder={undefined}
+                  rows={2}
+                  value="TestDescription"
+                />
+              </div>
+            </div>
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="phoneInfo"
+              >
+                Phone Info
+              </label>
+              <div
+                className="field"
+              >
+                <input
+                  className="form-control"
+                  name="phoneInfo"
+                  onChange={[Function]}
+                  placeholder={undefined}
+                  type="text"
+                  value="TestPhone"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="modal-footer"
+        >
+          <div>
+            <input
+              className="btn btn-default"
+              onClick={[Function]}
+              type="button"
+              value="Cancel"
+            />
+            <input
+              className="btn btn-primary"
+              onClick={[Function]}
+              type="submit"
+              value="Save"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`RoomInfoEditorModal should render correctly for new room 1`] = `
+<div
+  className="checklist-chat-modal-backdrop"
+  role="dialog"
+  tabIndex="-1"
+>
+  <div
+    className="modal-dialog checklist-chat-modal-dialog"
+    role="document"
+  >
+    <div
+      className="modal-content"
+    >
+      <form
+        onSubmit={[Function]}
+      >
+        <div
+          className="modal-header bg-primary text-white"
+        >
+          <button
+            aria-label="Close"
+            className="close"
+            onClick={[Function]}
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+            >
+              ×
+            </span>
+          </button>
+          <h4
+            className="modal-title display-linebreaks"
+          >
+            Add Chat Room
+          </h4>
+        </div>
+        <div
+          className="modal-body"
+        >
+          <div>
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="roomName"
+              >
+                Chat Room Name
+              </label>
+              <div
+                className="field"
+              >
+                <input
+                  className="form-control"
+                  name="roomName"
+                  onChange={[Function]}
+                  placeholder={undefined}
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="description"
+              >
+                Room Description
+              </label>
+              <div
+                className="field"
+              >
+                <textarea
+                  className="form-control"
+                  name="description"
+                  onChange={[Function]}
+                  placeholder={undefined}
+                  rows={2}
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              className="form-group"
+            >
+              <label
+                htmlFor="phoneInfo"
+              >
+                Phone Info
+              </label>
+              <div
+                className="field"
+              >
+                <input
+                  className="form-control"
+                  name="phoneInfo"
+                  onChange={[Function]}
+                  placeholder={undefined}
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="modal-footer"
+        >
+          <div>
+            <input
+              className="btn btn-default"
+              onClick={[Function]}
+              type="button"
+              value="Cancel"
+            />
+            <input
+              className="btn btn-primary"
+              onClick={[Function]}
+              type="submit"
+              value="Save"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;

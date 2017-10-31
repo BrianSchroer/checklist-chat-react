@@ -1,17 +1,16 @@
 export default class {
-
-    /**
-     * Is required value missing
+  /**
+     * Is required value missing?
      *
      * @export
      * @param {string} value
      * @returns {bool}
      */
-    static missingRequiredValue(value) {
-        return ((value || '').trim().length === 0);
-    }
+  static missingRequiredValue(value) {
+    return (value || '').trim().length === 0;
+  }
 
-    /**
+  /**
      * If predicate is true, set errorMessage to errors fieldName errors property.
      *
      * @export
@@ -20,13 +19,13 @@ export default class {
      * @param {string} fieldName
      * @param {string} errorMessage
      */
-    static validateField(errors, predicate, fieldName, errorMessage) {
-        if (predicate) {
-            errors[fieldName] = errorMessage;
-        }
+  static validateField(errors, predicate, fieldName, errorMessage) {
+    if (predicate) {
+      errors[fieldName] = errorMessage;
     }
+  }
 
-    /**
+  /**
      * Validate input fields.
      *
      * @export
@@ -34,14 +33,22 @@ export default class {
      *                      predicate, fieldName and errorMessage properties.
      * @returns
      */
-    static validateFields(fieldValidations = []) {
-        const errors = {};
+  static validateFields(fieldValidations = []) {
+    const errors = {};
 
-        fieldValidations.forEach(item => {
-            this.validateField(errors, item.predicate, item.fieldName, item.errorMessage);
-        });
+    fieldValidations.forEach(item => {
+      this.validateField(
+        errors,
+        item.predicate,
+        item.fieldName,
+        item.errorMessage
+      );
+    });
 
-        const validationResult = {isValid: Object.keys(errors).length === 0, errors};
-        return validationResult;
-    }
+    const validationResult = {
+      isValid: Object.keys(errors).length === 0,
+      errors
+    };
+    return validationResult;
+  }
 }

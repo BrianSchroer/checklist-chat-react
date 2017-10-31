@@ -1,13 +1,18 @@
-/* global Cypress, cy, before, describe, expect */
+/* global Cypress, cy, before, after, describe, expect */
 
 describe('The header', () => {
   before(() => {
+    cy.server();
+    cy.route('/rooms', 'fixture:rooms.json');
     cy.visit('/');
-    cy.get('div.navbar-nav').as('header');
   });
 
   beforeEach(() => {
     cy.get('div.navbar-nav').as('header');
+  });
+
+  after(() => {
+    cy.server({ enable: false });
   });
 
   it('contains the site logo', () => {

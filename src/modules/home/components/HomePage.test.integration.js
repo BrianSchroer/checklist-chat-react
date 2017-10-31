@@ -43,7 +43,7 @@ describe('The home page', () => {
 
   it('displays a "no chats" found message when tere are no existing rooms', () => {
     cy.server();
-    cy.route('/rooms', 'fixture:rooms-none.json');
+    cy.route({ method: 'GET', url: '/rooms', response: [] });
     cy.visit('/');
     cy.contains(
       "There aren't any chats in progress right now. Why not start one?"
