@@ -1,0 +1,45 @@
+[
+  {
+    "id": 96967414,
+    "status": "CompletedWithErrors",
+    "description": "Balanced leading edge frame",
+    "scheduledStartTime": "2017-10-30T13:59:44-05:00",
+    "scheduledEndTime": "2017-10-30T20:49:10-05:00",
+    "chatMessages": [
+      {
+        "id": 9421823,
+        "timeStamp": "2017-10-30T21:45:22-05:00",
+        "chatMessageType": "Chat",
+        "userName": "Kirk Dietrich Ms.",
+        "text": "indexing the matrix won't do anything, we need to program the multi-byte SQL matrix!"
+      },
+      {
+        "id": 68296864,
+        "timeStamp": "2017-10-30T12:09:17-05:00",
+        "chatMessageType": "Chat",
+        "userName": "Xavier Kovacek",
+        "text": "You can't compress the pixel without navigating the solid state PNG pixel!"
+      }
+    ],
+    "roomId": 57292980,
+    "sequenceNumber": 1
+  },
+  {
+    "id": 38979657,
+    "status": "InProgressWithIssues",
+    "description": "Re-engineered contextually-based migration",
+    "scheduledStartTime": "2017-10-31T02:48:37-05:00",
+    "scheduledEndTime": "2017-10-30T14:42:47-05:00",
+    "chatMessages": [
+      {
+        "id": 82274704,
+        "timeStamp": "2017-10-31T04:10:49-05:00",
+        "chatMessageType": "Chat",
+        "userName": "Mrs. Edwin Bergstrom",
+        "text": "If we calculate the alarm, we can get to the HDD alarm through the mobile HDD alarm!"
+      }
+    ],
+    "roomId": 57292980,
+    "sequenceNumber": 2
+  }
+]
