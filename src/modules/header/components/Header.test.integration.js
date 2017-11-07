@@ -1,10 +1,10 @@
 import * as cypressHelper from '../../../../tools/cypress/cypressHelper';
-/* global Cypress, cy, describe, expect */
+/* global Cypress, cy, before, beforeEach, describe, expect */
 
 describe('The header', () => {
   beforeEach(() => {
     cypressHelper.stubApiCalls();
-    cy.visit('/');
+    cypressHelper.goToHomePage();
     cy.get('div.navbar-nav').as('header');
   });
 

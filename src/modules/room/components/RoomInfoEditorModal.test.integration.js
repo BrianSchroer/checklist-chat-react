@@ -1,5 +1,5 @@
 import * as cypressHelper from '../../../../tools/cypress/cypressHelper';
-/* global cy, beforeEach, describe, expect */
+/* global cy, before, describe, expect */
 
 const modalDivSelector = 'div.checklist-chat-modal-dialog';
 const newChatButtonSelector = ':button[value="Start a new chat..."]';
@@ -8,6 +8,8 @@ const saveButtonSelector = ':submit[value="Save"]';
 const cancelButtonSelector = ':button[value="Cancel"]';
 const modalCloseButtonSelector = ':button.close';
 
+const { routeAlias } = cypressHelper;
+
 const testRoomInfo = {
   id: undefined,
   roomName: 'Test roomName',
@@ -15,15 +17,13 @@ const testRoomInfo = {
   phoneInfo: 'Test phoneInfo'
 };
 
-const { routeAlias } = cypressHelper;
-
-beforeEach(() => {
-  cypressHelper.stubApiCalls();
-  cy.visit('/');
-});
-
 describe('The room info editor', () => {
+  beforeEach(() => {
+    cypressHelper.stubApiCalls();
+  });
+
   it('requires a room name', () => {
+    cypressHelper.goToHomePage();
     cy.get(newChatButtonSelector).click();
     cy.get(':submit[value="Save"]').click();
     cy.get('div.alert').should('contain', 'Room name is required.');
@@ -41,13 +41,14 @@ describe('The room info editor', () => {
     }
   ].forEach(button => {
     it(`does not save a new chat when the ${button.description} button is clicked`, () => {
-      cy.visit('/');
+      cypressHelper.goToHomePage();
       testRoomInfoModal(newChatButtonSelector, cancelButtonSelector);
       assertNoUpdateApiCalls();
     });
   });
 
   it('saves a new chat when the Save button is clicked', () => {
+    cypressHelper.goToHomePage();
     testRoomInfoModal(newChatButtonSelector, saveButtonSelector);
     cy
       .wait(routeAlias.addRoom)
@@ -62,7 +63,7 @@ describe('The room info editor', () => {
   });
 
   it('displays expected room info for an existing chat room', () => {
-    goToExistingRoomPage();
+    cypressHelper.goToChatRoomPage();
     cy.get(editChatButtonSelector).click();
     cy.get('div.checklist-chat-modal-dialog');
     cy.get('h4.modal-title').should('contain', 'Edit Chat Room Info');
@@ -94,14 +95,14 @@ describe('The room info editor', () => {
     }
   ].forEach(button => {
     it(`does not save chat room updates when the ${button.description} button is clicked`, () => {
-      goToExistingRoomPage();
+      cypressHelper.goToChatRoomPage();
       testRoomInfoModal(editChatButtonSelector, button.selector);
       assertNoUpdateApiCalls();
     });
   });
 
   it('saves chat room updates when the Save button is clicked', () => {
-    goToExistingRoomPage();
+    cypressHelper.goToChatRoomPage();
     testRoomInfoModal(editChatButtonSelector, saveButtonSelector);
     cy
       .wait(routeAlias.updateRoom)
@@ -121,15 +122,6 @@ function assertNoUpdateApiCalls() {
   cypressHelper.assertNoApiCallsTo(routeAlias.addRoom);
   cypressHelper.assertNoApiCallsTo(routeAlias.updateRoom);
   cypressHelper.assertNoApiCallsTo(routeAlias.addChatMessage);
-}
-
-function goToExistingRoomPage() {
-  cy.get('ul.room-list>li>a:first').click({ force: true });
-  cy.wait(routeAlias.addChatMessage).then(xhr => {
-    const body = xhr.request.body;
-    expect(body.chatMessageType).to.eq('Action');
-    expect(body.text).to.eq('entered the room.');
-  });
 }
 
 function closeModal(closeButtonSelector) {

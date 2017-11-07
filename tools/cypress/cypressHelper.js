@@ -1,5 +1,11 @@
 /* global cy */
 
+const removePrefix = alias =>
+  alias.startsWith('@') ? alias.substring(1) : alias;
+
+/**
+ * cy.route "alias" constants
+ */
 export const routeAlias = {
   getRooms: '@getRooms',
   getChatMessages: '@getChatMessages',
@@ -9,9 +15,33 @@ export const routeAlias = {
   addChatMessage: '@addChatMessage'
 };
 
-const removePrefix = alias =>
-  alias.startsWith('@') ? alias.substring(1) : alias;
+/**
+ * Browse to the site's home page.
+ */
+export function goToHomePage() {
+  cy.visit('/');
+}
 
+/**
+ * Browse to chat room page for the first listed chat.
+ * @param {*} assertEnteredRoomMessage
+ */
+export function goToChatRoomPage(assertEnteredRoomMessage = true) {
+  goToHomePage();
+  cy.get('ul.room-list>li>a:first').click({ force: true });
+
+  if (assertEnteredRoomMessage) {
+    cy.wait(routeAlias.addChatMessage).then(xhr => {
+      const body = xhr.request.body;
+      expect(body.chatMessageType).to.eq('Action');
+      expect(body.text).to.eq('entered the room.');
+    });
+  }
+}
+
+/**
+ * "Stub" API calls - "Gets" return data from fixture files. Updates return "success".
+ */
 export function stubApiCalls() {
   cy.server();
 

@@ -1,13 +1,13 @@
 import * as cypressHelper from '../../../../tools/cypress/cypressHelper';
-/* global Cypress, cy, beforeEach, describe, expect */
+/* global Cypress, cy, before, beforeEach, describe, expect */
 const headerSelector = 'div.navbar-nav';
 
-beforeEach(() => {
-  cypressHelper.stubApiCalls();
-  cy.visit('/');
-});
-
 describe('The home page', () => {
+  beforeEach(() => {
+    cypressHelper.stubApiCalls();
+    cypressHelper.goToHomePage();
+  });
+
   it('contains expected components', () => {
     cy.title().should('eq', 'Checklist Chat');
     cy.get(headerSelector);
