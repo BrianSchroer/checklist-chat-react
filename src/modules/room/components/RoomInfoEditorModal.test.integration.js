@@ -15,14 +15,15 @@ const testRoomInfo = {
   phoneInfo: 'Test phoneInfo'
 };
 
+const { routeAlias } = cypressHelper;
+
 beforeEach(() => {
-  stubApiCalls();
-  cy.log(typeof cy.routes);
+  cypressHelper.stubApiCalls();
   cy.visit('/');
 });
 
 describe('The room info editor', () => {
-  it.only('requires a room name', () => {
+  it('requires a room name', () => {
     cy.get(newChatButtonSelector).click();
     cy.get(':submit[value="Save"]').click();
     cy.get('div.alert').should('contain', 'Room name is required.');
@@ -49,11 +50,11 @@ describe('The room info editor', () => {
   it('saves a new chat when the Save button is clicked', () => {
     testRoomInfoModal(newChatButtonSelector, saveButtonSelector);
     cy
-      .wait('@addRoom')
+      .wait(routeAlias.addRoom)
       .then(xhr =>
         expect(xhr.requestBody.roomName).to.eq(testRoomInfo.roomName)
       );
-    cy.wait('@postChatMessage').then(xhr => {
+    cy.wait(routeAlias.addChatMessage).then(xhr => {
       const body = xhr.request.body;
       expect(body.chatMessageType).to.eq('Action');
       expect(body.text).to.eq(`created new chat "${testRoomInfo.roomName}".`);
@@ -103,11 +104,11 @@ describe('The room info editor', () => {
     goToExistingRoomPage();
     testRoomInfoModal(editChatButtonSelector, saveButtonSelector);
     cy
-      .wait('@updateRoom')
+      .wait(routeAlias.updateRoom)
       .then(xhr =>
         expect(xhr.requestBody.roomName).to.eq(testRoomInfo.roomName)
       );
-    cy.wait('@postChatMessage').then(xhr => {
+    cy.wait(routeAlias.addChatMessage).then(xhr => {
       const body = xhr.request.body;
       expect(body.chatMessageType).to.eq('Action');
       expect(body.text).to.eq('updated the room description / phone info.');
@@ -115,55 +116,16 @@ describe('The room info editor', () => {
   });
 });
 
-function stubApiCalls() {
-  cy.server();
-  cy.route('GET', '/rooms', 'fixture:rooms.json');
-  cy.route(
-    'GET',
-    /\/chatMessages\?roomId=\d+&_sort=timeStamp/,
-    'fixture:chatMessages.json'
-  );
-  cy.route(
-    'GET',
-    /\/checklistItems\?roomId=\d+&_sort=sequenceNumber/,
-    'fixture:checklistItems.json'
-  );
-  cy
-    .route({
-      method: 'POST',
-      url: '/rooms',
-      status: 201,
-      response: { body: {} }
-    })
-    .as('addRoom');
-  cy
-    .route({
-      method: 'PATCH',
-      url: /\/rooms\/\d+/,
-      status: 200,
-      response: { body: {} }
-    })
-    .as('updateRoom');
-  cy
-    .route({
-      method: 'POST',
-      url: '/chatMessages',
-      status: 201,
-      response: { body: {} }
-    })
-    .as('postChatMessage');
-}
-
 function assertNoUpdateApiCalls() {
   // Not sure if this works correctly - The "catch" for each of these says "@addRoom". Could be cypress or mocha bug, or developer misunderstanding
-  cypressHelper.assertNoApiCallsTo('@addRoom');
-  cypressHelper.assertNoApiCallsTo('@updateRoom');
-  cypressHelper.assertNoApiCallsTo('@postChatMessage');
+  cypressHelper.assertNoApiCallsTo(routeAlias.addRoom);
+  cypressHelper.assertNoApiCallsTo(routeAlias.updateRoom);
+  cypressHelper.assertNoApiCallsTo(routeAlias.addChatMessage);
 }
 
 function goToExistingRoomPage() {
   cy.get('ul.room-list>li>a:first').click({ force: true });
-  cy.wait('@postChatMessage').then(xhr => {
+  cy.wait(routeAlias.addChatMessage).then(xhr => {
     const body = xhr.request.body;
     expect(body.chatMessageType).to.eq('Action');
     expect(body.text).to.eq('entered the room.');

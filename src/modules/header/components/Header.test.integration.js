@@ -1,9 +1,9 @@
+import * as cypressHelper from '../../../../tools/cypress/cypressHelper';
 /* global Cypress, cy, describe, expect */
 
 describe('The header', () => {
   beforeEach(() => {
-    cy.server();
-    cy.route('GET', '/rooms', 'fixture:rooms.json');
+    cypressHelper.stubApiCalls();
     cy.visit('/');
     cy.get('div.navbar-nav').as('header');
   });

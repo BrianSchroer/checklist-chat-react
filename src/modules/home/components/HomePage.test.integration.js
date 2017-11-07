@@ -1,9 +1,9 @@
+import * as cypressHelper from '../../../../tools/cypress/cypressHelper';
 /* global Cypress, cy, beforeEach, describe, expect */
 const headerSelector = 'div.navbar-nav';
 
 beforeEach(() => {
-  cy.server();
-  cy.route('GET', '/rooms', 'fixture:rooms.json');
+  cypressHelper.stubApiCalls();
   cy.visit('/');
 });
 

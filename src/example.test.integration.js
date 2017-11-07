@@ -117,7 +117,7 @@ describe('Kitchen Sink', function(){
 
     it('.closest() - get closest ancestor DOM element', function(){
       // https://on.cypress.io/closest
-      cy.get('.traversal-badge').closest('ul'){
+      cy.get('.traversal-badge').closest('ul')
       // https://on.cypress.io/closest
       cy.get('.traversal-badge').closest('ul')
         .should('have.class', 'list-group')
