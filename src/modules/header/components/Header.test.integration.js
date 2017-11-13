@@ -1,5 +1,5 @@
 import * as cypressHelper from '../../../../tools/cypress/cypressHelper';
-/* global Cypress, cy, before, beforeEach, describe, expect */
+/* global Cypress, cy, beforeEach, describe, expect */
 
 describe('The header', () => {
   beforeEach(() => {

@@ -1,5 +1,6 @@
 import * as cypressHelper from '../../../../tools/cypress/cypressHelper';
-/* global cy, before, describe, expect */
+import * as cypressUtils from '../../../../tools/cypress/cypressUtils';
+/* global cy, beforeEach, describe, expect */
 
 const modalDivSelector = 'div.checklist-chat-modal-dialog';
 const newChatButtonSelector = ':button[value="Start a new chat..."]';
@@ -119,9 +120,9 @@ describe('The room info editor', () => {
 
 function assertNoUpdateApiCalls() {
   // Not sure if this works correctly - The "catch" for each of these says "@addRoom". Could be cypress or mocha bug, or developer misunderstanding
-  cypressHelper.assertNoApiCallsTo(routeAlias.addRoom);
-  cypressHelper.assertNoApiCallsTo(routeAlias.updateRoom);
-  cypressHelper.assertNoApiCallsTo(routeAlias.addChatMessage);
+  cypressUtils.assertNoApiCallsTo(routeAlias.addRoom);
+  cypressUtils.assertNoApiCallsTo(routeAlias.updateRoom);
+  cypressUtils.assertNoApiCallsTo(routeAlias.addChatMessage);
 }
 
 function closeModal(closeButtonSelector) {

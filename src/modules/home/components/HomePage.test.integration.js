@@ -1,5 +1,5 @@
 import * as cypressHelper from '../../../../tools/cypress/cypressHelper';
-/* global Cypress, cy, before, beforeEach, describe, expect */
+/* global Cypress, cy, beforeEach, describe, expect */
 const headerSelector = 'div.navbar-nav';
 
 describe('The home page', () => {
@@ -8,7 +8,7 @@ describe('The home page', () => {
     cypressHelper.goToHomePage();
   });
 
-  it('contains expected components', () => {
+  it('contains expected contents', () => {
     cy.title().should('eq', 'Checklist Chat');
     cy.get(headerSelector);
     cy.contains('Welcome! Join a chat room:');
