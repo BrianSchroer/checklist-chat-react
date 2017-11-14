@@ -11,12 +11,14 @@ const removePrefix = alias =>
  * cy.route "alias" constants
  */
 export const routeAlias = {
+  addChatMessage: '@addChatMessage',
+  addChecklistItem: '@addChecklistItem',
+  addRoom: '@addRoom',
   getRooms: '@getRooms',
   getChatMessages: '@getChatMessages',
   getChecklistItems: '@getCheckistItems',
-  addRoom: '@addRoom',
-  updateRoom: '@updateRoom',
-  addChatMessage: '@addChatMessage'
+  updateChecklistItem: '@updateChecklistItem',
+  updateRoom: '@updateRoom'
 };
 
 /**
@@ -28,19 +30,20 @@ export function goToHomePage() {
 
 /**
  * Browse to chat room page for the first listed chat.
- * @param {*} assertEnteredRoomMessage
  */
-export function goToChatRoomPage(assertEnteredRoomMessage = true) {
+export function goToChatRoomPage() {
   goToHomePage();
+
   cy.get('ul.room-list>li>a:first').click({ force: true });
 
-  if (assertEnteredRoomMessage) {
+  cy.fixture('rooms.json').then(rooms => {
     cy.wait(routeAlias.addChatMessage).then(xhr => {
       const body = xhr.request.body;
       expect(body.chatMessageType).to.eq('Action');
+      expect(body.roomId).to.eq(rooms[0].id.toString());
       expect(body.text).to.eq('entered the room.');
     });
-  }
+  });
 }
 
 /**
@@ -66,11 +69,29 @@ export function stubApiCalls() {
   cy
     .route({
       method: 'POST',
+      url: '/checklistItems',
+      status: 201,
+      response: { body: {} }
+    })
+    .as(removePrefix(routeAlias.addChecklistItem));
+
+  cy
+    .route({
+      method: 'POST',
       url: '/rooms',
       status: 201,
       response: { body: {} }
     })
     .as(removePrefix(routeAlias.addRoom));
+
+  cy
+    .route({
+      method: 'PATCH',
+      url: /\/checklistItems\/\d+/,
+      status: 200,
+      response: { body: {} }
+    })
+    .as(removePrefix(routeAlias.updateChecklistItem));
 
   cy
     .route({
