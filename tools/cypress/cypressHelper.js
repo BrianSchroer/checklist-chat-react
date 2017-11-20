@@ -1,4 +1,4 @@
-/* global cy */
+/* global cy, assert */
 
 /**
  * Cypress.io helper functions for the Checklist Chat site.
@@ -47,67 +47,140 @@ export function goToChatRoomPage() {
 }
 
 /**
- * "Stub" API calls - "Gets" return data from fixture files. Updates return "success".
+ * "Stub" API calls for all route aliases.
  */
 export function stubApiCalls() {
-  cy.server();
+  return stubApiCallsFor(Object.keys(routeAlias).map(key => routeAlias[key]));
+}
 
-  cy.route('GET', '/rooms', 'fixture:rooms.json');
+/**
+ * "Stub" API calls for specific route aliases.
+ * @param {*} routeAliases that should be called (array);
+ */
+export function stubApiCallsFor(routeAliases) {
+  const stubs = new Map();
 
-  cy.route(
-    'GET',
-    /\/chatMessages\?roomId=\d+&_sort=timeStamp/,
-    'fixture:chatMessages.json'
-  );
+  stubs.set(routeAlias.getRooms, {
+    route: {
+      method: 'GET',
+      url: '/rooms'
+    },
+    fixture: 'rooms.json'
+  });
 
-  cy.route(
-    'GET',
-    /\/checklistItems\?roomId=\d+&_sort=sequenceNumber/,
-    'fixture:checklistItems.json'
-  );
+  stubs.set(routeAlias.getChatMessages, {
+    route: {
+      method: 'GET',
+      url: /\/chatMessages\?roomId=\d+&_sort=timeStamp/
+    },
+    fixture: 'chatMessages.json'
+  });
 
-  cy
-    .route({
-      method: 'POST',
-      url: '/checklistItems',
-      status: 201,
-      response: { body: {} }
-    })
-    .as(removePrefix(routeAlias.addChecklistItem));
+  stubs.set(routeAlias.getChecklistItems, {
+    route: {
+      method: 'GET',
+      url: /\/checklistItems\?roomId=\d+&_sort=sequenceNumber/
+    },
+    fixture: 'checklistItems.json'
+  });
 
-  cy
-    .route({
-      method: 'POST',
-      url: '/rooms',
-      status: 201,
-      response: { body: {} }
-    })
-    .as(removePrefix(routeAlias.addRoom));
-
-  cy
-    .route({
-      method: 'PATCH',
-      url: /\/checklistItems\/\d+/,
-      status: 200,
-      response: { body: {} }
-    })
-    .as(removePrefix(routeAlias.updateChecklistItem));
-
-  cy
-    .route({
-      method: 'PATCH',
-      url: /\/rooms\/\d+/,
-      status: 200,
-      response: { body: {} }
-    })
-    .as(removePrefix(routeAlias.updateRoom));
-
-  cy
-    .route({
+  stubs.set(routeAlias.addChatMessage, {
+    route: {
       method: 'POST',
       url: '/chatMessages',
       status: 201,
       response: { body: {} }
-    })
-    .as(removePrefix(routeAlias.addChatMessage));
+    }
+  });
+
+  stubs.set(routeAlias.addChecklistItem, {
+    route: {
+      method: 'POST',
+      url: '/checklistItems',
+      status: 201,
+      response: { body: {} }
+    }
+  });
+
+  stubs.set(routeAlias.addRoom, {
+    route: {
+      method: 'POST',
+      url: '/rooms',
+      status: 201,
+      response: { body: {} }
+    }
+  });
+
+  stubs.set(routeAlias.updateChecklistItem, {
+    route: {
+      method: 'PATCH',
+      url: /\/checklistItems\/\d+/,
+      status: 200,
+      response: { body: {} }
+    }
+  });
+
+  stubs.set(routeAlias.updateRoom, {
+    route: {
+      method: 'PATCH',
+      url: /\/rooms\/\d+/,
+      status: 200,
+      response: { body: {} }
+    }
+  });
+
+  cy.server();
+
+  for (let [alias, routeInfo] of stubs.entries()) {
+    const unprefixedAlias = removePrefix(alias);
+    routeInfo.alias = alias;
+    routeInfo.wasUnexpectedlyCalled = false;
+
+    if (routeAliases.includes(alias)) {
+      setRoute(unprefixedAlias, routeInfo);
+    } else {
+      setUnexpectedRoute(unprefixedAlias, routeInfo);
+    }
+  }
+
+  return stubs;
+}
+
+export function assertNoUnexpectedApiCalls(stubs) {
+  const unexpectedlyCalledAliases = [...stubs]
+    .filter(([, stub]) => stub.wasUnexpectedlyCalled)
+    .map(([alias]) => alias);
+
+  if (unexpectedlyCalledAliases.length === 0) {
+    assert.isOk(true, 'No unexpected API calls were made.');
+    return;
+  }
+
+  assert(
+    false,
+    `Unexpected API call(s) to ${unexpectedlyCalledAliases.join(', ')}.`
+  );
+}
+
+function setRoute(alias, routeInfo) {
+  if (routeInfo.fixture) {
+    cy.fixture(routeInfo.fixture).then(responseJson => {
+      const routeWithFixtureResponse = Object.assign({}, routeInfo.route, {
+        response: responseJson
+      });
+      cy.route(routeWithFixtureResponse).as(alias);
+    });
+  } else {
+    cy.route(routeInfo.route).as(alias);
+  }
+}
+
+function setUnexpectedRoute(alias, options) {
+  const unexpectedRoute = Object.assign({}, options.route, {
+    onRequest: () => {
+      options.wasUnexpectedlyCalled = true;
+    }
+  });
+
+  cy.route(unexpectedRoute).as(alias);
 }

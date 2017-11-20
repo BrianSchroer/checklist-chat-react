@@ -1,19 +1,19 @@
 [
-  {
-    "id": 57292980,
-    "roomName": "TEST: Practical Metal Shirt",
-    "description": "Self-enabling logistical migration",
-    "phoneInfo": "863-875-7539 x193"
-  },
-  {
-    "id": 11962469,
-    "roomName": "TEST: Intelligent Granite Car",
-    "description": "Mandatory fault-tolerant matrix"
-  },
-  {
-    "id": 27868645,
-    "roomName": "TEST: Small Fresh Mouse",
-    "description": "Devolved heuristic archive",
-    "phoneInfo": "430-832-2425 x0632"
-  }
+    {
+        "id": 57292980,
+        "roomName": "TEST: Practical Metal Shirt",
+        "description": "Self-enabling logistical migration",
+        "phoneInfo": "863-875-7539 x193"
+    },
+    {
+        "id": 11962469,
+        "roomName": "TEST: Intelligent Granite Car",
+        "description": "Mandatory fault-tolerant matrix"
+    },
+    {
+        "id": 27868645,
+        "roomName": "TEST: Small Fresh Mouse",
+        "description": "Devolved heuristic archive",
+        "phoneInfo": "430-832-2425 x0632"
+    }
 ]

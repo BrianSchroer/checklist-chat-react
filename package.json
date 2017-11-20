@@ -70,7 +70,7 @@
         "compression": "^1.6.1",
         "cross-var": "^1.0.2",
         "css-loader": "^0.23.1",
-        "cypress": "^1.0.3",
+        "cypress": "^1.1.0",
         "deep-freeze": "0.0.1",
         "enzyme": "^3.1.0",
         "enzyme-adapter-react-16": "^1.0.1",

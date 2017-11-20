@@ -3,6 +3,8 @@ import { chatMessageType } from '../../chat';
 import { format } from '../../../util';
 /* global cy, beforeEach, describe, expect */
 
+const { routeAlias } = cypressHelper;
+
 describe('The chat message component', () => {
   beforeEach(() => {
     cypressHelper.stubApiCalls();
@@ -10,7 +12,7 @@ describe('The chat message component', () => {
     cy.get('ul.chat-message-list>li>div').as('listedMessages');
   });
 
-  it('contains expected contentss for "Action" messages', () => {
+  it('contains expected contents for "Action" messages', () => {
     cy.fixture('chatMessages.json').then(messages => {
       const index = messages.findIndex(
         msg => msg.chatMessageType === chatMessageType.ACTION

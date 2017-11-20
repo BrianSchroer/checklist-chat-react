@@ -1,6 +1,5 @@
 import * as checklistItemStatus from '../checklistItemStatus';
 import * as cypressHelper from '../../../../tools/cypress/cypressHelper';
-import * as cypressUtils from '../../../../tools/cypress/cypressUtils';
 /* global cy, beforeEach, describe, expect */
 
 const modalDivSelector = 'div.checklist-chat-modal-dialog';
@@ -25,9 +24,14 @@ const testChecklistItem = {
 };
 
 describe('The checklist item editor', () => {
+  let _stubs;
+
   beforeEach(() => {
-    cypressHelper.stubApiCalls();
-    cypressHelper.goToChatRoomPage();
+    _stubs = initialize({ readOnly: true });
+  });
+
+  afterEach(() => {
+    cypressHelper.assertNoUnexpectedApiCalls(_stubs);
   });
 
   it('requires a description', () => {
@@ -83,8 +87,28 @@ describe('The checklist item editor', () => {
   ].forEach(button => {
     it(`does not save a new checklist item when the ${button.description} button is clicked`, () => {
       testChecklistItemModal(newItemButtonSelector, button.selector);
-      assertNoUpdateApiCalls();
     });
+  });
+
+  [
+    {
+      description: 'Cancel',
+      selector: cancelButtonSelector
+    },
+    {
+      description: 'modal close',
+      selector: modalCloseButtonSelector
+    }
+  ].forEach(button => {
+    it(`does not save checklist item updates when the ${button.description} button is clicked`, () => {
+      testChecklistItemModal(editItemButtonSelector, button.selector);
+    });
+  });
+});
+
+describe('The checklist item editor (updates)', () => {
+  beforeEach(() => {
+    initialize();
   });
 
   it('saves a new checklist item when the Save button is clicked', () => {
@@ -110,22 +134,6 @@ describe('The checklist item editor', () => {
     });
   });
 
-  [
-    {
-      description: 'Cancel',
-      selector: cancelButtonSelector
-    },
-    {
-      description: 'modal close',
-      selector: modalCloseButtonSelector
-    }
-  ].forEach(button => {
-    it(`does not save checklist item updates when the ${button.description} button is clicked`, () => {
-      testChecklistItemModal(editItemButtonSelector, button.selector);
-      assertNoUpdateApiCalls();
-    });
-  });
-
   it('saves checklist item updates when the Save button is clicked', () => {
     cy.fixture('checklistItems.json').then(items => {
       testChecklistItemModal(editItemButtonSelector, saveButtonSelector);
@@ -143,6 +151,22 @@ describe('The checklist item editor', () => {
     });
   });
 });
+
+function initialize(options = { readOnly: false }) {
+  const stubs =
+    options && options.readOnly
+      ? cypressHelper.stubApiCalls([
+          routeAlias.getRooms,
+          routeAlias.getChatMessages,
+          routeAlias.getChatMessages,
+          routeAlias.addChatMessage
+        ])
+      : cypressHelper.stubApiCalls();
+
+  cypressHelper.goToChatRoomPage();
+
+  return stubs;
+}
 
 function openModal(openButtonSelector) {
   cy.get(openButtonSelector).click();
@@ -203,11 +227,4 @@ function testChecklistItemModal(openButtonSelector, closeButtonSelector) {
   });
 
   closeModal(closeButtonSelector);
-}
-
-function assertNoUpdateApiCalls() {
-  // Not sure if this works correctly - The "catch" for each of these says "@addChecklistItem". Could be cypress or mocha bug, or developer misunderstanding
-  cypressUtils.assertNoApiCallsTo(routeAlias.addChecklistItem);
-  cypressUtils.assertNoApiCallsTo(routeAlias.updateChecklistItem);
-  cypressUtils.assertNoApiCallsTo(routeAlias.addChatMessage);
 }
