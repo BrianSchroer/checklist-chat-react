@@ -69,12 +69,8 @@ exports[`ChatRoomPage should render correctly 1`] = `
       >
         <thead>
           <tr>
-            <th>
-               
-            </th>
-            <th>
-               
-            </th>
+            <th />
+            <th />
             <th>
               Start
             </th>

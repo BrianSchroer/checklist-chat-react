@@ -3,8 +3,6 @@ import { chatMessageType } from '../../chat';
 import { format } from '../../../util';
 /* global cy, beforeEach, describe, expect */
 
-const { routeAlias } = cypressHelper;
-
 describe('The chat message component', () => {
   beforeEach(() => {
     cypressHelper.stubApiCalls();

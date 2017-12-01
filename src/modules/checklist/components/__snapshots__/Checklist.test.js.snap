@@ -9,12 +9,8 @@ exports[`Checklist with existing items should render correctly 1`] = `
   >
     <thead>
       <tr>
-        <th>
-           
-        </th>
-        <th>
-           
-        </th>
+        <th />
+        <th />
         <th>
           Start
         </th>
@@ -160,12 +156,8 @@ exports[`Checklist with no existing items should render correctly 1`] = `
   >
     <thead>
       <tr>
-        <th>
-           
-        </th>
-        <th>
-           
-        </th>
+        <th />
+        <th />
         <th>
           Start
         </th>
