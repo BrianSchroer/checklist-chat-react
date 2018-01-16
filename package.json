@@ -108,8 +108,15 @@
         "setupFiles": [
             "raf/polyfill"
         ],
+        "testMatch": [
+            "**/?(*.)test.js"
+        ],
         "testPathIgnorePatterns": [
             "test.integration.js"
+        ],
+        "collectCoverage": true,
+        "coverageReporters": [
+            "html"
         ]
     },
     "repository": {
