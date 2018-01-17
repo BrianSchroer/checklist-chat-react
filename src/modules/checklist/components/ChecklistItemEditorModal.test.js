@@ -1,7 +1,7 @@
 import React from 'react';
 import initialState from '../../../app/store/initialState';
-import {snapshotHelper} from '../../../util/testHelpers';
-import {ChecklistItemEditorModal, emptyChecklistItem,  mapStateToProps} from './ChecklistItemEditorModal';
+import { SnapshotHelper } from '../../../util/testHelpers';
+import { ChecklistItemEditorModal, emptyChecklistItem, mapStateToProps } from './ChecklistItemEditorModal';
 import * as checklistItemStatus from '../checklistItemStatus';
 
 const defaultProps = {
@@ -14,15 +14,16 @@ const defaultProps = {
         scheduledEndTime: '2016-12-08T15:00:00.222Z',
         actualStartTime: '2016-12-08T14:03:00.222Z',
         actualEndTime: '2016-12-08T15:30:00.222Z',
-        userName: 'Jabba Script' },
+        userName: 'Jabba Script'
+    },
     isNewChecklistItem: false,
     maxSequenceNumber: 3,
-    onCloseRequest: () => {},
+    onCloseRequest: () => { },
     actions: {}
 };
 
 const defaultOwnProps = {
-    onCloseRequest: () => {}
+    onCloseRequest: () => { }
 };
 
 function overrideProps(propOverrides) {
@@ -30,7 +31,7 @@ function overrideProps(propOverrides) {
 }
 
 function assertSnapshotMatch(propOverrides = {}) {
-    snapshotHelper.assertMatch(<ChecklistItemEditorModal {...overrideProps(propOverrides)} />);
+    SnapshotHelper.test(<ChecklistItemEditorModal {...overrideProps(propOverrides) } />);
 }
 
 function callMapStateToProps(stateOverrides, ownPropsOverrides) {
@@ -59,7 +60,7 @@ describe('ChecklistItemEditorModal', () => {
 
             const stateOverrides = {
                 modalDialogRequest: {
-                     keys: [ testChecklistItem.roomId, testChecklistItem.sequenceNumber ]
+                    keys: [testChecklistItem.roomId, testChecklistItem.sequenceNumber]
                 },
                 checklistItems: [testChecklistItem]
             };
@@ -76,7 +77,7 @@ describe('ChecklistItemEditorModal', () => {
             const testRoomId = defaultProps.checklistItem.roomId;
 
             const stateOverrides = {
-                modalDialogRequest: { keys: [ testRoomId, 0 ] },
+                modalDialogRequest: { keys: [testRoomId, 0] },
                 checklistItems: [defaultProps.checklistItem]
             };
 

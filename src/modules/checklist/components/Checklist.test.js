@@ -1,36 +1,37 @@
 import React from 'react';
-import {snapshotHelper} from '../../../util/testHelpers';
+import { SnapshotHelper } from '../../../util/testHelpers';
 import Checklist from './Checklist';
 import * as checklistItemStatus from '../checklistItemStatus';
 
 const defaultProps = {
-    checklistItems: [],
-    onEditRequest: () => {}
+  checklistItems: [],
+  onEditRequest: () => { }
 };
 
-function overrideProps(propOverrides) {
-    return Object.assign({}, defaultProps, propOverrides);
-}
-
-function assertSnapshotMatch(propOverrides = {}) {
-    snapshotHelper.assertMatch(<Checklist {...overrideProps(propOverrides)} />);
-}
+function dummyFunction() { }
 
 describe('Checklist', () => {
-    describe('with no existing items', () => {
-        it('should render correctly', () => {
-            assertSnapshotMatch({checklistItems: []});
-        });
-   });
+  const snapshotHelper = new SnapshotHelper(
+    <Checklist
+      checklistItems={[]}
+      onEditRequest={dummyFunction}
+    />
+  );
 
-    describe('with existing items', () => {
-        it('should render correctly', () => {
-            assertSnapshotMatch({
-                checklistItems: [
-                    { id: 1, sequenceNumber: 1, status: checklistItemStatus.IN_PROGRESS },
-                    { id: 2, sequenceNumber: 2, status: checklistItemStatus.NOT_STARTED }
-                ]
-            });
-        });
-   });
+  describe('with no existing items', () => {
+    it('should render correctly', () => {
+      snapshotHelper.test({ checklistItems: [] });
+    });
+  });
+
+  describe('with existing items', () => {
+    it('should render correctly', () => {
+      snapshotHelper.test({
+        checklistItems: [
+          { id: 1, sequenceNumber: 1, status: checklistItemStatus.IN_PROGRESS },
+          { id: 2, sequenceNumber: 2, status: checklistItemStatus.NOT_STARTED }
+        ]
+      });
+    });
+  });
 });

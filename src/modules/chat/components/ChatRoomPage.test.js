@@ -1,50 +1,43 @@
 import React from 'react';
 import initialState from '../../../app/store/initialState';
-import {snapshotHelper} from '../../../util/testHelpers';
-import {ChatRoomPage, mapStateToProps} from './ChatRoomPage';
+import { SnapshotHelper } from '../../../util/testHelpers';
+import { ChatRoomPage, mapStateToProps } from './ChatRoomPage';
 
-const defaultProps = {
-    match: { params: { id: 123 } },
-    userId: 'TestUserId',
-    room: {id: 123},
-    checklistItems: [],
-    chatMessages: [],
-    actions: {
-        joinChat: () => {}
-    }
-};
-
-function overrideProps(propOverrides) {
-    return Object.assign({}, defaultProps, propOverrides);
-}
-
-function assertSnapshotMatch(propOverrides = {}) {
-    snapshotHelper.assertMatch(<ChatRoomPage {...overrideProps(propOverrides)} />);
-}
+function dummyFunction() { }
 
 function callMapStateToProps(stateOverrides) {
-    const state = Object.assign({}, initialState, stateOverrides || {});
-    return mapStateToProps(state);
+  const state = Object.assign({}, initialState, stateOverrides || {});
+  return mapStateToProps(state);
 }
 
 describe('ChatRoomPage', () => {
-    it('should render correctly', () => {
-        assertSnapshotMatch();
-    });
+  const snapshotHelper = new SnapshotHelper(
+    <ChatRoomPage
+      match={{ params: { id: 123 } }}
+      userId="TestUserId"
+      room={{ id: 123 }}
+      checklistItems={[]}
+      chatMessages={[]}
+      actions={{ joinChat: dummyFunction }}
+    />);
 
-    describe('mapStateToProps', () => {
-        it('should return expected props', () => {
-            const stateOverrides =
-            {
-                roomId: 666,
-                rooms: [ {id: 666} ]
-            };
-            const props = callMapStateToProps(stateOverrides);
+  it('should render correctly', () => {
+    snapshotHelper.test();
+  });
 
-            expect(props.userId).toBe(initialState.userId);
-            expect(props.room.id).toBe(stateOverrides.roomId);
-            expect(props.checklistItems).toBe(initialState.checklistItems);
-            expect(props.chatMessages).toBe(initialState.chatMessages);
-        });
+  describe('mapStateToProps', () => {
+    it('should return expected props', () => {
+      const stateOverrides =
+        {
+          roomId: 666,
+          rooms: [{ id: 666 }]
+        };
+      const props = callMapStateToProps(stateOverrides);
+
+      expect(props.userId).toBe(initialState.userId);
+      expect(props.room.id).toBe(stateOverrides.roomId);
+      expect(props.checklistItems).toBe(initialState.checklistItems);
+      expect(props.chatMessages).toBe(initialState.chatMessages);
     });
+  });
 });

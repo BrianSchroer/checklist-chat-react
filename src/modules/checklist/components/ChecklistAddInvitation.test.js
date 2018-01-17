@@ -1,9 +1,9 @@
 import React from 'react';
-import {snapshotHelper} from '../../../util/testHelpers';
+import { SnapshotHelper } from '../../../util/testHelpers';
 import ChecklistAddInvitation from './ChecklistAddInvitation';
 
 describe('ChecklistAddInvitation', () => {
-    it('should render correctly', () => {
-        snapshotHelper.assertMatch(<ChecklistAddInvitation />);
-    });
+  it('should render correctly', () => {
+    SnapshotHelper.test(<ChecklistAddInvitation />);
+  });
 });

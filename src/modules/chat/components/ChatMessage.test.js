@@ -1,49 +1,50 @@
 import React from 'react';
-import {snapshotHelper} from '../../../util/testHelpers';
+import { SnapshotHelper } from '../../../util/testHelpers';
 import ChatMessage from './ChatMessage';
-import {chatMessageType} from '../../chat';
+import { chatMessageType } from '../../chat';
 
-const testMessage = {
-    timeStamp: '2016-12-08T14:57:10.222Z',
-    userName: 'test userName',
-    text: 'test text'
-};
-
-function overrideMessage(messageOverrides) {
-    return {
-        userId: 'currentUser',
-        chatMessage: Object.assign({}, testMessage, messageOverrides)
-    };
-}
-
-function assertSnapshotMatch(messageOverrides) {
-    snapshotHelper.assertMatch(<ChatMessage {...overrideMessage(messageOverrides)}/>);
+function propsAdjuster(props, chatMessageOverrides) {
+  return {
+    userId: props.userId,
+    chatMessage: Object.assign({}, props.chatMessage, chatMessageOverrides)
+  };
 }
 
 describe('ChatMessage', () => {
-    describe(`when chatMessageType = "${chatMessageType.ACTION}"`, () => {
-        it('should render correctly', () => {
-            assertSnapshotMatch({chatMessageType: chatMessageType.ACTION});
-        });
+  const snapshotHelper = new SnapshotHelper(
+    <ChatMessage
+      userId="currentUser"
+      chatMessage={{
+        timeStamp: '2016-12-08T14:57:10.222Z',
+        userName: 'test userName',
+        text: 'test text'
+      }}
+    />
+  ).withPropsAdjuster(propsAdjuster);
+
+  describe(`when chatMessageType = "${chatMessageType.ACTION}"`, () => {
+    it('should render correctly', () => {
+      snapshotHelper.test({ chatMessageType: chatMessageType.ACTION });
+    });
+  });
+
+  describe(`when chatMessageType = "${chatMessageType.CHAT}"`, () => {
+    it('should render correctly', () => {
+      snapshotHelper.test({ chatMessageType: chatMessageType.CHAT });
     });
 
-    describe(`when chatMessageType = "${chatMessageType.CHAT}"`, () => {
-        it('should render correctly', () => {
-            assertSnapshotMatch({chatMessageType: chatMessageType.CHAT});
-        });
-
-        it('should render priority notification for current recipient with "high-priority" class', () => {
-            assertSnapshotMatch({
-                chatMessageType: chatMessageType.CHAT,
-                priorityNotificationRecipients: ['currentUser', 'anotherUser']
-            });
-        });
-
-        it('should render priority notification for other recipients without "high-priority" class', () => {
-            assertSnapshotMatch({
-                chatMessageType: chatMessageType.CHAT,
-                priorityNotificationRecipients: ['anotherUser', 'yetAnotherUser']
-            });
-        });
+    it('should render priority notification for current recipient with "high-priority" class', () => {
+      snapshotHelper.test({
+        chatMessageType: chatMessageType.CHAT,
+        priorityNotificationRecipients: ['currentUser', 'anotherUser']
+      });
     });
+
+    it('should render priority notification for other recipients without "high-priority" class', () => {
+      snapshotHelper.test({
+        chatMessageType: chatMessageType.CHAT,
+        priorityNotificationRecipients: ['anotherUser', 'yetAnotherUser']
+      });
+    });
+  });
 });

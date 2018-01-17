@@ -1,14 +1,5 @@
-import renderer from 'react-test-renderer';
-import {shallow, mount} from 'enzyme';
-import enzymeHelper from './enzymeHelper';
-import snapshotHelper from './snapshotHelper';
-import testStoreHelper from './testStoreHelper';
-
-export {
-    renderer as renderer,
-    shallow as shallow,
-    mount as mount,
-    enzymeHelper as enzymeHelper,
-    snapshotHelper as snapshotHelper,
-    testStoreHelper as testStoreHelper
-};
+export { renderer } from 'react-test-renderer';
+export { shallow, mount } from 'enzyme';
+export { default as enzymeHelper } from './enzymeHelper';
+export { default as testStoreHelper } from './testStoreHelper';
+export { default as SnapshotHelper } from './SnapshotHelper';
