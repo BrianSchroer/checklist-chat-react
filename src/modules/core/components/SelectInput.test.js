@@ -1,46 +1,49 @@
 import React from 'react';
-import {shallow, enzymeHelper} from '../../../util/testHelpers';
+import { EnzymeHelper } from '../../../util/testHelpers';
 import SelectInput from './SelectInput';
 
-const defaultProps = {
-    name: 'TestName',
-    label: 'TestLabel',
-    value: 'TestValue',
-    error: 'TestError',
-    size: 5,
-    multiple: true,
-    options: [],
-    onChange: () => {}
-};
-
-function render(propOverrides = {}) {
-    const props = Object.assign({}, defaultProps, propOverrides);
-    return shallow(<SelectInput {...props} />);
-}
+function dummyFunction() {}
 
 describe('SelectInput', () => {
-    ['name', 'label', 'error'].forEach(prop => {
-        it(`should render a FormGroup with the expected "${prop}" prop`, () => {
-            const formGroup = enzymeHelper.findSingle(render(), 'FormGroup');
-            expect(formGroup.props()[prop]).toBe(defaultProps[prop]);
-        });
+  const selectInput = (
+    <SelectInput
+      name="TestName"
+      label="TestLabel"
+      value="TestValue"
+      error="TestError"
+      size={5}
+      multiple
+      options={[]}
+      onChange={dummyFunction}
+    />
+  );
+
+  const defaultProps = selectInput.props;
+  const enzymeHelper = new EnzymeHelper(selectInput);
+
+  ['name', 'label', 'error'].forEach(prop => {
+    it(`should render a FormGroup with the expected "${prop}" prop`, () => {
+      enzymeHelper.shallow();
+      const formGroup = enzymeHelper.findSingle('FormGroup');
+      expect(formGroup.props()[prop]).toBe(defaultProps[prop]);
     });
+  });
 
-    ['name', 'value', 'options', 'size', 'multiple', 'onChange'].forEach(prop => {
-        it(`should render a SimpleSelectInput with the expected "${prop}" prop`, () => {
-            const node = enzymeHelper.findSingle(render(), 'FormGroup > SimpleSelectInput');
-            expect(node.props()[prop]).toBe(defaultProps[prop]);
-        });
+  ['name', 'value', 'options', 'size', 'multiple', 'onChange'].forEach(prop => {
+    it(`should render a SimpleSelectInput with the expected "${prop}" prop`, () => {
+      enzymeHelper.shallow();
+      const node = enzymeHelper.findSingle('FormGroup > SimpleSelectInput');
+      expect(node.props()[prop]).toBe(defaultProps[prop]);
     });
+  });
 
-    it('should call onChange when changed', () => {
-        let onChangeWasCalled = false;
+  it('should call onChange when changed', () => {
+    let onChangeWasCalled = false;
 
-        const select = enzymeHelper.findSingle(
-            render({ onChange: () => onChangeWasCalled = true }),
-            'FormGroup > SimpleSelectInput');
+    enzymeHelper.shallow({ onChange: () => (onChangeWasCalled = true) });
+    const select = enzymeHelper.findSingle('FormGroup > SimpleSelectInput');
 
-        select.simulate('change');
-        expect(onChangeWasCalled).toBe(true);
-    });
+    select.simulate('change');
+    expect(onChangeWasCalled).toBe(true);
+  });
 });

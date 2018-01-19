@@ -1,70 +1,84 @@
 import React from 'react';
-import {shallow, enzymeHelper} from '../../../util/testHelpers';
+import { EnzymeHelper } from '../../../util/testHelpers';
 import RoomInfo from './RoomInfo';
 
-const testRoom = {
-    roomName: 'test room name',
-    description: 'test description',
-    phoneInfo: 'test phone info'
-};
-
-function render(roomOverrides = {}) {
-    const props = {
-        room: Object.assign({}, testRoom, roomOverrides),
-        onEditRequest: () => {}
-    };
-    return shallow(<RoomInfo {...props} />);
-}
+function dummyFunction() {}
 
 describe('RoomInfo', () => {
-    it('should render room name', () => {
-        const div = enzymeHelper.findSingle(render(),
-            'div.panel > div.room-info-panel-heading > div.room-info-panel-title');
-        expect(div.text()).toBe(testRoom.roomName);
-    });
+  const roomInfo = (
+    <RoomInfo
+      room={{
+        roomName: 'test room name',
+        description: 'test description',
+        phoneInfo: 'test phone info'
+      }}
+      onEditRequest={dummyFunction}
+    />
+  );
 
-    it('should render description', () => {
-        const p = enzymeHelper.findSingle(render(),
-            'div.panel > div.panel-body > p#roomDescription');
-        expect(p.text()).toBe(testRoom.description);
-    });
+  const defaultProps = roomInfo.props;
+  const defaultRoom = defaultProps.room;
+  const enzymeHelper = new EnzymeHelper(roomInfo);
 
-    it('should render phone info', () => {
-        const p = enzymeHelper.findSingle(render(),
-            'div.panel > div.panel-body > p#roomPhoneInfo');
-        expect(p.text()).toContain(testRoom.phoneInfo);
-    });
+  it('should render room name', () => {
+    enzymeHelper.shallow();
+    const div = enzymeHelper.findSingle(
+      'div.panel > div.room-info-panel-heading > div.room-info-panel-title'
+    );
+    expect(div.text()).toBe(defaultRoom.roomName);
+  });
 
-    [
-        {
-            situation: 'room has description and phoneInfo',
-            roomAdjustments: { description: 'description', phoneInfo: 'phone info' },
-            shouldShowBody: true
-        },
-        {
-            situation: 'room has description, but no phoneInfo',
-            roomAdjustments: { description: 'description', phoneInfo: '' },
-            shouldShowBody: true
-        },
-        {
-            situation: 'room has phoneInfo, but no description',
-            roomAdjustments: { description: '', phoneInfo: 'phone info' },
-            shouldShowBody: true
-        },
-        {
-            situation: 'room has neither description nor phone info',
-            roomAdjustments: { description: '', phoneInfo: '' },
-            shouldShowBody: false
-        }
-    ]
-    .forEach(scenario => {
-        it(`should${(scenario.shouldShowBody) ? '' : ' not'} render panel-body`
-            + ` when ${scenario.situation}`, () => {
+  it('should render description', () => {
+    enzymeHelper.shallow();
+    const p = enzymeHelper.findSingle(
+      'div.panel > div.panel-body > p#roomDescription'
+    );
+    expect(p.text()).toBe(defaultRoom.description);
+  });
 
-            const found = enzymeHelper.find(
-                render(scenario.roomAdjustments),'div.panel > div.panel-body');
+  it('should render phone info', () => {
+    enzymeHelper.shallow();
+    const p = enzymeHelper.findSingle(
+      'div.panel > div.panel-body > p#roomPhoneInfo'
+    );
+    expect(p.text()).toContain(defaultRoom.phoneInfo);
+  });
 
-            expect(found.length).toEqual((scenario.shouldShowBody) ? 1 : 0);
+  [
+    {
+      situation: 'room has description and phoneInfo',
+      roomAdjustments: { description: 'description', phoneInfo: 'phone info' },
+      shouldShowBody: true
+    },
+    {
+      situation: 'room has description, but no phoneInfo',
+      roomAdjustments: { description: 'description', phoneInfo: '' },
+      shouldShowBody: true
+    },
+    {
+      situation: 'room has phoneInfo, but no description',
+      roomAdjustments: { description: '', phoneInfo: 'phone info' },
+      shouldShowBody: true
+    },
+    {
+      situation: 'room has neither description nor phone info',
+      roomAdjustments: { description: '', phoneInfo: '' },
+      shouldShowBody: false
+    }
+  ].forEach(scenario => {
+    it(
+      `should${scenario.shouldShowBody ? '' : ' not'} render panel-body` +
+        ` when ${scenario.situation}`,
+      () => {
+        enzymeHelper.shallow({
+          onEditRequest: defaultProps.onEditRequest,
+          room: Object.assign({}, defaultRoom, scenario.roomAdjustments)
         });
-    });
+
+        const found = enzymeHelper.find('div.panel > div.panel-body');
+
+        expect(found.length).toEqual(scenario.shouldShowBody ? 1 : 0);
+      }
+    );
+  });
 });

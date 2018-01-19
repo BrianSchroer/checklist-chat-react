@@ -1,39 +1,34 @@
 import React from 'react';
-import { shallow, enzymeHelper, SnapshotHelper } from '../../../util/testHelpers';
+import { EnzymeHelper, SnapshotHelper } from '../../../util/testHelpers';
 import ChatButtons from './ChatButtons';
 
-const defaultProps = {
-  onChatMessageAddRequest: () => { },
-  onChatParticipantsRequest: () => { }
-};
-
-function overrideProps(propOverrides) {
-  return Object.assign({}, defaultProps, propOverrides);
-}
-
-function shallowRender(propOverrides) {
-  return shallow(<ChatButtons {...overrideProps(propOverrides) } />);
-}
-
-function dummyFunction() { }
+function dummyFunction() {}
 
 describe('ChatButtons', () => {
+  const chatButtons = (
+    <ChatButtons
+      onChatMessageAddRequest={dummyFunction}
+      onChatParticipantsRequest={dummyFunction}
+    />
+  );
+
+  const snapshotHelper = new SnapshotHelper(chatButtons);
+  const enzymeHelper = new EnzymeHelper(chatButtons);
+
   it('should render correctly', () => {
-    SnapshotHelper.test(
-      <ChatButtons
-        onChatMessageAddRequest={dummyFunction}
-        onChatParticipantsRequest={dummyFunction}
-      />);
+    snapshotHelper.test();
   });
 
   it('should handle chat message add request', () => {
     let wasCalled = false;
 
-    const button = enzymeHelper.findSingle(
-      shallowRender({ onChatMessageAddRequest: () => { wasCalled = true; } }),
-      'div > button.btn-primary');
+    enzymeHelper.shallow({
+      onChatMessageAddRequest: () => {
+        wasCalled = true;
+      }
+    });
 
-    button.simulate('click');
+    enzymeHelper.findSingle('div > button.btn-primary').simulate('click');
 
     expect(wasCalled).toBe(true);
   });
@@ -41,11 +36,13 @@ describe('ChatButtons', () => {
   it('should handle chat participants request', () => {
     let wasCalled = false;
 
-    const button = enzymeHelper.findSingle(
-      shallowRender({ onChatParticipantsRequest: () => { wasCalled = true; } }),
-      'div > button.btn-default');
+    enzymeHelper.shallow({
+      onChatParticipantsRequest: () => {
+        wasCalled = true;
+      }
+    });
 
-    button.simulate('click');
+    enzymeHelper.findSingle('div > button.btn-default').simulate('click');
 
     expect(wasCalled).toBe(true);
   });

@@ -1,27 +1,16 @@
 import React from 'react';
-import { SnapshotHelper, shallow, enzymeHelper } from '../../../util/testHelpers';
+import { EnzymeHelper, SnapshotHelper } from '../../../util/testHelpers';
 import ChecklistButtons from './ChecklistButtons';
 
-const defaultProps = {
-  onChecklistItemAddRequest: () => { }
-};
-
-function dummyFunction() { }
-
-function overrideProps(propOverrides) {
-  return Object.assign({}, defaultProps, propOverrides);
-}
-
-function shallowRender(propOverrides) {
-  return shallow(<ChecklistButtons {...overrideProps(propOverrides) } />);
-}
+function dummyFunction() {}
 
 describe('ChecklistButtons', () => {
-  const snapshotHelper = new SnapshotHelper(
-    <ChecklistButtons
-      onChecklistItemAddRequest={dummyFunction}
-    />
+  const checklistButtons = (
+    <ChecklistButtons onChecklistItemAddRequest={dummyFunction} />
   );
+
+  const snapshotHelper = new SnapshotHelper(checklistButtons);
+  const enzymeHelper = new EnzymeHelper(checklistButtons);
 
   it('should render correctly', () => {
     snapshotHelper.test();
@@ -30,11 +19,13 @@ describe('ChecklistButtons', () => {
   it('should handle checklist item add request', () => {
     let wasCalled = false;
 
-    const button = enzymeHelper.findSingle(
-      shallowRender({ onChecklistItemAddRequest: () => { wasCalled = true; } }),
-      'div > button.btn-primary');
+    enzymeHelper.shallow({
+      onChecklistItemAddRequest: () => {
+        wasCalled = true;
+      }
+    });
 
-    button.simulate('click');
+    enzymeHelper.findSingle('div > button.btn-primary').simulate('click');
 
     expect(wasCalled).toBe(true);
   });

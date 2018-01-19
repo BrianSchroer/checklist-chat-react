@@ -1,20 +1,23 @@
 import React from 'react';
-import { shallow, enzymeHelper } from '../../../util/testHelpers';
+import { EnzymeHelper } from '../../../util/testHelpers';
 import { options } from '../checklistItemStatus';
 import ChecklistItemStatusIcon from './ChecklistItemStatusIcon';
 
 describe('ChecklistItemStatusIcon', () => {
+  const checklistItemStatusIcon = <ChecklistItemStatusIcon status="" />;
+  const enzymeHelper = new EnzymeHelper(checklistItemStatusIcon);
+
   options.forEach(option => {
-    it(`should render "i" element for checklistItemStatus.${option.value}`, () => {
-      enzymeHelper.findSingle(
-        shallow(<ChecklistItemStatusIcon status={option.value} />),
-        'i'
-      );
+    it(`should render "i" element for checklistItemStatus.${
+      option.value
+    }`, () => {
+      enzymeHelper.shallow({ status: option.value });
+      enzymeHelper.findSingle('i');
     });
   });
 
   it('should render null for unexpected status', () => {
-    const wrapper = shallow(<ChecklistItemStatusIcon status="GARBAGE" />);
-    enzymeHelper.assertNoMatch(wrapper, 'i');
+    enzymeHelper.shallow({ status: 'GARBAGE' });
+    enzymeHelper.assertNoMatch('i');
   });
 });

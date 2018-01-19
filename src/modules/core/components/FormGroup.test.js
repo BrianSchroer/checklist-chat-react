@@ -1,60 +1,58 @@
 import React from 'react';
-import {shallow, enzymeHelper} from '../../../util/testHelpers';
+import { EnzymeHelper } from '../../../util/testHelpers';
 import FormGroup from './FormGroup';
 
-const defaultProps = {
-    name: 'TestName',
-    label: 'TestLabel',
-    error: null,
-    children: []
-};
-
-function render(propOverrides = {}) {
-    const props = Object.assign({}, defaultProps, propOverrides);
-    return shallow(<FormGroup {...props} />);
-}
-
 describe('FormGroup', () => {
-    it('should render div with "form-group" class when there is no error', () => {
-        const div = render().find('div').first();
-        expect(div.hasClass('form-group'));
-        expect(div.hasClass('has-error')).toBe(false);
-    });
+  const formGroup = (
+    <FormGroup name="TestName" label="TestLabel" error={null} children={[]} />
+  );
 
-    it('should render div with "form-group" and "has-error" classes when there is an error', () => {
-        const div = render({ error: 'test error message' }).find('div').first();
-        expect(div.hasClass('form-group'));
-        expect(div.hasClass('has-error'));
-    });
+  const enzymeHelper = new EnzymeHelper(formGroup);
 
-    it('should render a label with expected attributes', () => {
-        const label = enzymeHelper.findSingle(render(), 'div > label');
-        expect(label.props().htmlFor).toBe(defaultProps.name);
-        expect(label.text()).toBe(defaultProps.label);
-    });
+  it('should render div with "form-group" class when there is no error', () => {
+    enzymeHelper.shallow({ error: null });
+    const div = enzymeHelper.find('div').first();
+    expect(div.hasClass('form-group'));
+    expect(div.hasClass('has-error')).toBe(false);
+  });
 
-    it('should render div.field containing children', () => {
-        const testChildren = ['child1', 'child2'];
+  it('should render div with "form-group" and "has-error" classes when there is an error', () => {
+    enzymeHelper.shallow({ error: 'test error message' });
+    const div = enzymeHelper.find('div').first();
+    expect(div.hasClass('form-group'));
+    expect(div.hasClass('has-error'));
+  });
 
-        const fieldDiv = enzymeHelper.findSingle(
-            render({ children: testChildren }),
-            'div > div.field');
+  it('should render a label with expected attributes', () => {
+    enzymeHelper.shallow();
+    const label = enzymeHelper.findSingle('div > label');
+    expect(label.props().htmlFor).toBe(formGroup.props.name);
+    expect(label.text()).toBe(formGroup.props.label);
+  });
 
-        const actualChildren = fieldDiv.props().children;
-        expect(actualChildren.length).toBeGreaterThan(0);
-        expect(actualChildren[0]).toBe(testChildren);
-    });
+  it('should render div.field containing children', () => {
+    const testChildren = ['child1', 'child2'];
 
-    it('should not render an error message when there is no error', () => {
-        enzymeHelper.assertNoMatch(render({ error: '' }), 'div > div.alert-danger');
-    });
+    enzymeHelper.shallow({ children: testChildren });
 
-    it('should render an error message when there is an error', () => {
-        const errorMessage = 'test error message';
-        const errorDiv = enzymeHelper.findSingle(
-            render({ error: errorMessage }), 'div > div.alert-danger');
+    const fieldDiv = enzymeHelper.findSingle('div > div.field');
 
-        expect(errorDiv.hasClass('alert'));
-        expect(errorDiv.text()).toBe(errorMessage);
-    });
+    const actualChildren = fieldDiv.props().children;
+    expect(actualChildren.length).toBeGreaterThan(0);
+    expect(actualChildren[0]).toBe(testChildren);
+  });
+
+  it('should not render an error message when there is no error', () => {
+    enzymeHelper.shallow({ error: '' });
+    enzymeHelper.assertNoMatch('div > div.alert-danger');
+  });
+
+  it('should render an error message when there is an error', () => {
+    const errorMessage = 'test error message';
+    enzymeHelper.shallow({ error: errorMessage });
+    const errorDiv = enzymeHelper.findSingle('div > div.alert-danger');
+
+    expect(errorDiv.hasClass('alert'));
+    expect(errorDiv.text()).toBe(errorMessage);
+  });
 });

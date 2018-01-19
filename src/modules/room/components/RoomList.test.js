@@ -1,27 +1,26 @@
 import React from 'react';
-import { shallow, enzymeHelper } from '../../../util/testHelpers';
+import { EnzymeHelper } from '../../../util/testHelpers';
 import RoomList from './RoomList';
 
-const defaultProps = {
-  rooms: [
-    { id: 1, roomName: 'room 1', description: 'description 1' },
-    { id: 2, roomName: 'room 2', description: '' },
-    { id: 3, roomName: 'room 3', description: 'description 3' }
-  ]
-};
-
-function overrideProps(propOverrides) {
-  return Object.assign({}, defaultProps, propOverrides);
-}
-
-function render(propOverrides = {}) {
-  return shallow(<RoomList RoomList {...overrideProps(propOverrides)} />);
-}
-
 describe('RoomList', () => {
+  const roomList = (
+    <RoomList
+      rooms={[
+        { id: 1, roomName: 'room 1', description: 'description 1' },
+        { id: 2, roomName: 'room 2', description: '' },
+        { id: 3, roomName: 'room 3', description: 'description 3' }
+      ]}
+    />
+  );
+
+  const enzymeHelper = new EnzymeHelper(roomList);
+
   it('should render a list item for each room', () => {
-    const rooms = defaultProps.rooms;
-    const ul = enzymeHelper.findSingle(render(), 'div.jumbotron > ul');
+    const rooms = roomList.props.rooms;
+
+    enzymeHelper.shallow();
+
+    const ul = enzymeHelper.findSingle('div.jumbotron > ul');
     const listItems = ul.find('li');
     expect(listItems.length).toEqual(rooms.length);
 
@@ -31,10 +30,10 @@ describe('RoomList', () => {
       const li = listItems.at(i);
       expect(li.key()).toEqual(room.id.toString());
 
-      const link = enzymeHelper.findSingle(li, 'Link');
+      const link = enzymeHelper.findSingleIn(li, 'Link');
       expect(link.props().to).toEqual(`/room/${room.id}`);
 
-      expect(enzymeHelper.findSingle(link, 'strong').text()).toEqual(
+      expect(enzymeHelper.findSingleIn(link, 'strong').text()).toEqual(
         room.roomName
       );
 
