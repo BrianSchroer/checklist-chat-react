@@ -1,5 +1,5 @@
 import React from 'react';
-import { configure, shallow } from 'enzyme';
+import { configure, shallow, ShallowWrapper } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });
@@ -51,7 +51,11 @@ export default class EnzymeHelper {
    * @returns array of found results
    */
   find = (selector, higherOrderComponent) => {
-    return this.findIn(this.wrapper, selector, higherOrderComponent);
+    return this.findIn(
+      this.assertWrapperExists(),
+      selector,
+      higherOrderComponent
+    );
   };
 
   /**
@@ -65,9 +69,9 @@ export default class EnzymeHelper {
    * @returns array of found results
    */
   findIn = (wrapper, selector, higherOrderComponent) => {
-    const selectors = selector.split('>').map(node => node.trim());
-    let parent = wrapper;
+    let parent = this.assertIsWrapper(wrapper);
     let found = [];
+    const selectors = selector.split('>').map(node => node.trim());
 
     for (let i = 0; i < selectors.length; i++) {
       found = parent.find(selectors[i]);
@@ -97,7 +101,7 @@ export default class EnzymeHelper {
    */
   assertFindCount = (expectedCount, selector, higherOrderComponent) => {
     return this.assertFindCountIn(
-      this.wrapper,
+      this.assertWrapperExists(),
       expectedCount,
       selector,
       higherOrderComponent
@@ -145,7 +149,11 @@ export default class EnzymeHelper {
    *      that selector may be wrapped with.
    */
   assertNoMatch = (selector, higherOrderComponent) => {
-    this.assertNoMatchIn(this.wrapper, selector, higherOrderComponent);
+    this.assertNoMatchIn(
+      this.assertWrapperExists(),
+      selector,
+      higherOrderComponent
+    );
   };
 
   /**
@@ -169,7 +177,11 @@ export default class EnzymeHelper {
    * @returns the found node
    */
   findSingle = (selector, higherOrderComponent) => {
-    return this.findSingleIn(this.wrapper, selector, higherOrderComponent);
+    return this.findSingleIn(
+      this.assertWrapperExists(),
+      selector,
+      higherOrderComponent
+    );
   };
 
   /**
@@ -199,7 +211,13 @@ export default class EnzymeHelper {
    * @param {any} wrapper (if not passed, uses the wrapper retrieved/returned by preceding "shallow" function call)
    * @returns the resulting string
    */
-  getDebugHtml = wrapper => (wrapper || this.wrapper).debug();
+  getDebugHtml = wrapper => {
+    if (wrapper) {
+      return this.assertIsWrapper(wrapper).debug();
+    }
+
+    return this.assertWrapperExists().debug();
+  };
 
   /**
    * Logs an HTML-like string of the wrapper for debugging purposes. Useful to
@@ -208,6 +226,24 @@ export default class EnzymeHelper {
    * @param {any} wrapper (if not passed, uses the wrapper retrieved/returned by preceding "shallow" function call)
    * @returns the resulting string
    */
-  logDebugHtml = wrapper =>
-    console.log(this.getDebugHtml(wrapper || this.wrapper)); // eslint-disable-line no-console
+  logDebugHtml = wrapper => console.log(this.getDebugHtml(wrapper)); // eslint-disable-line no-console
+
+  assertWrapperExists = () => {
+    if (this.wrapper) {
+      return this.wrapper;
+    }
+
+    throw new Error(
+      'The "shallow" function must be called before calling this function.'
+    );
+  };
+
+  assertIsWrapper = wrapper => {
+    if (wrapper instanceof ShallowWrapper) {
+      return wrapper;
+    }
+    throw new Error(
+      'Passed "wrapper" is not a valid "ShallowWrapper" instance.'
+    );
+  };
 }
