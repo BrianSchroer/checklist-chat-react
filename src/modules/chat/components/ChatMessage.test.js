@@ -1,5 +1,5 @@
 import React from 'react';
-import { SnapshotHelper } from '../../../util/testHelpers';
+import { SnapshotHelper } from 'react-jest-snapshot-helper';
 import ChatMessage from './ChatMessage';
 import { chatMessageType } from '../../chat';
 
@@ -12,14 +12,16 @@ function propsAdjuster(props, chatMessageOverrides) {
 
 describe('ChatMessage', () => {
   const snapshotHelper = new SnapshotHelper(
-    <ChatMessage
-      userId="currentUser"
-      chatMessage={{
-        timeStamp: '2016-12-08T14:57:10.222Z',
-        userName: 'test userName',
-        text: 'test text'
-      }}
-    />
+    (
+      <ChatMessage
+        userId="currentUser"
+        chatMessage={{
+          timeStamp: '2016-12-08T14:57:10.222Z',
+          userName: 'test userName',
+          text: 'test text'
+        }}
+      />
+    )
   ).withPropsAdjuster(propsAdjuster);
 
   describe(`when chatMessageType = "${chatMessageType.ACTION}"`, () => {

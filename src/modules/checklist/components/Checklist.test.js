@@ -1,21 +1,18 @@
 import React from 'react';
-import { SnapshotHelper } from '../../../util/testHelpers';
+import { SnapshotHelper } from 'react-jest-snapshot-helper';
 import Checklist from './Checklist';
 import * as checklistItemStatus from '../checklistItemStatus';
 
 const defaultProps = {
   checklistItems: [],
-  onEditRequest: () => { }
+  onEditRequest: () => {}
 };
 
-function dummyFunction() { }
+function dummyFunction() {}
 
 describe('Checklist', () => {
   const snapshotHelper = new SnapshotHelper(
-    <Checklist
-      checklistItems={[]}
-      onEditRequest={dummyFunction}
-    />
+    <Checklist checklistItems={[]} onEditRequest={dummyFunction} />
   );
 
   describe('with no existing items', () => {

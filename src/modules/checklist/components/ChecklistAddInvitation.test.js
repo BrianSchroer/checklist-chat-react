@@ -1,5 +1,5 @@
 import React from 'react';
-import { SnapshotHelper } from '../../../util/testHelpers';
+import { SnapshotHelper } from 'react-jest-snapshot-helper';
 import ChecklistAddInvitation from './ChecklistAddInvitation';
 
 describe('ChecklistAddInvitation', () => {

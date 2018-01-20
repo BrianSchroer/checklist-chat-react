@@ -1,13 +1,16 @@
 import React from 'react';
 import initialState from '../../../app/store/initialState';
-import { SnapshotHelper } from '../../../util/testHelpers';
-import { ChatParticipantsModal, mapStateToProps } from './ChatParticipantsModal';
+import { SnapshotHelper } from 'react-jest-snapshot-helper';
+import {
+  ChatParticipantsModal,
+  mapStateToProps
+} from './ChatParticipantsModal';
 
 const defaultOwnProps = {
-  onCloseRequest: () => { }
+  onCloseRequest: () => {}
 };
 
-function dummyFunction() { }
+function dummyFunction() {}
 
 function callMapStateToProps(stateOverrides, ownPropsOverrides) {
   const state = Object.assign({}, initialState, stateOverrides || {});
@@ -18,16 +21,18 @@ function callMapStateToProps(stateOverrides, ownPropsOverrides) {
 
 describe('ChatParticipantsModal', () => {
   const snapshotHelper = new SnapshotHelper(
-    <ChatParticipantsModal
-      chatParticipants={[1, 2, 3, 4, 5].map(i => ({
-        name: `name ${i}`,
-        department: `department ${i}`,
-        title: `title ${i}`,
-        connection: `connection ${i}`
-      }))}
-      onCloseRequest={dummyFunction}
-      actions={{}}
-    />
+    (
+      <ChatParticipantsModal
+        chatParticipants={[1, 2, 3, 4, 5].map(i => ({
+          name: `name ${i}`,
+          department: `department ${i}`,
+          title: `title ${i}`,
+          connection: `connection ${i}`
+        }))}
+        onCloseRequest={dummyFunction}
+        actions={{}}
+      />
+    )
   );
 
   it('should render correctly', () => {

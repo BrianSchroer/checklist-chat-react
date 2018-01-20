@@ -1,9 +1,9 @@
 import React from 'react';
 import initialState from '../../../app/store/initialState';
-import { SnapshotHelper } from '../../../util/testHelpers';
+import { SnapshotHelper } from 'react-jest-snapshot-helper';
 import { ChatRoomPage, mapStateToProps } from './ChatRoomPage';
 
-function dummyFunction() { }
+function dummyFunction() {}
 
 function callMapStateToProps(stateOverrides) {
   const state = Object.assign({}, initialState, stateOverrides || {});
@@ -12,14 +12,17 @@ function callMapStateToProps(stateOverrides) {
 
 describe('ChatRoomPage', () => {
   const snapshotHelper = new SnapshotHelper(
-    <ChatRoomPage
-      match={{ params: { id: 123 } }}
-      userId="TestUserId"
-      room={{ id: 123 }}
-      checklistItems={[]}
-      chatMessages={[]}
-      actions={{ joinChat: dummyFunction }}
-    />);
+    (
+      <ChatRoomPage
+        match={{ params: { id: 123 } }}
+        userId="TestUserId"
+        room={{ id: 123 }}
+        checklistItems={[]}
+        chatMessages={[]}
+        actions={{ joinChat: dummyFunction }}
+      />
+    )
+  );
 
   it('should render correctly', () => {
     snapshotHelper.test();
@@ -27,11 +30,10 @@ describe('ChatRoomPage', () => {
 
   describe('mapStateToProps', () => {
     it('should return expected props', () => {
-      const stateOverrides =
-        {
-          roomId: 666,
-          rooms: [{ id: 666 }]
-        };
+      const stateOverrides = {
+        roomId: 666,
+        rooms: [{ id: 666 }]
+      };
       const props = callMapStateToProps(stateOverrides);
 
       expect(props.userId).toBe(initialState.userId);

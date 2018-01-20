@@ -1,5 +1,6 @@
 import React from 'react';
-import { EnzymeHelper, SnapshotHelper } from '../../../util/testHelpers';
+import { EnzymeHelper } from '../../../util/testHelpers';
+import { SnapshotHelper } from 'react-jest-snapshot-helper';
 import ChecklistButtons from './ChecklistButtons';
 
 function dummyFunction() {}

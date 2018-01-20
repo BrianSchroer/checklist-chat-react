@@ -1,10 +1,13 @@
 import React from 'react';
 import initialState from '../../../app/store/initialState';
-import { SnapshotHelper } from '../../../util/testHelpers';
-import { ChatMessageEditorModal, mapStateToProps } from './ChatMessageEditorModal';
+import { SnapshotHelper } from 'react-jest-snapshot-helper';
+import {
+  ChatMessageEditorModal,
+  mapStateToProps
+} from './ChatMessageEditorModal';
 
 const defaultOwnProps = {
-  onCloseRequest: () => { }
+  onCloseRequest: () => {}
 };
 
 function callMapStateToProps(stateOverrides, ownPropsOverrides) {
@@ -14,15 +17,17 @@ function callMapStateToProps(stateOverrides, ownPropsOverrides) {
   return mapStateToProps(state, ownProps);
 }
 
-function dummyFunction() { }
+function dummyFunction() {}
 
 describe('ChatMessageEditorModal', () => {
   it('should render correctly', () => {
-    SnapshotHelper.test(<ChatMessageEditorModal
-      roomId="123"
-      onCloseRequest={dummyFunction}
-      actions={{}}
-    />);
+    SnapshotHelper.test(
+      <ChatMessageEditorModal
+        roomId="123"
+        onCloseRequest={dummyFunction}
+        actions={{}}
+      />
+    );
   });
 
   describe('mapStateToProps', () => {

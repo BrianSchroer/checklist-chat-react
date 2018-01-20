@@ -1,14 +1,17 @@
 import React from 'react';
 import initialState from '../../../app/store/initialState';
-import { SnapshotHelper } from '../../../util/testHelpers';
-import { ChatPriorityNotificationModal, mapStateToProps } from './ChatPriorityNotificationModal';
+import { SnapshotHelper } from 'react-jest-snapshot-helper';
+import {
+  ChatPriorityNotificationModal,
+  mapStateToProps
+} from './ChatPriorityNotificationModal';
 import { chatMessageType } from '../../chat';
 
 const defaultOwnProps = {
-  onCloseRequest: () => { }
+  onCloseRequest: () => {}
 };
 
-function dummyFunction() { }
+function dummyFunction() {}
 
 function callMapStateToProps(stateOverrides, ownPropsOverrides) {
   const state = Object.assign({}, initialState, stateOverrides || {});
@@ -19,15 +22,17 @@ function callMapStateToProps(stateOverrides, ownPropsOverrides) {
 
 describe('ChatPriorityNotificationModal', () => {
   const snapshotHelper = new SnapshotHelper(
-    <ChatPriorityNotificationModal
-      chatMessage={{
-        timeStamp: '2016-12-08T14:57:10.222Z',
-        userName: 'test userName',
-        text: 'test text',
-        chatMessageType: chatMessageType.CHAT
-      }}
-      onCloseRequest={dummyFunction}
-    />
+    (
+      <ChatPriorityNotificationModal
+        chatMessage={{
+          timeStamp: '2016-12-08T14:57:10.222Z',
+          userName: 'test userName',
+          text: 'test text',
+          chatMessageType: chatMessageType.CHAT
+        }}
+        onCloseRequest={dummyFunction}
+      />
+    )
   );
 
   it('should render correctly', () => {
