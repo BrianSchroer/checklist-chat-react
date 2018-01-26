@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  storiesOf,
-  linkTo,
-  infoDecorator
-} from '../../../../tools/storybook';
+import { storiesOf, linkTo, infoDecorator } from '../../../../tools/storybook';
 import Markdown from './Markdown';
 
 const sample = (...sourceStrings) => {
@@ -15,9 +11,7 @@ const sampleWithClassName = (source, className) => {
     <div style={{ margin: '1em' }}>
       <p>
         Customized markdown component that wraps the"react-markdown" npm
-        package's "<a href="#" onClick={linkTo('ReactMarkdown')}>
-          ReactMarkdown
-        </a>" component.
+        package's "ReactMarkdown" component.
       </p>
       <hr />
       <h4>source:</h4>
@@ -56,7 +50,9 @@ storiesOf('Markdown', module)
     sample(
       'Here are links to the "react-markdown" github repo:',
       '\n[https://github.com/rexxars/react-markdown](https://github.com/rexxars/react-markdown),',
-      '\nand to  a [markdown reference page](http://commonmark.org/help/)'
+      '\nand to  a [markdown reference page](http://commonmark.org/help/)',
+      '\n"Raw" links like http://www.google.com should rendered as links,',
+      '\n"but not without the "http" prefix (e.g. www.google.com).'
     )
   )
   .add('image', () =>
@@ -85,7 +81,8 @@ storiesOf('Markdown', module)
       '\n2. item 2',
       '\n\n...or like this:',
       '\n1) item 1',
-      '\n2) item 2'
+      '\n2) item 2',
+      "\n\n(but it's not working with react-markdown version 3)"
     )
   )
   .add('horizontal rule (not allowed)', () =>

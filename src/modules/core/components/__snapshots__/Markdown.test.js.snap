@@ -20,17 +20,11 @@ exports[`Markdown should escape inline HTML 1`] = `
   <div>
     <p>
       Inline HTML gets "escaped", like this: 
-      <span
-        className={undefined}
-        data-sourcepos={undefined}
-      >
+      <span>
         &lt;span&gt;
       </span>
       inline HTML
-      <span
-        className={undefined}
-        data-sourcepos={undefined}
-      >
+      <span>
         &lt;/span&gt;
       </span>
     </p>
@@ -57,11 +51,7 @@ exports[`Markdown should not allow headings 1`] = `
   <h4>
     output:
   </h4>
-  <div>
-    H1
-    H2
-    H3
-  </div>
+  <div />
 </div>
 `;
 
@@ -159,17 +149,11 @@ That was a code block.
     <p>
       Here's some assertSnapshotMatch JavaScript:
     </p>
-    <pre
-      className={undefined}
-      data-sourcepos={undefined}
-    >
-      <code
-        className={undefined}
-      >
+    <pre>
+      <code>
         function addOne(number) {
     return number + 1;
 }
-
       </code>
     </pre>
     <p>
@@ -235,7 +219,6 @@ exports[`Markdown should render images 1`] = `
       <img
         alt="Image"
         src="https://media.giphy.com/media/OxgjxSpRwMXoA/giphy.gif"
-        title={undefined}
       />
     </p>
   </div>
@@ -262,10 +245,7 @@ exports[`Markdown should render inline code 1`] = `
   <div>
     <p>
       An arrow function looks like this: 
-      <code
-        className={undefined}
-        data-sourcepos={undefined}
-      >
+      <code>
         number =&gt; number + 1
       </code>
       .
@@ -303,10 +283,7 @@ Line3
       Line3
       <br />
       (\\n is converted to 
-      <span
-        className={undefined}
-        data-sourcepos={undefined}
-      >
+      <span>
         &lt;br&gt;
       </span>
       )
@@ -340,7 +317,6 @@ and to  a [markdown reference page](http://commonmark.org/help/)
       <br />
       <a
         href="https://github.com/rexxars/react-markdown"
-        title={undefined}
       >
         https://github.com/rexxars/react-markdown
       </a>
@@ -349,7 +325,6 @@ and to  a [markdown reference page](http://commonmark.org/help/)
       and to  a 
       <a
         href="http://commonmark.org/help/"
-        title={undefined}
       >
         markdown reference page
       </a>
@@ -384,32 +359,18 @@ exports[`Markdown should render ordered lists 1`] = `
   <div>
     <p>
       can be specified like this:
+      <br />
+      1. item 1
+      <br />
+      2. item 2
     </p>
-    <ol
-      className={undefined}
-      data-sourcepos={undefined}
-    >
-      <li>
-        item 1
-      </li>
-      <li>
-        item 2
-      </li>
-    </ol>
     <p>
       ...or like this:
+      <br />
+      1) item 1
+      <br />
+      2) item 2
     </p>
-    <ol
-      className={undefined}
-      data-sourcepos={undefined}
-    >
-      <li>
-        item 1
-      </li>
-      <li>
-        item 2
-      </li>
-    </ol>
   </div>
 </div>
 `;
@@ -526,10 +487,7 @@ exports[`Markdown should render unordered lists 1`] = `
     <p>
       can be specified with asterisks:
     </p>
-    <ul
-      className={undefined}
-      data-sourcepos={undefined}
-    >
+    <ul>
       <li>
         item 1
       </li>
@@ -540,10 +498,7 @@ exports[`Markdown should render unordered lists 1`] = `
     <p>
       ...or with dashes:
     </p>
-    <ul
-      className={undefined}
-      data-sourcepos={undefined}
-    >
+    <ul>
       <li>
         item 1
       </li>
