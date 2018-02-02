@@ -3,11 +3,6 @@ import { SnapshotHelper } from 'react-jest-snapshot-helper';
 import Checklist from './Checklist';
 import * as checklistItemStatus from '../checklistItemStatus';
 
-const defaultProps = {
-  checklistItems: [],
-  onEditRequest: () => {}
-};
-
 function dummyFunction() {}
 
 describe('Checklist', () => {

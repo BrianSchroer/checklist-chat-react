@@ -1,5 +1,5 @@
 import React from 'react';
-import { storiesOf, linkTo, infoDecorator } from '../../../../tools/storybook';
+import { storiesOf, infoDecorator } from '../../../../tools/storybook';
 import Markdown from './Markdown';
 
 const sample = (...sourceStrings) => {
